@@ -1,0 +1,11 @@
+DELIMITER $$
+CREATE PROCEDURE prueba()
+BEGIN
+END
+
+
+https://smtp.office365.com/
+587
+olger60019castro@outlook.com
+olger1996
+
