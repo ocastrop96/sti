@@ -7,7 +7,7 @@ class ControladorUsuarios
         if (isset($_POST["logCuenta"])) {
             if (
                 preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ]+$/', $_POST["logCuenta"]) &&
-                preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ].{5,20}+$/', $_POST["logClave"])
+                preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ].{8,20}+$/', $_POST["logClave"])
             ) {
 
                 $cuenta = $_POST["logCuenta"];
@@ -127,7 +127,7 @@ class ControladorUsuarios
             if (
                 preg_match('/^[0-9]+$/', $_POST["dniUsuario"]) &&
                 preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ]+$/', $_POST["cuentaUsuario"]) &&
-                preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ].{5,20}+$/', $_POST["claveUsuario"])
+                preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ].{8,20}+$/', $_POST["claveUsuario"])
             ) {
                 $tabla = "ws_usuarios";
                 $encriptacion1 = crypt($_POST["claveUsuario"], '$2a$07$usesomesillystringforsalt$');
