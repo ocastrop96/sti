@@ -147,16 +147,16 @@ class ControladorUsuarios
 
                 if ($respuestaRegistro == "ok") {
                     echo '<script>
-                          Swal.fire({
-                            icon: "success",
-                            title: "El usuario ha sido registrado con éxito",
-                            showConfirmButton: true,
-                            confirmButtonText: "Cerrar",
-                            closeOnConfirm: false
-                          }).then((result)=>{
-                            if(result.value){
+                            Swal.fire({
+                                icon: "success",
+                                title: "¡El usuario ha sido registrado con éxito!",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            function redirect(){
                                 window.location = "usuarios";
-                            }});
+                            }
+                            setTimeout(redirect,1500);
                       </script>';
                 }
             } else {
@@ -164,13 +164,13 @@ class ControladorUsuarios
                 Swal.fire({
                   icon: "error",
                   title: "Ingrese correctamente sus datos",
-                  showConfirmButton: true,
-                  confirmButtonText: "Cerrar",
-                  closeOnConfirm: false
-                }).then((result)=>{
-                  if(result.value){
-                      window.location = "usuarios";
-                  }});
+                  showConfirmButton: false,
+                  timer: 1500
+                });
+                function redirect(){
+                    window.location = "usuarios";
+                }
+                setTimeout(redirect,1500);
             </script>';
             }
         }
@@ -191,16 +191,16 @@ class ControladorUsuarios
                         $encriptacion2 = crypt($_POST["edtclaveUsuario"], '$2a$07$usesomesillystringforsalt$');
                     } else {
                         echo '<script>
-                            Swal.fire({
-                                icon: "error",
-                                title: "La contraseña no debe contener letras especiales",
-                                showConfirmButton: true,
-                                confirmButtonText: "Cerrar",
-                                closeOnConfirm: false
-                            }).then((result)=>{
-                                if(result.value){
+                                Swal.fire({
+                                    icon: "error",
+                                    title: "La contraseña no debe contener letras especiales",
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                                function redirect(){
                                     window.location = "usuarios";
-                                }});
+                                }
+                                setTimeout(redirect,1500);
                             </script>';
                     }
                 } else {
@@ -223,30 +223,30 @@ class ControladorUsuarios
 
                 if ($respuestaEditar == "ok") {
                     echo '<script>
-                          Swal.fire({
-                            icon: "success",
-                            title: "El usuario ha sido modificado con éxito",
-                            showConfirmButton: true,
-                            confirmButtonText: "Cerrar",
-                            closeOnConfirm: false
-                          }).then((result)=>{
-                            if(result.value){
+                            Swal.fire({
+                                icon: "success",
+                                title: "El usuario ha sido modificado con éxito",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            function redirect(){
                                 window.location = "usuarios";
-                            }});
+                            }
+                            setTimeout(redirect,1500);
                       </script>';
                 }
             } else {
                 echo '<script>
-                Swal.fire({
-                  icon: "error",
-                  title: "Ingrese correctamente sus datos",
-                  showConfirmButton: true,
-                  confirmButtonText: "Cerrar",
-                  closeOnConfirm: false
-                }).then((result)=>{
-                  if(result.value){
-                      window.location = "usuarios";
-                  }});
+                  Swal.fire({
+                    icon: "error",
+                    title: "Ingrese correctamente sus datos",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                function redirect(){
+                    window.location = "usuarios";
+                }
+                setTimeout(redirect,1500);
             </script>';
             }
         }
@@ -262,15 +262,15 @@ class ControladorUsuarios
             if ($respuesta == "ok") {
                 echo '<script>
                         Swal.fire({
-                        icon: "success",
-                        title: "¡El usuario ha sido eliminado con éxito!",
-                        showConfirmButton: true,
-                        confirmButtonText: "Cerrar",
-                        closeOnConfirm: false
-                        }).then((result)=>{
-                        if(result.value){
+                            icon: "success",
+                            title: "¡El usuario ha sido eliminado con éxito!",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        function redirect(){
                             window.location = "usuarios";
-                        }});
+                        }
+                        setTimeout(redirect,1500);
                     </script>';
             }
         }

@@ -47,6 +47,17 @@ class ajaxUsuarios
         echo json_encode($respuesta);
     }
 
+    public $validarCuentaLog;
+
+    public function ajaxCuentaLog()
+    {
+        $item = "cuenta";
+        $valor = $this->validarCuentaLog;
+        $respuesta = ControladorUsuarios::ctrListar($item, $valor);
+
+        echo json_encode($respuesta);
+    }
+
 }
 // Listar usuarios
 if (isset($_POST["idUsuario"])) {
@@ -73,4 +84,10 @@ if (isset($_POST["validarCuenta"])) {
 	$validarc= new ajaxUsuarios();
 	$validarc -> validarCuenta = $_POST["validarCuenta"];
 	$validarc -> ajaxCuentaRepetida();
+}
+// Validar existencia de cuenta
+if (isset($_POST["validarCuentaLog"])) {
+	$validarcL= new ajaxUsuarios();
+	$validarcL -> validarCuentaLog = $_POST["validarCuentaLog"];
+	$validarcL -> ajaxCuentaLog();
 }

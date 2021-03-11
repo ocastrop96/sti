@@ -42,24 +42,7 @@
                             <th>Acciones</th>
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <th style="width: 10px">#</th>
-                            <th>DNI N°</th>
-                            <th>Nombres</th>
-                            <th>A. Paterno</th>
-                            <th>A. Materno</th>
-                            <th>Perfil</th>
-                            <th>Cuenta</th>
-                            <th>Registro</th>
-                            <th>Estado</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </tfoot>
                 </table>
-                <?php
-                // echo gethostname();
-                ?>
             </div>
         </div>
     </section>
@@ -151,7 +134,7 @@
                     </div>
                 </div>
                 <div class="modal-footer justify-content-center">
-                    <button type="submit" class="btn btn-secondary"><i class="fas fa-save"></i> Guardar</button>
+                    <button type="submit" class="btn btn-secondary" id="btnRegistrarUsuario"><i class="fas fa-save"></i> Registrar</button>
                     <button type="reset" class="btn btn-danger"><i class="fas fa-eraser"></i> Limpiar</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fas fa-times-circle"></i> Salir</button>
                 </div>
@@ -167,7 +150,7 @@
 <div id="modal-editar-usuario" class="modal fade" role="dialog" aria-modal="true" style="padding-right: 17px;">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="" role="form" method="post">
+            <form action="" id="form-edt-usuario" role="form" method="post">
                 <div class="modal-header text-center" style="background: #6c757d; color: white">
                     <h4 class="modal-title">Editar Usuario</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -177,11 +160,19 @@
                 <div class="modal-body">
                     <!-- Bloque de DNI -->
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-8">
                             <input type="hidden" name="idUsuario" id="idUsuario" required>
                             <label for="edtdniUsuario">DNI</label>
                             <i class="fas fa-address-card"></i> *
                             <input type="text" name="edtdniUsuario" id="edtdniUsuario" class="form-control" required autocomplete="off">
+                        </div>
+                        <div class="col-4" id="btnDNIEdtUsuario">
+                            <div class="form-group">
+                                <label>Búsqueda:<span class="text-danger">&nbsp;*</span></label>
+                                <div class="input-group">
+                                    <button type="button" class="btn btn-block btn-info" id="btnEdtDNIU"><i class="fas fa-search"></i>&nbsp;Consulta DNI</button>
+                                </div>
+                            </div>
                         </div>
                         <!-- Bloque de DNI -->
                         <!-- Bloque de Nombres -->
@@ -210,9 +201,9 @@
                     <!-- Bloque de Perfil -->
                     <div class="row">
                         <div class="col-12 mt-2">
-                            <label for="edtperfilUsuario">Perfil</label>
+                            <label for="edtperfilUsuario1">Perfil</label>
                             <i class="fas fa-id-card-alt"></i> *
-                            <select class="form-control" style="width: 100%;" name="edtperfilUsuario" required>
+                            <select class="form-control" style="width: 100%;" name="edtperfilUsuario" id="edtperfilUsuario1" required>
                                 <option value="" id="edtperfilUsuario"></option>
                                 <?php
                                 $itemPerfil2 = null;
@@ -243,7 +234,7 @@
                     </div>
                 </div>
                 <div class="modal-footer justify-content-center">
-                    <button type="submit" class="btn btn-secondary"><i class="fas fa-save"></i> Guardar cambios</button>
+                    <button type="submit" class="btn btn-secondary" id="btnEditUsuario"><i class="fas fa-save"></i> Guardar cambios</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fas fa-times-circle"></i> Salir</button>
                 </div>
                 <?php
