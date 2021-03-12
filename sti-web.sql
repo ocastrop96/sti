@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 11-03-2021 a las 04:14:21
+-- Tiempo de generación: 12-03-2021 a las 20:10:44
 -- Versión del servidor: 5.7.24
--- Versión de PHP: 7.4.13
+-- Versión de PHP: 7.4.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -25,6 +25,10 @@ DELIMITER $$
 --
 -- Procedimientos
 --
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ACTUALIZAR_CONTRASEÑA` (IN `_id_usuario` INT(11), IN `_nclave` TEXT)  BEGIN
+UPDATE ws_usuarios set clave = _nclave where id_usuario = _id_usuario;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ACTUALIZAR_EQUIPOC` (IN `_idEquipo` INT(11), IN `_idTipo` INT(11), IN `_uResponsable` INT(11), IN `_office` INT(11), IN `_service` INT(11), IN `_serie` TEXT, IN `_sbn` TEXT, IN `_marca` TEXT, IN `_modelo` TEXT, IN `_descripcion` TEXT, IN `_fechaCompra` DATE, IN `_ordenCompra` TEXT, IN `_garantia` TEXT, IN `_placa` TEXT, IN `_procesador` TEXT, IN `_vprocesador` TEXT, IN `_ram` TEXT, IN `_discoDuro` TEXT, IN `_condicion` INT(11), IN `_estadoEQ` INT(11))  BEGIN
 UPDATE ws_equipos SET idTipo = _idTipo, uResponsable = _uResponsable, office = _office, service = _service, serie = _serie,sbn = _sbn,marca = _marca, modelo = _modelo,descripcion = _descripcion, fechaCompra = _fechaCompra, ordenCompra = _ordenCompra,garantia = _garantia, placa = _placa, procesador = _procesador, vprocesador = _vprocesador, ram = _ram,discoDuro = _discoDuro, condicion = _condicion, estadoEQ = _estadoEQ where idEquipo = _idEquipo;
 END$$
@@ -49,6 +53,10 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `ANULAR_INTEGRACION` (IN `_idIntegra
 UPDATE ws_integraciones SET nro_eq = "ANULADO", ip = null,serie_pc = null, serie_monitor = null, serie_teclado = null,serie_EstAcu = null,serie_eqred = null,serie_imp = null, tipo_equipo = 0,responsable = 0, oficina_in = 0,servicio_in = 0, estado = 0, condicion = 0, estadoAnu = 1 WHERE idIntegracion = _idIntegracion;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `DESBLOQUEAR_USUARIO` (IN `_id_usuario` INT(11))  BEGIN
+UPDATE ws_usuarios set nintentos = 0 where id_usuario = _id_usuario;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `EDITAR_INTEGRACIONC` (IN `_idIntegracion` INT(11), IN `_nro_eq` TEXT, IN `_ip` TEXT, IN `_serie_pc` INT(11), IN `_serie_monitor` INT(11), IN `_serie_teclado` INT(11), IN `_serie_EstAcu` INT(11), IN `_tipo_equipo` INT(11), IN `_responsable` INT(11), IN `_oficina_in` INT(11), IN `_servicio_in` INT(11), IN `_estado` INT(11), IN `_condicion` INT(11))  BEGIN
 UPDATE ws_integraciones SET nro_eq = _nro_eq,ip = _ip,serie_pc = _serie_pc,serie_monitor = _serie_monitor,serie_teclado = _serie_teclado, serie_EstAcu = _serie_EstAcu,tipo_equipo = _tipo_equipo,responsable = _responsable, oficina_in = _oficina_in,servicio_in = _servicio_in,estado = _estado,condicion = _condicion WHERE idIntegracion = _idIntegracion;
 END$$
@@ -63,6 +71,22 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `EDITAR_INTEGRACIONR` (IN `_idIntegracion` INT(11), IN `_nro_eq` TEXT, IN `_ip` TEXT, IN `_serie_eqred` INT(11), IN `_tipo_equipo` INT(11), IN `_responsable` INT(11), IN `_oficina_in` INT(11), IN `_servicio_in` INT(11), IN `_estado` INT(11), IN `_condicion` INT(11))  BEGIN
 UPDATE ws_integraciones SET nro_eq = _nro_eq,ip = _ip,serie_eqred = _serie_eqred,tipo_equipo = _tipo_equipo,responsable = _responsable, oficina_in = _oficina_in,servicio_in = _servicio_in,estado = _estado,condicion = _condicion WHERE idIntegracion = _idIntegracion;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `EDITAR_OFICINA_DPTO` (IN `_id_area` INT(11), IN `_area` TEXT)  BEGIN
+UPDATE ws_departamentos SET area = _area WHERE id_area = _id_area;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `EDITAR_SERVICIO_OD` (IN `_id_area` INT(11), IN `_id_subarea` INT(11), IN `_subarea` TEXT)  BEGIN
+UPDATE ws_servicios SET subarea = _subarea, id_area = _id_area WHERE id_subarea = _id_subarea;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ELIMINAR_OFICINA_DPTO` (IN `_id_area` INT(11))  BEGIN
+DELETE FROM ws_departamentos WHERE id_area = _id_area;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ELIMINAR_SERVICIO_OD` (IN `_id_subarea` INT(11))  BEGIN
+DELETE FROM ws_servicios WHERE id_subarea = _id_subarea;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `INTENTOS_USUARIO` (IN `_id_usuario` INT(11))  BEGIN
@@ -146,7 +170,7 @@ WHERE segmento = 2 and estadoAnu = 0 order by correlativo_integracion desc;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_RESPONSABLES` ()  BEGIN
-select idResponsable,nombresResp,apellidosResp,idOficina,area,idServicio,subarea from (ws_responsables as res inner join ws_departamentos as dep on res.idOficina = dep.id_area) inner join ws_servicios as serv on res.idServicio = serv.id_subarea;
+select idResponsable,dni,nombresResp,apellidosResp,idOficina,area,idServicio,subarea from (ws_responsables as res inner join ws_departamentos as dep on res.idOficina = dep.id_area) inner join ws_servicios as serv on res.idServicio = serv.id_subarea;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_RESPONSABLES_ITEM` (IN `_campo` TEXT, IN `_valor` TEXT)  BEGIN
@@ -238,8 +262,16 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `REGISTRAR_INTEGRACIONCI` (IN `_nro_
 INSERT INTO ws_integraciones(nro_eq,ip,serie_imp,fecha_registro,tipo_equipo,responsable,oficina_in,servicio_in,estado,condicion) VALUES (_nro_eq,_ip ,_serie_imp,_fecha_registro,_tipo_equipo,_responsable,_oficina_in,_servicio_in,_estado,_condicion);
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `REGISTRAR_OFICINA_DPTO` (IN `_area` TEXT)  BEGIN
+INSERT INTO ws_departamentos(area) VALUES(_area);
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `REGISTRAR_RESPONSABLE` (IN `_nombresResp` TEXT, IN `_apellidosResp` TEXT, IN `_idOficina` INT(11), IN `_idServicio` INT(11))  BEGIN
 INSERT INTO ws_responsables(nombresResp,apellidosResp,idOficina,idServicio) VALUES(_nombresResp,_apellidosResp,_idOficina,_idServicio);
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `REGISTRAR_SERVICIO_OD` (IN `_id_area` INT(11), IN `_subarea` TEXT)  BEGIN
+INSERT INTO ws_servicios(id_area, subarea) VALUES(_id_area,_subarea);
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `REGISTRO_USUARIO` (IN `_perfil` INT(11), IN `_dni` VARCHAR(8), IN `_nombres` TEXT, IN `_apellidoPat` TEXT, IN `_apellidoMat` TEXT, IN `_cuenta` TEXT, IN `_clave` TEXT)  BEGIN
@@ -334,14 +366,14 @@ CREATE TABLE `ws_departamentos` (
 --
 
 INSERT INTO `ws_departamentos` (`id_area`, `area`, `fecha_creacion`) VALUES
-(1, 'Anestesiología', '2020-09-16 18:21:44'),
-(2, 'Asesoría Legal', '2020-09-16 18:23:54'),
+(1, 'Archivo Central', '2020-09-16 18:21:44'),
+(2, 'Asesoría Jurídica', '2020-09-16 18:23:54'),
 (3, 'Cirugía', '2020-09-16 18:24:01'),
 (4, 'Comunicaciones', '2020-09-16 18:24:09'),
 (5, 'Consultorios Externos', '2020-09-16 18:24:17'),
-(6, 'Control Interno', '2020-09-16 18:24:26'),
+(6, 'Órgano de Control Interno', '2020-09-16 18:24:26'),
 (7, 'Diagnóstico por Imágenes', '2020-09-16 18:24:48'),
-(8, 'Dirección', '2020-09-16 18:24:57'),
+(8, 'Dirección General', '2020-09-16 18:24:57'),
 (9, 'Docencia', '2020-09-16 18:25:03'),
 (10, 'Economía', '2020-09-16 18:25:14'),
 (11, 'Emergencia', '2020-09-16 18:25:24'),
@@ -363,7 +395,9 @@ INSERT INTO `ws_departamentos` (`id_area`, `area`, `fecha_creacion`) VALUES
 (27, 'Seguros', '2020-09-16 18:29:57'),
 (28, 'Servicio Social', '2020-09-16 18:30:14'),
 (30, 'Servicios Generales', '2020-09-17 20:04:23'),
-(31, 'Archivo Central', '2020-09-22 00:39:17');
+(31, 'Anestesiología y Centro Quirurgico', '2020-09-22 00:39:17'),
+(32, 'Enfermería', '2021-03-12 15:42:20'),
+(33, 'Medicina Física', '2021-03-12 15:42:55');
 
 -- --------------------------------------------------------
 
@@ -457,7 +491,7 @@ INSERT INTO `ws_equipos` (`idEquipo`, `tipSegmento`, `idTipo`, `uResponsable`, `
 (48, 1, 5, 8, 13, 16, 'SERVIDOR2', '156727888', 'HP', 'HP SERVIDOR', 'SERVIDOR DE STORAGE', '2021-02-25', '1111-11111', '5 AÑOS', 'HP', 'XEON I7', '3.80 GHZ', '32GB', '4TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-02-26 09:29:03'),
 (49, 2, 2, 6, 13, 17, 'SWITCH25', '18383929110', 'ARUBA', 'HP-ARUBA', 'SWITCH ADMINISTRABLE', '2021-02-09', '111-115151', '3 AÑOS', NULL, NULL, NULL, NULL, NULL, '48', '3', 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-02-26 09:34:45'),
 (50, 3, 13, 6, 13, 17, 'ESTABILIZADOR234', '11561162166', 'APC', 'EST-250V', 'ESTABILIZADOR', '2021-02-16', '111-1515151', '5 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-02-26 09:40:56'),
-(51, 1, 1, 7, 13, 18, 'MXL2500TDK', '740899500413', 'HP', 'ELITE 8300', 'PC DE DESCRITORIO', '2018-06-20', '111-44545', '5 AÑOS', 'HP', 'CORE I7', '3.40 GHZ', '12GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-04 15:00:40'),
+(51, 1, 1, 4, 4, 14, 'MXL2500TDK', '740899500413', 'HP', 'ELITE 8300', 'PC DE DESCRITORIO', '2018-06-20', '111-44545', '5 AÑOS', 'HP', 'CORE I7', '3.40 GHZ', '12GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-04 15:00:40'),
 (52, 3, 17, 6, 13, 17, 'MARCADOR', '12334444434', 'LG', 'LG-458', 'MARCADOR ELECTRONICO DIGITAL', '2021-03-02', '111-1115', '3 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-10 09:18:25'),
 (53, 1, 0, 0, 0, 0, 'A', '1', 'AASAS', 'ASAS', 'ASAS', '1969-12-31', 'ASAS', 'ASAS', 'ASAS', 'ASAS', 'ASAS', 'ASAS', 'ASAS', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 0, 0, 1, '2021-03-10 10:07:26');
 
@@ -540,7 +574,7 @@ INSERT INTO `ws_integraciones` (`idIntegracion`, `correlativo_integracion`, `nro
 (24, 'FT-2021-00024', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-04', 0, 0, 0, 0, 0, 0, 1, '2021-03-04 19:49:02'),
 (25, 'FT-2021-00025', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-04', 0, 0, 0, 0, 0, 0, 1, '2021-03-04 19:49:32'),
 (26, 'FT-2021-00026', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-04', 0, 0, 0, 0, 0, 0, 1, '2021-03-04 19:50:00'),
-(27, 'FT-2021-00027', 'OPTIMUS', '172.16.5.100', 51, 28, 29, 50, NULL, NULL, '2021-03-04', 1, 7, 13, 18, 1, 1, 0, '2021-03-04 20:02:47'),
+(27, 'FT-2021-00027', 'OPTIMUS', '172.16.5.100', 51, 28, 29, 50, NULL, NULL, '2021-03-04', 1, 4, 4, 14, 1, 1, 0, '2021-03-04 20:02:47'),
 (28, 'FT-2021-00028', 'LP_0001', '172.16.8.100', 45, NULL, NULL, NULL, NULL, NULL, '2021-03-08', 4, 7, 13, 18, 1, 1, 0, '2021-03-08 17:16:57'),
 (29, 'FT-2021-00029', 'PC_0001', '172.16.5.180', 20, 42, 34, 37, NULL, NULL, '2021-03-08', 1, 2, 1, 12, 2, 2, 0, '2021-03-08 17:26:45'),
 (30, 'FT-2021-00030', 'PC_08000', '172.16.5.85', 18, 35, 41, 23, NULL, NULL, '2021-03-08', 1, 6, 13, 17, 1, 1, 0, '2021-03-08 17:27:08'),
@@ -612,6 +646,7 @@ INSERT INTO `ws_perfiles` (`id_perfil`, `perfil`, `fecha_creacion`) VALUES
 
 CREATE TABLE `ws_responsables` (
   `idResponsable` int(11) NOT NULL,
+  `dni` text COLLATE utf8_spanish_ci NOT NULL,
   `nombresResp` text COLLATE utf8_spanish_ci NOT NULL,
   `apellidosResp` text COLLATE utf8_spanish_ci NOT NULL,
   `idOficina` int(11) DEFAULT NULL,
@@ -622,14 +657,14 @@ CREATE TABLE `ws_responsables` (
 -- Volcado de datos para la tabla `ws_responsables`
 --
 
-INSERT INTO `ws_responsables` (`idResponsable`, `nombresResp`, `apellidosResp`, `idOficina`, `idServicio`) VALUES
-(2, 'Usuario', 'Cirugía', 1, 12),
-(3, 'Usuario', 'Archivo', 31, 13),
-(4, 'Usuario', 'Comunicaciones', 4, 14),
-(5, 'Betty', 'Aguilar Padilla', 13, 15),
-(6, 'Mónica Nohemí', 'Rosas Sánchez', 13, 17),
-(7, 'Olger', 'Castro Palacios', 13, 18),
-(8, 'William', 'Guerrero Sandoval', 13, 16);
+INSERT INTO `ws_responsables` (`idResponsable`, `dni`, `nombresResp`, `apellidosResp`, `idOficina`, `idServicio`) VALUES
+(2, '77478996', 'Usuario', 'Cirugía', 1, 12),
+(3, '77478997', 'Usuario', 'Archivo', 31, 13),
+(4, '77478998', 'Usuario', 'Comunicaciones', 4, 14),
+(5, '77478999', 'Betty', 'Aguilar Padilla', 13, 15),
+(6, '77478994', 'Mónica Nohemí', 'Rosas Sánchez', 13, 17),
+(7, '77478995', 'Olger', 'Castro Palacios', 13, 18),
+(8, '77478993', 'William', 'Guerrero Sandoval', 13, 16);
 
 -- --------------------------------------------------------
 
@@ -669,14 +704,17 @@ CREATE TABLE `ws_servicios` (
 --
 
 INSERT INTO `ws_servicios` (`id_subarea`, `id_area`, `subarea`, `fecha_creacion`) VALUES
-(12, 1, 'Sala de Operaciones', '2020-09-22 00:38:42'),
+(12, 31, 'Sala de Operaciones', '2020-09-22 00:38:42'),
 (13, 31, 'Jefatura', '2020-09-22 00:39:28'),
 (14, 4, 'Jefatura', '2020-09-22 00:39:50'),
 (15, 13, 'Digitación', '2020-09-22 19:14:30'),
 (16, 13, 'Soporte Técnico', '2021-02-04 23:52:58'),
 (17, 13, 'Jefatura', '2021-02-06 05:33:18'),
 (18, 13, 'Desarrollo', '2021-02-07 01:46:17'),
-(19, 3, 'Jefatura', '2021-03-10 15:33:55');
+(19, 3, 'Jefatura', '2021-03-10 15:33:55'),
+(20, 8, 'Adjunta', '2021-03-12 18:37:30'),
+(21, 8, 'Secretaría', '2021-03-12 18:38:02'),
+(23, 32, 'Jefatura', '2021-03-12 19:10:57');
 
 -- --------------------------------------------------------
 
@@ -744,11 +782,11 @@ CREATE TABLE `ws_usuarios` (
 
 INSERT INTO `ws_usuarios` (`id_usuario`, `id_perfil`, `dni`, `nombres`, `apellido_paterno`, `apellido_materno`, `cuenta`, `clave`, `fecha_registro`, `estado`, `nintentos`) VALUES
 (1, 1, '77478995', 'Olger Ivan', 'Castro', 'Palacios', 'ocastrop', '$2a$07$usesomesillystringforeVF6hLwtgsUBAmUN4cGEd8tYF74gSHRW', '2020-03-02 16:22:25', 1, 0),
-(5, 4, '09965283', 'Victor Ivan', 'Chuquicaña', 'Fernandez', 'vchuquicañaf', '$2a$07$usesomesillystringforetG4v5XsxFT5vjiUpPsTv0VEdAMT4jmW', '2021-02-04 23:51:47', 0, 0),
-(7, 2, '40195996', 'Mónica Nohemí', 'Rosas', 'Sanchez', 'rosasmn', '$2a$07$usesomesillystringforeoRNSqF5ebwOJ.HFIcVhNJ65bww3hpNi', '2021-03-01 16:35:55', 0, 0),
-(11, 3, '10408947', 'Marina Elizabeth', 'Castro', 'Villanueva', 'mcastrov', '$2a$07$usesomesillystringforeU2wgtMqixa9RUfVB.Ru1IGDuuFxyEVW', '2021-03-10 18:36:38', 0, 0),
-(12, 1, '42162499', 'Edwin William', 'Guerrero', 'Sandoval', 'wguerreros', '$2a$07$usesomesillystringforeLTVm.b0q8aUqKwOyqhotBMNXub2QEkq', '2021-03-10 19:25:00', 0, 0),
-(13, 1, '70272442', 'Jean Paul Edwin', 'Valencia', 'Rivera', 'vriveraj', '$2a$07$usesomesillystringfore70P8ZEaIIPUwLToSK.D7Re7gWY8a6b.', '2021-03-10 22:20:26', 0, 0);
+(2, 2, '40195996', 'Monica Nohemi', 'Rosas', 'Sanchez', 'rosasmn', '$2a$07$usesomesillystringforeoRNSqF5ebwOJ.HFIcVhNJ65bww3hpNi', '2021-03-11 15:46:33', 1, 0),
+(3, 3, '09966920', 'Javier Octavio', 'Sernaque', 'Quintana', 'jsernaqueq', '$2a$07$usesomesillystringforeAR0AYDLcMUwZJGc02Ta3T98Pn6LH7pi', '2021-03-11 15:48:50', 1, 0),
+(4, 3, '42162499', 'Edwin William', 'Guerrero', 'Sandoval', 'wguerreros', '$2a$07$usesomesillystringforeLTVm.b0q8aUqKwOyqhotBMNXub2QEkq', '2021-03-11 15:52:31', 1, 0),
+(5, 4, '09401769', 'Segundo Andres', 'Cruzado', 'Cotrina', 'acruzadoc', '$2a$07$usesomesillystringfore9OBdlwIyha0dt84yf389aUSqD287miS', '2021-03-11 16:02:14', 1, 0),
+(6, 4, '09965283', 'Ivan Victor', 'Chuquicaña', 'Fernandez', 'vchuquicañaf', '$2a$07$usesomesillystringforetG4v5XsxFT5vjiUpPsTv0VEdAMT4jmW', '2021-03-11 16:02:59', 1, 0);
 
 --
 -- Índices para tablas volcadas
@@ -876,7 +914,7 @@ ALTER TABLE `ws_categorias`
 -- AUTO_INCREMENT de la tabla `ws_departamentos`
 --
 ALTER TABLE `ws_departamentos`
-  MODIFY `id_area` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id_area` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_diagnosticos`
@@ -930,7 +968,7 @@ ALTER TABLE `ws_segmento`
 -- AUTO_INCREMENT de la tabla `ws_servicios`
 --
 ALTER TABLE `ws_servicios`
-  MODIFY `id_subarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_subarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_situacion`
@@ -948,7 +986,7 @@ ALTER TABLE `ws_tipotrabajo`
 -- AUTO_INCREMENT de la tabla `ws_usuarios`
 --
 ALTER TABLE `ws_usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
