@@ -62,9 +62,13 @@
                     <!-- Bloque de DNI -->
                     <div class="row">
                         <div class="col-8">
-                            <label for="dniUsuario">DNI</label>
-                            <i class="fas fa-address-card"></i> *
-                            <input type="text" name="dniUsuario" id="dniUsuario" class="form-control" placeholder="Ingrese DNI" required autocomplete="off" autofocus="autofocus">
+                            <div class="form-group">
+                                <label for="dniUsuario">DNI</label>
+                                <i class="fas fa-address-card"></i> *
+                                <div class="input-group">
+                                    <input type="text" name="dniUsuario" id="dniUsuario" class="form-control" placeholder="Ingrese DNI" required autocomplete="off" autofocus="autofocus">
+                                </div>
+                            </div>
                         </div>
                         <div class="col-4" id="btnDNIUsuario">
                             <div class="form-group">
@@ -77,23 +81,33 @@
                         <!-- Bloque de DNI -->
                         <!-- Bloque de Nombres -->
                         <div class="col-12 mt-2">
-                            <label for="nombreUsuario">Nombres</label>
-                            <i class="fas fa-user-tag"></i> *
-                            <input type="text" name="nombreUsuario" id="nombreUsuario" class="form-control" required autocomplete="off" placeholder="Ingrese sus nombres">
+                            <div class="form-group">
+                                <label for="nombreUsuario">Nombres</label>
+                                <i class="fas fa-user-tag"></i> *
+                                <div class="input-group">
+                                    <input type="text" name="nombreUsuario" id="nombreUsuario" class="form-control" required autocomplete="off" placeholder="Ingrese sus nombres">
+                                </div>
+                            </div>
                         </div>
                         <!-- Bloque de Nombres -->
-
                         <!-- Bloque de Apellidos -->
                         <div class="col-12 mt-2">
-                            <label for="apellidoUsuario">Apellido Paterno</label>
-                            <i class="fas fa-user-tag"></i> *
-                            <input type="text" name="apellidoUsuarioPat" id="apellidoUsuarioPat" class="form-control" required autocomplete="off" placeholder="Ingrese Apellido Paterno">
+                            <div class="form-group">
+                                <label for="apellidoUsuario">Apellido Paterno</label>
+                                <i class="fas fa-user-tag"></i> *
+                                <div class="input-group">
+                                    <input type="text" name="apellidoUsuarioPat" id="apellidoUsuarioPat" class="form-control" required autocomplete="off" placeholder="Ingrese Apellido Paterno">
+                                </div>
+                            </div>
                         </div>
-
                         <div class="col-12 mt-2">
-                            <label for="apellidoUsuario">Apellido Materno</label>
-                            <i class="fas fa-user-tag"></i> *
-                            <input type="text" name="apellidoUsuarioMat" id="apellidoUsuarioMat" class="form-control" required autocomplete="off" placeholder="Ingrese Apellido Paterno">
+                            <div class="form-group">
+                                <label for="apellidoUsuario">Apellido Materno</label>
+                                <i class="fas fa-user-tag"></i> *
+                                <div class="input-group">
+                                    <input type="text" name="apellidoUsuarioMat" id="apellidoUsuarioMat" class="form-control" required autocomplete="off" placeholder="Ingrese Apellido Paterno">
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <!-- Bloque de Apellidos -->
@@ -101,35 +115,49 @@
                     <!-- Bloque de Perfil -->
                     <div class="row">
                         <div class="col-12 mt-2">
-                            <label for="perfilUsuario">Perfil</label>
-                            <i class="fas fa-id-card-alt"></i> *
-                            <select class="form-control" style="width: 100%;" id="perfilUsuario" name="perfilUsuario" required>
-                                <option value="">Seleccione el perfil del usuario</option>
-                                <?php
-                                $itemPerfil = null;
-                                $valorPerfil  = null;
-                                $perfil = ControladorUsuarios::ctrListarPerfiles($itemPerfil, $valorPerfil);
-                                foreach ($perfil as $key => $value) {
-                                    echo '<option value="' . $value["id_perfil"] . '">' . $value["perfil"] . '</option>';
-                                }
-                                ?>
-
-                            </select>
+                            <div class="form-group">
+                                <label for="perfilUsuario">Perfil</label>
+                                <i class="fas fa-id-card-alt"></i> *
+                                <div class="input-group">
+                                    <select class="form-control" style="width: 100%;" id="perfilUsuario" name="perfilUsuario" required>
+                                        <option value="">Seleccione el perfil del usuario</option>
+                                        <?php
+                                        $itemPerfil = null;
+                                        $valorPerfil  = null;
+                                        $perfil = ControladorUsuarios::ctrListarPerfiles($itemPerfil, $valorPerfil);
+                                        foreach ($perfil as $key => $value) {
+                                            echo '<option value="' . $value["id_perfil"] . '">' . $value["perfil"] . '</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                         <!-- Bloque de Perfil -->
                         <!-- Bloque de Nombres -->
                         <div class="col-12 mt-2">
-                            <label for="cuentaUsuario">Usuario</label>
-                            <i class="fas fa-user-cog"></i> *
-                            <input type="text" name="cuentaUsuario" id="cuentaUsuario" class="form-control" placeholder="Ingrese usuario" required autocomplete="off">
+                            <div class="form-group">
+                                <label for="cuentaUsuario">Usuario</label>
+                                <i class="fas fa-user-cog"></i> *
+                                <div class="input-group">
+                                    <input type="text" name="cuentaUsuario" id="cuentaUsuario" class="form-control" placeholder="Ingrese usuario" required autocomplete="off">
+                                </div>
+                            </div>
                         </div>
                         <!-- Bloque de Nombres -->
 
                         <!-- Bloque de Apellidos -->
                         <div class="col-12 mt-2">
-                            <label for="claveUsuario">Contraseña</label>
-                            <i class="fas fa-key"></i> *
-                            <input type="password" name="claveUsuario" id="claveUsuario" class="form-control" placeholder="Ingrese contraseña" required autocomplete="off">
+                            <div class="form-group">
+                                <label for="claveUsuario">Contraseña</label>
+                                <i class="fas fa-key"></i> *
+                                <div class="input-group">
+                                    <input type="password" name="claveUsuario" id="claveUsuario" class="form-control" placeholder="Ingrese contraseña" required autocomplete="off">
+                                    <div class="input-group-prepend">
+                                        <span class="fas fa-eye input-group-text" id="claveU1" data-activo=false></span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -161,10 +189,14 @@
                     <!-- Bloque de DNI -->
                     <div class="row">
                         <div class="col-8">
-                            <input type="hidden" name="idUsuario" id="idUsuario" required>
-                            <label for="edtdniUsuario">DNI</label>
-                            <i class="fas fa-address-card"></i> *
-                            <input type="text" name="edtdniUsuario" id="edtdniUsuario" class="form-control" required autocomplete="off">
+                            <div class="form-group">
+                                <input type="hidden" name="idUsuario" id="idUsuario" required>
+                                <label for="edtdniUsuario">DNI</label>
+                                <i class="fas fa-address-card"></i> *
+                                <div class="input-group">
+                                    <input type="text" name="edtdniUsuario" id="edtdniUsuario" class="form-control" required autocomplete="off">
+                                </div>
+                            </div>
                         </div>
                         <div class="col-4" id="btnDNIEdtUsuario">
                             <div class="form-group">
@@ -177,23 +209,34 @@
                         <!-- Bloque de DNI -->
                         <!-- Bloque de Nombres -->
                         <div class="col-12 mt-2">
-                            <label for="edtnombreUsuario">Nombres</label>
-                            <i class="fas fa-user-tag"></i> *
-                            <input type="text" name="edtnombreUsuario" id="edtnombreUsuario" class="form-control" required autocomplete="off">
+                            <div class="form-group">
+                                <label for="edtnombreUsuario">Nombres</label>
+                                <i class="fas fa-user-tag"></i> *
+                                <div class="input-group">
+                                    <input type="text" name="edtnombreUsuario" id="edtnombreUsuario" class="form-control" required autocomplete="off">
+                                </div>
+                            </div>
                         </div>
                         <!-- Bloque de Nombres -->
 
                         <!-- Bloque de Apellidos -->
                         <div class="col-12 mt-2">
-                            <label for="edtapellidoUsuarioPa">Apellido Paterno</label>
-                            <i class="fas fa-user-tag"></i> *
-                            <input type="text" name="edtapellidoUsuarioPat" id="edtapellidoUsuarioPat" class="form-control" required autocomplete="off">
+                            <div class="form-group">
+                                <label for="edtapellidoUsuarioPa">Apellido Paterno</label>
+                                <i class="fas fa-user-tag"></i> *
+                                <div class="input-group">
+                                    <input type="text" name="edtapellidoUsuarioPat" id="edtapellidoUsuarioPat" class="form-control" required autocomplete="off">
+                                </div>
+                            </div>
                         </div>
-
                         <div class="col-12 mt-2">
-                            <label for="edtapellidoUsuarioMat">Apellido Materno</label>
-                            <i class="fas fa-user-tag"></i> *
-                            <input type="text" name="edtapellidoUsuarioMat" id="edtapellidoUsuarioMat" class="form-control" required autocomplete="off">
+                            <div class="form-group">
+                                <label for="edtapellidoUsuarioMat">Apellido Materno</label>
+                                <i class="fas fa-user-tag"></i> *
+                                <div class="input-group">
+                                    <input type="text" name="edtapellidoUsuarioMat" id="edtapellidoUsuarioMat" class="form-control" required autocomplete="off">
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <!-- Bloque de Apellidos -->
@@ -201,35 +244,49 @@
                     <!-- Bloque de Perfil -->
                     <div class="row">
                         <div class="col-12 mt-2">
-                            <label for="edtperfilUsuario1">Perfil</label>
-                            <i class="fas fa-id-card-alt"></i> *
-                            <select class="form-control" style="width: 100%;" name="edtperfilUsuario" id="edtperfilUsuario1" required>
-                                <option value="" id="edtperfilUsuario"></option>
-                                <?php
-                                $itemPerfil2 = null;
-                                $valorPerfil2  = null;
-                                $perfil2 = ControladorUsuarios::ctrListarPerfiles($itemPerfil2, $valorPerfil2);
-                                foreach ($perfil2 as $key => $value) {
-                                    echo '<option value="' . $value["id_perfil"] . '">' . $value["perfil"] . '</option>';
-                                }
-                                ?>
-
-                            </select>
+                            <div class="form-group">
+                                <label for="edtperfilUsuario1">Perfil</label>
+                                <i class="fas fa-id-card-alt"></i> *
+                                <div class="input-group">
+                                    <select class="form-control" style="width: 100%;" name="edtperfilUsuario" id="edtperfilUsuario1" required>
+                                        <option value="" id="edtperfilUsuario"></option>
+                                        <?php
+                                        $itemPerfil2 = null;
+                                        $valorPerfil2  = null;
+                                        $perfil2 = ControladorUsuarios::ctrListarPerfiles($itemPerfil2, $valorPerfil2);
+                                        foreach ($perfil2 as $key => $value) {
+                                            echo '<option value="' . $value["id_perfil"] . '">' . $value["perfil"] . '</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                         <!-- Bloque de Perfil -->
                         <!-- Bloque de Nombres -->
                         <div class="col-12 mt-2">
-                            <label for="edtcuentaUsuario">Usuario</label>
-                            <i class="fas fa-user-cog"></i> *
-                            <input type="text" name="edtcuentaUsuario" id="edtcuentaUsuario" class="form-control" placeholder="Ingrese usuario" required autocomplete="off">
+                            <div class="form-group">
+                                <label for="edtcuentaUsuario">Usuario</label>
+                                <i class="fas fa-user-cog"></i> *
+                                <div class="input-group">
+                                    <input type="text" name="edtcuentaUsuario" id="edtcuentaUsuario" class="form-control" placeholder="Ingrese usuario" required autocomplete="off">
+                                </div>
+                            </div>
                         </div>
                         <!-- Bloque de Nombres -->
                         <!-- Bloque de Apellidos -->
                         <div class="col-12 mt-2">
-                            <label for="edtclaveUsuario">Contraseña</label>
-                            <i class="fas fa-key"></i> *
-                            <input type="password" name="edtclaveUsuario" id="edtclaveUsuario" class="form-control" autocomplete="off">
-                            <input type="hidden" name="passwordActual" id="passwordActual">
+                            <div class="form-group">
+                                <label for="edtclaveUsuario">Contraseña</label>
+                                <i class="fas fa-key"></i> *
+                                <div class="input-group">
+                                    <input type="password" name="edtclaveUsuario" id="edtclaveUsuario" class="form-control" autocomplete="off">
+                                    <input type="hidden" name="passwordActual" id="passwordActual">
+                                    <div class="input-group-prepend">
+                                        <span class="fas fa-eye input-group-text" id="claveU2" data-activo=false></span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

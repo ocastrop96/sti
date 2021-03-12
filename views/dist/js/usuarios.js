@@ -534,6 +534,7 @@ $("#btnRegistrarUsuario").on("click", function () {
     rules: {
       perfilUsuario: {
         valueNotEquals: "0",
+        required: true,
       },
       dniUsuario: {
         required: true,
@@ -557,6 +558,7 @@ $("#btnRegistrarUsuario").on("click", function () {
     messages: {
       perfilUsuario: {
         valueNotEquals: "Seleccione Perfil",
+        required: "Seleccione perfil de usuario",
       },
       dniUsuario: {
         required: "DNI Requerido",
@@ -595,6 +597,7 @@ $("#btnEditUsuario").on("click", function () {
     rules: {
       edtedtperfilUsuario: {
         valueNotEquals: "0",
+        required: true,
       },
       edtedtdniUsuario: {
         required: true,
@@ -615,6 +618,7 @@ $("#btnEditUsuario").on("click", function () {
     messages: {
       edtperfilUsuario: {
         valueNotEquals: "Seleccione Perfil",
+        required: "Seleccione perfil de usuario",
       },
       edtdniUsuario: {
         required: "DNI Requerido",
@@ -769,38 +773,119 @@ $("#chgClave").change(function () {
     $("#vchgClave").focus();
   }
   else {
-    console.log("error");
     Swal.fire({
-      icon: "error",
+      icon: "warning",
       title:
-        "La contraseña debe tener de 8 a 16 caracteres.",
+        "La contraseña debe tener de 8 a 16 caracteres. Solo números y letras",
       showConfirmButton: false,
       timer: 1500,
     });
     $("#chgClave").focus();
   }
-  // if (validaCT(chcC) === false && chcC !== "") {
-  //   Swal.fire({
-  //     icon: "warning",
-  //     title:
-  //       "La contraseña debe tener de 8 a 20 caracteres, al menos una letra mayúscula, una minuscula,un dígito, sin espacios en blanco y al menos un caracter especial no alfanumerico.",
-  //     showConfirmButton: false,
-  //     timer: 1500,
-  //   });
-  //   $("#chgClave").focus();
-  // }
 });
-// $("#nDocUsuario").change(function () {
-//   let Max_Length = 12;
-//   let length = $("#nDocUsuario").val().length;
-//   if (length == Max_Length) {
-//     $("#nomUsuario").focus();
-//   } else {
-//     toastr.error(
-//       "El CE debe tener 12 dígitos",
-//       "N° Documento de Usuario"
-//     );
-//     $("#nDocUsuario").focus();
-//   }
-// });
-// Validacion de Contraseña Ingresada
+$("#chgClave").keyup(function () {
+  this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ]/g, "");
+});
+$("#vchgClave").keyup(function () {
+  this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ]/g, "");
+});
+// Verificación de Contraseña
+$("#vchgClave").change(function () {
+  var chcCv = $(this).val().length;
+  var chcC2 = $("#chgClave").val().length;
+  var chcCL = $(this).val();
+  var chcC2L = $("#chgClave").val();
+  if (chcCv != chcC2 && chcC2L != chcCL) {
+    Swal.fire({
+      icon: "error",
+      title:
+        "Las contraseña no coinciden.",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    $("#vchgClave").focus();
+    $("#vchgClave").val("");
+    $("#btnActualizarContra").addClass("disabled");
+  }
+  else {
+    $("#btnActualizarContra").focus();
+    $("#btnActualizarContra").removeClass("disabled");
+  }
+});
+
+$("#claveU1").on("click", function () {
+  var control3 = $(this);
+  var estatus3 = control3.data("activo");
+
+  var icon3 = control3.find("span");
+  if (estatus3 == false) {
+
+    control3.data("activo", true);
+    $(icon3).removeClass("fas fa-eye").addClass("fas fa-low-vision");
+    $("#claveUsuario").attr("type", "text");
+  }
+  else {
+    control3.data("activo", false);
+    $(icon3).removeClass("fas fa-low-vision").addClass("fas fa-eye");
+    $("#claveUsuario").attr("type", "password");
+  }
+});
+$("#claveU2").on("click", function () {
+  var control4 = $(this);
+  var estatus4 = control4.data("activo");
+
+  var icon4 = control4.find("span");
+  if (estatus4 == false) {
+
+    control4.data("activo", true);
+    $(icon4).removeClass("fas fa-eye").addClass("fas fa-low-vision");
+    $("#edtclaveUsuario").attr("type", "text");
+  }
+  else {
+    control4.data("activo", false);
+    $(icon4).removeClass("fas fa-low-vision").addClass("fas fa-eye");
+    $("#edtclaveUsuario").attr("type", "password");
+  }
+});
+
+$("#claveUsuario").keyup(function () {
+  this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ]/g, "");
+});
+$("#edtclaveUsuario").keyup(function () {
+  this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ]/g, "");
+});
+$("#claveUsuario").change(function () {
+  var chcC4 = $(this).val().length;
+  // console.log(chcC);
+  if (chcC4 >= 8 && chc4 <= 16) {
+    $("#claveUsuario").focus();
+  }
+  else {
+    Swal.fire({
+      icon: "warning",
+      title:
+        "La contraseña debe tener de 8 a 16 caracteres. Solo números y letras",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    $("#claveUsuario").focus();
+  }
+});
+
+$("#edtclaveUsuario").change(function () {
+  var chcC5 = $(this).val().length;
+  // console.log(chcC);
+  if (chcC5 >= 8 && chc5 <= 16) {
+    $("#edtclaveUsuario").focus();
+  }
+  else {
+    Swal.fire({
+      icon: "warning",
+      title:
+        "La contraseña debe tener de 8 a 16 caracteres. Solo números y letras",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    $("#edtclaveUsuario").focus();
+  }
+});

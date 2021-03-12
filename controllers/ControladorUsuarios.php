@@ -127,7 +127,7 @@ class ControladorUsuarios
             if (
                 preg_match('/^[0-9]+$/', $_POST["dniUsuario"]) &&
                 preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ]+$/', $_POST["cuentaUsuario"]) &&
-                preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ].{8,20}+$/', $_POST["claveUsuario"])
+                preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ].{7,15}+$/', $_POST["claveUsuario"])
             ) {
                 $tabla = "ws_usuarios";
                 $encriptacion1 = crypt($_POST["claveUsuario"], '$2a$07$usesomesillystringforsalt$');
@@ -181,7 +181,7 @@ class ControladorUsuarios
         if (isset($_POST["edtdniUsuario"]) && isset($_POST["edtcuentaUsuario"])) {
             if (
                 preg_match('/^[0-9]+$/', $_POST["edtdniUsuario"]) &&
-                preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ]+$/', $_POST["edtcuentaUsuario"])
+                preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ].{7,15}+$/', $_POST["edtcuentaUsuario"])
             ) {
 
                 $tabla = "ws_usuarios";

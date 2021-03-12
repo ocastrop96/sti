@@ -67,7 +67,7 @@
                     </div>
                 </div>
                 <div class="modal-footer justify-content-center">
-                    <button type="submit" class="btn btn-secondary" id="btnActualizarContra"><i class="fas fa-save"></i> &nbsp;Actualizar</button>
+                    <button type="submit" class="btn btn-secondary disabled" id="btnActualizarContra"><i class="fas fa-save"></i> &nbsp;Actualizar</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fas fa-times-circle"></i> Salir</button>
                 </div>
             </form>
