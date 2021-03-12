@@ -38,7 +38,7 @@ $(".tablaAreas tbody").on("click", ".btnEditarArea", function () {
 });
 
 // Validar área existente tanto en nuevo y editar
-$("#newArea").change(function () {
+$("#newArea").focusout(function () {
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -69,7 +69,7 @@ $("#newArea").change(function () {
     });
 });
 
-$("#edtArea").change(function () {
+$("#edtArea").focusout(function () {
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',

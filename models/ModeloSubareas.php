@@ -22,9 +22,9 @@ class ModeloSubareas
 	}
 
 	// Modelo para registrar usuarios
-	static public function mdlRegistrarSubarea($tabla, $datos)
+	static public function mdlRegistrarSubarea($datos)
 	{
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla( id_area, subarea) VALUES(:area,:subarea)");
+		$stmt = Conexion::conectar()->prepare("CALL REGISTRAR_SERVICIO_OD(:area,:subarea)");
 		$stmt->bindParam(":area", $datos["area"], PDO::PARAM_INT);
 		$stmt->bindParam(":subarea", $datos["subarea"], PDO::PARAM_STR);
 		if ($stmt->execute()) {
@@ -38,7 +38,7 @@ class ModeloSubareas
 	// Modelo editar subareas
 	static public function mdlEditarSubarea($tabla, $datos)
 	{
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET subarea = :subarea, id_area = :area WHERE id_subarea = :id");
+		$stmt = Conexion::conectar()->prepare("CALL EDITAR_SERVICIO_OD(:area,:id,:subarea)");
 
 		$stmt->bindParam(":subarea", $datos["subarea"], PDO::PARAM_STR);
 		$stmt->bindParam(":area", $datos["area"], PDO::PARAM_INT);
@@ -52,9 +52,9 @@ class ModeloSubareas
 		$stmt = null;
 	}
 	// Eliminar Servicio
-	static public function mdlEliminarSubarea($tabla, $datos)
+	static public function mdlEliminarSubarea($datos)
 	{
-		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id_subarea = :id");
+		$stmt = Conexion::conectar()->prepare("CALL ELIMINAR_SERVICIO_OD(:id)");
 		$stmt->bindParam(":id", $datos, PDO::PARAM_INT);
 		if ($stmt->execute()) {
 			return "ok";

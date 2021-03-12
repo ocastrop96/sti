@@ -13,24 +13,23 @@ class ControladorSubareas
     {
         if (isset($_POST["newSubarea"])) {
             if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["newSubarea"])) {
-                $tabla = "ws_servicios";
                 $datos = array(
                     "area" => $_POST["oficina"],
                     "subarea" => $_POST["newSubarea"]
                 );
-                $respuestaReg = ModeloSubareas::mdlRegistrarSubarea($tabla, $datos);
+                $respuestaReg = ModeloSubareas::mdlRegistrarSubarea($datos);
                 if ($respuestaReg == "ok") {
                     echo '<script>
-                          Swal.fire({
-                            icon: "success",
-                            title: "La subarea ha sido registrada con éxito",
-                            showConfirmButton: true,
-                            confirmButtonText: "Cerrar",
-                            closeOnConfirm: false
-                          }).then((result)=>{
-                            if(result.value){
+                            Swal.fire({
+                                icon: "success",
+                                title: "La subarea ha sido registrada con éxito",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            function redirect() {
                                 window.location = "servicios";
-                            }});
+                            }
+                            setTimeout(redirect, 1500);
                       </script>';
                 }
             } else {
@@ -38,13 +37,13 @@ class ControladorSubareas
                         Swal.fire({
                         icon: "error",
                         title: "Ingrese correctamente sus datos sin caracteres especiales ni tildes",
-                        showConfirmButton: true,
-                        confirmButtonText: "Cerrar",
-                        closeOnConfirm: false
-                        }).then((result)=>{
-                        if(result.value){
+                        showConfirmButton: false,
+                        timer: 1500
+                        });
+                        function redirect() {
                             window.location = "servicios";
-                        }});
+                        }
+                        setTimeout(redirect, 1500);
                     </script>';
             }
         }
@@ -69,13 +68,13 @@ class ControladorSubareas
                           Swal.fire({
                             icon: "success",
                             title: "El servicio ha sido editado con éxito",
-                            showConfirmButton: true,
-                            confirmButtonText: "Cerrar",
-                            closeOnConfirm: false
-                          }).then((result)=>{
-                            if(result.value){
-                                window.location = "servicios";
-                            }});
+                            showConfirmButton: false,
+                            timer: 1500
+                          });
+                          function redirect() {
+                            window.location = "servicios";
+                        }
+                        setTimeout(redirect, 1500);
                       </script>';
                 }
             } else {
@@ -83,13 +82,13 @@ class ControladorSubareas
                 Swal.fire({
                   icon: "error",
                   title: "No ingrese caracteres especiales, solo se admiten números y letras",
-                  showConfirmButton: true,
-                  confirmButtonText: "Cerrar",
-                  closeOnConfirm: false
-                }).then((result)=>{
-                  if(result.value){
-                      window.location = "servicios";
-                  }});
+                  showConfirmButton: false,
+                  timer: 1500
+                });
+                function redirect() {
+                    window.location = "servicios";
+                }
+                setTimeout(redirect, 1500);
             </script>';
             }
         }
@@ -99,22 +98,20 @@ class ControladorSubareas
     static public function ctrEliminarSubarea()
     {
         if (isset($_GET["idSubArea"])) {
-            $tabla = "ws_servicios";
             $datos = $_GET["idSubArea"];
-            $respuesta = ModeloSubareas::mdlEliminarSubarea($tabla, $datos);
-
+            $respuesta = ModeloSubareas::mdlEliminarSubarea($datos);
             if ($respuesta == "ok") {
                 echo '<script>
                         Swal.fire({
                         icon: "success",
                         title: "¡El servicio ha sido eliminado con éxito!",
-                        showConfirmButton: true,
-                        confirmButtonText: "Cerrar",
-                        closeOnConfirm: false
-                        }).then((result)=>{
-                        if(result.value){
+                        showConfirmButton: false,
+                        timer: 1500
+                        });
+                        function redirect() {
                             window.location = "servicios";
-                        }});
+                        }
+                        setTimeout(redirect, 1500);
                     </script>';
             }
         }

@@ -25,13 +25,14 @@ class TablaSubAreas
             $areas = ControladorAreas::ctrListarAreas($item1, $valor1);
 
             $ar = "<i class='fas fa-sitemap'></i>&nbsp" . $areas["area"] . "";
-
+            // $freg2 = date("d-m-Y", strtotime($areas[$i]["fecha_creacion"]));
+            $freg22 = date("d-m-Y", strtotime($subareas[$i]["fecha_creacion"]));    
             $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarSubArea' idSubArea='" . $subareas[$i]["id_subarea"] . "' data-toggle='modal' data-target='#modal-editar-subarea'><i class='fas fa-edit'></i></button><button class='btn btn-danger btnEliminarSubArea' idSubArea='" . $subareas[$i]["id_subarea"] . "'><i class='fas fa-trash-alt'></i></button></div>";
             $datos_json .= '[
                 "' . ($i + 1) . '",
                 "' . $ar . '",
                 "' . $subareas[$i]["subarea"] . '",
-                "' . $subareas[$i]["fecha_creacion"] . '",
+                "' . $freg22 . '",
                 "' . $botones . '"
             ],';
         }

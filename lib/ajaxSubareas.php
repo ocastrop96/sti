@@ -42,7 +42,6 @@ if (isset($_POST["validarSubArea"])) {
     $validar -> validarOficina = $_POST["validarOficina"];
 	$validar -> ajaxSubAreaRepetida();
 }
-
 // // Activar Estado
 // if (isset($_POST["activarUsuario"])) {
 //     $activarEst = new ajaxUsuarios();
