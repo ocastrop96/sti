@@ -7,7 +7,7 @@ class ControladorUsuarios
         if (isset($_POST["logCuenta"])) {
             if (
                 preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ]+$/', $_POST["logCuenta"]) &&
-                preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ].{8,20}+$/', $_POST["logClave"])
+                preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ].{7,15}+$/', $_POST["logClave"])
             ) {
 
                 $cuenta = $_POST["logCuenta"];

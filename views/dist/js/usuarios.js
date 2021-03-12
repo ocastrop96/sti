@@ -762,25 +762,45 @@ $("#viewCT2").on("click", function () {
 });
 // Visualizar Contraseña
 // Validacion de Contraseña Ingresada
-$("#chgClave").focusout(function () {
-  var chcC = $(this).val();
-  if (validaCT(chcC) === false && chcC !== "") {
+$("#chgClave").change(function () {
+  var chcC = $(this).val().length;
+  // console.log(chcC);
+  if (chcC >= 8 && chcC <= 16) {
+    $("#vchgClave").focus();
+  }
+  else {
+    console.log("error");
     Swal.fire({
-      icon: "warning",
+      icon: "error",
       title:
-        "La contraseña debe tener de 8 a 20 caracteres, al menos una letra mayúscula, una minuscula,un dígito, sin espacios en blanco y al menos un caracter especial no alfanumerico.",
+        "La contraseña debe tener de 8 a 16 caracteres.",
       showConfirmButton: false,
       timer: 1500,
     });
     $("#chgClave").focus();
   }
+  // if (validaCT(chcC) === false && chcC !== "") {
+  //   Swal.fire({
+  //     icon: "warning",
+  //     title:
+  //       "La contraseña debe tener de 8 a 20 caracteres, al menos una letra mayúscula, una minuscula,un dígito, sin espacios en blanco y al menos un caracter especial no alfanumerico.",
+  //     showConfirmButton: false,
+  //     timer: 1500,
+  //   });
+  //   $("#chgClave").focus();
+  // }
 });
-function validaCT(chcC) {
-  var regexp_password = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,20}/;
-  if (regexp_password.test(chcC)) {
-    return true;
-  } else {
-    return false;
-  }
-}
+// $("#nDocUsuario").change(function () {
+//   let Max_Length = 12;
+//   let length = $("#nDocUsuario").val().length;
+//   if (length == Max_Length) {
+//     $("#nomUsuario").focus();
+//   } else {
+//     toastr.error(
+//       "El CE debe tener 12 dígitos",
+//       "N° Documento de Usuario"
+//     );
+//     $("#nDocUsuario").focus();
+//   }
+// });
 // Validacion de Contraseña Ingresada
