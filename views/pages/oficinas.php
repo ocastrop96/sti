@@ -54,7 +54,7 @@
 <div id="modal-registrar-ubicacion" class="modal fade" role="dialog" aria-modal="true" style="padding-right: 17px;">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="" role="form" method="post">
+            <form action="" role="form" id="frmRegOficina" method="post">
                 <div class="modal-header text-center" style="background: #6c757d; color: white">
                     <h4 class="modal-title">Registrar Oficina y/o Departamento</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -64,15 +64,18 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-12">
-                            <label for="newArea">Oficina/Departamento</label>
-                            <i class="fas fa-map"></i> *
-                            <input type="text" name="newArea" id="newArea" class="form-control" placeholder="Ingrese detalle de área" required autocomplete="off" autofocus="autofocus">
+                            <div class="form-group">
+                                <label for="newArea">Oficina/Departamento</label>
+                                <i class="fas fa-map"></i> *
+                                <div class="input-group">
+                                    <input type="text" name="newArea" id="newArea" class="form-control" placeholder="Ingrese detalle de área" required autocomplete="off" autofocus="autofocus">
+                                </div>
+                            </div>
                         </div>
-
                     </div>
                 </div>
                 <div class="modal-footer justify-content-center">
-                    <button type="submit" class="btn btn-secondary"><i class="fas fa-save"></i> Guardar</button>
+                    <button type="submit" class="btn btn-secondary" id="btnRegOficina"><i class="fas fa-save"></i> Guardar</button>
                     <button type="reset" class="btn btn-danger"><i class="fas fa-eraser"></i> Limpiar</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fas fa-times-circle"></i> Salir</button>
                 </div>
@@ -88,7 +91,7 @@
 <div id="modal-editar-ubicacion" class="modal fade" role="dialog" aria-modal="true" style="padding-right: 17px;">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="" role="form" method="post">
+            <form action="" role="form" id="frmEdtOficina" method="post">
                 <div class="modal-header text-center" style="background: #6c757d; color: white">
                     <h4 class="modal-title">Editar Oficina y/o Departamento</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -98,16 +101,19 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-12">
-                            <label for="edtArea">Oficina/Departamento</label>
-                            <i class="fas fa-map"></i> *
-                            <input type="text" name="edtArea" id="edtArea" class="form-control" required autocomplete="off" autofocus="autofocus">
-                            <input type="hidden" name="idArea" id="idArea" required>
+                            <div class="form-group">
+                                <label for="edtArea">Oficina/Departamento</label>
+                                <i class="fas fa-map"></i> *
+                                <div class="input-group">
+                                    <input type="text" name="edtArea" id="edtArea" class="form-control" required autocomplete="off" autofocus="autofocus">
+                                    <input type="hidden" name="idArea" id="idArea" required>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer justify-content-center">
-                    <button type="submit" class="btn btn-secondary"><i class="fas fa-save"></i> Guardar</button>
-                    <button type="reset" class="btn btn-danger"><i class="fas fa-eraser"></i> Limpiar</button>
+                    <button type="submit" class="btn btn-secondary" id="btnEdtOficina"><i class="fas fa-save"></i> Guardar</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fas fa-times-circle"></i> Salir</button>
                 </div>
                 <?php

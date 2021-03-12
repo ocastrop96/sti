@@ -14,108 +14,100 @@ class ControladorAreas
     static public function ctrRegistrarArea()
     {
         if (isset($_POST["newArea"])) {
-            if (preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["newArea"])) {
-                $tabla = "ws_departamentos";
+            if (preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["newArea"])) {
                 $datos = $_POST["newArea"];
-
-                $respuestaRegistroArea = ModeloAreas::mdlRegistrarAreas($tabla, $datos);
-
+                $respuestaRegistroArea = ModeloAreas::mdlRegistrarAreas($datos);
                 if ($respuestaRegistroArea == "ok") {
                     echo '<script>
-                          Swal.fire({
-                            icon: "success",
-                            title: "El área ha sido registrada con éxito",
-                            showConfirmButton: true,
-                            confirmButtonText: "Cerrar",
-                            closeOnConfirm: false
-                          }).then((result)=>{
-                            if(result.value){
+                            Swal.fire({
+                                icon: "success",
+                                title: "El área ha sido registrada con éxito",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            function redirect() {
                                 window.location = "oficinas";
-                            }});
+                            }
+                            setTimeout(redirect, 1500);
                       </script>';
                 }
-            }
-            else{
+            } else {
                 echo '<script>
-                Swal.fire({
-                  type: "error",
-                  title: "Ingrese correctamente sus datos",
-                  showConfirmButton: true,
-                  confirmButtonText: "Cerrar",
-                  closeOnConfirm: false
-                }).then((result)=>{
-                  if(result.value){
-                      window.location = "oficinas";
-                  }});
+                  Swal.fire({
+                    icon: "error",
+                    title: "Ingrese correctamente sus datos",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                function redirect() {
+                    window.location = "oficinas";
+                }
+                setTimeout(redirect, 1500);
             </script>';
             }
         }
-     }
+    }
     //Editar Área
     static public function ctrEditarArea()
-    { 
+    {
         if (isset($_POST["edtArea"])) {
-            if (preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["edtArea"])) {
-                $tabla = "ws_departamentos";
+            if (preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["edtArea"])) {
                 $datos = array(
                     "area" => $_POST["edtArea"],
                     "id" => $_POST["idArea"]
                 );
-
-                $respuestaRegistroArea = ModeloAreas::mdlEditarAreas($tabla, $datos);
+                $respuestaRegistroArea = ModeloAreas::mdlEditarAreas($datos);
 
                 if ($respuestaRegistroArea == "ok") {
                     echo '<script>
-                          Swal.fire({
-                            icon: "success",
-                            title: "La Oficina o Departamento ha sido editado con éxito",
-                            showConfirmButton: true,
-                            confirmButtonText: "Cerrar",
-                            closeOnConfirm: false
-                          }).then((result)=>{
-                            if(result.value){
-                                window.location = "oficinas";
-                            }});
+                    Swal.fire({
+                        icon: "success",
+                        title: "La Oficina o Departamento ha sido editado con éxito",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    function redirect() {
+                        window.location = "oficinas";
+                    }
+                    setTimeout(redirect, 1500);
                       </script>';
                 }
-            }
-            else{
+            } else {
                 echo '<script>
                 Swal.fire({
-                  type: "error",
-                  title: "Ingrese correctamente sus datos",
-                  showConfirmButton: true,
-                  confirmButtonText: "Cerrar",
-                  closeOnConfirm: false
-                }).then((result)=>{
-                  if(result.value){
-                      window.location = "oficinas";
-                  }});
+                    icon: "error",
+                    title: "Ingrese correctamente sus datos",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                function redirect() {
+                    window.location = "oficinas";
+                }
+                setTimeout(redirect, 1500);
             </script>';
             }
         }
     }
     //Eliminar Área
     static public function ctrEliminarArea()
-    { 
+    {
         if (isset($_GET["idOficina"])) {
-            $tabla = "ws_departamentos";
             $datos = $_GET["idOficina"];
 
-            $respuesta = ModeloAreas::mdlEliminarArea($tabla, $datos);
+            $respuesta = ModeloAreas::mdlEliminarArea($datos);
 
             if ($respuesta == "ok") {
                 echo '<script>
                         Swal.fire({
-                        icon: "success",
-                        title: "¡La Oficina y/o Departamento ha sido eliminado con éxito!",
-                        showConfirmButton: true,
-                        confirmButtonText: "Cerrar",
-                        closeOnConfirm: false
-                        }).then((result)=>{
-                        if(result.value){
+                            icon: "success",
+                            title: "¡La Oficina y/o Departamento ha sido eliminado con éxito!",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        function redirect() {
                             window.location = "oficinas";
-                        }});
+                        }
+                        setTimeout(redirect, 1500);
                     </script>';
             }
         }

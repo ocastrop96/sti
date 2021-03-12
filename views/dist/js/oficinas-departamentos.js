@@ -16,7 +16,7 @@ $(".tablaAreas").DataTable({
 });
 
 // Editar área
-$(".tablaAreas tbody").on("click", ".btnEditarArea", function() {
+$(".tablaAreas tbody").on("click", ".btnEditarArea", function () {
     var idOficina = $(this).attr("idOficina");
     var datos = new FormData();
 
@@ -30,7 +30,7 @@ $(".tablaAreas tbody").on("click", ".btnEditarArea", function() {
         contentType: false,
         processData: false,
         dataType: "json",
-        success: function(respuesta) {
+        success: function (respuesta) {
             $("#edtArea").val(respuesta["area"]);
             $("#idArea").val(respuesta["id_area"]);
         }
@@ -38,7 +38,7 @@ $(".tablaAreas tbody").on("click", ".btnEditarArea", function() {
 });
 
 // Validar área existente tanto en nuevo y editar
-$("#newArea").change(function() {
+$("#newArea").change(function () {
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -56,19 +56,20 @@ $("#newArea").change(function() {
         contentType: false,
         processData: false,
         dataType: "json",
-        success: function(respuesta) {
+        success: function (respuesta) {
             if (respuesta) {
                 Toast.fire({
-                    type: 'warning',
+                    icon: 'warning',
                     title: 'La Oficina o Departamento, ya se encuentra registrada'
                 });
                 $("#newArea").val("");
+                $("#newArea").focus();
             }
         }
     });
 });
 
-$("#edtArea").change(function() {
+$("#edtArea").change(function () {
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -76,29 +77,29 @@ $("#edtArea").change(function() {
         timer: 1500
     });
     var area = $(this).val();
-    var datos = new FormData();
-    datos.append("validarArea", area);
+    var datosa = new FormData();
+    datosa.append("validarOficina2", area);
     $.ajax({
         url: "lib/ajaxOficinas.php",
         method: "POST",
-        data: datos,
+        data: datosa,
         cache: false,
         contentType: false,
         processData: false,
         dataType: "json",
-        success: function(respuesta) {
+        success: function (respuesta) {
             if (respuesta) {
                 Toast.fire({
-                    type: 'warning',
-                    title: 'El área  ya se encuentra registrada'
+                    icon: 'warning',
+                    title: 'La Oficina o Departamento, ya se encuentra registrada'
                 });
-                $("#edtArea").val("");
+                $("#edtArea").focus();
             }
         }
     });
 });
 
-$(".tablaAreas tbody").on("click", ".btnEliminarArea", function() {
+$(".tablaAreas tbody").on("click", ".btnEliminarArea", function () {
     var idOficina = $(this).attr("idOficina");
     Swal.fire({
         title: '¿Está seguro de eliminar el área?',
@@ -109,9 +110,67 @@ $(".tablaAreas tbody").on("click", ".btnEliminarArea", function() {
         cancelButtonText: 'Cancelar',
         cancelButtonColor: '#d33',
         confirmButtonText: '¡Sí, eliminar!'
-    }).then(function(result) {
+    }).then(function (result) {
         if (result.value) {
             window.location = "index.php?ruta=oficinas&idOficina=" + idOficina;
         }
     })
+});
+// Validación
+$("#btnRegOficina").on("click", function () {
+    $("#frmRegOficina").validate({
+        rules: {
+            newArea: {
+                required: true,
+            },
+        },
+        messages: {
+            newArea: {
+                required: "Oficina o Departamento requerido",
+            },
+        },
+        errorElement: "span",
+        errorPlacement: function (error, element) {
+            error.addClass("invalid-feedback");
+            element.closest(".form-group").append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass("is-invalid");
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass("is-invalid");
+        },
+    });
+});
+$("#btnEdtOficina").on("click", function () {
+    $("#frmEdtOficina").validate({
+        rules: {
+            edtArea: {
+                required: true,
+            },
+        },
+        messages: {
+            edtArea: {
+                required: "Oficina o Departamento requerido",
+            },
+        },
+        errorElement: "span",
+        errorPlacement: function (error, element) {
+            error.addClass("invalid-feedback");
+            element.closest(".form-group").append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass("is-invalid");
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass("is-invalid");
+        },
+    });
+});
+
+$("#newArea").keyup(function () {
+    this.value = (this.value + "").replace(/[^a-zA-ZñÑáéíóúÁÉÍÓÚ ]/g, "");
+});
+$("#edtArea").keyup(function () {
+    this.value = (this.value + "").replace(/[^a-zA-ZñÑáéíóúÁÉÍÓÚ ]/g, "");
 });
