@@ -28,6 +28,7 @@
           <thead>
             <tr>
               <th style="width: 10px">#</th>
+              <th>DNI N°</th>
               <th>Nombres</th>
               <th>Apellidos</th>
               <th>Oficina/Departamento</th>
@@ -35,16 +36,6 @@
               <th>Opciones</th>
             </tr>
           </thead>
-          <tfoot>
-            <tr>
-              <th style="width: 10px">#</th>
-              <th>Nombres</th>
-              <th>Apellidos</th>
-              <th>Oficina/Departamento</th>
-              <th>Servicio</th>
-              <th>Opciones</th>
-            </tr>
-          </tfoot>
         </table>
       </div>
     </div>
@@ -65,37 +56,54 @@
         <div class="modal-body">
           <div class="row">
             <div class="col-12">
-              <label for="nombRes">Nombres &nbsp;</label>
-              <i class="fas fa-users"></i> *
-              <input type="text" name="nombRes" id="nombRes" class="form-control" placeholder="Ingrese nombres del usuario responsable" autocomplete="off" autofocus="autofocus">
+              <div class="form-group">
+                <label for="nombRes">Nombres &nbsp;</label>
+                <i class="fas fa-users"></i> *
+                <div class="input-group">
+                  <input type="text" name="nombRes" id="nombRes" class="form-control" placeholder="Ingrese nombres del usuario responsable" autocomplete="off" autofocus="autofocus">
+                </div>
+              </div>
             </div>
           </div>
           <div class="row mt-2">
             <div class="col-12">
-              <label for="apeRes">Apellidos &nbsp;</label>
-              <i class="fas fa-users"></i> *
-              <input type="text" name="apeRes" id="apeRes" class="form-control" placeholder="Ingrese apellidos del usuario responsable" autocomplete="off" autofocus="autofocus">
+              <div class="form-group">
+                <label for="apeRes">Apellidos &nbsp;</label>
+                <i class="fas fa-users"></i> *
+                <div class="input-group">
+                  <input type="text" name="apeRes" id="apeRes" class="form-control" placeholder="Ingrese apellidos del usuario responsable" autocomplete="off" autofocus="autofocus">
+                </div>
+              </div>
             </div>
           </div>
           <div class="row mt-2">
             <div class="col-12">
-              <label for="oficinaRes">Oficina / Departamento pertenencia &nbsp;</label>
-              <i class="fas fa-sitemap"></i> *
-              <select class="form-control" style="width: 100%;" id="oficinaRes" name="oficinaRes">
-                <option value="0">Seleccione Oficina o Dpto pertenencia</option>
-                <?php
-                $itemOficina1 = null;
-                $valorOficina2  = null;
-                $oficina1 = ControladorAreas::ctrListarAreas($itemOficina1, $valorOficina2);
-                foreach ($oficina1 as $key => $value) {
-                  echo '<option value="' . $value["id_area"] . '">' . $value["area"] . '</option>';
-                }
-                ?>
-              </select>
+              <div class="form-group">
+                <label for="oficinaRes">Oficina / Departamento pertenencia &nbsp;</label>
+                <i class="fas fa-sitemap"></i> *
+                <div class="input-group">
+                  <select class="form-control" style="width: 100%;" id="oficinaRes" name="oficinaRes">
+                    <option value="0">Seleccione Oficina o Dpto pertenencia</option>
+                    <?php
+                    $itemOficina1 = null;
+                    $valorOficina2  = null;
+                    $oficina1 = ControladorAreas::ctrListarAreas($itemOficina1, $valorOficina2);
+                    foreach ($oficina1 as $key => $value) {
+                      echo '<option value="' . $value["id_area"] . '">' . $value["area"] . '</option>';
+                    }
+                    ?>
+                  </select>
+                </div>
+              </div>
             </div>
           </div>
           <div class="row mt-2">
             <div class="col-12">
+              <div class="form-group">
+                <div class="input-group">
+                </div>
+              </div>
+
               <label for="servicioRes">Servicio de pertenencia &nbsp;</label>
               <i class="fas fa-building"></i> *
               <select class="form-control" style="width: 100%;" name="servicioRes" id="servicioRes">
@@ -111,7 +119,7 @@
         </div>
         <?php
         $regResp = new ControladorResponsables();
-        $regResp -> ctrRegistrarResponsables();
+        $regResp->ctrRegistrarResponsables();
         ?>
       </form>
     </div>
@@ -150,7 +158,7 @@
               <label for="edtoficinaRes">Oficina / Departamento pertenencia &nbsp;</label>
               <i class="fas fa-sitemap"></i> *
               <select class="form-control" style="width: 100%;" name="edtoficinaRes" id="edtOfi">
-              <option value="" id="edtoficinaRes"></option>
+                <option value="" id="edtoficinaRes"></option>
                 <?php
                 $itemOficina2 = null;
                 $valorOficina3  = null;
@@ -167,7 +175,7 @@
               <label for="edtservicioRes">Servicio de pertenencia &nbsp;</label>
               <i class="fas fa-building"></i> *
               <select class="form-control" style="width: 100%;" name="edtservicioRes" id="edtSer">
-              <option value="" id="edtservicioRes"></option>
+                <option value="" id="edtservicioRes"></option>
               </select>
             </div>
           </div>
@@ -179,7 +187,7 @@
         </div>
         <?php
         $editarResponsable = new ControladorResponsables();
-        $editarResponsable -> ctrEditarResponsables();
+        $editarResponsable->ctrEditarResponsables();
         ?>
       </form>
     </div>
@@ -190,5 +198,5 @@
 <!-- Eliminar reponsable -->
 <?php
 $eliminarResponsable = new ControladorResponsables();
-$eliminarResponsable -> ctrEliminarResponsables();
+$eliminarResponsable->ctrEliminarResponsables();
 ?>

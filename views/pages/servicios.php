@@ -37,15 +37,6 @@
                             <th>Acciones</th>
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <th style="width: 10px">#</th>
-                            <th>Oficina o Dpto.</th>
-                            <th>Área</th>
-                            <th>Registro</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </tfoot>
                 </table>
             </div>
         </div>

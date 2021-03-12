@@ -22,6 +22,7 @@ class TablaResponsables
             $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarResponsable' idResponsable='" . $responsables[$i]["idResponsable"] . "' data-toggle='modal' data-target='#modal-editar-responsable'><i class='fas fa-edit'></i></button><button class='btn btn-danger btnEliminarResponsable' idResponsable='" . $responsables[$i]["idResponsable"] . "'><i class='fas fa-trash-alt'></i></button></div>";
             $datos_json .= '[
                 "' . ($i + 1) . '",
+                "' . $responsables[$i]["dni"] . '",
                 "' . $responsables[$i]["nombresResp"] . '",
                 "' . $responsables[$i]["apellidosResp"] . '",
                 "' . $responsables[$i]["area"] . '",

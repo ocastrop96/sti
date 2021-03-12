@@ -6,7 +6,7 @@ class ModeloResponsables
     static public function mdlListarResponsables($item, $valor)
     {
         if ($item != null) {
-            $stmt = Conexion::conectar()->prepare("SELECT idResponsable,nombresResp,apellidosResp,idOficina,area,idServicio,subarea from (ws_responsables as res inner join ws_departamentos as dep on res.idOficina = dep.id_area) inner join ws_servicios as serv on res.idServicio = serv.id_subarea where $item = :$item");
+            $stmt = Conexion::conectar()->prepare("SELECT idResponsable,dni,nombresResp,apellidosResp,idOficina,area,idServicio,subarea from (ws_responsables as res inner join ws_departamentos as dep on res.idOficina = dep.id_area) inner join ws_servicios as serv on res.idServicio = serv.id_subarea where $item = :$item");
             $stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
             $stmt->execute();
             return $stmt->fetch();
@@ -53,15 +53,16 @@ class ModeloResponsables
         $stmt = null;
     }
 
-    static public function mdlEliminarResponsables($tabla, $datos){
+    static public function mdlEliminarResponsables($tabla, $datos)
+    {
         $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE idResponsable = :id");
-		$stmt -> bindParam(":id", $datos, PDO::PARAM_INT);
-		if($stmt -> execute()){
-			return "ok";
-		}else{
-			return "error";	
-		}
-		$stmt -> close();
-		$stmt = null;
+        $stmt->bindParam(":id", $datos, PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            return "ok";
+        } else {
+            return "error";
+        }
+        $stmt->close();
+        $stmt = null;
     }
 }

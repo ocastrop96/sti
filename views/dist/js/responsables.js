@@ -16,7 +16,14 @@ $(".tablaResponsables").DataTable({
         url: "views/dist/js/dataTables.spanish.lang",
     },
 });
+$.ajax({
 
+	url: "util/datatable-responsables.php",
+	success:function(respuesta){
+		console.log("respuesta", respuesta);
+	}
+
+})
 // Cargar combos
 $("#oficinaRes").on("change", function() {
     var idOficina = $(this).val();
