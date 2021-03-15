@@ -65,7 +65,7 @@ $(".tablaIntegraEP tbody").on("click", ".btnEditarIntegraEP", function () {
         dataType: "json",
         success: function (respuesta) {
             $("#edtEqImp").val(respuesta["tipo_equipo"]);
-            $("#edtEqImp").html(respuesta["categoria"]);
+            $("#edtEqImp").html(respuesta["detaCategoria"]);
             $("#edtserieImp").val(respuesta["idimp"]);
             $("#edtserieImp").html(respuesta["serieimp"]);
             $("#idIntegracion").val(respuesta["idIntegracion"]);

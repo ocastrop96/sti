@@ -21,9 +21,10 @@ class ModeloResponsables
     }
     static public function mdlRegistrarResponsables($datos)
     {
-        $stmt = Conexion::conectar()->prepare("CALL REGISTRAR_RESPONSABLE(:nombresResp,:apellidosResp,:idOficina,:idServicio)");
+        $stmt = Conexion::conectar()->prepare("CALL REGISTRAR_RESPONSABLE(:dni,:nombresResp,:apellidosResp,:idOficina,:idServicio)");
         $stmt->bindParam(":idOficina", $datos["idOficina"], PDO::PARAM_INT);
         $stmt->bindParam(":idServicio", $datos["idServicio"], PDO::PARAM_INT);
+        $stmt->bindParam(":dni", $datos["dni"], PDO::PARAM_STR);
         $stmt->bindParam(":nombresResp", $datos["nombresResp"], PDO::PARAM_STR);
         $stmt->bindParam(":apellidosResp", $datos["apellidosResp"], PDO::PARAM_STR);
         if ($stmt->execute()) {
@@ -36,11 +37,12 @@ class ModeloResponsables
     }
     static public function mdlEditarResponsables($datos)
     {
-        $stmt = Conexion::conectar()->prepare("CALL ACTUALIZAR_RESPONSABLE(:nombres,:apellidos,:oficina,:servicio,:id)");
+        $stmt = Conexion::conectar()->prepare("CALL ACTUALIZAR_RESPONSABLE(:dni,:nombres,:apellidos,:oficina,:servicio,:id)");
 
         $stmt->bindParam(":id", $datos["id"], PDO::PARAM_INT);
         $stmt->bindParam(":oficina", $datos["oficina"], PDO::PARAM_INT);
         $stmt->bindParam(":servicio", $datos["servicio"], PDO::PARAM_INT);
+        $stmt->bindParam(":dni", $datos["dni"], PDO::PARAM_STR);
         $stmt->bindParam(":nombres", $datos["nombres"], PDO::PARAM_STR);
         $stmt->bindParam(":apellidos", $datos["apellidos"], PDO::PARAM_STR);
 
@@ -53,9 +55,9 @@ class ModeloResponsables
         $stmt = null;
     }
 
-    static public function mdlEliminarResponsables($tabla, $datos)
+    static public function mdlEliminarResponsables($datos)
     {
-        $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE idResponsable = :id");
+        $stmt = Conexion::conectar()->prepare("CALL ELIMINAR_RESPONSABLE(:id)");
         $stmt->bindParam(":id", $datos, PDO::PARAM_INT);
         if ($stmt->execute()) {
             return "ok";

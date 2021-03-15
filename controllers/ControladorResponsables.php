@@ -10,10 +10,11 @@ class ControladorResponsables
     {
         if (isset($_POST["nombRes"]) && isset($_POST["apeRes"])) {
             if (
-                preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nombRes"]) &&
-                preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["apeRes"])
+                preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚÜü ]+$/', $_POST["nombRes"]) &&
+                preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚÜü ]+$/', $_POST["apeRes"])
             ) {
                 $datos = array(
+                    "dni" => $_POST["dniResponsable"],
                     "nombresResp" => $_POST["nombRes"],
                     "apellidosResp" => $_POST["apeRes"],
                     "idOficina" => $_POST["oficinaRes"],
@@ -22,30 +23,30 @@ class ControladorResponsables
                 $rptRegResp = ModeloResponsables::mdlRegistrarResponsables($datos);
                 if ($rptRegResp == "ok") {
                     echo '<script>
-                          Swal.fire({
-                            icon: "success",
-                            title: "El Usuario responsable ha sido registrado con éxito",
-                            showConfirmButton: true,
-                            confirmButtonText: "Cerrar",
-                            closeOnConfirm: false
-                          }).then((result)=>{
-                            if(result.value){
+                            Swal.fire({
+                                icon: "success",
+                                title: "El Usuario responsable ha sido registrado con éxito",
+                                showConfirmButton: false,
+                                timer: 1300
+                            });
+                            function redirect() {
                                 window.location = "responsables";
-                            }});
+                            }
+                            setTimeout(redirect, 1300);
                       </script>';
                 }
             } else {
                 echo '<script>
                 Swal.fire({
-                  icon: "error",
-                  title: "Ingrese correctamente sus datos",
-                  showConfirmButton: true,
-                  confirmButtonText: "Cerrar",
-                  closeOnConfirm: false
-                }).then((result)=>{
-                  if(result.value){
-                      window.location = "responsables";
-                  }});
+                    icon: "error",
+                    title: "Ingrese correctamente sus datos",
+                    showConfirmButton: false,
+                    timer: 1200
+                });
+                function redirect() {
+                    window.location = "responsables";
+                }
+                setTimeout(redirect, 1200);
             </script>';
             }
         }
@@ -54,10 +55,11 @@ class ControladorResponsables
     {
         if (isset($_POST["edtnombRes"]) && isset($_POST["edtapeRes"])) {
             if (
-                preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["edtnombRes"]) &&
-                preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["edtapeRes"])
+                preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚÜü ]+$/', $_POST["edtnombRes"]) &&
+                preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚÜü ]+$/', $_POST["edtapeRes"])
             ) {
                 $datos = array(
+                    "dni" => $_POST["edtdniResponsable"],
                     "nombres" => $_POST["edtnombRes"],
                     "apellidos" => $_POST["edtapeRes"],
                     "oficina" => $_POST["edtoficinaRes"],
@@ -69,31 +71,30 @@ class ControladorResponsables
 
                 if ($respuestaEditarResp == "ok") {
                     echo '<script>
-                          Swal.fire({
-                            icon: "success",
-                            title: "El usuario responsable ha sido editado con éxito",
-                            showConfirmButton: true,
-                            confirmButtonText: "Cerrar",
-                            closeOnConfirm: false
-                          }).then((result)=>{
-                            if(result.value){
+                            Swal.fire({
+                                icon: "success",
+                                title: "El usuario responsable ha sido editado con éxito",
+                                showConfirmButton: false,
+                                timer: 1300
+                            });
+                            function redirect() {
                                 window.location = "responsables";
-                            }});
+                            }
+                            setTimeout(redirect, 1300);
                       </script>';
                 }
-            }
-            else {
+            } else {
                 echo '<script>
                 Swal.fire({
-                  icon: "error",
-                  title: "Ingrese correctamente sus datos",
-                  showConfirmButton: true,
-                  confirmButtonText: "Cerrar",
-                  closeOnConfirm: false
-                }).then((result)=>{
-                  if(result.value){
-                      window.location = "responsables";
-                  }});
+                    icon: "error",
+                    title: "Ingrese correctamente sus datos",
+                    showConfirmButton: false,
+                    timer: 1200
+                });
+                function redirect() {
+                    window.location = "responsables";
+                }
+                setTimeout(redirect, 1200);
                 </script>';
             }
         }
@@ -101,23 +102,22 @@ class ControladorResponsables
     static public function ctrEliminarResponsables()
     {
         if (isset($_GET["idResponsable"])) {
-            $tabla = "ws_responsables";
             $datos = $_GET["idResponsable"];
 
-            $respuesta = ModeloResponsables::mdlEliminarResponsables($tabla, $datos);
+            $respuesta = ModeloResponsables::mdlEliminarResponsables($datos);
 
             if ($respuesta == "ok") {
                 echo '<script>
                         Swal.fire({
-                        icon: "success",
-                        title: "¡El usuario responsable ha sido eliminado con éxito!",
-                        showConfirmButton: true,
-                        confirmButtonText: "Cerrar",
-                        closeOnConfirm: false
-                        }).then((result)=>{
-                        if(result.value){
+                            icon: "success",
+                            title: "¡El usuario responsable ha sido eliminado con éxito!",
+                            showConfirmButton: false,
+                            timer: 1400
+                        });
+                        function redirect() {
                             window.location = "responsables";
-                        }});
+                        }
+                        setTimeout(redirect, 1400);
                     </script>';
             }
         }

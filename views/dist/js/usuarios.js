@@ -150,7 +150,7 @@ $("#edtdniUsuario").keyup(function () {
 $("#edtdniUsuario").attr("maxlength", "8");
 
 $("#nombreUsuario").keyup(function () {
-  this.value = (this.value + "").replace(/[^a-zA-Z ]/g, "");
+  this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]/g, "");
 });
 $("#nombreUsuario").keyup(function () {
   var u1 = $(this).val();
@@ -158,10 +158,10 @@ $("#nombreUsuario").keyup(function () {
   $("#nombreUsuario").val(mu1);
 });
 $("#edtnombreUsuario").keyup(function () {
-  this.value = (this.value + "").replace(/[^a-zA-Z ]/g, "");
+  this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]/g, "");
 });
 $("#apellidoUsuarioPat").keyup(function () {
-  this.value = (this.value + "").replace(/[^a-zA-Z ]/g, "");
+  this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]/g, "");
 });
 $("#apellidoUsuarioPat").keyup(function () {
   var u2 = $(this).val();
@@ -169,10 +169,10 @@ $("#apellidoUsuarioPat").keyup(function () {
   $("#apellidoUsuarioPat").val(mu2);
 });
 $("#edtapellidoUsuarioPat").keyup(function () {
-  this.value = (this.value + "").replace(/[^a-zA-Z ]/g, "");
+  this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]/g, "");
 });
 $("#apellidoUsuarioMat").keyup(function () {
-  this.value = (this.value + "").replace(/[^a-zA-Z ]/g, "");
+  this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]/g, "");
 });
 $("#apellidoUsuarioMat").keyup(function () {
   var u3 = $(this).val();
@@ -180,7 +180,7 @@ $("#apellidoUsuarioMat").keyup(function () {
   $("#apellidoUsuarioMat").val(mu3);
 });
 $("#edtapellidoUsuarioMat").keyup(function () {
-  this.value = (this.value + "").replace(/[^a-zA-Z ]/g, "");
+  this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]/g, "");
 });
 
 $("#cuentaUsuario").keyup(function () {

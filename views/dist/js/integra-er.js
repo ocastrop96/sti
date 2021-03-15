@@ -65,7 +65,7 @@ $(".tablaIntegraER tbody").on("click", ".btnEditarIntegraER", function () {
         dataType: "json",
         success: function (respuesta) {
             $("#edtEqRed").val(respuesta["tipo_equipo"]);
-            $("#edtEqRed").html(respuesta["categoria"]);
+            $("#edtEqRed").html(respuesta["detaCategoria"]);
             $("#edtserieERed").val(respuesta["idEqRed"]);
             $("#edtserieERed").html(respuesta["serieEqRed"]);
             $("#idIntegracion").val(respuesta["idIntegracion"]);
