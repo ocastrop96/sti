@@ -394,6 +394,7 @@ $("#cuentaUsuario").change(function () {
           icon: "warning",
           title: "La cuenta de usuario ya se encuentra registrada",
         });
+        $("#cuentaUsuario").focus();
         $("#cuentaUsuario").val("");
       }
     },
@@ -424,6 +425,7 @@ $("#edtcuentaUsuario").change(function () {
           icon: "warning",
           title: "La cuenta de usuario ya se encuentra registrada",
         });
+        $("#edtcuentaUsuario").focus();
         $("#edtcuentaUsuario").val("");
       }
     },
