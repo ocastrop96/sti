@@ -49,14 +49,15 @@ $(".tablaSubAreas tbody").on("click", ".btnEditarSubArea", function () {
                     $("#edtoficina").html(respuesta["area"]);
                 }
             });
-
+            $("#hOfi").val(respuesta["id_area"]);
+            $("#hnSub").val(respuesta["subarea"]);
             $("#edtSubarea").val(respuesta["subarea"]);
             $("#idSubArea").val(respuesta["id_subarea"]);
         }
     });
 });
 // Validar subarea existente
-$("#newSubarea").change(function () {
+$("#newSubarea").focusout(function () {
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -65,27 +66,39 @@ $("#newSubarea").change(function () {
     });
     var subarea = $(this).val();
     var oficina = $("#oficina").val();
-    var datos = new FormData();
-    datos.append("validarSubArea", subarea);
-    datos.append("validarOficina", oficina);
-    $.ajax({
-        url: "lib/ajaxSubareas.php",
-        method: "POST",
-        data: datos,
-        cache: false,
-        contentType: false,
-        processData: false,
-        dataType: "json",
-        success: function (respuesta) {
-            if (respuesta) {
-                Toast.fire({
-                    icon: 'warning',
-                    title: 'El servicio ingresado para la Oficina ya existe'
-                });
-                $("#newSubarea").val("");
+
+    if (subarea != "" && oficina != 0) {
+        var datos = new FormData();
+        datos.append("validarSubArea", subarea);
+        datos.append("validarOficina", oficina);
+        $.ajax({
+            url: "lib/ajaxSubareas.php",
+            method: "POST",
+            data: datos,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: "json",
+            success: function (respuesta) {
+                if (respuesta) {
+                    Toast.fire({
+                        icon: 'warning',
+                        title: 'El servicio ingresado para la Oficina ya existe'
+                    });
+                    $("#newSubarea").val("");
+                    $("#newSubarea").focus();
+                    $("#btnRegServicio").addClass("disabled");
+                }
+                else {
+                    $("#newSubarea").focus();
+                    $("#btnRegServicio").removeClass("disabled");
+                }
             }
-        }
-    });
+        });
+    }
+    else {
+        $("#btnRegServicio").addClass("disabled");
+    }
 });
 
 $("#edtSubarea").focusout(function () {
@@ -96,31 +109,106 @@ $("#edtSubarea").focusout(function () {
         timer: 1500
     });
     var subarea2 = $(this).val();
+    var a1 = $("#hOfi").val();
+    var b1 = $("#hnSub").val();
     var oficina2 = $("#edtoficina1").val();
-    console.log(subarea2);
-    console.log(oficina2);
-    var datos2 = new FormData();
-    datos2.append("validarSubArea", subarea2);
-    datos2.append("validarOficina", oficina2);
-    $.ajax({
-        url: "lib/ajaxSubareas.php",
-        method: "POST",
-        data: datos2,
-        cache: false,
-        contentType: false,
-        processData: false,
-        dataType: "json",
-        success: function (respuesta) {
-            console.log(respuesta);
-            if (respuesta) {
-                Toast.fire({
-                    icon: 'warning',
-                    title: 'El servicio ingresado para la Oficina ya existe'
-                });
-                $("#edtSubarea").focus();
-            }
+
+
+    if (subarea2 != "" && oficina2 != 0) {
+        if (oficina2 != a1 && subarea2 != b1) {
+            var datos2 = new FormData();
+            datos2.append("validarSubArea", subarea2);
+            datos2.append("validarOficina", oficina2);
+            $.ajax({
+                url: "lib/ajaxSubareas.php",
+                method: "POST",
+                data: datos2,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: "json",
+                success: function (respuesta) {
+                    console.log(respuesta);
+                    if (respuesta) {
+                        Toast.fire({
+                            icon: 'warning',
+                            title: 'El servicio ingresado para la Oficina ya existe'
+                        });
+                        $("#edtSubarea").focus();
+                        $("#edtSubarea").val("");
+                        $("#btnEdtServicio").addClass("disabled");
+                    }
+                    else {
+                        $("#btnEdtServicio").removeClass("disabled");
+                    }
+                }
+            });
         }
-    });
+        else if (oficina2 == a1 && subarea2 != b1) {
+            var datos2 = new FormData();
+            datos2.append("validarSubArea", subarea2);
+            datos2.append("validarOficina", oficina2);
+            $.ajax({
+                url: "lib/ajaxSubareas.php",
+                method: "POST",
+                data: datos2,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: "json",
+                success: function (respuesta) {
+                    console.log(respuesta);
+                    if (respuesta) {
+                        Toast.fire({
+                            icon: 'warning',
+                            title: 'El servicio ingresado para la Oficina ya existe'
+                        });
+                        $("#edtSubarea").focus();
+                        $("#edtSubarea").val("");
+                        $("#btnEdtServicio").addClass("disabled");
+                    }
+                    else {
+                        $("#btnEdtServicio").removeClass("disabled");
+                    }
+                }
+            });
+        }
+        else if (oficina2 != a1 && subarea2 == b1) {
+            var datos2 = new FormData();
+            datos2.append("validarSubArea", subarea2);
+            datos2.append("validarOficina", oficina2);
+            $.ajax({
+                url: "lib/ajaxSubareas.php",
+                method: "POST",
+                data: datos2,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: "json",
+                success: function (respuesta) {
+                    console.log(respuesta);
+                    if (respuesta) {
+                        Toast.fire({
+                            icon: 'warning',
+                            title: 'El servicio ingresado para la Oficina ya existe'
+                        });
+                        $("#edtSubarea").focus();
+                        $("#edtSubarea").val("");
+                        $("#btnEdtServicio").addClass("disabled");
+                    }
+                    else {
+                        $("#btnEdtServicio").removeClass("disabled");
+                    }
+                }
+            });
+        }
+        else if (oficina2 == a1 && subarea2 == b1) {
+            $("#btnEdtServicio").removeClass("disabled");
+        }
+    }
+    else {
+        $("#btnEdtServicio").addClass("disabled");
+    }
 });
 // Eliminar Servicio
 $(".tablaSubAreas tbody").on("click", ".btnEliminarSubArea", function () {
@@ -144,7 +232,7 @@ $(".tablaSubAreas tbody").on("click", ".btnEliminarSubArea", function () {
 $("#btnRegServicio").on("click", function () {
     $.validator.addMethod(
         "valueNotEquals",
-        function(value, element, arg) {
+        function (value, element, arg) {
             return arg !== value;
         },
         "Value must not equal arg."

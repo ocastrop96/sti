@@ -116,6 +116,7 @@
                             <div class="form-group">
                                 <label for="edtoficina1">Oficina y/o Departamento &nbsp;</label>
                                 <div class="input-group">
+                                <input type="hidden" name="hOfi" id="hOfi">
                                     <select class="form-control" style="width: 100%;" name="edtoficina" id="edtoficina1" required>
                                         <option value="" id="edtoficina"></option>
                                         <?php
@@ -137,8 +138,9 @@
                                 <label for="edtSubarea">Área &nbsp;</label>
                                 <i class="fas fa-map"></i> *
                                 <div class="input-group">
-                                    <input type="text" name="edtSubarea" id="edtSubarea" class="form-control" required autocomplete="off">
+                                    <input type="text" name="edtSubarea" id="edtSubarea" class="form-control" required autocomplete="off" autofocus>
                                     <input type="hidden" name="idSubArea" id="idSubArea" required>
+                                    <input type="hidden" name="hnSub" id="hnSub">
                                 </div>
                             </div>
                         </div>

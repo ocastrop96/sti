@@ -60,6 +60,7 @@
                                 <i class="fas fa-map"></i> *
                                 <div class="input-group">
                                     <input type="text" name="newArea" id="newArea" class="form-control" placeholder="Ingrese detalle de área" required autocomplete="off" autofocus="autofocus">
+                                    
                                 </div>
                             </div>
                         </div>
@@ -98,6 +99,7 @@
                                 <div class="input-group">
                                     <input type="text" name="edtArea" id="edtArea" class="form-control" required autocomplete="off" autofocus="autofocus">
                                     <input type="hidden" name="idArea" id="idArea" required>
+                                    <input type="hidden" name="hNewArea" id="hNewArea">
                                 </div>
                             </div>
                         </div>

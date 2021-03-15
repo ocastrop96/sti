@@ -31,6 +31,7 @@ $(".tablaAreas tbody").on("click", ".btnEditarArea", function () {
         processData: false,
         dataType: "json",
         success: function (respuesta) {
+            $("#hNewArea").val(respuesta["area"]);
             $("#edtArea").val(respuesta["area"]);
             $("#idArea").val(respuesta["id_area"]);
         }
@@ -46,27 +47,38 @@ $("#newArea").focusout(function () {
         timer: 1500
     });
     var oficina = $(this).val();
+
     var datos = new FormData();
-    datos.append("validarOficina", oficina);
-    $.ajax({
-        url: "lib/ajaxOficinas.php",
-        method: "POST",
-        data: datos,
-        cache: false,
-        contentType: false,
-        processData: false,
-        dataType: "json",
-        success: function (respuesta) {
-            if (respuesta) {
-                Toast.fire({
-                    icon: 'warning',
-                    title: 'La Oficina o Departamento, ya se encuentra registrada'
-                });
-                $("#newArea").val("");
-                $("#newArea").focus();
+
+    if (oficina != "") {
+        datos.append("validarOficina", oficina);
+        $.ajax({
+            url: "lib/ajaxOficinas.php",
+            method: "POST",
+            data: datos,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: "json",
+            success: function (respuesta) {
+                if (respuesta) {
+                    Toast.fire({
+                        icon: 'warning',
+                        title: 'La Oficina o Departamento, ya se encuentra registrada'
+                    });
+                    $("#newArea").val("");
+                    $("#newArea").focus();
+                    $("#btnRegOficina").addClass("d-none");
+                }
+                else {
+                    $("#btnRegOficina").removeClass("d-none");
+                }
             }
-        }
-    });
+        });
+    } else {
+        $("#btnRegOficina").addClass("d-none");
+    }
+
 });
 
 $("#edtArea").focusout(function () {
@@ -77,26 +89,41 @@ $("#edtArea").focusout(function () {
         timer: 1500
     });
     var area = $(this).val();
+    var dataAnt = $("#hNewArea").val();
     var datosa = new FormData();
-    datosa.append("validarOficina2", area);
-    $.ajax({
-        url: "lib/ajaxOficinas.php",
-        method: "POST",
-        data: datosa,
-        cache: false,
-        contentType: false,
-        processData: false,
-        dataType: "json",
-        success: function (respuesta) {
-            if (respuesta) {
-                Toast.fire({
-                    icon: 'warning',
-                    title: 'La Oficina o Departamento, ya se encuentra registrada'
-                });
-                $("#edtArea").focus();
-            }
+
+    if (area != "") {
+        if (area != dataAnt) {
+            datosa.append("validarOficina2", area);
+            $.ajax({
+                url: "lib/ajaxOficinas.php",
+                method: "POST",
+                data: datosa,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: "json",
+                success: function (respuesta) {
+                    if (respuesta) {
+                        Toast.fire({
+                            icon: 'warning',
+                            title: 'La Oficina o Departamento, ya se encuentra registrada'
+                        });
+                        $("#edtArea").focus();
+                        $("#edtArea").val("");
+                        $("#edtArea").focus();
+                        $("#btnEdtOficina").addClass("d-none");
+                    }
+                    else {
+                        $("#btnEdtOficina").removeClass("d-none");
+                    }
+                }
+            });
         }
-    });
+        else {
+            $("#btnEdtOficina").addClass("d-none");
+        }
+    }
 });
 
 $(".tablaAreas tbody").on("click", ".btnEliminarArea", function () {
