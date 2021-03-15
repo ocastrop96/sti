@@ -28,7 +28,7 @@ class ControladorCategorias{
 
     static public function ctrRegistrarCategorias(){
         if (isset($_POST["newCategoria"])) {
-            if (preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["newCategoria"])) {
+            if (preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚÜü ]+$/',$_POST["newCategoria"])) {
                 $tabla = "ws_categorias";
                 $datos = array(
                     "categoria" => $_POST["newCategoria"],
@@ -84,7 +84,7 @@ class ControladorCategorias{
 
     static public function ctrEditarCategorias(){
         if (isset($_POST["edtCategoria"])) {
-            if (preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["edtCategoria"])) {
+            if (preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚÜü ]+$/',$_POST["edtCategoria"])) {
                 $tabla = "ws_categorias";
                 $datos = array(
                     "categoria" => $_POST["edtCategoria"],

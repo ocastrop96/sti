@@ -36,14 +36,6 @@
                             <th>Opciones</th>
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <th style="width: 10px">#</th>
-                            <th>Categoría</th>
-                            <th>Segmento</th>
-                            <th>Opciones</th>
-                        </tr>
-                    </tfoot>
                 </table>
             </div>
         </div>
@@ -54,7 +46,7 @@
 <div id="modal-registrar-categoria" class="modal fade" role="dialog" aria-modal="true" style="padding-right: 17px;">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="" role="form" method="post">
+            <form action="" role="form" id="frmRegCategoria" method="post">
                 <div class="modal-header text-center" style="background: #6c757d; color: white">
                     <h4 class="modal-title">Registrar Categoría</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -64,30 +56,38 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-12 mt-2">
-                            <label for="oficina">Segmento &nbsp;<i class="fas fa-border-style"></i>*</label>
-                            <select class="form-control" style="width: 100%;" id="newSeg" name="newSeg" required>
-                                <option value="0">Seleccione segmento</option>
-                                <?php
-                                $itemSeg = null;
-                                $valorSeg  = null;
-                                $segmento = ControladorSegmentos::ctrListarSegmentos($itemSeg, $valorSeg);
-                                foreach ($segmento as $key => $value) {
-                                    echo '<option value="' . $value["idSegmento"] . '">' . $value["descSegmento"] . '</option>';
-                                }
-                                ?>
-                            </select>
+                            <div class="form-group">
+                                <label for="oficina">Segmento &nbsp;<i class="fas fa-border-style"></i>*</label>
+                                <div class="input-group">
+                                    <select class="form-control" style="width: 100%;" id="newSeg" name="newSeg" required>
+                                        <option value="0">Seleccione segmento</option>
+                                        <?php
+                                        $itemSeg = null;
+                                        $valorSeg  = null;
+                                        $segmento = ControladorSegmentos::ctrListarSegmentos($itemSeg, $valorSeg);
+                                        foreach ($segmento as $key => $value) {
+                                            echo '<option value="' . $value["idSegmento"] . '">' . $value["descSegmento"] . '</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="row mt-2">
                         <div class="col-12">
-                            <label for="newCategoria">Categoría &nbsp;</label>
-                            <i class="fas fa-th"></i> *
-                            <input type="text" name="newCategoria" id="newCategoria" class="form-control" placeholder="Ingrese detalle de categoría" required autocomplete="off" autofocus="autofocus">
+                            <div class="form-group">
+                                <label for="newCategoria">Categoría &nbsp;</label>
+                                <i class="fas fa-th"></i> *
+                                <div class="input-group">
+                                    <input type="text" name="newCategoria" id="newCategoria" class="form-control" placeholder="Ingrese detalle de categoría" required autocomplete="off" autofocus="autofocus">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer justify-content-center">
-                    <button type="submit" class="btn btn-secondary"><i class="fas fa-save"></i> Guardar</button>
+                    <button type="submit" class="btn btn-secondary" id="btnRegCategoria"><i class="fas fa-save"></i> Guardar</button>
                     <button type="reset" class="btn btn-danger"><i class="fas fa-eraser"></i> Limpiar</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fas fa-times-circle"></i> Salir</button>
                 </div>
@@ -105,7 +105,7 @@
 <div id="modal-editar-categoria" class="modal fade" role="dialog" aria-modal="true" style="padding-right: 17px;">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="" role="form" method="post">
+            <form action="" role="form" id="frmEdtCategoria" method="post">
                 <div class="modal-header text-center" style="background: #6c757d; color: white">
                     <h4 class="modal-title">Editar Categoría</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -115,36 +115,44 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-12 mt-2">
-                            <label for="oficina">Segmento &nbsp;<i class="fas fa-border-style"></i>*</label>
-                            <select class="form-control" style="width: 100%;" name="edtSeg" required>
-                                <option value="" id="edtSeg"></option>
-                                <?php
-                                $itemSeg1 = null;
-                                $valorSeg1  = null;
-                                $segmento1 = ControladorSegmentos::ctrListarSegmentos($itemSeg1, $valorSeg1);
-                                foreach ($segmento1 as $key => $value) {
-                                    echo '<option value="' . $value["idSegmento"] . '">' . $value["descSegmento"] . '</option>';
-                                }
-                                ?>
-                            </select>
+                            <div class="form-group">
+                                <label for="oficina">Segmento &nbsp;<i class="fas fa-border-style"></i>*</label>
+                                <div class="input-group">
+                                    <select class="form-control" style="width: 100%;" name="edtSeg" required>
+                                        <option value="" id="edtSeg"></option>
+                                        <?php
+                                        $itemSeg1 = null;
+                                        $valorSeg1  = null;
+                                        $segmento1 = ControladorSegmentos::ctrListarSegmentos($itemSeg1, $valorSeg1);
+                                        foreach ($segmento1 as $key => $value) {
+                                            echo '<option value="' . $value["idSegmento"] . '">' . $value["descSegmento"] . '</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="row mt-2">
                         <div class="col-12">
-                            <label for="edtCategoria">Categoría &nbsp;</label>
-                            <i class="fas fa-th"></i> *
-                            <input type="text" name="edtCategoria" id="edtCategoria" class="form-control" required autocomplete="off" autofocus="autofocus">
-                            <input type="hidden" name="idCategoria" id="idCategoria">
+                            <div class="form-group">
+                                <label for="edtCategoria">Categoría &nbsp;</label>
+                                <i class="fas fa-th"></i> *
+                                <div class="input-group">
+                                    <input type="text" name="edtCategoria" id="edtCategoria" class="form-control" required autocomplete="off" autofocus="autofocus">
+                                    <input type="hidden" name="idCategoria" id="idCategoria">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer justify-content-center">
-                    <button type="submit" class="btn btn-secondary"><i class="fas fa-save"></i> Guardar cambios</button>
+                    <button type="submit" class="btn btn-secondary" id="btnEdtCategoria"><i class="fas fa-save"></i> Guardar cambios</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fas fa-times-circle"></i> Salir</button>
                 </div>
                 <?php
                 $edtCat = new ControladorCategorias();
-                $edtCat -> ctrEditarCategorias();
+                $edtCat->ctrEditarCategorias();
                 ?>
             </form>
         </div>
@@ -154,5 +162,5 @@
 <?php
 
 $eliminarCat = new ControladorCategorias();
-$eliminarCat -> ctrEliminarCategorias();
+$eliminarCat->ctrEliminarCategorias();
 ?>

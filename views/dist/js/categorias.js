@@ -18,7 +18,7 @@ $(".tablaCategorias").DataTable({
 });
 
 // Editar Categorias
-$(".tablaCategorias tbody").on("click", ".btnEditarCategoria", function() {
+$(".tablaCategorias tbody").on("click", ".btnEditarCategoria", function () {
     var idCategoria = $(this).attr("idCategoria");
     var datos = new FormData();
     console.log(idCategoria);
@@ -32,7 +32,7 @@ $(".tablaCategorias tbody").on("click", ".btnEditarCategoria", function() {
         contentType: false,
         processData: false,
         dataType: "json",
-        success: function(respuesta) {
+        success: function (respuesta) {
             $("#edtCategoria").val(respuesta["categoria"]);
             $("#idCategoria").val(respuesta["idCategoria"]);
             $("#edtSeg").val(respuesta["segmento"]);
@@ -42,7 +42,7 @@ $(".tablaCategorias tbody").on("click", ".btnEditarCategoria", function() {
 });
 // Editar Categorias
 // Validar
-$("#newCategoria").change(function() {
+$("#newCategoria").change(function () {
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -60,19 +60,20 @@ $("#newCategoria").change(function() {
         contentType: false,
         processData: false,
         dataType: "json",
-        success: function(respuesta) {
+        success: function (respuesta) {
             if (respuesta) {
                 Toast.fire({
-                    type: 'warning',
+                    icon: 'warning',
                     title: 'La categoría, ya se encuentra registrada'
                 });
                 $("#newCategoria").val("");
+                $("#newCategoria").focus();
             }
         }
     });
 });
 
-$("#edtCategoria").change(function() {
+$("#edtCategoria").change(function () {
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -90,13 +91,14 @@ $("#edtCategoria").change(function() {
         contentType: false,
         processData: false,
         dataType: "json",
-        success: function(respuesta) {
+        success: function (respuesta) {
             if (respuesta) {
                 Toast.fire({
-                    type: 'warning',
+                    icon: 'warning',
                     title: 'La categoría, ya se encuentra registrada'
                 });
                 $("#edtCategoria").val("");
+                $("#edtCategoria").focus();
             }
         }
     });
@@ -104,7 +106,7 @@ $("#edtCategoria").change(function() {
 // Validar
 
 // Eliminar categoría
-$(".tablaCategorias tbody").on("click", ".btnEliminarCategoria", function() {
+$(".tablaCategorias tbody").on("click", ".btnEliminarCategoria", function () {
     var idCategoria = $(this).attr("idCategoria");
     Swal.fire({
         title: '¿Está seguro de eliminar la categoría?',
@@ -115,9 +117,46 @@ $(".tablaCategorias tbody").on("click", ".btnEliminarCategoria", function() {
         cancelButtonText: 'Cancelar',
         cancelButtonColor: '#d33',
         confirmButtonText: '¡Sí, eliminar!'
-    }).then(function(result) {
+    }).then(function (result) {
         if (result.value) {
             window.location = "index.php?ruta=categorias&idCategoria=" + idCategoria;
         }
     })
+});
+
+$("#btnRegCategoria").on("click", function () {
+    $("#frmRegCategoria").validate({
+        rules: {
+            newSeg: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            newCategoria: {
+                required: true,
+            },
+        },
+        messages: {
+            newSeg: {
+                valueNotEquals: "Seleccione segmento",
+                required: "Seleccione segmento",
+            },
+            newCategoria: {
+                required: "Ingrese nombre Categoría",
+            },
+        },
+        errorElement: "span",
+        errorPlacement: function (error, element) {
+            error.addClass("invalid-feedback");
+            element.closest(".form-group").append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass("is-invalid");
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass("is-invalid");
+        },
+    });
+});
+$("#newCategoria").keyup(function () {
+    this.value = (this.value + "").replace(/[^a-zA-ZñÑáéíóúÁÉÍÓÚÜü ]/g, "");
 });
