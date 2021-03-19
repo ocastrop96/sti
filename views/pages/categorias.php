@@ -141,6 +141,8 @@
                                 <div class="input-group">
                                     <input type="text" name="edtCategoria" id="edtCategoria" class="form-control" required autocomplete="off" autofocus="autofocus">
                                     <input type="hidden" name="idCategoria" id="idCategoria">
+                                    <input type="hidden" name="ctgDet" id="ctgDet">
+
                                 </div>
                             </div>
                         </div>

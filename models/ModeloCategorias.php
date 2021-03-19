@@ -56,9 +56,9 @@ class ModeloCategorias
         $stmt = null;
     }
 
-    static public function mdlRegistrarCategoria($tabla, $datos)
+    static public function mdlRegistrarCategoria($datos)
     {
-        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(categoria,segmento) VALUES(:categoria,:segmento)");
+        $stmt = Conexion::conectar()->prepare("CALL REGISTRAR_CATEGORIA(:categoria,:segmento)");
         $stmt->bindParam(":categoria", $datos["categoria"], PDO::PARAM_STR);
         $stmt->bindParam(":segmento", $datos["segmento"], PDO::PARAM_INT);
 
@@ -70,9 +70,9 @@ class ModeloCategorias
         $stmt->close();
         $stmt = null;
     }
-    static public function mdlEditarCategoria($tabla, $datos)
+    static public function mdlEditarCategoria($datos)
     {
-        $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET categoria = :categoria, segmento = :segmento WHERE idCategoria = :id");
+        $stmt = Conexion::conectar()->prepare("CALL EDITAR_CATEGORIA(:id,:categoria,:segmento)");
 
         $stmt->bindParam(":categoria", $datos["categoria"], PDO::PARAM_STR);
         $stmt->bindParam(":segmento", $datos["segmento"], PDO::PARAM_INT);
@@ -89,7 +89,7 @@ class ModeloCategorias
     static public function mdlEliminarCategoria($tabla, $datos)
     {
 
-        $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE idCategoria = :id");
+        $stmt = Conexion::conectar()->prepare("CALL ELIMINAR_CATEGORIA(:id)");
         $stmt->bindParam(":id", $datos, PDO::PARAM_INT);
         if ($stmt->execute()) {
             return "ok";

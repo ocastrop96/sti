@@ -34,6 +34,7 @@ $(".tablaCategorias tbody").on("click", ".btnEditarCategoria", function () {
         dataType: "json",
         success: function (respuesta) {
             $("#edtCategoria").val(respuesta["categoria"]);
+            $("#ctgDet").val(respuesta["categoria"]);
             $("#idCategoria").val(respuesta["idCategoria"]);
             $("#edtSeg").val(respuesta["segmento"]);
             $("#edtSeg").html(respuesta["descSegmento"]);
@@ -42,7 +43,7 @@ $(".tablaCategorias tbody").on("click", ".btnEditarCategoria", function () {
 });
 // Editar Categorias
 // Validar
-$("#newCategoria").change(function () {
+$("#newCategoria").focusout(function () {
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -51,29 +52,39 @@ $("#newCategoria").change(function () {
     });
     var categoria = $(this).val();
     var datos = new FormData();
-    datos.append("validarCategoria", categoria);
-    $.ajax({
-        url: "lib/ajaxCategorias.php",
-        method: "POST",
-        data: datos,
-        cache: false,
-        contentType: false,
-        processData: false,
-        dataType: "json",
-        success: function (respuesta) {
-            if (respuesta) {
-                Toast.fire({
-                    icon: 'warning',
-                    title: 'La categoría, ya se encuentra registrada'
-                });
-                $("#newCategoria").val("");
-                $("#newCategoria").focus();
+
+    if (categoria != "") {
+        datos.append("validarCategoria", categoria);
+        $.ajax({
+            url: "lib/ajaxCategorias.php",
+            method: "POST",
+            data: datos,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: "json",
+            success: function (respuesta) {
+                if (respuesta) {
+                    Toast.fire({
+                        icon: 'warning',
+                        title: 'La categoría, ya se encuentra registrada'
+                    });
+                    $("#newCategoria").val("");
+                    $("#newCategoria").focus();
+                    $("#btnRegCategoria").addClass("d-none");
+                }
+                else {
+                    $("#btnRegCategoria").removeClass("d-none");
+                }
             }
-        }
-    });
+        });
+    }
+    else {
+        $("#btnRegCategoria").addClass("d-none");
+    }
 });
 
-$("#edtCategoria").change(function () {
+$("#edtCategoria").focusout(function () {
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -81,27 +92,40 @@ $("#edtCategoria").change(function () {
         timer: 1500
     });
     var categoria1 = $(this).val();
-    var datos = new FormData();
-    datos.append("validarCategoria", categoria1);
-    $.ajax({
-        url: "lib/ajaxCategorias.php",
-        method: "POST",
-        data: datos,
-        cache: false,
-        contentType: false,
-        processData: false,
-        dataType: "json",
-        success: function (respuesta) {
-            if (respuesta) {
-                Toast.fire({
-                    icon: 'warning',
-                    title: 'La categoría, ya se encuentra registrada'
-                });
-                $("#edtCategoria").val("");
-                $("#edtCategoria").focus();
-            }
+    var ck1 = $("#ctgDet").val();
+
+    if (categoria1 != "") {
+        if (categoria1 != ck1) {
+            var datos = new FormData();
+            datos.append("validarCategoria", categoria1);
+            $.ajax({
+                url: "lib/ajaxCategorias.php",
+                method: "POST",
+                data: datos,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: "json",
+                success: function (respuesta) {
+                    if (respuesta) {
+                        Toast.fire({
+                            icon: 'warning',
+                            title: 'La categoría, ya se encuentra registrada'
+                        });
+                        $("#edtCategoria").val("");
+                        $("#edtCategoria").focus();
+                        $("#btnEdtCategoria").addClass("d-none");
+                    }
+                }
+            });
         }
-    });
+        else {
+            $("#btnEdtCategoria").removeClass("d-none");
+        }
+    }
+    else {
+        $("#btnEdtCategoria").addClass("d-none");
+    }
 });
 // Validar
 
@@ -159,4 +183,40 @@ $("#btnRegCategoria").on("click", function () {
 });
 $("#newCategoria").keyup(function () {
     this.value = (this.value + "").replace(/[^a-zA-ZñÑáéíóúÁÉÍÓÚÜü ]/g, "");
+});
+$("#edtCategoria").keyup(function () {
+    this.value = (this.value + "").replace(/[^a-zA-ZñÑáéíóúÁÉÍÓÚÜü ]/g, "");
+});
+$("#btnEdtCategoria").on("click", function () {
+    $("#frmEdtCategoria").validate({
+        rules: {
+            edtSeg: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            edtCategoria: {
+                required: true,
+            },
+        },
+        messages: {
+            edtSeg: {
+                valueNotEquals: "Seleccione segmento",
+                required: "Seleccione segmento",
+            },
+            edtCategoria: {
+                required: "Ingrese nombre Categoría",
+            },
+        },
+        errorElement: "span",
+        errorPlacement: function (error, element) {
+            error.addClass("invalid-feedback");
+            element.closest(".form-group").append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass("is-invalid");
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass("is-invalid");
+        },
+    });
 });
