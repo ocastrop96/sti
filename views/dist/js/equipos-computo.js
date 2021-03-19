@@ -347,7 +347,7 @@ $("#edtecDD").keyup(function () {
 });
 
 // Eliminar EquiposC
-$(".tablaEquiposComputo tbody").on("click", ".btnEliminarEquipoC", function() {
+$(".tablaEquiposComputo tbody").on("click", ".btnEliminarEquipoC", function () {
     var idEquipo = $(this).attr("idEquipo");
     Swal.fire({
         title: '¿Está seguro de eliminar el equipo de Cómputo?',
@@ -358,10 +358,309 @@ $(".tablaEquiposComputo tbody").on("click", ".btnEliminarEquipoC", function() {
         cancelButtonText: 'Cancelar',
         cancelButtonColor: '#d33',
         confirmButtonText: '¡Sí, eliminar equipo!'
-    }).then(function(result) {
+    }).then(function (result) {
         if (result.value) {
             window.location = "index.php?ruta=equipos-computo&idEquipo=" + idEquipo;
         }
     })
 });
-// Eliminar EquiposC
+// Eliminar EquiposC.
+// Validar campos
+$.validator.addMethod(
+    "valueNotEquals",
+    function (value, element, arg) {
+        return arg !== value;
+    },
+    "Value must not equal arg."
+);
+// btnRegistrarResponsable
+$("#btnRegEqComputo").on("click", function () {
+    $("#formRegEqComputo").validate({
+        rules: {
+            ecCat: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            ecRes: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            ecOfi: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            ecServ: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            ecSerie: {
+                required: true,
+            },
+            ecSBN: {
+                required: true,
+            },
+            ecMarca: {
+                required: true,
+            },
+            ecModelo: {
+                required: true,
+            },
+            ecDescripcion: {
+                required: true,
+            },
+            ecOrden: {
+                required: true,
+            },
+            ecFCompra: {
+                required: true,
+            },
+            ecGarantia: {
+                required: true,
+            },
+            ecPlaca: {
+                required: true,
+            },
+            ecProcesador: {
+                required: true,
+            },
+            ecVProc: {
+                required: true,
+            },
+            ecRAM: {
+                required: true,
+            },
+            ecDD: {
+                required: true,
+            },
+            ecCondicion: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            ecEstado: {
+                valueNotEquals: "0",
+                required: true,
+            },
+        },
+        messages: {
+            ecCat: {
+                valueNotEquals: "Seleccione Categoría",
+                required: "Dato querido",
+            },
+            ecRes: {
+                valueNotEquals: "Seleccione U. Responsable",
+                required: "Dato querido",
+            },
+            ecOfi: {
+                valueNotEquals: "Seleccione Oficina",
+                required: "Dato querido",
+            },
+            ecServ: {
+                valueNotEquals: "Seleccione Servicio",
+                required: "Dato querido",
+            },
+            ecSerie: {
+                required: "Ingrese dato requerido",
+            },
+            ecSBN: {
+                required: "Ingrese dato requerido",
+            },
+            ecMarca: {
+                required: "Ingrese dato requerido",
+            },
+            ecModelo: {
+                required: "Ingrese dato requerido",
+            },
+            ecDescripcion: {
+                required: "Ingrese dato requerido",
+            },
+            ecOrden: {
+                required: "Ingrese dato requerido",
+            },
+            ecFCompra: {
+                required: "Ingrese dato requerido",
+            },
+            ecGarantia: {
+                required: "Ingrese dato requerido",
+            },
+            ecPlaca: {
+                required: "Ingrese dato requerido",
+            },
+            ecProcesador: {
+                required: "Ingrese dato requerido",
+            },
+            ecVProc: {
+                required: "Ingrese dato requerido",
+            },
+            ecRAM: {
+                required: "Ingrese dato requerido",
+            },
+            ecDD: {
+                required: "Ingrese dato requerido",
+            },
+            ecCondicion: {
+                valueNotEquals: "Seleccione condición",
+                required: true,
+            },
+            ecEstado: {
+                valueNotEquals: "Seleccione Estado",
+                required: true,
+            },
+        },
+        errorElement: "span",
+        errorPlacement: function (error, element) {
+            error.addClass("invalid-feedback");
+            element.closest(".form-group").append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass("is-invalid");
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass("is-invalid");
+        },
+    });
+});
+$("#btnEdtEqComputo").on("click", function () {
+    $("#formEdtEqComputo").validate({
+        rules: {
+            edtecCat: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            edtecRes: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            edtecOfi: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            edtecServ: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            edtecSerie: {
+                required: true,
+            },
+            edtecSBN: {
+                required: true,
+            },
+            edtecMarca: {
+                required: true,
+            },
+            edtecModelo: {
+                required: true,
+            },
+            edtecDescripcion: {
+                required: true,
+            },
+            edtecOrden: {
+                required: true,
+            },
+            edtecFCompra: {
+                required: true,
+            },
+            edtecGarantia: {
+                required: true,
+            },
+            edtecPlaca: {
+                required: true,
+            },
+            edtecProcesador: {
+                required: true,
+            },
+            edtecVProc: {
+                required: true,
+            },
+            edtecRAM: {
+                required: true,
+            },
+            edtecDD: {
+                required: true,
+            },
+            edtecCondicion: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            edtecEstado: {
+                valueNotEquals: "0",
+                required: true,
+            },
+        },
+        messages: {
+            edtecCat: {
+                valueNotEquals: "Seleccione Categoría",
+                required: "Dato querido",
+            },
+            edtecRes: {
+                valueNotEquals: "Seleccione U. Responsable",
+                required: "Dato querido",
+            },
+            edtecOfi: {
+                valueNotEquals: "Seleccione Oficina",
+                required: "Dato querido",
+            },
+            edtecServ: {
+                valueNotEquals: "Seleccione Servicio",
+                required: "Dato querido",
+            },
+            edtecSerie: {
+                required: "Ingrese dato requerido",
+            },
+            edtecSBN: {
+                required: "Ingrese dato requerido",
+            },
+            edtecMarca: {
+                required: "Ingrese dato requerido",
+            },
+            edtecModelo: {
+                required: "Ingrese dato requerido",
+            },
+            edtecDescripcion: {
+                required: "Ingrese dato requerido",
+            },
+            edtecOrden: {
+                required: "Ingrese dato requerido",
+            },
+            edtecFCompra: {
+                required: "Ingrese dato requerido",
+            },
+            edtecGarantia: {
+                required: "Ingrese dato requerido",
+            },
+            edtecPlaca: {
+                required: "Ingrese dato requerido",
+            },
+            edtecProcesador: {
+                required: "Ingrese dato requerido",
+            },
+            edtecVProc: {
+                required: "Ingrese dato requerido",
+            },
+            edtecRAM: {
+                required: "Ingrese dato requerido",
+            },
+            edtecDD: {
+                required: "Ingrese dato requerido",
+            },
+            edtecCondicion: {
+                valueNotEquals: "Seleccione condición",
+                required: true,
+            },
+            edtecEstado: {
+                valueNotEquals: "Seleccione Estado",
+                required: true,
+            },
+        },
+        errorElement: "span",
+        errorPlacement: function (error, element) {
+            error.addClass("invalid-feedback");
+            element.closest(".form-group").append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass("is-invalid");
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass("is-invalid");
+        },
+    });
+});
