@@ -58,13 +58,13 @@ class ControladorEquipos
                           Swal.fire({
                             icon: "success",
                             title: "El Equipo de Cómputo ha sido registrado con éxito",
-                            showConfirmButton: true,
-                            confirmButtonText: "Cerrar",
-                            closeOnConfirm: false
-                          }).then((result)=>{
-                            if(result.value){
-                                window.location = "equipos-computo";
-                            }});
+                            showConfirmButton: false,
+                            timer: 1400
+                        });
+                        function redirect() {
+                            window.location = "equipos-computo";
+                        }
+                        setTimeout(redirect, 1400);
                       </script>';
                 } else {
                     var_dump($rptRegEC);
@@ -72,13 +72,13 @@ class ControladorEquipos
                 Swal.fire({
                   type: "error",
                   title: "Ha ocurrido un error al registrar sus datos",
-                  showConfirmButton: true,
-                  confirmButtonText: "Cerrar",
-                  closeOnConfirm: false
-                }).then((result)=>{
-                  if(result.value){
-                      window.location = "equipos-computo";
-                  }});
+                  showConfirmButton: false,
+                  timer: 1400
+              });
+              function redirect() {
+                  window.location = "equipos-computo";
+              }
+              setTimeout(redirect, 1400);
             </script>';
                 }
             } else {
@@ -86,13 +86,13 @@ class ControladorEquipos
             Swal.fire({
               type: "error",
               title: "Ingrese sus datos correctamente",
-              showConfirmButton: true,
-              confirmButtonText: "Cerrar",
-              closeOnConfirm: false
-            }).then((result)=>{
-              if(result.value){
-                  window.location = "equipos-computo";
-              }});
+              showConfirmButton: false,
+              timer: 1400
+            });
+            function redirect() {
+                window.location = "equipos-computo";
+            }
+            setTimeout(redirect, 1400);
         </script>';
             }
         }
@@ -134,26 +134,26 @@ class ControladorEquipos
                           Swal.fire({
                             icon: "success",
                             title: "El Equipo de Cómputo ha sido editado con éxito",
-                            showConfirmButton: true,
-                            confirmButtonText: "Cerrar",
-                            closeOnConfirm: false
-                          }).then((result)=>{
-                            if(result.value){
-                                window.location = "equipos-computo";
-                            }});
+                            showConfirmButton: false,
+                            timer: 1400
+                        });
+                        function redirect() {
+                            window.location = "equipos-computo";
+                        }
+                        setTimeout(redirect, 1400);
                       </script>';
                 } else {
                     echo '<script>
                 Swal.fire({
                   icon: "error",
                   title: "Ha ocurrido un error al editar sus datos",
-                  showConfirmButton: true,
-                  confirmButtonText: "Cerrar",
-                  closeOnConfirm: false
-                }).then((result)=>{
-                  if(result.value){
-                      window.location = "equipos-computo";
-                  }});
+                  showConfirmButton: false,
+                  timer: 1400
+              });
+              function redirect() {
+                  window.location = "equipos-computo";
+              }
+              setTimeout(redirect, 1400);
             </script>';
                 }
             } else {
@@ -161,13 +161,13 @@ class ControladorEquipos
             Swal.fire({
               type: "error",
               title: "Ingrese sus datos correctamente",
-              showConfirmButton: true,
-              confirmButtonText: "Cerrar",
-              closeOnConfirm: false
-            }).then((result)=>{
-              if(result.value){
-                  window.location = "equipos-computo";
-              }});
+              showConfirmButton: false,
+              timer: 1400
+                });
+                function redirect() {
+                    window.location = "equipos-computo";
+                }
+                setTimeout(redirect, 1400);
         </script>';
             }
         }
@@ -187,13 +187,13 @@ class ControladorEquipos
                         Swal.fire({
                         icon: "success",
                         title: "¡El equipo ha sido eliminado con éxito!",
-                        showConfirmButton: true,
-                        confirmButtonText: "Cerrar",
-                        closeOnConfirm: false
-                        }).then((result)=>{
-                        if(result.value){
-                            window.location = "equipos-computo";
-                        }});
+                        showConfirmButton: false,
+                        timer: 1400
+                    });
+                    function redirect() {
+                        window.location = "equipos-computo";
+                    }
+                    setTimeout(redirect, 1400);
                     </script>';
             }
         }
