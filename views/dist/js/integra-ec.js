@@ -251,13 +251,13 @@ $("#edtTip1").on("change", function () {
         $("#bloquePC2").removeClass("d-none");
         $("#bloqueLapServ2").addClass("d-none");
         $("#edtNEquipo").val("");
-        $("#edtNEquipo").attr("placeholder","Ingresa el nuevo N° de PC");
+        $("#edtNEquipo").attr("placeholder", "Ingresa el nuevo N° de PC");
     }
     else if (comboTipo == 4 || comboTipo == 5) {
         $("#bloquePC2").addClass("d-none");
         $("#bloqueLapServ2").removeClass("d-none");
         $("#edtNEquipo").val("");
-        $("#edtNEquipo").attr("placeholder","Ingresa el nuevo N° de Lap o Serv");
+        $("#edtNEquipo").attr("placeholder", "Ingresa el nuevo N° de Lap o Serv");
     }
     else {
         $("#bloquePC").addClass("d-none");
@@ -273,7 +273,7 @@ $("#edtNEquipo").keyup(function () {
     $("#edtNEquipo").val(mayusedtteq);
 });
 
-$(".tablaIntegraEC tbody").on("click", ".btnAnularIntegraC", function() {
+$(".tablaIntegraEC tbody").on("click", ".btnAnularIntegraC", function () {
     var idIntegracion = $(this).attr("idIntegracion");
     Swal.fire({
         title: '¿Está seguro de anular la ficha?',
@@ -284,16 +284,90 @@ $(".tablaIntegraEC tbody").on("click", ".btnAnularIntegraC", function() {
         cancelButtonText: 'Cancelar',
         cancelButtonColor: '#d33',
         confirmButtonText: '¡Sí, anular ficha!'
-    }).then(function(result) {
+    }).then(function (result) {
         if (result.value) {
             window.location = "index.php?ruta=integracion-ec&idIntegracion=" + idIntegracion;
         }
     })
 });
 
-$(".tablaIntegraEC tbody").on("click", ".btnImprimirFichaC", function() {
+$(".tablaIntegraEC tbody").on("click", ".btnImprimirFichaC", function () {
     var idIntegracion = $(this).attr("idIntegracion");
     var idTipo = $(this).attr("idTipo");
     // var idTipo = $(this).attr("idTipo");
-    window.open("reports/ficha-integra-ec.php?idIntegracion=" + idIntegracion+"&idTipo="+idTipo, "_blank");
+    window.open("reports/ficha-integra-ec.php?idIntegracion=" + idIntegracion + "&idTipo=" + idTipo, "_blank");
+});
+$("#btnRegIntC").on("click", function () {
+    var tipoIntegra = $("#tipEq").val();
+
+    alert("Oke" + tipoIntegra);
+    // $("#formRegIntC").validate({
+    //     rules: {
+    //         tipEq: {
+    //             valueNotEquals: "0",
+    //             required: true,
+    //         },
+    //         nroEquipo: {
+    //             required: true,
+    //         },
+    //         ip_comp: {
+    //             required: true,
+    //         },
+    //         seriePC: {
+    //             valueNotEquals: "0",
+    //             required: true,
+    //         },
+    //         serieMon: {
+    //             valueNotEquals: "0",
+    //             required: true,
+    //         },
+    //         serieTec: {
+    //             valueNotEquals: "0",
+    //             required: true,
+    //         },
+    //         serieAcuEne: {
+    //             valueNotEquals: "0",
+    //             required: true,
+    //         },
+    //     },
+    //     messages: {
+    //         tipEq: {
+    //             valueNotEquals: "Seleccione Categoría",
+    //             required: "Dato querido",
+    //         },
+    //         nroEquipo: {
+    //             required: "Ingrese dato requerido",
+    //         },
+    //         ip_comp: {
+    //             required: "Ingrese dato requerido",
+    //         },
+    //         seriePC: {
+    //             valueNotEquals: "Selecciona Serie PC",
+    //             required: true,
+    //         },
+    //         serieMon: {
+    //             valueNotEquals: "Selecciona Serie Monitor",
+    //             required: true,
+    //         },
+    //         serieTec: {
+    //             valueNotEquals: "Selecciona Serie Teclado",
+    //             required: true,
+    //         },
+    //         serieAcuEne: {
+    //             valueNotEquals: "Selecciona Acumuludor o F. Energía",
+    //             required: true,
+    //         },
+    //     },
+    //     errorElement: "span",
+    //     errorPlacement: function (error, element) {
+    //         error.addClass("invalid-feedback");
+    //         element.closest(".form-group").append(error);
+    //     },
+    //     highlight: function (element, errorClass, validClass) {
+    //         $(element).addClass("is-invalid");
+    //     },
+    //     unhighlight: function (element, errorClass, validClass) {
+    //         $(element).removeClass("is-invalid");
+    //     },
+    // });
 });

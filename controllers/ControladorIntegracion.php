@@ -92,26 +92,26 @@ class ControladorIntegracion
                     Swal.fire({
                       icon: "success",
                       title: "La Ficha ha sido registrada con éxito",
-                      showConfirmButton: true,
-                      confirmButtonText: "Cerrar",
-                      closeOnConfirm: false
-                    }).then((result)=>{
-                      if(result.value){
-                          window.location = "integracion-ec";
-                      }});
+                      showConfirmButton: false,
+                      timer: 1400
+                  });
+                  function redirect() {
+                      window.location = "integracion-ec";
+                  }
+                  setTimeout(redirect, 1400);
                 </script>';
                     } else {
                         echo '<script>
                     Swal.fire({
                       icon: "error",
                       title: "Ha ocurrido un error, revíse sus datos",
-                      showConfirmButton: true,
-                      confirmButtonText: "Cerrar",
-                      closeOnConfirm: false
-                    }).then((result)=>{
-                      if(result.value){
-                          window.location = "integracion-ec";
-                      }});
+                      showConfirmButton: false,
+                      timer: 1400
+                  });
+                  function redirect() {
+                      window.location = "integracion-ec";
+                  }
+                  setTimeout(redirect, 1400);
                 </script>';
                     }
                 } else {
@@ -134,26 +134,26 @@ class ControladorIntegracion
                     Swal.fire({
                       icon: "success",
                       title: "La Ficha ha sido registrada con éxito",
-                      showConfirmButton: true,
-                      confirmButtonText: "Cerrar",
-                      closeOnConfirm: false
-                    }).then((result)=>{
-                      if(result.value){
-                          window.location = "integracion-ec";
-                      }});
+                      showConfirmButton: false,
+                      timer: 1400
+                  });
+                  function redirect() {
+                      window.location = "integracion-ec";
+                  }
+                  setTimeout(redirect, 1400);
                 </script>';
                     } else {
                         echo '<script>
                     Swal.fire({
                       icon: "error",
                       title: "Ha ocurrido un error, revíse sus datos",
-                      showConfirmButton: true,
-                      confirmButtonText: "Cerrar",
-                      closeOnConfirm: false
-                    }).then((result)=>{
-                      if(result.value){
-                          window.location = "integracion-ec";
-                      }});
+                      showConfirmButton: false,
+                      timer: 1400
+                  });
+                  function redirect() {
+                      window.location = "integracion-ec";
+                  }
+                  setTimeout(redirect, 1400);
                 </script>';
                     }
                 }
@@ -168,23 +168,23 @@ class ControladorIntegracion
                 preg_match('/^[0-9]+$/', $_POST["tEqImp"]) &&
                 preg_match('/^[a-zA-Z0-9_]+$/', $_POST["nroImp"])
             ) {
-                    // $tabla = "ws_integraciones";
-                    $fechaRegImp = date("Y-m-d");
-                    $datos = array(
-                        "nro_eq" => $_POST["nroImp"],
-                        "ip" => $_POST["ip_imp"],
-                        "fecha_registro" => $fechaRegImp,
-                        "serie_imp" => $_POST["serieImp"],
-                        "tipo_equipo" => $_POST["tEqImp"],
-                        "responsable" => $_POST["impResp"],
-                        "oficina_in" => $_POST["impOfi"],
-                        "servicio_in" => $_POST["impServ"],
-                        "estado" => $_POST["impEst"],
-                        "condicion" => $_POST["impCond"]
-                    );
-                    $rptRegImp1 = ModeloIntegracion::mdlRegistrarIntegracionImp($datos);
-                    if ($rptRegImp1 == "ok") {
-                        echo '<script>
+                // $tabla = "ws_integraciones";
+                $fechaRegImp = date("Y-m-d");
+                $datos = array(
+                    "nro_eq" => $_POST["nroImp"],
+                    "ip" => $_POST["ip_imp"],
+                    "fecha_registro" => $fechaRegImp,
+                    "serie_imp" => $_POST["serieImp"],
+                    "tipo_equipo" => $_POST["tEqImp"],
+                    "responsable" => $_POST["impResp"],
+                    "oficina_in" => $_POST["impOfi"],
+                    "servicio_in" => $_POST["impServ"],
+                    "estado" => $_POST["impEst"],
+                    "condicion" => $_POST["impCond"]
+                );
+                $rptRegImp1 = ModeloIntegracion::mdlRegistrarIntegracionImp($datos);
+                if ($rptRegImp1 == "ok") {
+                    echo '<script>
                     Swal.fire({
                       icon: "success",
                       title: "La Ficha ha sido registrada con éxito",
@@ -196,8 +196,8 @@ class ControladorIntegracion
                           window.location = "integracion-ep";
                       }});
                 </script>';
-                    } else {
-                        echo '<script>
+                } else {
+                    echo '<script>
                     Swal.fire({
                       icon: "error",
                       title: "Ha ocurrido un error, revíse sus datos",
@@ -209,8 +209,7 @@ class ControladorIntegracion
                           window.location = "integracion-ep";
                       }});
                 </script>';
-                    }
-                
+                }
             }
         }
     }
@@ -222,23 +221,23 @@ class ControladorIntegracion
                 preg_match('/^[0-9]+$/', $_POST["tEqRed"]) &&
                 preg_match('/^[a-zA-Z0-9_]+$/', $_POST["nroERed"])
             ) {
-                    // $tabla = "ws_integraciones";
-                    $fechaRegER = date("Y-m-d");
-                    $datos = array(
-                        "nro_eq" => $_POST["nroERed"],
-                        "ip" => $_POST["ipERed"],
-                        "fecha_registro" => $fechaRegER,
-                        "serie_eqred" => $_POST["serieERed"],
-                        "tipo_equipo" => $_POST["tEqRed"],
-                        "responsable" => $_POST["erResp"],
-                        "oficina_in" => $_POST["erOfi"],
-                        "servicio_in" => $_POST["erServ"],
-                        "estado" => $_POST["erEst"],
-                        "condicion" => $_POST["erCond"]
-                    );
-                    $rptRegERed1 = ModeloIntegracion::mdlRegistrarIntegracionRed($datos);
-                    if ($rptRegERed1 == "ok") {
-                        echo '<script>
+                // $tabla = "ws_integraciones";
+                $fechaRegER = date("Y-m-d");
+                $datos = array(
+                    "nro_eq" => $_POST["nroERed"],
+                    "ip" => $_POST["ipERed"],
+                    "fecha_registro" => $fechaRegER,
+                    "serie_eqred" => $_POST["serieERed"],
+                    "tipo_equipo" => $_POST["tEqRed"],
+                    "responsable" => $_POST["erResp"],
+                    "oficina_in" => $_POST["erOfi"],
+                    "servicio_in" => $_POST["erServ"],
+                    "estado" => $_POST["erEst"],
+                    "condicion" => $_POST["erCond"]
+                );
+                $rptRegERed1 = ModeloIntegracion::mdlRegistrarIntegracionRed($datos);
+                if ($rptRegERed1 == "ok") {
+                    echo '<script>
                     Swal.fire({
                       icon: "success",
                       title: "La Ficha ha sido registrada con éxito",
@@ -250,8 +249,8 @@ class ControladorIntegracion
                           window.location = "integracion-er";
                       }});
                 </script>';
-                    } else {
-                        echo '<script>
+                } else {
+                    echo '<script>
                     Swal.fire({
                       icon: "error",
                       title: "Ha ocurrido un error, revíse sus datos",
@@ -263,8 +262,7 @@ class ControladorIntegracion
                           window.location = "integracion-er";
                       }});
                 </script>';
-                    }
-                
+                }
             }
         }
     }
@@ -276,21 +274,21 @@ class ControladorIntegracion
                 preg_match('/^[0-9]+$/', $_POST["edtEqImp"]) &&
                 preg_match('/^[a-zA-Z0-9_]+$/', $_POST["edtnroImp"])
             ) {
-                    $datos = array(
-                        "nro_eq" => $_POST["edtnroImp"],
-                        "ip" => $_POST["edtip_imp"],
-                        "serie_imp" => $_POST["edtserieImp"],
-                        "tipo_equipo" => $_POST["edtEqImp"],
-                        "responsable" => $_POST["edtimpResp"],
-                        "oficina_in" => $_POST["edtimpOfi"],
-                        "servicio_in" => $_POST["edtimpServ"],
-                        "estado" => $_POST["edtimpEst"],
-                        "condicion" => $_POST["edtimpCond"],
-                        "idIntegracion" => $_POST["idIntegracion"]
-                    );
-                    $rptEdtImp1 = ModeloIntegracion::mdlEditarIntegracionImp($datos);
-                    if ($rptEdtImp1 == "ok") {
-                        echo '<script>
+                $datos = array(
+                    "nro_eq" => $_POST["edtnroImp"],
+                    "ip" => $_POST["edtip_imp"],
+                    "serie_imp" => $_POST["edtserieImp"],
+                    "tipo_equipo" => $_POST["edtEqImp"],
+                    "responsable" => $_POST["edtimpResp"],
+                    "oficina_in" => $_POST["edtimpOfi"],
+                    "servicio_in" => $_POST["edtimpServ"],
+                    "estado" => $_POST["edtimpEst"],
+                    "condicion" => $_POST["edtimpCond"],
+                    "idIntegracion" => $_POST["idIntegracion"]
+                );
+                $rptEdtImp1 = ModeloIntegracion::mdlEditarIntegracionImp($datos);
+                if ($rptEdtImp1 == "ok") {
+                    echo '<script>
                     Swal.fire({
                       icon: "success",
                       title: "La Ficha ha sido editada con éxito",
@@ -302,8 +300,8 @@ class ControladorIntegracion
                           window.location = "integracion-ep";
                       }});
                 </script>';
-                    } else {
-                        echo '<script>
+                } else {
+                    echo '<script>
                     Swal.fire({
                       icon: "error",
                       title: "Ha ocurrido un error, revíse sus datos",
@@ -315,8 +313,7 @@ class ControladorIntegracion
                           window.location = "integracion-ep";
                       }});
                 </script>';
-                    }
-                
+                }
             }
         }
     }
@@ -328,21 +325,21 @@ class ControladorIntegracion
                 preg_match('/^[0-9]+$/', $_POST["edtEqRed"]) &&
                 preg_match('/^[a-zA-Z0-9_]+$/', $_POST["edtnroERed"])
             ) {
-                    $datos = array(
-                        "nro_eq" => $_POST["edtnroERed"],
-                        "ip" => $_POST["edtipERed"],
-                        "serie_eqred" => $_POST["edtserieERed"],
-                        "tipo_equipo" => $_POST["edtEqRed"],
-                        "responsable" => $_POST["edtResp"],
-                        "oficina_in" => $_POST["edtOfi"],
-                        "servicio_in" => $_POST["edtServ"],
-                        "estado" => $_POST["edtEst"],
-                        "condicion" => $_POST["edtCond"],
-                        "idIntegracion" => $_POST["idIntegracion"]
-                    );
-                    $rptEdtER1 = ModeloIntegracion::mdlEditarIntegracionER($datos);
-                    if ($rptEdtER1 == "ok") {
-                        echo '<script>
+                $datos = array(
+                    "nro_eq" => $_POST["edtnroERed"],
+                    "ip" => $_POST["edtipERed"],
+                    "serie_eqred" => $_POST["edtserieERed"],
+                    "tipo_equipo" => $_POST["edtEqRed"],
+                    "responsable" => $_POST["edtResp"],
+                    "oficina_in" => $_POST["edtOfi"],
+                    "servicio_in" => $_POST["edtServ"],
+                    "estado" => $_POST["edtEst"],
+                    "condicion" => $_POST["edtCond"],
+                    "idIntegracion" => $_POST["idIntegracion"]
+                );
+                $rptEdtER1 = ModeloIntegracion::mdlEditarIntegracionER($datos);
+                if ($rptEdtER1 == "ok") {
+                    echo '<script>
                     Swal.fire({
                       icon: "success",
                       title: "La Ficha ha sido editada con éxito",
@@ -354,8 +351,8 @@ class ControladorIntegracion
                           window.location = "integracion-er";
                       }});
                 </script>';
-                    } else {
-                        echo '<script>
+                } else {
+                    echo '<script>
                     Swal.fire({
                       icon: "error",
                       title: "Ha ocurrido un error, revíse sus datos",
@@ -367,8 +364,7 @@ class ControladorIntegracion
                           window.location = "integracion-er";
                       }});
                 </script>';
-                    }
-                
+                }
             }
         }
     }
@@ -403,26 +399,26 @@ class ControladorIntegracion
                     Swal.fire({
                       icon: "success",
                       title: "La Ficha ha sido editada con éxito",
-                      showConfirmButton: true,
-                      confirmButtonText: "Cerrar",
-                      closeOnConfirm: false
-                    }).then((result)=>{
-                      if(result.value){
-                          window.location = "integracion-ec";
-                      }});
+                      showConfirmButton: false,
+                      timer: 1400
+                  });
+                  function redirect() {
+                      window.location = "integracion-ec";
+                  }
+                  setTimeout(redirect, 1400);
                 </script>';
                     } else {
                         echo '<script>
                     Swal.fire({
                       icon: "error",
                       title: "Ha ocurrido un error, revíse sus datos",
-                      showConfirmButton: true,
-                      confirmButtonText: "Cerrar",
-                      closeOnConfirm: false
-                    }).then((result)=>{
-                      if(result.value){
-                          window.location = "integracion-ec";
-                      }});
+                      showConfirmButton: false,
+                      timer: 1400
+                  });
+                  function redirect() {
+                      window.location = "integracion-ec";
+                  }
+                  setTimeout(redirect, 1400);
                 </script>';
                     }
                 } else {
@@ -444,26 +440,26 @@ class ControladorIntegracion
                     Swal.fire({
                       icon: "success",
                       title: "La Ficha ha sido editada con éxito",
-                      showConfirmButton: true,
-                      confirmButtonText: "Cerrar",
-                      closeOnConfirm: false
-                    }).then((result)=>{
-                      if(result.value){
-                          window.location = "integracion-ec";
-                      }});
+                      showConfirmButton: false,
+                      timer: 1400
+                  });
+                  function redirect() {
+                      window.location = "integracion-ec";
+                  }
+                  setTimeout(redirect, 1400);
                 </script>';
                     } else {
                         echo '<script>
                     Swal.fire({
                       icon: "error",
                       title: "Ha ocurrido un error, revíse sus datos",
-                      showConfirmButton: true,
-                      confirmButtonText: "Cerrar",
-                      closeOnConfirm: false
-                    }).then((result)=>{
-                      if(result.value){
-                          window.location = "integracion-ec";
-                      }});
+                      showConfirmButton: false,
+                      timer: 1400
+                  });
+                  function redirect() {
+                      window.location = "integracion-ec";
+                  }
+                  setTimeout(redirect, 1400);
                 </script>';
                     }
                 }
@@ -472,13 +468,13 @@ class ControladorIntegracion
                 Swal.fire({
                   icon: "error",
                   title: "Datos no válidos, ingreselos correctamente",
-                  showConfirmButton: true,
-                  confirmButtonText: "Cerrar",
-                  closeOnConfirm: false
-                }).then((result)=>{
-                  if(result.value){
-                      window.location = "integracion-ec";
-                  }});
+                  showConfirmButton: false,
+                  timer: 1400
+              });
+              function redirect() {
+                  window.location = "integracion-ec";
+              }
+              setTimeout(redirect, 1400);
             </script>';
             }
         }
@@ -497,13 +493,13 @@ class ControladorIntegracion
                         Swal.fire({
                         icon: "success",
                         title: "¡La Ficha de Integración ha sido anulada con éxito!",
-                        showConfirmButton: true,
-                        confirmButtonText: "Cerrar",
-                        closeOnConfirm: false
-                        }).then((result)=>{
-                        if(result.value){
-                            window.location = "integracion-ec";
-                        }});
+                        showConfirmButton: false,
+                        timer: 1400
+                    });
+                    function redirect() {
+                        window.location = "integracion-ec";
+                    }
+                    setTimeout(redirect, 1400);
                     </script>';
             }
         }

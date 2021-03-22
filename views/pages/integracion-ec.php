@@ -52,7 +52,7 @@
 <div id="modal-integra-ec" class="modal fade" role="dialog" aria-modal="true" style="padding-right: 17px;">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <form action="" role="form" method="post">
+      <form action="" role="form" id="formRegIntC" method="post">
         <div class="modal-header text-center" style="background: #6c757d; color: white">
           <h4 class="modal-title">Registrar Integración de PC/LAPTOP/SERVIDOR</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -171,7 +171,7 @@
           </div>
         </div>
         <div class="modal-footer justify-content-center">
-          <button type="submit" class="btn btn-secondary"><i class="fas fa-save"></i> Guardar</button>
+          <button type="submit" class="btn btn-secondary" id="btnRegIntC"><i class="fas fa-save"></i> Guardar</button>
           <button type="reset" class="btn btn-danger"><i class="fas fa-eraser"></i> Limpiar</button>
           <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fas fa-times-circle"></i> Salir</button>
         </div>
