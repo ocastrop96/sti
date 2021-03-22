@@ -141,7 +141,10 @@ $(".tablaEquiposOtros tbody").on("click", ".btnEditarEquipoP", function () {
             $("#edtpoServ").html(respuesta["subarea"]);
 
             $("#edtpoSerie").val(respuesta["serie"]);
+            $("#antSerie2").val(respuesta["serie"]);
+            $("#antSBN2").val(respuesta["sbn"]);
             $("#edtpoSBN").val(respuesta["sbn"]);
+
             $("#edtpoMarca").val(respuesta["marca"]);
             $("#edtpoModelo").val(respuesta["modelo"]);
             $("#edtpoDescripcion").val(respuesta["descripcion"]);
@@ -257,8 +260,9 @@ $("#edtpoGarantia").keyup(function () {
 // Bloque de Edición de Periferico y Otros
 
 // Eliminar EquiposP
-$(".tablaEquiposOtros tbody").on("click", ".btnEliminarEquipoP", function() {
+$(".tablaEquiposOtros tbody").on("click", ".btnEliminarEquipoP", function () {
     var idEquipo = $(this).attr("idEquipo");
+    var idCategoria = $(this).attr("idCategoria");
     Swal.fire({
         title: '¿Está seguro de eliminar el equipo periférico?',
         text: "¡Si no lo está, puede cancelar la acción!",
@@ -268,10 +272,378 @@ $(".tablaEquiposOtros tbody").on("click", ".btnEliminarEquipoP", function() {
         cancelButtonText: 'Cancelar',
         cancelButtonColor: '#d33',
         confirmButtonText: '¡Sí, eliminar equipo!'
-    }).then(function(result) {
+    }).then(function (result) {
         if (result.value) {
-            window.location = "index.php?ruta=equipos-otros&idEquipo=" + idEquipo;
+            window.location = "index.php?ruta=equipos-otros&idEquipo=" + idEquipo + "&idCategoria=" + idCategoria;
         }
     })
 });
 // Eliminar EquiposP
+// Validación
+$("#btnRegEqOtro").on("click", function () {
+    $("#formRegEqOtro").validate({
+        rules: {
+            epoCat: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            epoRes: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            epoOfi: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            epoServ: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            epoSerie: {
+                required: true,
+            },
+            epoSBN: {
+                required: true,
+            },
+            epoMarca: {
+                required: true,
+            },
+            epoModelo: {
+                required: true,
+            },
+            epoDescripcion: {
+                required: true,
+            },
+            epoOrden: {
+                required: true,
+            },
+            epoFCompra: {
+                required: true,
+            },
+            epoGarantia: {
+                required: true,
+            },
+            epoCondicion: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            epoEstado: {
+                valueNotEquals: "0",
+                required: true,
+            },
+        },
+        messages: {
+            epoCat: {
+                valueNotEquals: "Seleccione Categoría",
+                required: "Dato querido",
+            },
+            epoRes: {
+                valueNotEquals: "Seleccione U. Responsable",
+                required: "Dato querido",
+            },
+            epoOfi: {
+                valueNotEquals: "Seleccione Oficina",
+                required: "Dato querido",
+            },
+            epoServ: {
+                valueNotEquals: "Seleccione Servicio",
+                required: "Dato querido",
+            },
+            epoSerie: {
+                required: "Ingrese dato requerido",
+            },
+            epoSBN: {
+                required: "Ingrese dato requerido",
+            },
+            epoMarca: {
+                required: "Ingrese dato requerido",
+            },
+            epoModelo: {
+                required: "Ingrese dato requerido",
+            },
+            epoDescripcion: {
+                required: "Ingrese dato requerido",
+            },
+            epoOrden: {
+                required: "Ingrese dato requerido",
+            },
+            epoFCompra: {
+                required: "Ingrese dato requerido",
+            },
+            epoGarantia: {
+                required: "Ingrese dato requerido",
+            },
+            epoCondicion: {
+                valueNotEquals: "Seleccione condición",
+                required: true,
+            },
+            epoEstado: {
+                valueNotEquals: "Seleccione Estado",
+                required: true,
+            },
+        },
+        errorElement: "span",
+        errorPlacement: function (error, element) {
+            error.addClass("invalid-feedback");
+            element.closest(".form-group").append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass("is-invalid");
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass("is-invalid");
+        },
+    });
+});
+$("#btnEdtEqOtro").on("click", function () {
+    $("#formEdtEqOtro").validate({
+        rules: {
+            edtpoCat: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            edtpoRes: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            edtpoOfi: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            edtpoServ: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            edtpoSerie: {
+                required: true,
+            },
+            edtpoSBN: {
+                required: true,
+            },
+            edtpoMarca: {
+                required: true,
+            },
+            edtpoModelo: {
+                required: true,
+            },
+            edtpoDescripcion: {
+                required: true,
+            },
+            edtpoOrden: {
+                required: true,
+            },
+            edtpoFCompra: {
+                required: true,
+            },
+            edtpoGarantia: {
+                required: true,
+            },
+            edtpoCondicion: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            edtpoEstado: {
+                valueNotEquals: "0",
+                required: true,
+            },
+        },
+        messages: {
+            edtpoCat: {
+                valueNotEquals: "Seleccione Categoría",
+                required: "Dato querido",
+            },
+            edtpoRes: {
+                valueNotEquals: "Seleccione U. Responsable",
+                required: "Dato querido",
+            },
+            edtpoOfi: {
+                valueNotEquals: "Seleccione Oficina",
+                required: "Dato querido",
+            },
+            edtpoServ: {
+                valueNotEquals: "Seleccione Servicio",
+                required: "Dato querido",
+            },
+            edtpoSerie: {
+                required: "Ingrese dato requerido",
+            },
+            edtpoSBN: {
+                required: "Ingrese dato requerido",
+            },
+            edtpoMarca: {
+                required: "Ingrese dato requerido",
+            },
+            edtpoModelo: {
+                required: "Ingrese dato requerido",
+            },
+            edtpoDescripcion: {
+                required: "Ingrese dato requerido",
+            },
+            edtpoOrden: {
+                required: "Ingrese dato requerido",
+            },
+            edtpoFCompra: {
+                required: "Ingrese dato requerido",
+            },
+            edtpoGarantia: {
+                required: "Ingrese dato requerido",
+            },
+            edtpoCondicion: {
+                valueNotEquals: "Seleccione condición",
+                required: true,
+            },
+            edtpoEstado: {
+                valueNotEquals: "Seleccione Estado",
+                required: true,
+            },
+        },
+        errorElement: "span",
+        errorPlacement: function (error, element) {
+            error.addClass("invalid-feedback");
+            element.closest(".form-group").append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass("is-invalid");
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass("is-invalid");
+        },
+    });
+});
+// Validar Series y SBN
+$("#epoSerie").focusout(function () {
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 1500,
+    });
+    var serie1 = $(this).val();
+    var datos = new FormData();
+    datos.append("validarSerie", serie1);
+    $.ajax({
+        url: "lib/ajaxEquiposPO.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function (respuesta) {
+            if (respuesta) {
+                Toast.fire({
+                    icon: "warning",
+                    title: "El número de serie ingresado ya se encuentra registrado",
+                });
+                $("#epoSerie").val("");
+                $("#epoSerie").focus();
+            } else {
+                $("#epoSBN").focus();
+            }
+        },
+    });
+});
+$("#edtpoSerie").focusout(function () {
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 1500,
+    });
+    var serie1 = $(this).val();
+    var a = $("#antSerie2").val();
+
+    if (serie1 != a) {
+        var datos = new FormData();
+        datos.append("validarSerie", serie1);
+        $.ajax({
+            url: "lib/ajaxEquiposPO.php",
+            method: "POST",
+            data: datos,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: "json",
+            success: function (respuesta) {
+                if (respuesta) {
+                    Toast.fire({
+                        icon: "warning",
+                        title: "El número de serie ingresado ya se encuentra registrado",
+                    });
+                    $("#edtpoSerie").val("");
+                    $("#edtpoSerie").focus();
+                } else {
+                    $("#edtpoSBN").focus();
+                }
+            },
+        });
+    }
+});
+$("#epoSBN").focusout(function () {
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 1500,
+    });
+    var serie2 = $(this).val();
+    var datos2 = new FormData();
+    datos2.append("validarSBN", serie2);
+    $.ajax({
+        url: "lib/ajaxEquiposPO.php",
+        method: "POST",
+        data: datos2,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function (respuesta) {
+            if (respuesta) {
+                Toast.fire({
+                    icon: "warning",
+                    title: "El número de SBN ingresado ya se encuentra registrado",
+                });
+                $("#epoSBN").val("");
+                $("#epoSBN").focus();
+            } else {
+                $("#epoMarca").focus();
+            }
+        },
+    });
+});
+$("#edtpoSBN").focusout(function () {
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 1500,
+    });
+    var serie2 = $(this).val();
+    var b = $("#antSBN2").val();
+
+    if (serie2 != b) {
+        var datos2 = new FormData();
+        datos2.append("validarSBN", serie2);
+        $.ajax({
+            url: "lib/ajaxEquiposPO.php",
+            method: "POST",
+            data: datos2,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: "json",
+            success: function (respuesta) {
+                if (respuesta) {
+                    Toast.fire({
+                        icon: "warning",
+                        title: "El número de SBN ingresado ya se encuentra registrado",
+                    });
+                    $("#edtpoSBN").val("");
+                    $("#edtpoSBN").focus();
+                } else {
+                    $("#edtpoMarca").focus();
+                }
+            },
+        });
+    }
+});

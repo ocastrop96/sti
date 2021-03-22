@@ -200,6 +200,8 @@ $(".tablaEquiposRedes tbody").on("click", ".btnEditarEquipoR", function () {
             $("#edtrServ").html(respuesta["subarea"]);
 
             $("#edtrSerie").val(respuesta["serie"]);
+            $("#antSerie3").val(respuesta["serie"]);
+            $("#antSBN3").val(respuesta["sbn"]);
             $("#edtrSBN").val(respuesta["sbn"]);
             $("#edtrMarca").val(respuesta["marca"]);
             $("#edtrModelo").val(respuesta["modelo"]);
@@ -291,7 +293,7 @@ $("#edtrCapa").keyup(function () {
 // Datos Edita Equipo de redes
 
 // Eliminar EquiposP
-$(".tablaEquiposRedes tbody").on("click", ".btnEliminarEquipoR", function() {
+$(".tablaEquiposRedes tbody").on("click", ".btnEliminarEquipoR", function () {
     var idEquipo = $(this).attr("idEquipo");
     Swal.fire({
         title: '¿Está seguro de eliminar el equipo de Red y Telecomunicaciones?',
@@ -302,10 +304,404 @@ $(".tablaEquiposRedes tbody").on("click", ".btnEliminarEquipoR", function() {
         cancelButtonText: 'Cancelar',
         cancelButtonColor: '#d33',
         confirmButtonText: '¡Sí, eliminar equipo!'
-    }).then(function(result) {
+    }).then(function (result) {
         if (result.value) {
             window.location = "index.php?ruta=equipos-redes&idEquipo=" + idEquipo;
         }
     })
 });
 // Eliminar EquiposP
+
+$("#btnRegEqRed").on("click", function () {
+    $("#formRegEqRed").validate({
+        rules: {
+            erCat: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            erRes: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            erOficina: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            erServ: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            erSerie: {
+                required: true,
+            },
+            erSBN: {
+                required: true,
+            },
+            erMarca: {
+                required: true,
+            },
+            erModelo: {
+                required: true,
+            },
+            erDescrip: {
+                required: true,
+            },
+            erOrden: {
+                required: true,
+            },
+            erFCompra: {
+                required: true,
+            },
+            erGarantia: {
+                required: true,
+            },
+            erPuertos: {
+                required: true,
+            },
+            erCapa: {
+                required: true,
+            },
+            erCond: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            erEstado: {
+                valueNotEquals: "0",
+                required: true,
+            },
+        },
+        messages: {
+            erCat: {
+                valueNotEquals: "Seleccione Categoría",
+                required: "Dato querido",
+            },
+            erRes: {
+                valueNotEquals: "Seleccione U. Responsable",
+                required: "Dato querido",
+            },
+            erOficina: {
+                valueNotEquals: "Seleccione Oficina",
+                required: "Dato querido",
+            },
+            erServ: {
+                valueNotEquals: "Seleccione Servicio",
+                required: "Dato querido",
+            },
+            erSerie: {
+                required: "Ingrese dato requerido",
+            },
+            erSBN: {
+                required: "Ingrese dato requerido",
+            },
+            erMarca: {
+                required: "Ingrese dato requerido",
+            },
+            erModelo: {
+                required: "Ingrese dato requerido",
+            },
+            erDescrip: {
+                required: "Ingrese dato requerido",
+            },
+            erOrden: {
+                required: "Ingrese dato requerido",
+            },
+            erFCompra: {
+                required: "Ingrese dato requerido",
+            },
+            erGarantia: {
+                required: "Ingrese dato requerido",
+            },
+            erPuertos: {
+                required: "Ingrese dato requerido",
+            },
+            erCapa: {
+                required: "Ingrese dato requerido",
+            },
+            erCond: {
+                valueNotEquals: "Seleccione condición",
+                required: true,
+            },
+            erEstado: {
+                valueNotEquals: "Seleccione Estado",
+                required: true,
+            },
+        },
+        errorElement: "span",
+        errorPlacement: function (error, element) {
+            error.addClass("invalid-feedback");
+            element.closest(".form-group").append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass("is-invalid");
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass("is-invalid");
+        },
+    });
+});
+
+$("#btnEdtEqRed").on("click", function () {
+    $("#formEdtEqRed").validate({
+        rules: {
+            edtrCat: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            edtrRes: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            edtrOficina: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            edtrServ: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            edtrSerie: {
+                required: true,
+            },
+            edtrSBN: {
+                required: true,
+            },
+            edtrMarca: {
+                required: true,
+            },
+            edtrModelo: {
+                required: true,
+            },
+            edtrDescrip: {
+                required: true,
+            },
+            edtrOrden: {
+                required: true,
+            },
+            edtrFCompra: {
+                required: true,
+            },
+            edtrGarantia: {
+                required: true,
+            },
+            edtrPuertos: {
+                required: true,
+            },
+            edtrCapa: {
+                required: true,
+            },
+            edtrCond: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            edtrEstado: {
+                valueNotEquals: "0",
+                required: true,
+            },
+        },
+        messages: {
+            edtrCat: {
+                valueNotEquals: "Seleccione Categoría",
+                required: "Dato querido",
+            },
+            edtrRes: {
+                valueNotEquals: "Seleccione U. Responsable",
+                required: "Dato querido",
+            },
+            edtrOficina: {
+                valueNotEquals: "Seleccione Oficina",
+                required: "Dato querido",
+            },
+            edtrServ: {
+                valueNotEquals: "Seleccione Servicio",
+                required: "Dato querido",
+            },
+            edtrSerie: {
+                required: "Ingrese dato requerido",
+            },
+            edtrSBN: {
+                required: "Ingrese dato requerido",
+            },
+            edtrMarca: {
+                required: "Ingrese dato requerido",
+            },
+            edtrModelo: {
+                required: "Ingrese dato requerido",
+            },
+            edtrDescrip: {
+                required: "Ingrese dato requerido",
+            },
+            edtrOrden: {
+                required: "Ingrese dato requerido",
+            },
+            edtrFCompra: {
+                required: "Ingrese dato requerido",
+            },
+            edtrGarantia: {
+                required: "Ingrese dato requerido",
+            },
+            edtrPuertos: {
+                required: "Ingrese dato requerido",
+            },
+            edtrCapa: {
+                required: "Ingrese dato requerido",
+            },
+            edtrCond: {
+                valueNotEquals: "Seleccione condición",
+                required: true,
+            },
+            edtrEstado: {
+                valueNotEquals: "Seleccione Estado",
+                required: true,
+            },
+        },
+        errorElement: "span",
+        errorPlacement: function (error, element) {
+            error.addClass("invalid-feedback");
+            element.closest(".form-group").append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass("is-invalid");
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass("is-invalid");
+        },
+    });
+});
+
+// Validar Series y SBN
+$("#erSerie").focusout(function () {
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 1500,
+    });
+    var serie1 = $(this).val();
+    var datos = new FormData();
+    datos.append("validarSerie", serie1);
+    $.ajax({
+        url: "lib/ajaxEquiposR.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function (respuesta) {
+            if (respuesta) {
+                Toast.fire({
+                    icon: "warning",
+                    title: "El número de serie ingresado ya se encuentra registrado",
+                });
+                $("#erSerie").val("");
+                $("#erSerie").focus();
+            } else {
+                $("#erSBN").focus();
+            }
+        },
+    });
+});
+$("#edtrSerie").focusout(function () {
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 1500,
+    });
+    var serie1 = $(this).val();
+    var a = $("#antSerie3").val();
+
+    if (serie1 != a) {
+        var datos = new FormData();
+        datos.append("validarSerie", serie1);
+        $.ajax({
+            url: "lib/ajaxEquiposR.php",
+            method: "POST",
+            data: datos,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: "json",
+            success: function (respuesta) {
+                if (respuesta) {
+                    Toast.fire({
+                        icon: "warning",
+                        title: "El número de serie ingresado ya se encuentra registrado",
+                    });
+                    $("#edtrSerie").val("");
+                    $("#edtrSerie").focus();
+                } else {
+                    $("#edtrSBN").focus();
+                }
+            },
+        });
+    }
+});
+$("#erSBN").focusout(function () {
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 1500,
+    });
+    var serie2 = $(this).val();
+    var datos2 = new FormData();
+    datos2.append("validarSBN", serie2);
+    $.ajax({
+        url: "lib/ajaxEquiposR.php",
+        method: "POST",
+        data: datos2,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function (respuesta) {
+            if (respuesta) {
+                Toast.fire({
+                    icon: "warning",
+                    title: "El número de SBN ingresado ya se encuentra registrado",
+                });
+                $("#erSBN").val("");
+                $("#erSBN").focus();
+            } else {
+                $("#erMarca").focus();
+            }
+        },
+    });
+});
+$("#edtrSBN").focusout(function () {
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 1500,
+    });
+    var serie2 = $(this).val();
+    var b = $("#antSBN3").val();
+
+    if (serie2 != b) {
+        var datos2 = new FormData();
+        datos2.append("validarSBN", serie2);
+        $.ajax({
+            url: "lib/ajaxEquiposR.php",
+            method: "POST",
+            data: datos2,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: "json",
+            success: function (respuesta) {
+                if (respuesta) {
+                    Toast.fire({
+                        icon: "warning",
+                        title: "El número de SBN ingresado ya se encuentra registrado",
+                    });
+                    $("#edtrSBN").val("");
+                    $("#edtrSBN").focus();
+                } else {
+                    $("#edtrMarca").focus();
+                }
+            },
+        });
+    }
+});

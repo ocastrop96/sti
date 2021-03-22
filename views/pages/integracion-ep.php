@@ -99,7 +99,7 @@
               <label for="serieImp">IMPRESORA, ESCANER, FOTOCOPIADORA &nbsp;</label>
               <i class="fas fa-laptop-code"></i> *
               <select class="form-control" style="width: 100%;" id="serieImp" name="serieImp">
-                <option value="0">Seleccione N° Serie de Impresora</option>
+                <option value="0">Seleccione N° Serie de Impresora o Periférico a Integrar</option>
                 <?php
                 $sImp = ControladorIntegracion::ctrListarSeriesImp();
                 foreach ($sImp as $key => $value) {

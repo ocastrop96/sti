@@ -123,7 +123,7 @@
                         <li class="nav-item">
                             <a href="integracion-ep" class="nav-link">
                                 <i class="nav-icon fas fa-print"></i>
-                                <p>Impresoras</p>
+                                <p>Impresoras y Otros</p>
                             </a>
                         </li>
                         <li class="nav-item">

@@ -346,6 +346,8 @@
                     ?>
                   </select>
                   <input type="hidden" name="idEquipo" id="idEquipo">
+                  <input type="hidden" name="antSerie" id="antSerie">
+                  <input type="hidden" name="antSBN" id="antSBN">
                 </div>
               </div>
             </div>

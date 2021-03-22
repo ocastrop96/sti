@@ -117,11 +117,28 @@ class ModeloEquipos
         $stmt->close();
         $stmt = null;
     }
-    static public function mdlEliminarEquiposC($tabla, $datos)
+    // static public function mdlEliminarEquiposC($tabla, $datos)
+    // {
+    //     $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE idEquipo = :id");
+    //     $stmt->bindParam(":id", $datos, PDO::PARAM_INT);
+    //     if ($stmt->execute()) {
+    //         return "ok";
+    //     } else {
+    //         return "error";
+    //     }
+    //     $stmt->close();
+    //     $stmt = null;
+    // }
+
+    static public function mdlEliminarEquiposC($datos)
     {
-        $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE idEquipo = :id");
+        $stmt = Conexion::conectar()->prepare("CALL ELIMINAR_PC_LAPTOP(:id, @val)");
         $stmt->bindParam(":id", $datos, PDO::PARAM_INT);
-        if ($stmt->execute()) {
+        $stmt->execute();
+        $value = $stmt->fetch();
+        $val2 = $value['nExistencia'];
+
+        if ($val2 == 0) {
             return "ok";
         } else {
             return "error";
@@ -129,7 +146,6 @@ class ModeloEquipos
         $stmt->close();
         $stmt = null;
     }
-
     static public function mdlRegistrarEquiposPO($datos)
     {
         $stmt = Conexion::conectar()->prepare("CALL REGISTRAR_EQUIPOP(:idTipo,:uResponsable,:idOficina,:idServicio,:serie,:sbn,:marca,:modelo,:descripcion,:fechaCompra,:ordenCompra,:garantia,:observaciones,:condicion,:estadoEQ,:registrador,:tipSegmento)");
@@ -187,11 +203,15 @@ class ModeloEquipos
         $stmt->close();
         $stmt = null;
     }
-    static public function mdlEliminarEquiposP($tabla, $datos)
+    static public function mdlEliminarEquiposP($datos1, $datos2)
     {
-        $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE idEquipo = :id");
-        $stmt->bindParam(":id", $datos, PDO::PARAM_INT);
-        if ($stmt->execute()) {
+        $stmt = Conexion::conectar()->prepare("CALL ELIMINAR_IMPRESORA_PERIFERICOS(:id,:tipo,@val)");
+        $stmt->bindParam(":id", $datos1, PDO::PARAM_INT);
+        $stmt->bindParam(":tipo", $datos2, PDO::PARAM_INT);
+        $stmt->execute();
+        $value23 = $stmt->fetch();
+        $val23 = $value23['nExistencia'];
+        if ($val23 == 0) {
             return "ok";
         } else {
             return "error";
@@ -264,9 +284,12 @@ class ModeloEquipos
 
     static public function mdlEliminarEquiposR($tabla, $datos)
     {
-        $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE idEquipo = :id");
+        $stmt = Conexion::conectar()->prepare("CALL ELIMINAR_EQREDES(:id,@val)");
         $stmt->bindParam(":id", $datos, PDO::PARAM_INT);
-        if ($stmt->execute()) {
+        $stmt->execute();
+        $value1 = $stmt->fetch();
+        $val1 = $value1['nExistencia'];
+        if ($val1 == 0) {
             return "ok";
         } else {
             return "error";

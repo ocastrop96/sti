@@ -177,16 +177,28 @@ class ControladorEquipos
     {
 
         if (isset($_GET["idEquipo"])) {
-            $tabla = "ws_equipos";
             $datos = $_GET["idEquipo"];
 
-            $respuesta = ModeloEquipos::mdlEliminarEquiposC($tabla, $datos);
+            $respuesta = ModeloEquipos::mdlEliminarEquiposC($datos);
 
             if ($respuesta == "ok") {
                 echo '<script>
                         Swal.fire({
                         icon: "success",
                         title: "¡El equipo ha sido eliminado con éxito!",
+                        showConfirmButton: false,
+                        timer: 1400
+                    });
+                    function redirect() {
+                        window.location = "equipos-computo";
+                    }
+                    setTimeout(redirect, 1400);
+                    </script>';
+            } else {
+                echo '<script>
+                        Swal.fire({
+                        icon: "error",
+                        title: "¡El equipo se encuentra integrado, no puede ser eliminado!",
                         showConfirmButton: false,
                         timer: 1400
                     });
@@ -236,26 +248,26 @@ class ControladorEquipos
                           Swal.fire({
                             icon: "success",
                             title: "El Equipo Periférico ha sido registrado con éxito",
-                            showConfirmButton: true,
-                            confirmButtonText: "Cerrar",
-                            closeOnConfirm: false
-                          }).then((result)=>{
-                            if(result.value){
-                                window.location = "equipos-otros";
-                            }});
+                            showConfirmButton: false,
+                            timer: 1400
+                        });
+                        function redirect() {
+                            window.location = "equipos-otros";
+                        }
+                        setTimeout(redirect, 1400);
                       </script>';
                 } else {
                     echo '<script>
                 Swal.fire({
                   type: "error",
                   title: "Ha ocurrido un error al registrar sus datos",
-                  showConfirmButton: true,
-                  confirmButtonText: "Cerrar",
-                  closeOnConfirm: false
-                }).then((result)=>{
-                  if(result.value){
-                      window.location = "equipos-otros";
-                  }});
+                  showConfirmButton: false,
+                  timer: 1400
+              });
+              function redirect() {
+                  window.location = "equipos-otros";
+              }
+              setTimeout(redirect, 1400);
             </script>';
                 }
             } else {
@@ -263,13 +275,13 @@ class ControladorEquipos
             Swal.fire({
               type: "error",
               title: "Ingrese sus datos correctamente",
-              showConfirmButton: true,
-              confirmButtonText: "Cerrar",
-              closeOnConfirm: false
-            }).then((result)=>{
-              if(result.value){
-                  window.location = "equipos-otros";
-              }});
+              showConfirmButton: false,
+              timer: 1400
+          });
+          function redirect() {
+              window.location = "equipos-otros";
+          }
+          setTimeout(redirect, 1400);
         </script>';
             }
         }
@@ -307,26 +319,26 @@ class ControladorEquipos
                           Swal.fire({
                             icon: "success",
                             title: "El Equipo Periférico ha sido editado con éxito",
-                            showConfirmButton: true,
-                            confirmButtonText: "Cerrar",
-                            closeOnConfirm: false
-                          }).then((result)=>{
-                            if(result.value){
-                                window.location = "equipos-otros";
-                            }});
+                            showConfirmButton: false,
+                            timer: 1400
+                        });
+                        function redirect() {
+                            window.location = "equipos-otros";
+                        }
+                        setTimeout(redirect, 1400);
                       </script>';
                 } else {
                     echo '<script>
                 Swal.fire({
                   type: "error",
                   title: "Ha ocurrido un error al editar sus datos",
-                  showConfirmButton: true,
-                  confirmButtonText: "Cerrar",
-                  closeOnConfirm: false
-                }).then((result)=>{
-                  if(result.value){
-                      window.location = "equipos-otros";
-                  }});
+                  showConfirmButton: false,
+                  timer: 1400
+              });
+              function redirect() {
+                  window.location = "equipos-otros";
+              }
+              setTimeout(redirect, 1400);
             </script>';
                 }
             } else {
@@ -334,13 +346,13 @@ class ControladorEquipos
             Swal.fire({
               type: "error",
               title: "Ingrese sus datos correctamente",
-              showConfirmButton: true,
-              confirmButtonText: "Cerrar",
-              closeOnConfirm: false
-            }).then((result)=>{
-              if(result.value){
-                  window.location = "equipos-otros";
-              }});
+              showConfirmButton: false,
+              timer: 1400
+          });
+          function redirect() {
+              window.location = "equipos-otros";
+          }
+          setTimeout(redirect, 1400);
         </script>';
             }
         }
@@ -348,25 +360,35 @@ class ControladorEquipos
 
     static public function ctrEliminarEquipoP()
     {
-
         if (isset($_GET["idEquipo"])) {
-            $tabla = "ws_equipos";
-            $datos = $_GET["idEquipo"];
-
-            $respuesta = ModeloEquipos::mdlEliminarEquiposP($tabla, $datos);
-
+            $datos1 = $_GET["idEquipo"];
+            $datos2 = $_GET["idCategoria"];
+            $respuesta = ModeloEquipos::mdlEliminarEquiposP($datos1, $datos2);
             if ($respuesta == "ok") {
                 echo '<script>
                         Swal.fire({
                         icon: "success",
-                        title: "¡El equipo periférico ha sido eliminado con éxito!",
-                        showConfirmButton: true,
-                        confirmButtonText: "Cerrar",
-                        closeOnConfirm: false
-                        }).then((result)=>{
-                        if(result.value){
-                            window.location = "equipos-otros";
-                        }});
+                        title: "¡El equipo ha sido eliminado con éxito!",
+                        showConfirmButton: false,
+                        timer: 1400
+                    });
+                    function redirect() {
+                        window.location = "equipos-otros";
+                    }
+                    setTimeout(redirect, 1400);
+                    </script>';
+            } else {
+                echo '<script>
+                        Swal.fire({
+                        icon: "error",
+                        title: "¡El equipo se encuentra integrado, no puede ser eliminado!",
+                        showConfirmButton: false,
+                        timer: 1400
+                    });
+                    function redirect() {
+                        window.location = "equipos-otros";
+                    }
+                    setTimeout(redirect, 1400);
                     </script>';
             }
         }
@@ -411,26 +433,26 @@ class ControladorEquipos
                           Swal.fire({
                             icon: "success",
                             title: "El Equipo Periférico ha sido registrado con éxito",
-                            showConfirmButton: true,
-                            confirmButtonText: "Cerrar",
-                            closeOnConfirm: false
-                          }).then((result)=>{
-                            if(result.value){
-                                window.location = "equipos-redes";
-                            }});
+                            showConfirmButton: false,
+                            timer: 1400
+                        });
+                        function redirect() {
+                            window.location = "equipos-redes";
+                        }
+                        setTimeout(redirect, 1400);
                       </script>';
                 } else {
                     echo '<script>
                 Swal.fire({
                   type: "error",
                   title: "Ha ocurrido un error al registrar sus datos",
-                  showConfirmButton: true,
-                  confirmButtonText: "Cerrar",
-                  closeOnConfirm: false
-                }).then((result)=>{
-                  if(result.value){
-                      window.location = "equipos-redes";
-                  }});
+                  showConfirmButton: false,
+                  timer: 1400
+              });
+              function redirect() {
+                  window.location = "equipos-redes";
+              }
+              setTimeout(redirect, 1400);
             </script>';
                 }
             } else {
@@ -438,13 +460,13 @@ class ControladorEquipos
             Swal.fire({
               type: "error",
               title: "Ingrese sus datos correctamente",
-              showConfirmButton: true,
-              confirmButtonText: "Cerrar",
-              closeOnConfirm: false
-            }).then((result)=>{
-              if(result.value){
-                  window.location = "equipos-redes";
-              }});
+              showConfirmButton: false,
+              timer: 1400
+          });
+          function redirect() {
+              window.location = "equipos-redes";
+          }
+          setTimeout(redirect, 1400);
         </script>';
             }
         }
@@ -484,26 +506,26 @@ class ControladorEquipos
                           Swal.fire({
                             icon: "success",
                             title: "El Equipo de Redes y Telecomunicaciones ha sido editado con éxito",
-                            showConfirmButton: true,
-                            confirmButtonText: "Cerrar",
-                            closeOnConfirm: false
-                          }).then((result)=>{
-                            if(result.value){
-                                window.location = "equipos-redes";
-                            }});
+                            showConfirmButton: false,
+                            timer: 1400
+                        });
+                        function redirect() {
+                            window.location = "equipos-redes";
+                        }
+                        setTimeout(redirect, 1400);
                       </script>';
                 } else {
                     echo '<script>
                 Swal.fire({
                   type: "error",
                   title: "Ha ocurrido un error al editar sus datos",
-                  showConfirmButton: true,
-                  confirmButtonText: "Cerrar",
-                  closeOnConfirm: false
-                }).then((result)=>{
-                  if(result.value){
-                      window.location = "equipos-redes";
-                  }});
+                  showConfirmButton: false,
+                  timer: 1400
+              });
+              function redirect() {
+                  window.location = "equipos-redes";
+              }
+              setTimeout(redirect, 1400);
             </script>';
                 }
             } else {
@@ -511,13 +533,13 @@ class ControladorEquipos
             Swal.fire({
               type: "error",
               title: "Ingrese sus datos correctamente",
-              showConfirmButton: true,
-              confirmButtonText: "Cerrar",
-              closeOnConfirm: false
-            }).then((result)=>{
-              if(result.value){
-                  window.location = "equipos-redes";
-              }});
+              showConfirmButton: false,
+              timer: 1400
+          });
+          function redirect() {
+              window.location = "equipos-redes";
+          }
+          setTimeout(redirect, 1400);
         </script>';
             }
         }
@@ -537,13 +559,26 @@ class ControladorEquipos
                         Swal.fire({
                         icon: "success",
                         title: "¡El equipo de red y telecomunicaciones ha sido eliminado con éxito!",
-                        showConfirmButton: true,
-                        confirmButtonText: "Cerrar",
-                        closeOnConfirm: false
-                        }).then((result)=>{
-                        if(result.value){
-                            window.location = "equipos-redes";
-                        }});
+                        showConfirmButton: false,
+                        timer: 1400
+                    });
+                    function redirect() {
+                        window.location = "equipos-redes";
+                    }
+                    setTimeout(redirect, 1400);
+                    </script>';
+            } else {
+                echo '<script>
+                        Swal.fire({
+                        icon: "error",
+                        title: "¡El equipo se encuentra integrado, no puede ser eliminado!",
+                        showConfirmButton: false,
+                        timer: 1400
+                    });
+                    function redirect() {
+                        window.location = "equipos-redes";
+                    }
+                    setTimeout(redirect, 1400);
                     </script>';
             }
         }

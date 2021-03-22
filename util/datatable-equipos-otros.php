@@ -14,7 +14,7 @@ class TablaEquiposOtros
             "data": [';
 
         for ($i = 0; $i < count($equipos); $i++) {
-            $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarEquipoP' idEquipo='" . $equipos[$i]["idEquipo"] . "' data-toggle='modal' data-target='#modal-editar-equipoP'><i class='fas fa-edit'></i></button><button class='btn btn-danger btnEliminarEquipoP' idEquipo='" . $equipos[$i]["idEquipo"] . "'><i class='fas fa-trash-alt'></i></button></div>";
+            $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarEquipoP' idEquipo='" . $equipos[$i]["idEquipo"] . "' data-toggle='modal' data-target='#modal-editar-equipoP'><i class='fas fa-edit'></i></button><button class='btn btn-danger btnEliminarEquipoP' idEquipo='" . $equipos[$i]["idEquipo"] . "' idCategoria='" . $equipos[$i]["idTipo"] . "'><i class='fas fa-trash-alt'></i></button></div>";
             $datos_json .= '[
                 "' . ($i + 1) . '",
                 "' . $equipos[$i]["categoria"] . '",
