@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 12-03-2021 a las 20:10:44
+-- Tiempo de generación: 23-03-2021 a las 20:10:11
 -- Versión del servidor: 5.7.24
 -- Versión de PHP: 7.4.15
 
@@ -45,8 +45,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `ACTUALIZAR_EQUIPORED` (IN `_idEquip
 UPDATE ws_equipos SET idTipo = _idTipo, uResponsable = _uResponsable, office = _office, service = _service, serie = _serie,sbn = _sbn,marca = _marca, modelo = _modelo,descripcion = _descripcion, fechaCompra = _fechaCompra, ordenCompra = _ordenCompra,garantia = _garantia,puertos = _puertos, capa = _capa, condicion = _condicion, estadoEQ = _estadoEQ where idEquipo = _idEquipo;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ACTUALIZAR_RESPONSABLE` (IN `_nombresResp` TEXT, IN `_apellidosResp` TEXT, IN `_idOficina` INT(11), IN `_idServicio` INT(11), IN `_idResponsable` INT(11))  BEGIN
-UPDATE ws_responsables SET nombresResp = _nombresResp,apellidosResp = _apellidosResp,idOficina = _idOficina, idServicio = _idServicio where idResponsable = _idResponsable;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ACTUALIZAR_RESPONSABLE` (IN `_dniResp` TEXT, IN `_nombresResp` TEXT, IN `_apellidosResp` TEXT, IN `_idOficina` INT(11), IN `_idServicio` INT(11), IN `_idResponsable` INT(11))  BEGIN
+UPDATE ws_responsables SET dni=_dniResp,nombresResp = _nombresResp,apellidosResp = _apellidosResp,idOficina = _idOficina, idServicio = _idServicio where idResponsable = _idResponsable;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ANULAR_INTEGRACION` (IN `_idIntegracion` INT(11))  BEGIN
@@ -55,6 +55,10 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `DESBLOQUEAR_USUARIO` (IN `_id_usuario` INT(11))  BEGIN
 UPDATE ws_usuarios set nintentos = 0 where id_usuario = _id_usuario;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `EDITAR_CATEGORIA` (IN `_idCategoria` INT(11), IN `_categoria` TEXT, IN `_segmento` INT(11))  BEGIN
+UPDATE ws_categorias SET categoria = _categoria, segmento = _segmento WHERE idCategoria = _idCategoria;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `EDITAR_INTEGRACIONC` (IN `_idIntegracion` INT(11), IN `_nro_eq` TEXT, IN `_ip` TEXT, IN `_serie_pc` INT(11), IN `_serie_monitor` INT(11), IN `_serie_teclado` INT(11), IN `_serie_EstAcu` INT(11), IN `_tipo_equipo` INT(11), IN `_responsable` INT(11), IN `_oficina_in` INT(11), IN `_servicio_in` INT(11), IN `_estado` INT(11), IN `_condicion` INT(11))  BEGIN
@@ -81,8 +85,86 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `EDITAR_SERVICIO_OD` (IN `_id_area` 
 UPDATE ws_servicios SET subarea = _subarea, id_area = _id_area WHERE id_subarea = _id_subarea;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ELIMINAR_CATEGORIA` (IN `_idCategoria` INT(11))  BEGIN
+DELETE FROM ws_categorias WHERE idCategoria = _idCategoria;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ELIMINAR_EQREDES` (IN `_idEquipo` INT(11), OUT `nExistencia` INT(11))  BEGIN
+    DECLARE conteo INT;
+	SET conteo = (SELECT count(idEquipo) as existencia FROM ws_equipos eq
+	WHERE EXISTS (SELECT NULL
+	FROM ws_integraciones epc
+	WHERE epc.serie_eqred = eq.idEquipo) AND idEquipo = _idEquipo);
+    IF(conteo >= 1) THEN
+       SET nExistencia = 1;
+    ELSE
+       DELETE FROM ws_equipos WHERE idEquipo = _idEquipo;
+       SET nExistencia = 0;
+    END IF;
+    SELECT nExistencia;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ELIMINAR_IMPRESORA_PERIFERICOS` (IN `_idEquipo` INT(11), IN `_idTipo` INT(11), OUT `nExistencia` INT(11))  BEGIN
+DECLARE conteo INT;
+DECLARE tipo int;
+set tipo = _idTipo;
+
+if (tipo = 10) then
+   SET conteo = (SELECT count(idEquipo) as existencia FROM ws_equipos eq
+	WHERE EXISTS (SELECT NULL
+	FROM ws_integraciones epc
+	WHERE epc.serie_monitor = eq.idEquipo) AND idEquipo = _idEquipo AND eq.idTipo = _idTipo);
+elseif (tipo = 11) then
+   SET conteo = (SELECT count(idEquipo) as existencia FROM ws_equipos eq
+	WHERE EXISTS (SELECT NULL
+	FROM ws_integraciones epc
+	WHERE epc.serie_teclado = eq.idEquipo) AND idEquipo = _idEquipo AND eq.idTipo = _idTipo);
+elseif (tipo = 12) then
+   SET conteo = (SELECT count(idEquipo) as existencia FROM ws_equipos eq
+	WHERE EXISTS (SELECT NULL
+	FROM ws_integraciones epc
+	WHERE epc.serie_EstAcu = eq.idEquipo) AND idEquipo = _idEquipo AND eq.idTipo = _idTipo);
+elseif (tipo = 13) then
+   SET conteo = (SELECT count(idEquipo) as existencia FROM ws_equipos eq
+	WHERE EXISTS (SELECT NULL
+	FROM ws_integraciones epc
+	WHERE epc.serie_EstAcu = eq.idEquipo) AND idEquipo = _idEquipo AND eq.idTipo = _idTipo);
+else
+   SET conteo = (SELECT count(idEquipo) as existencia FROM ws_equipos eq
+	WHERE EXISTS (SELECT NULL
+	FROM ws_integraciones eimp
+	WHERE eimp.serie_imp = eq.idEquipo)  AND idEquipo = _idEquipo AND eq.idTipo = _idTipo);
+end if;
+IF(conteo >= 1) THEN
+	SET nExistencia = 1;
+ELSE
+ DELETE FROM ws_equipos WHERE idEquipo = _idEquipo;
+ SET nExistencia = 0;
+END IF;
+ SELECT nExistencia;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ELIMINAR_OFICINA_DPTO` (IN `_id_area` INT(11))  BEGIN
 DELETE FROM ws_departamentos WHERE id_area = _id_area;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ELIMINAR_PC_LAPTOP` (IN `_idEquipo` INT(11), OUT `nExistencia` INT(11))  BEGIN
+    DECLARE conteo INT;
+	SET conteo = (SELECT count(idEquipo) as existencia FROM ws_equipos eq
+	WHERE EXISTS (SELECT NULL
+	FROM ws_integraciones epc
+	WHERE epc.serie_pc = eq.idEquipo) AND idEquipo = _idEquipo);
+    IF(conteo >= 1) THEN
+       SET nExistencia = 1;
+    ELSE
+       DELETE FROM ws_equipos WHERE idEquipo = _idEquipo;
+       SET nExistencia = 0;
+    END IF;
+    SELECT nExistencia;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ELIMINAR_RESPONSABLE` (IN `_id` INT(11))  BEGIN
+DELETE FROM ws_responsables WHERE idResponsable = _id;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ELIMINAR_SERVICIO_OD` (IN `_id_subarea` INT(11))  BEGIN
@@ -118,7 +200,7 @@ SELECT * FROM ws_categorias where segmento = 2;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_DIAGNOSTICOS` ()  BEGIN
-select idDiagnostico,diagnostico,sgmto,descSegmento from ws_diagnosticos as d inner join ws_segmento as s on d.sgmto = s.idSegmento;
+select idDiagnostico,diagnostico,sgmto,descSegmento from ws_diagnosticos as d inner join ws_segmento as s on d.sgmto = s.idSegmento order by diagnostico asc;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_EQUIPOSC` ()  BEGIN
@@ -234,6 +316,10 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `LOGIN_USUARIO` (IN `_cuenta` TEXT) 
 select * from ws_usuarios where cuenta= _cuenta;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `REGISTRAR_CATEGORIA` (IN `_categoria` TEXT, IN `_segmento` INT(11))  BEGIN
+INSERT INTO ws_categorias(categoria,segmento) VALUES(_categoria,_segmento);
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `REGISTRAR_EQUIPOC` (IN `_idTipo` INT(11), IN `_uResponsable` INT(11), IN `_idOficina` INT(11), IN `_idServicio` INT(11), IN `_serie` TEXT, IN `_sbn` TEXT, IN `_marca` TEXT, IN `_modelo` TEXT, IN `_descripcion` TEXT, IN `_fechaCompra` DATE, IN `_ordenCompra` TEXT, IN `_garantia` TEXT, IN `_placa` TEXT, IN `_procesador` TEXT, IN `_vprocesador` TEXT, IN `_ram` TEXT, IN `_discoDuro` TEXT, IN `_observaciones` TEXT, IN `_condicion` INT(11), IN `_estadoEQ` INT(11), IN `_registrador` INT(11), IN `_tipSegmento` INT(11))  BEGIN
 insert into ws_equipos(idTipo,uResponsable,office,service,serie,sbn,marca,modelo,descripcion,fechaCompra,ordenCompra,garantia,placa,procesador,vprocesador,ram,discoDuro,observaciones,condicion,estadoEQ,registrador,tipSegmento) values(_idTipo,_uResponsable,_idOficina,_idServicio,_serie,_sbn,_marca,_modelo,_descripcion,_fechaCompra,_ordenCompra,_garantia,_placa,_procesador,_vprocesador,_ram,_discoDuro,_observaciones,_condicion,_estadoEQ,_registrador,_tipSegmento);
 END$$
@@ -266,8 +352,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `REGISTRAR_OFICINA_DPTO` (IN `_area`
 INSERT INTO ws_departamentos(area) VALUES(_area);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `REGISTRAR_RESPONSABLE` (IN `_nombresResp` TEXT, IN `_apellidosResp` TEXT, IN `_idOficina` INT(11), IN `_idServicio` INT(11))  BEGIN
-INSERT INTO ws_responsables(nombresResp,apellidosResp,idOficina,idServicio) VALUES(_nombresResp,_apellidosResp,_idOficina,_idServicio);
+CREATE DEFINER=`root`@`localhost` PROCEDURE `REGISTRAR_RESPONSABLE` (IN `_dniResp` TEXT, IN `_nombresResp` TEXT, IN `_apellidosResp` TEXT, IN `_idOficina` INT(11), IN `_idServicio` INT(11))  BEGIN
+INSERT INTO ws_responsables(dni,nombresResp,apellidosResp,idOficina,idServicio) VALUES(_dniResp,_nombresResp,_apellidosResp,_idOficina,_idServicio);
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `REGISTRAR_SERVICIO_OD` (IN `_id_area` INT(11), IN `_subarea` TEXT)  BEGIN
@@ -289,19 +375,20 @@ DELIMITER ;
 CREATE TABLE `ws_acciones` (
   `idAccion` int(11) NOT NULL,
   `segment` int(11) NOT NULL,
-  `accionrealizada` text COLLATE utf8_spanish_ci NOT NULL
+  `accionrealizada` text COLLATE utf8_spanish_ci NOT NULL,
+  `contador_acc` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `ws_acciones`
 --
 
-INSERT INTO `ws_acciones` (`idAccion`, `segment`, `accionrealizada`) VALUES
-(1, 1, 'Formateo de sistema operativo'),
-(3, 3, 'Tambor malogrado'),
-(4, 2, 'Limpieza de puerto RJ45'),
-(5, 2, 'Limpieza de puertos RJ11'),
-(6, 3, 'Cabezal malogrado');
+INSERT INTO `ws_acciones` (`idAccion`, `segment`, `accionrealizada`, `contador_acc`) VALUES
+(1, 1, 'Formateo de sistema operativo', 0),
+(3, 3, 'Tambor malogrado', 0),
+(4, 2, 'Limpieza de puerto RJ45', 0),
+(5, 2, 'Limpieza de puertos RJ11', 0),
+(6, 3, 'Cabezal malogrado', 0);
 
 -- --------------------------------------------------------
 
@@ -395,7 +482,7 @@ INSERT INTO `ws_departamentos` (`id_area`, `area`, `fecha_creacion`) VALUES
 (27, 'Seguros', '2020-09-16 18:29:57'),
 (28, 'Servicio Social', '2020-09-16 18:30:14'),
 (30, 'Servicios Generales', '2020-09-17 20:04:23'),
-(31, 'Anestesiología y Centro Quirurgico', '2020-09-22 00:39:17'),
+(31, 'Anestesiología y Centro Quirúrgico', '2020-09-22 00:39:17'),
 (32, 'Enfermería', '2021-03-12 15:42:20'),
 (33, 'Medicina Física', '2021-03-12 15:42:55');
 
@@ -408,17 +495,42 @@ INSERT INTO `ws_departamentos` (`id_area`, `area`, `fecha_creacion`) VALUES
 CREATE TABLE `ws_diagnosticos` (
   `idDiagnostico` int(11) NOT NULL,
   `sgmto` int(11) NOT NULL,
-  `diagnostico` text COLLATE utf8_spanish_ci NOT NULL
+  `diagnostico` text COLLATE utf8_spanish_ci NOT NULL,
+  `contador_diag` int(11) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `ws_diagnosticos`
 --
 
-INSERT INTO `ws_diagnosticos` (`idDiagnostico`, `sgmto`, `diagnostico`) VALUES
-(1, 1, 'Sistema Operativo dañado'),
-(2, 3, 'Tóner desgastado y tambor'),
-(3, 1, 'Instalación de Antivirus');
+INSERT INTO `ws_diagnosticos` (`idDiagnostico`, `sgmto`, `diagnostico`, `contador_diag`) VALUES
+(4, 1, 'Equipo Averiado', 0),
+(5, 2, 'Equipo Averiado', 0),
+(6, 3, 'Equipo Averiado', 0),
+(7, 1, 'Falla de disco duro', 0),
+(8, 1, 'Sistema Operativo dañado', 0),
+(9, 1, 'Memoria  RAM malograda', 0),
+(10, 1, 'Placa madre malograda', 0),
+(11, 1, 'Falta de mantenimiento', 0),
+(12, 2, 'Falta de mantenimiento', 0),
+(13, 3, 'Falta de mantenimiento', 0),
+(14, 1, 'Falla de Equipo', 0),
+(15, 2, 'Falla de Equipo', 0),
+(16, 3, 'Falla de Equipo', 0),
+(17, 3, 'Falla de Estabilizador', 0),
+(18, 3, 'Falla de Teclado', 0),
+(19, 3, 'Falla de UPS', 0),
+(20, 1, 'Falla de Fuente de Energía', 0),
+(21, 2, 'Falla de Fuente de Energía', 0),
+(22, 3, 'Falla de Fuente de Energía', 0),
+(23, 1, 'Falla de tarjeta de vídeo', 0),
+(24, 1, 'Detección de virus', 0),
+(25, 1, 'Equipo Obsoleto', 0),
+(26, 2, 'Equipo Obsoleto', 0),
+(27, 3, 'Equipo Obsoleto', 0),
+(28, 2, 'Puertos RJ45 averiados', 0),
+(29, 2, 'Puertos RJ11 averiados', 0),
+(30, 3, 'Falla de teflón de impresora', 0);
 
 -- --------------------------------------------------------
 
@@ -462,38 +574,19 @@ CREATE TABLE `ws_equipos` (
 --
 
 INSERT INTO `ws_equipos` (`idEquipo`, `tipSegmento`, `idTipo`, `uResponsable`, `office`, `service`, `serie`, `sbn`, `marca`, `modelo`, `descripcion`, `fechaCompra`, `ordenCompra`, `garantia`, `placa`, `procesador`, `vprocesador`, `ram`, `discoDuro`, `puertos`, `capa`, `observaciones`, `fichaBaja`, `fichaReposición`, `condicion`, `estadoEQ`, `registrador`, `registrof`) VALUES
-(18, 1, 1, 6, 13, 17, 'MXLJKASFDA', '5555555', 'VASTEC', 'COMPAQ PRESARIO', 'ESTACION DE TRABAJO', '2021-02-04', 'AAA5-11A', '3 AÑOS', 'ASUS', 'INTEL CORE I3', '3.40 GHZ', '8GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-02-06 00:35:09'),
-(19, 1, 4, 4, 4, 14, 'AAQ11', '111111111', 'LG', 'LGG12-1', 'LG GRAM 17 PGDAS', '2021-02-01', '1171-11AA', '5 AÑOS', 'LG', 'INTEL CORE I7', '3.20 GHZ', '16GB', '512GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-02-06 00:38:23'),
-(20, 1, 1, 2, 1, 12, 'AA', '1111111212', 'ZSZXZX', 'AAAS12', 'ASAS', '2021-02-04', 'AAA122', 'A1A', 'AA', 'AA', 'A', 'A', 'A', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 2, 2, 1, '2021-02-06 17:20:18'),
-(23, 3, 12, 6, 13, 17, 'ENERGIA123', '111', 'APC', 'BV500I-MS', 'UPS SAY EASY', '2021-02-01', '111-22', '2 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-02-06 18:06:50'),
-(26, 2, 6, 6, 13, 17, 'SKALSL', '740899500413', 'TPLINK', 'TP-21', 'ROUTER DE PARED REPETIDOR', '2021-02-03', '11-1112', '3 AÑOS', NULL, NULL, NULL, NULL, NULL, '4', '2', 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-02-07 11:30:34'),
-(27, 2, 6, 6, 13, 17, 'AJA', '123456789', 'PRUEBITA123', 'MODELO-PRUEBA', 'DESCRIP PRUEBA', '2021-02-05', 'ORDE-PRUEBA', 'GARANTE PRUEBA', NULL, NULL, NULL, NULL, NULL, '5', '2', 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-02-07 16:24:40'),
-(28, 3, 10, 6, 13, 17, 'XLMONITOR', '122333', 'SAMSUNG', 'S-340', 'MONITOR DE 21 PLGDAS', '2021-02-01', '11-111', '2 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-02-08 08:05:25'),
-(29, 3, 11, 6, 13, 17, 'TEC123', '12222', 'GENIUS', 'TC-123', 'TECLADO USB', '2021-02-01', '111-111', '3 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-02-08 08:06:18'),
-(30, 3, 15, 6, 13, 17, 'ESCANERX', '1234', 'CANON', 'LIDE 300', 'ESCANER DE SUPERFICIE PLANA', '2021-02-02', '11-111', '3 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-02-08 10:39:23'),
-(31, 3, 14, 6, 13, 17, 'ASA111', '1111', 'ECLINE', 'XP', 'IMPRESORA TICKETERA TERMICA USB 80MM FACTURACION ELECTRONICA', '2021-02-01', '11-1121-11', '5 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-02-08 10:40:32'),
-(32, 3, 3, 6, 13, 17, '111A12', '112133', 'HP', 'M283FDW', 'IMPRESORA MULTIFUNCIONAL HP COLOR LASERJET PRO MFP M283FDW B', '2021-03-01', '11-121121', '5 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-02-08 10:42:02'),
-(33, 3, 9, 6, 13, 17, 'AS21122', '122390', 'RICOH', 'MP 3351', 'COPIADORA  IMPRESORA  SCANNER', '2020-12-24', '11-2ASA', '5 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-02-08 10:44:44'),
-(34, 3, 11, 6, 13, 17, 'EXTRA1', '1111', 'EXTRA', 'TECLADO EXTRA', 'TECLADO EXTRA', '2021-02-08', '11-111|', '3 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-02-18 15:03:07'),
-(35, 3, 10, 6, 13, 17, 'EXTRA2', '112211', 'EXTRA', 'EXTRA MONITOR 2', 'MONITOR EXTRA', '2021-02-11', '111-111', '3 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-02-18 15:03:57'),
-(36, 3, 12, 6, 13, 17, 'EXTRA3', '11223', 'ACUMULADOREXTRA', 'ACUMULADOR EXTRA 1', 'ACU EXT 2', '2021-02-16', '11-1111', '3 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-02-18 15:06:27'),
-(37, 3, 13, 6, 13, 17, 'ESTAEXTRA', '1221211', 'ESTABEXT', 'ESTABILIZADOR EXTRA 2', 'ESTABILIZADOR EZTRA 2', '2021-02-03', '11-1111', '5 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-02-18 15:07:12'),
-(38, 1, 1, 6, 13, 17, 'BBB', '1221323', 'BBB', 'PC BB', 'PC BBB', '2021-02-18', '11-12212', '3 AÑOS', 'ASUS', 'CORE I7', '3.40 GHZ', '8GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-02-19 10:07:41'),
-(39, 1, 5, 6, 13, 17, 'XEON2021XA', '2021212', 'DELL', 'DELL-XR340', 'SERVIDOR DE ALMACENAMIENTO', '2020-06-25', '11-112232', '5 AÑOS', 'INTEL', 'XEON', '3.60 GHZ', '32GB', '3TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-02-19 11:54:06'),
-(40, 1, 1, 6, 13, 17, 'AJA', '1122', 'AJA', 'AA', 'AA', '2021-02-02', 'AA-A-A', '3 AÑOS', 'AA', 'AA', 'AA', 'AA', 'AA', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-02-22 15:11:08'),
-(41, 3, 11, 6, 13, 17, 'TEC2', '1233', 'TECLOGI', 'TECLADO 2', 'TECLADO 2', '2021-02-13', '11-111111', '3 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-02-24 15:02:40'),
-(42, 3, 10, 6, 13, 17, 'MONITOR2', '1321212', 'MONITOR', 'MONITOR2', 'MONITOR 2', '2021-02-09', '11-111111', '3 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-02-24 15:03:25'),
-(43, 3, 11, 6, 13, 17, 'TECLADO25', '1232344', 'TEC', 'TEC25', 'TECLADO PRUEBA 25', '2021-02-24', '11-1111', '3 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-02-25 09:34:18'),
-(44, 3, 10, 6, 13, 17, 'MONITO25', '12345', 'MONITOR', 'MONITOR25', 'MON 25', '2021-02-15', '111-1111', '3 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-02-25 09:35:47'),
-(45, 1, 4, 7, 13, 18, '8550U', '31081996', 'LENOVO', 'V330-15IKB', 'LAPTOP DE TRABAJO', '2019-02-15', '31-081996', '3 AÑOS', 'LENOVO', 'CORE I7', '1.8GHZ', '8GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-02-25 09:44:07'),
-(46, 3, 16, 6, 13, 17, 'PROYECTOR', '13245', 'LG', 'PROYECTOR 3D', 'PROYECTOR PROFESIONAL', '2021-02-04', '111-115151', '3 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-02-25 11:47:50'),
-(47, 3, 3, 8, 13, 16, 'IMPRESORA3', '174588', 'HP', 'HP LASERJET', 'IMPRESORA BN', '2021-02-10', '111-112121', '3 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-02-25 14:05:29'),
-(48, 1, 5, 8, 13, 16, 'SERVIDOR2', '156727888', 'HP', 'HP SERVIDOR', 'SERVIDOR DE STORAGE', '2021-02-25', '1111-11111', '5 AÑOS', 'HP', 'XEON I7', '3.80 GHZ', '32GB', '4TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-02-26 09:29:03'),
-(49, 2, 2, 6, 13, 17, 'SWITCH25', '18383929110', 'ARUBA', 'HP-ARUBA', 'SWITCH ADMINISTRABLE', '2021-02-09', '111-115151', '3 AÑOS', NULL, NULL, NULL, NULL, NULL, '48', '3', 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-02-26 09:34:45'),
-(50, 3, 13, 6, 13, 17, 'ESTABILIZADOR234', '11561162166', 'APC', 'EST-250V', 'ESTABILIZADOR', '2021-02-16', '111-1515151', '5 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-02-26 09:40:56'),
-(51, 1, 1, 4, 4, 14, 'MXL2500TDK', '740899500413', 'HP', 'ELITE 8300', 'PC DE DESCRITORIO', '2018-06-20', '111-44545', '5 AÑOS', 'HP', 'CORE I7', '3.40 GHZ', '12GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-04 15:00:40'),
-(52, 3, 17, 6, 13, 17, 'MARCADOR', '12334444434', 'LG', 'LG-458', 'MARCADOR ELECTRONICO DIGITAL', '2021-03-02', '111-1115', '3 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-10 09:18:25'),
-(53, 1, 0, 0, 0, 0, 'A', '1', 'AASAS', 'ASAS', 'ASAS', '1969-12-31', 'ASAS', 'ASAS', 'ASAS', 'ASAS', 'ASAS', 'ASAS', 'ASAS', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 0, 0, 1, '2021-03-10 10:07:26');
+(54, 1, 1, 9, 13, 18, 'MXL2500TDK', '740899500413', 'HP', 'ELITE 8300', 'PC DE ESCRITORIO', '2018-08-31', '11-445456', '5 AÑOS', 'HP', 'CORE I7', '3.40 GHZ', '12GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-15 09:54:39'),
+(55, 3, 11, 9, 13, 18, 'BDMEP0C5Y7N1FM', '009038', 'HP', 'KB-1156', 'TECLADO PERFI', '2018-08-31', '11-121121', '5 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-15 09:58:07'),
+(56, 3, 10, 9, 13, 18, '6CM2480JSF', '740880370017', 'HP', 'LV2311', 'MONITOR 24 PLGDAS', '2018-08-31', '11-15151', '5 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-15 10:18:13'),
+(57, 3, 13, 9, 13, 18, 'ESTABLE1', '1515151515', 'APC', 'APC-125', 'ESTABILIZADOR DE ENERGIA', '2018-08-31', '11-151515', '5 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-15 10:19:03'),
+(58, 2, 2, 9, 13, 18, 'SWITCH123', '151518484546', 'HP', 'ARUBA', 'SWITCH ADMINISTRABLE', '2018-08-31', '11-151515', '5 AÑOS', NULL, NULL, NULL, NULL, NULL, '48', '3', 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-15 10:19:59'),
+(59, 3, 3, 9, 13, 18, 'BRBSXBT8XZ', '740841000067', 'HP', 'M426FDW', 'HP LASERJET LASERJET PRO', '2018-06-22', '11-11515', '5 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-15 10:24:19'),
+(69, 3, 16, 9, 13, 18, 'RE', '1', 'VACJ', 'VA', 'VA', '2021-03-08', 'AV', 'AS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-22 10:55:16'),
+(75, 2, 2, 12, 10, 24, 'ARUBA1', '1122', 'ARUBA', 'ARUBA2323', 'ASAS', '2021-03-17', 'AS', 'AS', NULL, NULL, NULL, NULL, NULL, '48', '3', 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-22 12:19:40'),
+(76, 1, 4, 9, 13, 18, 'LAPTO1', '155', 'LAPTOP', 'LAP1', 'LAP1', '2021-03-01', '11-111', '3 AÑOS', 'ASUS', 'CORE I7', '3.40 GHZ', '8GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-22 14:53:24'),
+(77, 1, 4, 12, 10, 24, 'A', '111', 'AA', 'AAA', 'AA', '2021-03-10', 'AA1', 'A', 'A', 'A', 'A', 'A', 'A', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-22 15:09:19'),
+(78, 3, 3, 11, 10, 24, 'IMP', '112', 'IMP', 'UMO', 'UMo', '2021-03-02', '11-11', '5 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-23 12:06:47'),
+(79, 3, 9, 9, 13, 18, 'AAAA', '112332', 'A', 'A', 'A', '2021-03-17', 'A', 'AJA', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-23 12:38:10'),
+(80, 2, 2, 11, 10, 24, 'AAAAAAA', '1111111', 'AAAAAA', 'AAAAA', 'AAAAAA', '2021-03-03', 'AA11', 'AAAA', NULL, NULL, NULL, NULL, NULL, 'AA', 'AA', 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-23 12:46:58');
 
 -- --------------------------------------------------------
 
@@ -552,16 +645,16 @@ INSERT INTO `ws_integraciones` (`idIntegracion`, `correlativo_integracion`, `nro
 (2, 'FT-2021-00002', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-02-25', 0, 0, 0, 0, 0, 0, 1, '2021-02-25 15:26:46'),
 (3, 'FT-2021-00003', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-02-25', 0, 0, 0, 0, 0, 0, 1, '2021-02-25 15:27:04'),
 (4, 'FT-2021-00004', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-02-25', 0, 0, 0, 0, 0, 0, 1, '2021-02-25 15:27:46'),
-(5, 'FT-2021-00005', 'KILLASISA', '172.16.0.41', 39, NULL, NULL, NULL, NULL, NULL, '2021-02-25', 5, 6, 13, 17, 1, 1, 0, '2021-02-25 15:29:32'),
+(5, 'FT-2021-00005', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-02-25', 0, 0, 0, 0, 0, 0, 1, '2021-02-25 15:29:32'),
 (6, 'FT-2021-00006', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-02-25', 0, 0, 0, 0, 0, 0, 1, '2021-02-25 16:05:17'),
 (7, 'FT-2021-00007', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-02-25', 0, 0, 0, 0, 0, 0, 1, '2021-02-25 16:31:05'),
-(8, 'FT-2021-00008', 'ESC_0001', '', NULL, NULL, NULL, NULL, NULL, 30, '2021-02-25', 15, 6, 13, 17, 1, 1, 0, '2021-02-25 18:11:49'),
+(8, 'FT-2021-00008', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-02-25', 0, 0, 0, 0, 0, 0, 1, '2021-02-25 18:11:49'),
 (9, 'FT-2021-00009', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-02-25', 0, 0, 0, 0, 0, 0, 1, '2021-02-25 18:14:35'),
 (10, 'FT-2021-00010', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-02-25', 0, 0, 0, 0, 0, 0, 1, '2021-02-25 18:15:19'),
 (11, 'FT-2021-00011', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-02-25', 0, 0, 0, 0, 0, 0, 1, '2021-02-25 18:32:56'),
-(12, 'FT-2021-00012', 'FTC_0001', '172.16.5.135', NULL, NULL, NULL, NULL, NULL, 33, '2021-02-25', 9, 6, 13, 17, 1, 1, 0, '2021-02-25 19:21:44'),
-(13, 'FT-2021-00013', 'IMP_0002', '172.16.5.140', NULL, NULL, NULL, NULL, NULL, 47, '2021-02-25', 3, 8, 13, 16, 1, 1, 0, '2021-02-25 19:39:11'),
-(14, 'FT-2021-00014', 'ER_00111', '172.16.8.1', NULL, NULL, NULL, NULL, 26, NULL, '2021-02-25', 6, 6, 13, 17, 1, 1, 0, '2021-02-25 19:47:03'),
+(12, 'FT-2021-00012', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-02-25', 0, 0, 0, 0, 0, 0, 1, '2021-02-25 19:21:44'),
+(13, 'FT-2021-00013', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-02-25', 0, 0, 0, 0, 0, 0, 1, '2021-02-25 19:39:11'),
+(14, 'FT-2021-00014', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-02-25', 0, 0, 0, 0, 0, 0, 1, '2021-02-25 19:47:03'),
 (15, 'FT-2021-00015', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-02-26', 0, 0, 0, 0, 0, 0, 1, '2021-02-26 15:24:00'),
 (16, 'FT-2021-00016', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-02-26', 0, 0, 0, 0, 0, 0, 1, '2021-02-26 15:59:14'),
 (17, 'FT-2021-00017', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-02-26', 0, 0, 0, 0, 0, 0, 1, '2021-02-26 16:08:50'),
@@ -574,17 +667,28 @@ INSERT INTO `ws_integraciones` (`idIntegracion`, `correlativo_integracion`, `nro
 (24, 'FT-2021-00024', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-04', 0, 0, 0, 0, 0, 0, 1, '2021-03-04 19:49:02'),
 (25, 'FT-2021-00025', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-04', 0, 0, 0, 0, 0, 0, 1, '2021-03-04 19:49:32'),
 (26, 'FT-2021-00026', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-04', 0, 0, 0, 0, 0, 0, 1, '2021-03-04 19:50:00'),
-(27, 'FT-2021-00027', 'OPTIMUS', '172.16.5.100', 51, 28, 29, 50, NULL, NULL, '2021-03-04', 1, 4, 4, 14, 1, 1, 0, '2021-03-04 20:02:47'),
-(28, 'FT-2021-00028', 'LP_0001', '172.16.8.100', 45, NULL, NULL, NULL, NULL, NULL, '2021-03-08', 4, 7, 13, 18, 1, 1, 0, '2021-03-08 17:16:57'),
-(29, 'FT-2021-00029', 'PC_0001', '172.16.5.180', 20, 42, 34, 37, NULL, NULL, '2021-03-08', 1, 2, 1, 12, 2, 2, 0, '2021-03-08 17:26:45'),
-(30, 'FT-2021-00030', 'PC_08000', '172.16.5.85', 18, 35, 41, 23, NULL, NULL, '2021-03-08', 1, 6, 13, 17, 1, 1, 0, '2021-03-08 17:27:08'),
-(31, 'FT-2021-00031', 'PC_08025', '172.16.5.20', 38, 44, 43, 36, NULL, NULL, '2021-03-08', 1, 6, 13, 17, 1, 1, 0, '2021-03-08 17:27:39'),
+(27, 'FT-2021-00027', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-04', 0, 0, 0, 0, 0, 0, 1, '2021-03-04 20:02:47'),
+(28, 'FT-2021-00028', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-08', 0, 0, 0, 0, 0, 0, 1, '2021-03-08 17:16:57'),
+(29, 'FT-2021-00029', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-08', 0, 0, 0, 0, 0, 0, 1, '2021-03-08 17:26:45'),
+(30, 'FT-2021-00030', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-08', 0, 0, 0, 0, 0, 0, 1, '2021-03-08 17:27:08'),
+(31, 'FT-2021-00031', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-08', 0, 0, 0, 0, 0, 0, 1, '2021-03-08 17:27:39'),
 (32, 'FT-2021-00032', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-08', 0, 0, 0, 0, 0, 0, 1, '2021-03-08 17:30:43'),
-(33, 'FT-2021-00033', 'IMP_0001', '172.16.5.100', NULL, NULL, NULL, NULL, NULL, 32, '2021-03-08', 3, 6, 13, 17, 1, 1, 0, '2021-03-08 18:05:26'),
-(34, 'FT-2021-00034', 'IMP_0002', '', NULL, NULL, NULL, NULL, NULL, 31, '2021-03-08', 3, 6, 13, 17, 1, 1, 0, '2021-03-08 18:07:01'),
-(35, 'FT-2021-00035', 'PYT_0001', '', NULL, NULL, NULL, NULL, NULL, 46, '2021-03-09', 16, 6, 13, 17, 1, 1, 0, '2021-03-09 16:15:20'),
-(36, 'FT-2021-00036', 'SW_00052', '', NULL, NULL, NULL, NULL, 49, NULL, '2021-03-09', 2, 6, 13, 17, 1, 1, 0, '2021-03-09 18:46:31'),
-(37, 'FT-2021-00037', 'ME_00001', '', NULL, NULL, NULL, NULL, NULL, 52, '2021-03-10', 17, 6, 13, 17, 1, 1, 0, '2021-03-10 14:23:57');
+(33, 'FT-2021-00033', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-08', 0, 0, 0, 0, 0, 0, 1, '2021-03-08 18:05:26'),
+(34, 'FT-2021-00034', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-08', 0, 0, 0, 0, 0, 0, 1, '2021-03-08 18:07:01'),
+(35, 'FT-2021-00035', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-09', 0, 0, 0, 0, 0, 0, 1, '2021-03-09 16:15:20'),
+(36, 'FT-2021-00036', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-09', 0, 0, 0, 0, 0, 0, 1, '2021-03-09 18:46:31'),
+(37, 'FT-2021-00037', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-10', 0, 0, 0, 0, 0, 0, 1, '2021-03-10 14:23:57'),
+(38, 'FT-2021-00038', 'OPTIMUS', '172.16.5.108', 54, 56, 55, 57, NULL, NULL, '2021-03-15', 1, 9, 13, 18, 1, 1, 0, '2021-03-15 15:20:23'),
+(39, 'FT-2021-00039', 'IMP_0001', '172.16.5.210', NULL, NULL, NULL, NULL, NULL, 59, '2021-03-15', 3, 9, 13, 18, 1, 1, 0, '2021-03-15 15:26:13'),
+(40, 'FT-2021-00040', 'SW_00001', '172.16.10.100', NULL, NULL, NULL, NULL, 58, NULL, '2021-03-15', 2, 9, 13, 18, 1, 1, 0, '2021-03-15 15:26:46'),
+(41, 'FT-2021-00041', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-15', 0, 0, 0, 0, 0, 0, 1, '2021-03-15 15:35:39'),
+(42, 'FT-2021-00042', 'PRYT', '', NULL, NULL, NULL, NULL, NULL, 69, '2021-03-22', 16, 13, 13, 16, 1, 1, 0, '2021-03-22 15:22:50'),
+(43, 'FT-2021-00043', 'SW_00002', '', NULL, NULL, NULL, NULL, 75, NULL, '2021-03-22', 2, 12, 10, 24, 1, 1, 0, '2021-03-22 17:20:09'),
+(44, 'FT-2021-00044', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-22', 0, 0, 0, 0, 0, 0, 1, '2021-03-22 19:53:44'),
+(45, 'FT-2021-00045', 'LAP_0004', '172.16.5.125', 76, NULL, NULL, NULL, NULL, NULL, '2021-03-22', 4, 9, 13, 18, 1, 1, 0, '2021-03-22 19:56:21'),
+(46, 'FT-2021-00046', 'AK', '172.16.0.1', 77, NULL, NULL, NULL, NULL, NULL, '2021-03-22', 4, 12, 10, 24, 1, 1, 0, '2021-03-22 20:09:43'),
+(49, 'FT-2021-00047', 'IMP_0002', '', NULL, NULL, NULL, NULL, NULL, 78, '2021-03-23', 3, 11, 10, 24, 1, 1, 0, '2021-03-23 17:07:08'),
+(50, 'FT-2021-00048', 'SW_00003', '172.16.5.100', NULL, NULL, NULL, NULL, 80, NULL, '2021-03-23', 2, 11, 10, 24, 1, 1, 0, '2021-03-23 17:47:51');
 
 --
 -- Disparadores `ws_integraciones`
@@ -658,13 +762,10 @@ CREATE TABLE `ws_responsables` (
 --
 
 INSERT INTO `ws_responsables` (`idResponsable`, `dni`, `nombresResp`, `apellidosResp`, `idOficina`, `idServicio`) VALUES
-(2, '77478996', 'Usuario', 'Cirugía', 1, 12),
-(3, '77478997', 'Usuario', 'Archivo', 31, 13),
-(4, '77478998', 'Usuario', 'Comunicaciones', 4, 14),
-(5, '77478999', 'Betty', 'Aguilar Padilla', 13, 15),
-(6, '77478994', 'Mónica Nohemí', 'Rosas Sánchez', 13, 17),
-(7, '77478995', 'Olger', 'Castro Palacios', 13, 18),
-(8, '77478993', 'William', 'Guerrero Sandoval', 13, 16);
+(9, '77478995', 'Olger Ivan', 'Castro Palacios', 13, 18),
+(11, '45249201', 'Moises Ronald', 'Calderon Cotos', 10, 24),
+(12, '42095865', 'Roner', 'Mas Valle', 10, 24),
+(13, '42162499', 'William', 'Guerrero Sandoval', 13, 16);
 
 -- --------------------------------------------------------
 
@@ -714,7 +815,8 @@ INSERT INTO `ws_servicios` (`id_subarea`, `id_area`, `subarea`, `fecha_creacion`
 (19, 3, 'Jefatura', '2021-03-10 15:33:55'),
 (20, 8, 'Adjunta', '2021-03-12 18:37:30'),
 (21, 8, 'Secretaría', '2021-03-12 18:38:02'),
-(23, 32, 'Jefatura', '2021-03-12 19:10:57');
+(23, 32, 'Jefatura', '2021-03-12 19:10:57'),
+(24, 10, 'Contabilidad', '2021-03-15 16:26:45');
 
 -- --------------------------------------------------------
 
@@ -908,7 +1010,7 @@ ALTER TABLE `ws_bajas`
 -- AUTO_INCREMENT de la tabla `ws_categorias`
 --
 ALTER TABLE `ws_categorias`
-  MODIFY `idCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `idCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_departamentos`
@@ -920,13 +1022,13 @@ ALTER TABLE `ws_departamentos`
 -- AUTO_INCREMENT de la tabla `ws_diagnosticos`
 --
 ALTER TABLE `ws_diagnosticos`
-  MODIFY `idDiagnostico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idDiagnostico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_equipos`
 --
 ALTER TABLE `ws_equipos`
-  MODIFY `idEquipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `idEquipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_estado`
@@ -938,7 +1040,7 @@ ALTER TABLE `ws_estado`
 -- AUTO_INCREMENT de la tabla `ws_integraciones`
 --
 ALTER TABLE `ws_integraciones`
-  MODIFY `idIntegracion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `idIntegracion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_mantenimientos`
@@ -956,7 +1058,7 @@ ALTER TABLE `ws_perfiles`
 -- AUTO_INCREMENT de la tabla `ws_responsables`
 --
 ALTER TABLE `ws_responsables`
-  MODIFY `idResponsable` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idResponsable` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_segmento`
@@ -968,7 +1070,7 @@ ALTER TABLE `ws_segmento`
 -- AUTO_INCREMENT de la tabla `ws_servicios`
 --
 ALTER TABLE `ws_servicios`
-  MODIFY `id_subarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_subarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_situacion`
@@ -986,7 +1088,7 @@ ALTER TABLE `ws_tipotrabajo`
 -- AUTO_INCREMENT de la tabla `ws_usuarios`
 --
 ALTER TABLE `ws_usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

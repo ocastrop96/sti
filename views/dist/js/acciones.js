@@ -17,7 +17,7 @@ $(".tablaAcciones").DataTable({
     },
 });
 // Editar Accion realizada
-$(".tablaAcciones tbody").on("click", ".btnEditarAccion", function() {
+$(".tablaAcciones tbody").on("click", ".btnEditarAccion", function () {
     var idAccion = $(this).attr("idAccion");
     var datos = new FormData();
 
@@ -30,16 +30,18 @@ $(".tablaAcciones tbody").on("click", ".btnEditarAccion", function() {
         contentType: false,
         processData: false,
         dataType: "json",
-        success: function(respuesta) {
+        success: function (respuesta) {
             $("#edtAccion").val(respuesta["accionrealizada"]);
             $("#idAccion").val(respuesta["idAccion"]);
             $("#edtacDiag").val(respuesta["segment"]);
             $("#edtacDiag").html(respuesta["descSegmento"]);
+            $("#nSeg2").val(respuesta["segment"]);
+            $("#accAnt").val(respuesta["accionrealizada"]);
         },
     });
 });
 // Validar accion
-$("#newAccion").change(function() {
+$("#newAccion").change(function () {
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -59,7 +61,7 @@ $("#newAccion").change(function() {
         contentType: false,
         processData: false,
         dataType: "json",
-        success: function(respuesta) {
+        success: function (respuesta) {
             if (respuesta) {
                 Toast.fire({
                     icon: 'warning',
@@ -70,7 +72,7 @@ $("#newAccion").change(function() {
         }
     });
 });
-$("#edtAccion").change(function() {
+$("#edtAccion").change(function () {
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -90,7 +92,7 @@ $("#edtAccion").change(function() {
         contentType: false,
         processData: false,
         dataType: "json",
-        success: function(respuesta) {
+        success: function (respuesta) {
             if (respuesta) {
                 Toast.fire({
                     icon: 'warning',
@@ -105,7 +107,7 @@ $("#edtAccion").change(function() {
 // Editar Accion realizada
 
 // Eliminar accion realizada
-$(".tablaAcciones tbody").on("click", ".btnEliminarAccion", function() {
+$(".tablaAcciones tbody").on("click", ".btnEliminarAccion", function () {
     var idAccion = $(this).attr("idAccion");
     Swal.fire({
         title: '¿Está seguro de eliminar la acción seleccionada?',
@@ -116,10 +118,84 @@ $(".tablaAcciones tbody").on("click", ".btnEliminarAccion", function() {
         cancelButtonText: 'Cancelar',
         cancelButtonColor: '#d33',
         confirmButtonText: '¡Sí, eliminar acción!'
-    }).then(function(result) {
+    }).then(function (result) {
         if (result.value) {
             window.location = "index.php?ruta=acciones&idAccion=" + idAccion;
         }
     });
 });
 // Eliminar accion realizada
+$("#newAccion").keyup(function () {
+    this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü ]/g, "");
+});
+$("#edtAccion").keyup(function () {
+    this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü ]/g, "");
+});
+// Validación de campos
+$("#btnRegAcc").on("click", function () {
+    $("#formRegAcc").validate({
+        rules: {
+            acDiag: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            newAccion: {
+                required: true,
+            },
+        },
+        messages: {
+            acDiag: {
+                valueNotEquals: "Selecciona Segmento",
+                required: true,
+            },
+            newAccion: {
+                required: "Ingrese acción realizada",
+            },
+        },
+        errorElement: "span",
+        errorPlacement: function (error, element) {
+            error.addClass("invalid-feedback");
+            element.closest(".form-group").append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass("is-invalid");
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass("is-invalid");
+        },
+    });
+});
+$("#btnEdtAcc").on("click", function () {
+    $("#formEdtAcc").validate({
+        rules: {
+            edtacDiag: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            edtAccion: {
+                required: true,
+            },
+        },
+        messages: {
+            edtacDiag: {
+                valueNotEquals: "Selecciona Segmento",
+                required: true,
+            },
+            edtAccion: {
+                required: "Ingrese acción realizada",
+            },
+        },
+        errorElement: "span",
+        errorPlacement: function (error, element) {
+            error.addClass("invalid-feedback");
+            element.closest(".form-group").append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass("is-invalid");
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass("is-invalid");
+        },
+    });
+});
+// Validación de campos

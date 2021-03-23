@@ -25,27 +25,26 @@ class ControladorAcciones
                           Swal.fire({
                             icon: "success",
                             title: "La acción ha sido registrada con éxito",
-                            showConfirmButton: true,
-                            confirmButtonText: "Cerrar",
-                            closeOnConfirm: false
-                          }).then((result)=>{
-                            if(result.value){
-                                window.location = "acciones";
-                            }});
+                            showConfirmButton: false,
+                            timer: 1100
+                              });
+                              function redirect() {
+                                  window.location = "acciones";
+                              }
+                              setTimeout(redirect, 1100);
                       </script>';
-                }
-                else {
+                } else {
                     echo '<script>
                     Swal.fire({
                       icon: "error",
                       title: "Hubo un error al registrar sus datos",
-                      showConfirmButton: true,
-                      confirmButtonText: "Cerrar",
-                      closeOnConfirm: false
-                    }).then((result)=>{
-                      if(result.value){
-                          window.location = "acciones";
-                      }});
+                      showConfirmButton: false,
+                      timer: 1100
+                        });
+                        function redirect() {
+                            window.location = "acciones";
+                        }
+                        setTimeout(redirect, 1100);
                 </script>';
                 }
             } else {
@@ -53,13 +52,13 @@ class ControladorAcciones
                 Swal.fire({
                   icon: "error",
                   title: "Ingrese correctamente sus datos, solo se admiten letras",
-                  showConfirmButton: true,
-                  confirmButtonText: "Cerrar",
-                  closeOnConfirm: false
-                }).then((result)=>{
-                  if(result.value){
-                      window.location = "acciones";
-                  }});
+                  showConfirmButton: false,
+                  timer: 1100
+                    });
+                    function redirect() {
+                        window.location = "acciones";
+                    }
+                    setTimeout(redirect, 1100);
             </script>';
             }
         }
@@ -81,27 +80,26 @@ class ControladorAcciones
                           Swal.fire({
                             icon: "success",
                             title: "La acción seleccionada ha sido editada con éxito",
-                            showConfirmButton: true,
-                            confirmButtonText: "Cerrar",
-                            closeOnConfirm: false
-                          }).then((result)=>{
-                            if(result.value){
-                                window.location = "acciones";
-                            }});
+                            showConfirmButton: false,
+                            timer: 1100
+                              });
+                              function redirect() {
+                                  window.location = "acciones";
+                              }
+                              setTimeout(redirect, 1100);
                       </script>';
-                }
-                else {
+                } else {
                     echo '<script>
                     Swal.fire({
                       icon: "error",
                       title: "Hubo un error al actualizar sus datos",
-                      showConfirmButton: true,
-                      confirmButtonText: "Cerrar",
-                      closeOnConfirm: false
-                    }).then((result)=>{
-                      if(result.value){
-                          window.location = "acciones";
-                      }});
+                      showConfirmButton: false,
+                      timer: 1100
+                        });
+                        function redirect() {
+                            window.location = "acciones";
+                        }
+                        setTimeout(redirect, 1100);
                 </script>';
                 }
             } else {
@@ -109,13 +107,13 @@ class ControladorAcciones
                 Swal.fire({
                   icon: "error",
                   title: "Ingrese correctamente sus datos, solo se admiten letras",
-                  showConfirmButton: true,
-                  confirmButtonText: "Cerrar",
-                  closeOnConfirm: false
-                }).then((result)=>{
-                  if(result.value){
-                      window.location = "acciones";
-                  }});
+                  showConfirmButton: false,
+                  timer: 1100
+                    });
+                    function redirect() {
+                        window.location = "acciones";
+                    }
+                    setTimeout(redirect, 1100);
             </script>';
             }
         }
@@ -133,13 +131,13 @@ class ControladorAcciones
                         Swal.fire({
                         icon: "success",
                         title: "¡La Acción ha sido eliminada con éxito!",
-                        showConfirmButton: true,
-                        confirmButtonText: "Cerrar",
-                        closeOnConfirm: false
-                        }).then((result)=>{
-                        if(result.value){
-                            window.location = "acciones";
-                        }});
+                        showConfirmButton: false,
+                        timer: 1100
+                          });
+                          function redirect() {
+                              window.location = "acciones";
+                          }
+                          setTimeout(redirect, 1100);
                     </script>';
             }
         }
