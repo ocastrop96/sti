@@ -46,7 +46,7 @@
 <div id="modal-registrar-diagnostico" class="modal fade" role="dialog" aria-modal="true" style="padding-right: 17px;">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form action="" role="form" method="post">
+      <form action="" role="form" id="formRegDiag" method="post">
         <div class="modal-header text-center" style="background: #6c757d; color: white">
           <h4 class="modal-title">Registrar Diagnóstico</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -56,30 +56,38 @@
         <div class="modal-body">
           <div class="row">
             <div class="col-12 mt-2">
-              <label for="oficina">Segmento &nbsp;<i class="fas fa-border-style"></i>*</label>
-              <select class="form-control" style="width: 100%;" id="caDiag" name="caDiag" required>
-                <option value="0">Seleccione segmento</option>
-                <?php
-                $itemSeg = null;
-                $valorSeg  = null;
-                $segmentos = ControladorSegmentos::ctrListarSegmentos($itemSeg, $valorSeg);
-                foreach ($segmentos as $key => $value) {
-                  echo '<option value="' . $value["idSegmento"] . '">' . $value["descSegmento"] . '</option>';
-                }
-                ?>
-              </select>
+              <div class="form-group">
+                <label for="oficina">Segmento &nbsp;<i class="fas fa-border-style"></i>*</label>
+                <div class="input-group">
+                  <select class="form-control" style="width: 100%;" id="caDiag" name="caDiag" required>
+                    <option value="0">Seleccione segmento</option>
+                    <?php
+                    $itemSeg = null;
+                    $valorSeg  = null;
+                    $segmentos = ControladorSegmentos::ctrListarSegmentos($itemSeg, $valorSeg);
+                    foreach ($segmentos as $key => $value) {
+                      echo '<option value="' . $value["idSegmento"] . '">' . $value["descSegmento"] . '</option>';
+                    }
+                    ?>
+                  </select>
+                </div>
+              </div>
             </div>
           </div>
           <div class="row">
             <div class="col-12">
-              <label for="newDiagnostico">Diagnóstico &nbsp;</label>
-              <i class="fas fa-laptop-medical"></i> *
-              <input type="text" name="newDiagnostico" id="newDiagnostico" class="form-control" placeholder="Ingrese detalle de diagnóstico" required autocomplete="off" autofocus="autofocus">
+              <div class="form-group">
+                <label for="newDiagnostico">Diagnóstico &nbsp;</label>
+                <i class="fas fa-laptop-medical"></i> *
+                <div class="input-group">
+                  <input type="text" name="newDiagnostico" id="newDiagnostico" class="form-control" placeholder="Ingrese detalle de diagnóstico" required autocomplete="off" autofocus="autofocus">
+                </div>
+              </div>
             </div>
           </div>
         </div>
         <div class="modal-footer justify-content-center">
-          <button type="submit" class="btn btn-secondary"><i class="fas fa-save"></i> Guardar</button>
+          <button type="submit" class="btn btn-secondary" id="btnRegDiag"><i class="fas fa-save"></i> Guardar</button>
           <button type="reset" class="btn btn-danger"><i class="fas fa-eraser"></i> Limpiar</button>
           <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fas fa-times-circle"></i> Salir</button>
         </div>
@@ -96,7 +104,7 @@
 <div id="modal-editar-diagnostico" class="modal fade" role="dialog" aria-modal="true" style="padding-right: 17px;">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form action="" role="form" method="post">
+      <form action="" role="form" id="formEdtDiag" method="post">
         <div class="modal-header text-center" style="background: #6c757d; color: white">
           <h4 class="modal-title">Editar Diagnóstico</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -106,31 +114,41 @@
         <div class="modal-body">
           <div class="row">
             <div class="col-12 mt-2">
-              <label for="oficina">Segmento &nbsp;<i class="fas fa-border-style"></i>*</label>
-              <select class="form-control" style="width: 100%;" name="edtcaDiag" id="edtcaDiag2" required>
-                <option value="" id="edtcaDiag"></option>
-                <?php
-                $itemCat1 = null;
-                $valorCat1  = null;
-                $categorias1 = ControladorSegmentos::ctrListarSegmentos($itemCat1, $valorCat1);
-                foreach ($categorias1 as $key => $value) {
-                  echo '<option value="' . $value["idSegmento"] . '">' . $value["descSegmento"] . '</option>';
-                }
-                ?>
-              </select>
+              <div class="form-group">
+                <label for="oficina">Segmento &nbsp;<i class="fas fa-border-style"></i>*</label>
+                <div class="input-group">
+                  <select class="form-control" style="width: 100%;" name="edtcaDiag" id="edtcaDiag2" required>
+                    <option value="" id="edtcaDiag"></option>
+                    <?php
+                    $itemCat1 = null;
+                    $valorCat1  = null;
+                    $categorias1 = ControladorSegmentos::ctrListarSegmentos($itemCat1, $valorCat1);
+                    foreach ($categorias1 as $key => $value) {
+                      echo '<option value="' . $value["idSegmento"] . '">' . $value["descSegmento"] . '</option>';
+                    }
+                    ?>
+                  </select>
+                </div>
+              </div>
             </div>
           </div>
           <div class="row">
             <div class="col-12">
-              <label for="edtDiagnostico">Diagnóstico &nbsp;</label>
-              <i class="fas fa-laptop-medical"></i> *
-              <input type="text" name="edtDiagnostico" id="edtDiagnostico" class="form-control" required autocomplete="off" autofocus="autofocus">
-              <input type="hidden" name="idDiagnostico" id="idDiagnostico">
+              <div class="form-group">
+                <label for="edtDiagnostico">Diagnóstico &nbsp;</label>
+                <i class="fas fa-laptop-medical"></i> *
+                <div class="input-group">
+                  <input type="text" name="edtDiagnostico" id="edtDiagnostico" class="form-control" required autocomplete="off" autofocus="autofocus">
+                  <input type="hidden" name="idDiagnostico" id="idDiagnostico">
+                  <input type="hidden" name="nSegmento" id="nSegmento">
+                  <input type="hidden" name="diagAnt" id="diagAnt">
+                </div>
+              </div>
             </div>
           </div>
         </div>
         <div class="modal-footer justify-content-center">
-          <button type="submit" class="btn btn-secondary"><i class="fas fa-save"></i> Guardar cambios</button>
+          <button type="submit" class="btn btn-secondary" id="btnEdtDiag"><i class="fas fa-save"></i> Guardar cambios</button>
           <button type="reset" class="btn btn-danger"><i class="fas fa-eraser"></i> Limpiar</button>
           <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fas fa-times-circle"></i> Salir</button>
         </div>

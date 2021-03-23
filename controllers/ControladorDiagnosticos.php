@@ -23,28 +23,28 @@ class ControladorDiagnosticos
                 if ($rptRegDiagnostico == "ok") {
                     echo '<script>
                           Swal.fire({
-                            
+                            icon: "success",
                             title: "El diagnóstico ha sido registrado con éxito",
-                            showConfirmButton: true,
-                            confirmButtonText: "Cerrar",
-                            closeOnConfirm: false
-                          }).then((result)=>{
-                            if(result.value){
-                                window.location = "diagnosticos";
-                            }});
+                            showConfirmButton: false,
+                            timer: 1000
+                              });
+                              function redirect() {
+                                  window.location = "diagnosticos";
+                              }
+                              setTimeout(redirect, 1000);
                       </script>';
                 } else {
                     echo '<script>
                 Swal.fire({
                   icon: "error",
                   title: "Ha ocurrido un error al registrar sus datos",
-                  showConfirmButton: true,
-                  confirmButtonText: "Cerrar",
-                  closeOnConfirm: false
-                }).then((result)=>{
-                  if(result.value){
-                      window.location = "diagnosticos";
-                  }});
+                  showConfirmButton: false,
+                  timer: 1400
+                    });
+                    function redirect() {
+                        window.location = "diagnosticos";
+                    }
+                    setTimeout(redirect, 1400);
             </script>';
                 }
             } else {
@@ -52,13 +52,13 @@ class ControladorDiagnosticos
                 Swal.fire({
                   icon: "error",
                   title: "Ingrese correctamente sus datos, solo se permiten letras",
-                  showConfirmButton: true,
-                  confirmButtonText: "Cerrar",
-                  closeOnConfirm: false
-                }).then((result)=>{
-                  if(result.value){
-                      window.location = "diagnosticos";
-                  }});
+                  showConfirmButton: false,
+                  timer: 1400
+                    });
+                    function redirect() {
+                        window.location = "diagnosticos";
+                    }
+                    setTimeout(redirect, 1400);
             </script>';
             }
         }
@@ -80,26 +80,26 @@ class ControladorDiagnosticos
                           Swal.fire({
                             icon: "success",
                             title: "El diagnóstico ha sido editado con éxito",
-                            showConfirmButton: true,
-                            confirmButtonText: "Cerrar",
-                            closeOnConfirm: false
-                          }).then((result)=>{
-                            if(result.value){
-                                window.location = "diagnosticos";
-                            }});
+                            showConfirmButton: false,
+                            timer: 1400
+                              });
+                              function redirect() {
+                                  window.location = "diagnosticos";
+                              }
+                              setTimeout(redirect, 1400);
                       </script>';
                 } else {
                     echo '<script>
                 Swal.fire({
                   icon: "error",
                   title: "Ha ocurrido un error al actualizar sus datos",
-                  showConfirmButton: true,
-                  confirmButtonText: "Cerrar",
-                  closeOnConfirm: false
-                }).then((result)=>{
-                  if(result.value){
-                      window.location = "diagnosticos";
-                  }});
+                  showConfirmButton: false,
+                  timer: 1400
+                    });
+                    function redirect() {
+                        window.location = "diagnosticos";
+                    }
+                    setTimeout(redirect, 1400);
             </script>';
                 }
             } else {
@@ -107,13 +107,13 @@ class ControladorDiagnosticos
                 Swal.fire({
                   icon: "error",
                   title: "Ingrese correctamente sus datos, solo se admiten letras",
-                  showConfirmButton: true,
-                  confirmButtonText: "Cerrar",
-                  closeOnConfirm: false
-                }).then((result)=>{
-                  if(result.value){
-                      window.location = "diagnosticos";
-                  }});
+                  showConfirmButton: false,
+                  timer: 1400
+                    });
+                    function redirect() {
+                        window.location = "diagnosticos";
+                    }
+                    setTimeout(redirect, 1400);
             </script>';
             }
         }
@@ -132,13 +132,13 @@ class ControladorDiagnosticos
                         Swal.fire({
                         icon: "success",
                         title: "¡El diagnostico ha sido eliminado con éxito!",
-                        showConfirmButton: true,
-                        confirmButtonText: "Cerrar",
-                        closeOnConfirm: false
-                        }).then((result)=>{
-                        if(result.value){
-                            window.location = "diagnosticos";
-                        }});
+                        showConfirmButton: false,
+                        timer: 1400
+                          });
+                          function redirect() {
+                              window.location = "diagnosticos";
+                          }
+                          setTimeout(redirect, 1400);
                     </script>';
             }
         }
