@@ -209,7 +209,7 @@
                 <label for="erGarantia">Garantía &nbsp;</label>
                 <i class="fas fa-award"></i> *
                 <div class="input-group">
-                  <input type="text" class="form-control" min="0" placeholder="Ingrese años de garantía" id="erGarantia" name="erGarantia" required autocomplete="off">
+                  <input type="text" class="form-control" placeholder="Ingrese años de garantía" id="erGarantia" name="erGarantia" required autocomplete="off">
                 </div>
               </div>
             </div>

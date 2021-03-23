@@ -17,10 +17,18 @@ $('[data-mask]').inputmask();
 $("#nroERed").keyup(function () {
     this.value = (this.value + "").replace(/[^a-zA-Z0-9_]/g, "");
 });
+$("#edtnroERed").keyup(function () {
+    this.value = (this.value + "").replace(/[^a-zA-Z0-9_]/g, "");
+});
 $("#nroERed").keyup(function () {
     var nRed = $(this).val();
     var mayusnRED = nRed.toUpperCase();
     $("#nroERed").val(mayusnRED);
+});
+$("#edtnroERed").keyup(function () {
+    var nRed2 = $(this).val();
+    var mayusnRED2 = nRed2.toUpperCase();
+    $("#edtnroERed").val(mayusnRED2);
 });
 $("#serieERed").on("change", function () {
     var idEquipo = $(this).val();
@@ -76,6 +84,8 @@ $(".tablaIntegraER tbody").on("click", ".btnEditarIntegraER", function () {
             $("#edtServ").val(respuesta["servicio_in"]);
             $("#edtEst").val(respuesta["estado"]);
             $("#edtCond").val(respuesta["condicionPC"]);
+            $("#nroAnt3").val(respuesta["nro_eq"]);
+            $("#ipAnt3").val(respuesta["ip"]);
         }
     });
 });
@@ -109,7 +119,7 @@ $("#edtEqRed1").on("change", function () {
     $("#edtnroERed").val("");
     $("#edtnroERed").attr("placeholder", "Ingresa el nuevo N°");
 });
-$(".tablaIntegraER tbody").on("click", ".btnAnularIntegraER", function() {
+$(".tablaIntegraER tbody").on("click", ".btnAnularIntegraER", function () {
     var idIntegracion = $(this).attr("idIntegracion");
     Swal.fire({
         title: '¿Está seguro de anular la ficha?',
@@ -120,13 +130,217 @@ $(".tablaIntegraER tbody").on("click", ".btnAnularIntegraER", function() {
         cancelButtonText: 'Cancelar',
         cancelButtonColor: '#d33',
         confirmButtonText: '¡Sí, anular ficha!'
-    }).then(function(result) {
+    }).then(function (result) {
         if (result.value) {
             window.location = "index.php?ruta=integracion-er&idIntegracion=" + idIntegracion;
         }
     })
 });
-$(".tablaIntegraER tbody").on("click", ".btnImprimirFichaER", function() {
+$(".tablaIntegraER tbody").on("click", ".btnImprimirFichaER", function () {
     var idIntegracion = $(this).attr("idIntegracion");
     window.open("reports/ficha-integra-er.php?idIntegracion=" + idIntegracion, "_blank");
+});
+$.validator.addMethod(
+    "valueNotEquals",
+    function (value, element, arg) {
+        return arg !== value;
+    },
+    "Value must not equal arg."
+);
+$("#btnRegIntR").on("click", function () {
+    $("#formRegIntR").validate({
+        rules: {
+            tEqRed: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            nroERed: {
+                required: true,
+            },
+            serieERed: {
+                valueNotEquals: "0",
+                required: true,
+            },
+        },
+        messages: {
+            tEqRed: {
+                valueNotEquals: "Seleccione Categoría",
+                required: "Dato querido",
+            },
+            nroERed: {
+                required: "Ingrese N° de Equipo",
+            },
+            serieERed: {
+                valueNotEquals: "Seleccione N° serie de Equipo de Red",
+                required: "Dato querido",
+            },
+        },
+        errorElement: "span",
+        errorPlacement: function (error, element) {
+            error.addClass("invalid-feedback");
+            element.closest(".form-group").append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass("is-invalid");
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass("is-invalid");
+        },
+    });
+});
+$("#btnEdtIntR").on("click", function () {
+    $("#formEdtIntR").validate({
+        rules: {
+            edtnroERed: {
+                required: true,
+            },
+        },
+        messages: {
+            edtnroERed: {
+                required: "Ingrese N° de Equipo",
+            },
+        },
+        errorElement: "span",
+        errorPlacement: function (error, element) {
+            error.addClass("invalid-feedback");
+            element.closest(".form-group").append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass("is-invalid");
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass("is-invalid");
+        },
+    });
+});
+
+$("#nroERed").focusout(function () {
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 1500,
+    });
+    var validarNro = $(this).val();
+    var datos = new FormData();
+    datos.append("validarNro", validarNro);
+    $.ajax({
+        url: "lib/ajaxIntegraciones.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function (respuesta) {
+            if (respuesta) {
+                Toast.fire({
+                    icon: "warning",
+                    title: " El número de PC ya se encuentra registrado",
+                });
+                $("#nroERed").val("");
+                $("#nroERed").focus();
+            }
+        },
+    });
+});
+$("#ipERed").focusout(function () {
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 1500,
+    });
+    var validarIP = $(this).val();
+    if (validarIP != "") {
+        var datos = new FormData();
+        datos.append("validarIP", validarIP);
+        $.ajax({
+            url: "lib/ajaxIntegraciones.php",
+            method: "POST",
+            data: datos,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: "json",
+            success: function (respuesta) {
+                if (respuesta) {
+                    Toast.fire({
+                        icon: "warning",
+                        title: " El número de IP ya se encuentra registrado",
+                    });
+                    $("#ipERed").val("");
+                    $("#ipERed").focus();
+                }
+            },
+        });
+    }
+});
+$("#edtnroERed").focusout(function () {
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 1500,
+    });
+    var validarNro2 = $(this).val();
+    var v111 = $("#nroAnt3").val();
+
+    if (validarNro2 != v111) {
+        var datos2 = new FormData();
+        datos2.append("validarNro", validarNro2);
+        $.ajax({
+            url: "lib/ajaxIntegraciones.php",
+            method: "POST",
+            data: datos2,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: "json",
+            success: function (respuesta) {
+                if (respuesta) {
+                    Toast.fire({
+                        icon: "warning",
+                        title: " El número de PC ya se encuentra registrado",
+                    });
+                    $("#edtnroERed").val(v111);
+                    $("#edtnroERed").focus();
+                }
+            },
+        });
+    }
+});
+$("#edtipERed").focusout(function () {
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 1500,
+    });
+    var validarIP2 = $(this).val();
+    var v222 = $("#ipAnt3").val();
+
+    if (validarIP2 != v222) {
+        var datos = new FormData();
+        datos.append("validarIP", validarIP2);
+        $.ajax({
+            url: "lib/ajaxIntegraciones.php",
+            method: "POST",
+            data: datos,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: "json",
+            success: function (respuesta) {
+                if (respuesta) {
+                    Toast.fire({
+                        icon: "warning",
+                        title: " El número de IP ya se encuentra registrado",
+                    });
+                    $("#edtipERed").val(v222);
+                    $("#edtipERed").focus();
+                }
+            },
+        });
+    }
 });

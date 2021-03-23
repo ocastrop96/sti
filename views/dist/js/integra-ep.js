@@ -15,7 +15,7 @@ $(".tablaIntegraEP").DataTable({
 });
 $('[data-mask]').inputmask();
 
-$("#nroImp").keyup(function () {
+$("#edtnroERed").keyup(function () {
     this.value = (this.value + "").replace(/[^a-zA-Z0-9_]/g, "");
 });
 $("#edtnroImp").keyup(function () {
