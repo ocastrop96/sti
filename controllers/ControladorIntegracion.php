@@ -224,26 +224,26 @@ class ControladorIntegracion
                     Swal.fire({
                       icon: "success",
                       title: "La Ficha ha sido registrada con éxito",
-                      showConfirmButton: true,
-                      confirmButtonText: "Cerrar",
-                      closeOnConfirm: false
-                    }).then((result)=>{
-                      if(result.value){
-                          window.location = "integracion-ep";
-                      }});
+                      showConfirmButton: false,
+                      timer: 1400
+                        });
+                        function redirect() {
+                            window.location = "integracion-ep";
+                        }
+                        setTimeout(redirect, 1400);
                 </script>';
                 } else {
                     echo '<script>
                     Swal.fire({
                       icon: "error",
                       title: "Ha ocurrido un error, revíse sus datos",
-                      showConfirmButton: true,
-                      confirmButtonText: "Cerrar",
-                      closeOnConfirm: false
-                    }).then((result)=>{
-                      if(result.value){
-                          window.location = "integracion-ep";
-                      }});
+                      showConfirmButton: false,
+                      timer: 1400
+                        });
+                        function redirect() {
+                            window.location = "integracion-ep";
+                        }
+                        setTimeout(redirect, 1400);
                 </script>';
                 }
             }
@@ -328,26 +328,26 @@ class ControladorIntegracion
                     Swal.fire({
                       icon: "success",
                       title: "La Ficha ha sido editada con éxito",
-                      showConfirmButton: true,
-                      confirmButtonText: "Cerrar",
-                      closeOnConfirm: false
-                    }).then((result)=>{
-                      if(result.value){
-                          window.location = "integracion-ep";
-                      }});
+                      showConfirmButton: false,
+                      timer: 1400
+                        });
+                        function redirect() {
+                            window.location = "integracion-ep";
+                        }
+                        setTimeout(redirect, 1400);
                 </script>';
                 } else {
                     echo '<script>
                     Swal.fire({
                       icon: "error",
                       title: "Ha ocurrido un error, revíse sus datos",
-                      showConfirmButton: true,
-                      confirmButtonText: "Cerrar",
-                      closeOnConfirm: false
-                    }).then((result)=>{
-                      if(result.value){
-                          window.location = "integracion-ep";
-                      }});
+                      showConfirmButton: false,
+                      timer: 1400
+                        });
+                        function redirect() {
+                            window.location = "integracion-ep";
+                        }
+                        setTimeout(redirect, 1400);
                 </script>';
                 }
             }

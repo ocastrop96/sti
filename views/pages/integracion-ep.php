@@ -51,7 +51,7 @@
 <div id="modal-integra-ep" class="modal fade" role="dialog" aria-modal="true" style="padding-right: 17px;">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <form action="" role="form" method="post">
+      <form action="" role="form" id="formRegIntPO" method="post">
         <div class="modal-header text-center" style="background: #6c757d; color: white">
           <h4 class="modal-title">Registrar Integración de Impresora,Fotocopiadora o Escáner</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -61,62 +61,82 @@
         <div class="modal-body">
           <div class="row">
             <div class="col-12 col-md-3">
-              <label for="fechita2">Fecha de Registro &nbsp;</label>
-              <i class="fas fa-calendar-alt"></i> *
-              <input type="text" class="form-control" readonly value="
+              <div class="form-group">
+                <label for="fechita2">Fecha de Registro &nbsp;</label>
+                <i class="fas fa-calendar-alt"></i> *
+                <div class="input-group">
+                  <input type="text" class="form-control" readonly value="
               <?php
               date_default_timezone_set('America/Lima');
               $fechaActual = date('d-m-Y');
               echo $fechaActual; ?>
                 " id="fechita" name="fechita2">
+                </div>
+              </div>
             </div>
             <div class="col-12 col-md-3">
-              <label for="tEqImp">Tipo de Equipo &nbsp;</label>
-              <i class="fas fa-th"></i> *
-              <select class="form-control" style="width: 100%;" id="tEqImp" name="tEqImp">
-                <option value="0">Seleccione tipo</option>
-                <?php
-                $cat2 = ControladorCategorias::ctrListarCategoriaOtros2();
-                foreach ($cat2 as $key => $value) {
-                  echo '<option value="' . $value["idCategoria"] . '">' . $value["categoria"] . '</option>';
-                }
-                ?>
-              </select>
+              <div class="form-group">
+                <label for="tEqImp">Tipo de Equipo &nbsp;</label>
+                <i class="fas fa-th"></i> *
+                <div class="input-group">
+                  <select class="form-control" style="width: 100%;" id="tEqImp" name="tEqImp">
+                    <option value="0">Seleccione tipo</option>
+                    <?php
+                    $cat2 = ControladorCategorias::ctrListarCategoriaOtros2();
+                    foreach ($cat2 as $key => $value) {
+                      echo '<option value="' . $value["idCategoria"] . '">' . $value["categoria"] . '</option>';
+                    }
+                    ?>
+                  </select>
+                </div>
+              </div>
             </div>
             <div class="col-12 col-md-3">
-              <label for="nroImp">N° de Equipo &nbsp;</label>
-              <i class="fas fa-hashtag"></i> *
-              <input type="text" class="form-control" autocomplete="off" id="nroImp" name="nroImp" maxlength="8" placeholder="Ingrese N°de Impresora" required>
+              <div class="form-group">
+                <label for="nroImp">N° de Equipo &nbsp;</label>
+                <i class="fas fa-hashtag"></i> *
+                <div class="input-group">
+                  <input type="text" class="form-control" autocomplete="off" id="nroImp" name="nroImp" maxlength="8" placeholder="Ingrese N°de Impresora" required>
+                </div>
+              </div>
             </div>
             <div class="col-12 col-md-3">
-              <label for="ip_imp">IP &nbsp;</label>
-              <i class="fas fa-network-wired"></i> *
-              <input type="text" class="form-control" data-inputmask="'alias': 'ip'" data-mask autocomplete="off" placeholder="Ingrese IP (Opcional)" id="ip_imp" name="ip_imp">
+              <div class="form-group">
+                <label for="ip_imp">IP &nbsp;</label>
+                <i class="fas fa-network-wired"></i> *
+                <div class="input-group">
+                  <input type="text" class="form-control" data-inputmask="'alias': 'ip'" data-mask autocomplete="off" placeholder="Ingrese IP (Opcional)" id="ip_imp" name="ip_imp">
+                </div>
+              </div>
             </div>
           </div>
           <div class="row mt-2">
             <div class="col-12 col-md-12">
-              <label for="serieImp">IMPRESORA, ESCANER, FOTOCOPIADORA &nbsp;</label>
-              <i class="fas fa-laptop-code"></i> *
-              <select class="form-control" style="width: 100%;" id="serieImp" name="serieImp">
-                <option value="0">Seleccione N° Serie de Impresora o Periférico a Integrar</option>
-                <?php
-                $sImp = ControladorIntegracion::ctrListarSeriesImp();
-                foreach ($sImp as $key => $value) {
-                  echo '<option value="' . $value["idEquipo"] . '">' . $value["serie"] . '</option>';
-                }
-                ?>
-                <input type="hidden" id="impResp" name="impResp">
-                <input type="hidden" id="impOfi" name="impOfi">
-                <input type="hidden" id="impServ" name="impServ">
-                <input type="hidden" id="impEst" name="impEst">
-                <input type="hidden" id="impCond" name="impCond">
-              </select>
+              <div class="form-group">
+                <label for="serieImp">IMPRESORA, ESCANER, FOTOCOPIADORA &nbsp;</label>
+                <i class="fas fa-laptop-code"></i> *
+                <div class="input-group">
+                  <select class="form-control" style="width: 100%;" id="serieImp" name="serieImp">
+                    <option value="0">Seleccione N° Serie de Impresora o Periférico a Integrar</option>
+                    <?php
+                    $sImp = ControladorIntegracion::ctrListarSeriesImp();
+                    foreach ($sImp as $key => $value) {
+                      echo '<option value="' . $value["idEquipo"] . '">' . $value["serie"] . '</option>';
+                    }
+                    ?>
+                    <input type="hidden" id="impResp" name="impResp">
+                    <input type="hidden" id="impOfi" name="impOfi">
+                    <input type="hidden" id="impServ" name="impServ">
+                    <input type="hidden" id="impEst" name="impEst">
+                    <input type="hidden" id="impCond" name="impCond">
+                  </select>
+                </div>
+              </div>
             </div>
           </div>
         </div>
         <div class="modal-footer justify-content-center">
-          <button type="submit" class="btn btn-secondary"><i class="fas fa-save"></i> Guardar</button>
+          <button type="submit" class="btn btn-secondary" id="btnRegIntPO"><i class="fas fa-save"></i> Guardar</button>
           <button type="reset" class="btn btn-danger"><i class="fas fa-eraser"></i> Limpiar</button>
           <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fas fa-times-circle"></i> Salir</button>
         </div>
@@ -133,7 +153,7 @@
 <div id="modal-editar-integraEP" class="modal fade" role="dialog" aria-modal="true" style="padding-right: 17px;">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <form action="" role="form" method="post">
+      <form action="" role="form" id="formEdtIntPO" method="post">
         <div class="modal-header text-center" style="background: #6c757d; color: white">
           <h4 class="modal-title">Editar Integración de Impresora,Fotocopiadora o Escáner</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -143,6 +163,10 @@
         <div class="modal-body">
           <div class="row">
             <div class="col-12 col-md-4">
+              <div class="form-group">
+                <div class="input-group">
+                </div>
+              </div>
               <label for="edtEqImp1">Tipo de Equipo &nbsp;</label>
               <i class="fas fa-th"></i> *
               <select class="form-control" style="width: 100%;" id="edtEqImp1" name="edtEqImp">
@@ -154,14 +178,24 @@
                 }
                 ?>
                 <input type="hidden" name="idIntegracion" id="idIntegracion">
+                <input type="hidden" name="nroAnt2" id="nroAnt2">
+                <input type="hidden" name="ipAnt2" id="ipAnt2">
               </select>
             </div>
             <div class="col-12 col-md-4">
+              <div class="form-group">
+                <div class="input-group">
+                </div>
+              </div>
               <label for="edtnroImp">N° de Equipo &nbsp;</label>
               <i class="fas fa-hashtag"></i> *
               <input type="text" class="form-control" autocomplete="off" id="edtnroImp" name="edtnroImp" maxlength="8" required>
             </div>
             <div class="col-12 col-md-4">
+              <div class="form-group">
+                <div class="input-group">
+                </div>
+              </div>
               <label for="edtip_imp">IP &nbsp;</label>
               <i class="fas fa-network-wired"></i> *
               <input type="text" class="form-control" data-inputmask="'alias': 'ip'" data-mask autocomplete="off" id="edtip_imp" name="edtip_imp">
@@ -169,6 +203,10 @@
           </div>
           <div class="row mt-2">
             <div class="col-12 col-md-12">
+              <div class="form-group">
+                <div class="input-group">
+                </div>
+              </div>
               <label for="edtserieImp1">IMPRESORA, ESCANER, FOTOCOPIADORA &nbsp;</label>
               <i class="fas fa-laptop-code"></i> *
               <select class="form-control" style="width: 100%;" id="edtserieImp1" name="edtserieImp">
@@ -189,7 +227,7 @@
           </div>
         </div>
         <div class="modal-footer justify-content-center">
-          <button type="submit" class="btn btn-secondary"><i class="fas fa-save"></i> Guardar cambios</button>
+          <button type="submit" class="btn btn-secondary" id="btnEdtIntPO"><i class="fas fa-save"></i> Guardar cambios</button>
           <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fas fa-times-circle"></i> Salir</button>
         </div>
         <?php

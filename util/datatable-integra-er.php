@@ -14,7 +14,7 @@ class TablaIntegraR
             "data": [';
 
         for ($i = 0; $i < count($integracion); $i++) {
-            $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarIntegraER' idTipo='" . $integracion[$i]["tipo_equipo"] . "' idIntegracion='" . $integracion[$i]["idIntegracion"] . "' data-toggle='modal' data-target='#modal-editar-integraER'><i class='fas fa-edit'></i></button><button class='btn btn-success btnVerFichaER' idIntegracion='" . $integracion[$i]["idIntegracion"] . "'><i class='fas fa-eye'></i></button><button class='btn btn-info btnImprimirFichaER' idIntegracion='" . $integracion[$i]["idIntegracion"] . "'><i class='fas fa-print'></i></button><button class='btn btn-secondary btnAnularIntegraER' idIntegracion='" . $integracion[$i]["idIntegracion"] . "'><i class='fas fa-window-close'></i></button></div>";
+            $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarIntegraER' idTipo='" . $integracion[$i]["tipo_equipo"] . "' idIntegracion='" . $integracion[$i]["idIntegracion"] . "' data-toggle='modal' data-target='#modal-editar-integraER'><i class='fas fa-edit'></i></button><button class='btn btn-info btnImprimirFichaER' idIntegracion='" . $integracion[$i]["idIntegracion"] . "'><i class='fas fa-print'></i></button><button class='btn btn-secondary btnAnularIntegraER' idIntegracion='" . $integracion[$i]["idIntegracion"] . "'><i class='fas fa-window-close'></i></button></div>";
             $datos_json .= '[
                 "' . ($i + 1) . '",
                 "' . $integracion[$i]["correlativo_integracion"] . '",
