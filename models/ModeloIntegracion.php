@@ -2,6 +2,22 @@
 require_once "ConnectPDO.php";
 class ModeloIntegracion
 {
+    static public function mdlListarIntegracionIPNro($item, $valor)
+    {
+        if ($item != null) {
+            $stmt = Conexion::conectar()->prepare("SELECT nro_eq,ip FROM ws_integraciones WHERE $item = :$item");
+            $stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
+            $stmt->execute();
+            return $stmt->fetch();
+        } else {
+            $stmt = Conexion::conectar()->prepare("CALL LISTAR_INTEGRACIONC()");
+            $stmt->execute();
+            return $stmt->fetchAll();
+        }
+        //Cerramos la conexion por seguridad
+        $stmt->close();
+        $stmt = null;
+    }
     static public function mdlListarIntegracionC($item, $valor)
     {
         if ($item != null) {

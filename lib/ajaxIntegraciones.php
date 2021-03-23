@@ -2,7 +2,8 @@
 require_once "../controllers/ControladorIntegracion.php";
 require_once "../models/ModeloIntegracion.php";
 
-class AjaxIntegracionesC{
+class AjaxIntegracionesC
+{
 
     public $idIntegracion;
     public function ajaxListarEquiposPO()
@@ -40,6 +41,29 @@ class AjaxIntegracionesC{
         echo json_encode($respuesta4);
     }
 
+    // Validar IP Y Nombre de Equipo PC
+    public $validarIP;
+
+    public function ajaxValidarIP()
+    {
+        $item = "ip";
+        $valor = $this->validarIP;
+        $respuesta = ControladorIntegracion::ctrValidarIpNro($item, $valor);
+        echo json_encode($respuesta);
+    }
+
+    public $validarNro;
+
+    public function ajaxValidarNro()
+    {
+        $item = "nro_eq";
+        $valor = $this->validarNro;
+        $respuesta = ControladorIntegracion::ctrValidarIpNro($item, $valor);
+
+        echo json_encode($respuesta);
+    }
+    // Validar IP Y Nombre de Equipo PC
+
 }
 if (isset($_POST["idIntegracion"])) {
     $list1 = new AjaxIntegracionesC();
@@ -48,17 +72,27 @@ if (isset($_POST["idIntegracion"])) {
 }
 if (isset($_POST["idIntegracion2"])) {
     $l2 = new AjaxIntegracionesC();
-    $l2 -> idIntegracion2 = $_POST["idIntegracion2"];
+    $l2->idIntegracion2 = $_POST["idIntegracion2"];
     $l2->ajaxListarEquiposPO2();
 }
 
 if (isset($_POST["idIntegracion3"])) {
     $l3 = new AjaxIntegracionesC();
-    $l3 -> idIntegracion3 = $_POST["idIntegracion3"];
+    $l3->idIntegracion3 = $_POST["idIntegracion3"];
     $l3->ajaxListarEquiposI();
 }
 if (isset($_POST["idIntegracion4"])) {
     $l4 = new AjaxIntegracionesC();
-    $l4 -> idIntegracion4 = $_POST["idIntegracion4"];
+    $l4->idIntegracion4 = $_POST["idIntegracion4"];
     $l4->ajaxListarEquiposR();
+}
+if (isset($_POST["validarIP"])) {
+    $validar = new AjaxIntegracionesC();
+    $validar->validarIP = $_POST["validarIP"];
+    $validar->ajaxValidarIP();
+}
+if (isset($_POST["validarNro"])) {
+    $validar2 = new AjaxIntegracionesC();
+    $validar2->validarNro = $_POST["validarNro"];
+    $validar2->ajaxValidarNro();
 }

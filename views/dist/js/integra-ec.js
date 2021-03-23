@@ -159,6 +159,8 @@ $(".tablaIntegraEC tbody").on("click", ".btnEditarIntegraC", function () {
                 $("#datServ2").val(respuesta["servicio_in"]);
                 $("#datEst2").val(respuesta["estado"]);
                 $("#datCond2").val(respuesta["condicionPC"]);
+                $("#nroAnt").val(respuesta["nro_eq"]);
+                $("#ipAnt").val(respuesta["ip"]);
             }
         });
     }
@@ -188,6 +190,8 @@ $(".tablaIntegraEC tbody").on("click", ".btnEditarIntegraC", function () {
                 $("#datServ2").val(respuesta["servicio_in"]);
                 $("#datEst2").val(respuesta["estado"]);
                 $("#datCond2").val(respuesta["condicionPC"]);
+                $("#nroAnt").val(respuesta["nro_eq"]);
+                $("#ipAnt").val(respuesta["ip"]);
             }
         });
     }
@@ -297,77 +301,492 @@ $(".tablaIntegraEC tbody").on("click", ".btnImprimirFichaC", function () {
     // var idTipo = $(this).attr("idTipo");
     window.open("reports/ficha-integra-ec.php?idIntegracion=" + idIntegracion + "&idTipo=" + idTipo, "_blank");
 });
+$.validator.addMethod(
+    "valueNotEquals",
+    function (value, element, arg) {
+        return arg !== value;
+    },
+    "Value must not equal arg."
+);
 $("#btnRegIntC").on("click", function () {
     var tipoIntegra = $("#tipEq").val();
-
-    alert("Oke" + tipoIntegra);
-    // $("#formRegIntC").validate({
-    //     rules: {
-    //         tipEq: {
-    //             valueNotEquals: "0",
-    //             required: true,
-    //         },
-    //         nroEquipo: {
-    //             required: true,
-    //         },
-    //         ip_comp: {
-    //             required: true,
-    //         },
-    //         seriePC: {
-    //             valueNotEquals: "0",
-    //             required: true,
-    //         },
-    //         serieMon: {
-    //             valueNotEquals: "0",
-    //             required: true,
-    //         },
-    //         serieTec: {
-    //             valueNotEquals: "0",
-    //             required: true,
-    //         },
-    //         serieAcuEne: {
-    //             valueNotEquals: "0",
-    //             required: true,
-    //         },
-    //     },
-    //     messages: {
-    //         tipEq: {
-    //             valueNotEquals: "Seleccione Categoría",
-    //             required: "Dato querido",
-    //         },
-    //         nroEquipo: {
-    //             required: "Ingrese dato requerido",
-    //         },
-    //         ip_comp: {
-    //             required: "Ingrese dato requerido",
-    //         },
-    //         seriePC: {
-    //             valueNotEquals: "Selecciona Serie PC",
-    //             required: true,
-    //         },
-    //         serieMon: {
-    //             valueNotEquals: "Selecciona Serie Monitor",
-    //             required: true,
-    //         },
-    //         serieTec: {
-    //             valueNotEquals: "Selecciona Serie Teclado",
-    //             required: true,
-    //         },
-    //         serieAcuEne: {
-    //             valueNotEquals: "Selecciona Acumuludor o F. Energía",
-    //             required: true,
-    //         },
-    //     },
-    //     errorElement: "span",
-    //     errorPlacement: function (error, element) {
-    //         error.addClass("invalid-feedback");
-    //         element.closest(".form-group").append(error);
-    //     },
-    //     highlight: function (element, errorClass, validClass) {
-    //         $(element).addClass("is-invalid");
-    //     },
-    //     unhighlight: function (element, errorClass, validClass) {
-    //         $(element).removeClass("is-invalid");
-    //     },
-    // });
+    if (tipoIntegra == 1) {
+        $("#formRegIntC").validate({
+            rules: {
+                tipEq: {
+                    valueNotEquals: "0",
+                    required: true,
+                },
+                nroEquipo: {
+                    required: true,
+                },
+                ip_comp: {
+                    required: true,
+                },
+                seriePC: {
+                    valueNotEquals: "0",
+                    required: true,
+                },
+                serieMon: {
+                    valueNotEquals: "0",
+                    required: true,
+                },
+                serieTec: {
+                    valueNotEquals: "0",
+                    required: true,
+                },
+                serieAcuEne: {
+                    valueNotEquals: "0",
+                    required: true,
+                },
+            },
+            messages: {
+                tipEq: {
+                    valueNotEquals: "Seleccione Categoría",
+                    required: "Dato querido",
+                },
+                nroEquipo: {
+                    required: "Ingrese dato requerido",
+                },
+                ip_comp: {
+                    required: "Ingrese dato requerido",
+                },
+                seriePC: {
+                    valueNotEquals: "Selecciona Serie PC",
+                    required: true,
+                },
+                serieMon: {
+                    valueNotEquals: "Selecciona Serie Monitor",
+                    required: true,
+                },
+                serieTec: {
+                    valueNotEquals: "Selecciona Serie Teclado",
+                    required: true,
+                },
+                serieAcuEne: {
+                    valueNotEquals: "Selecciona Acumuludor o F. Energía",
+                    required: true,
+                },
+            },
+            errorElement: "span",
+            errorPlacement: function (error, element) {
+                error.addClass("invalid-feedback");
+                element.closest(".form-group").append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass("is-invalid");
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass("is-invalid");
+            },
+        });
+    }
+    else {
+        if (tipoIntegra == 4) {
+            $("#formRegIntC").validate({
+                rules: {
+                    tipEq: {
+                        valueNotEquals: "0",
+                        required: true,
+                    },
+                    nroEquipo: {
+                        required: true,
+                    },
+                    ip_comp: {
+                        required: true,
+                    },
+                    serieLaptop: {
+                        valueNotEquals: "0",
+                        required: true,
+                    },
+                },
+                messages: {
+                    tipEq: {
+                        valueNotEquals: "Seleccione Categoría",
+                        required: "Dato querido",
+                    },
+                    nroEquipo: {
+                        required: "Ingrese dato requerido",
+                    },
+                    ip_comp: {
+                        required: "Ingrese dato requerido",
+                    },
+                    serieLaptop: {
+                        valueNotEquals: "Selecciona Serie Laptop o Servidor",
+                        required: true,
+                    },
+                },
+                errorElement: "span",
+                errorPlacement: function (error, element) {
+                    error.addClass("invalid-feedback");
+                    element.closest(".form-group").append(error);
+                },
+                highlight: function (element, errorClass, validClass) {
+                    $(element).addClass("is-invalid");
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).removeClass("is-invalid");
+                },
+            });
+        }
+        if (tipoIntegra == 5) {
+            $("#formRegIntC").validate({
+                rules: {
+                    tipEq: {
+                        valueNotEquals: "0",
+                        required: true,
+                    },
+                    nroEquipo: {
+                        required: true,
+                    },
+                    ip_comp: {
+                        required: true,
+                    },
+                    serieLaptop: {
+                        valueNotEquals: "0",
+                        required: true,
+                    },
+                },
+                messages: {
+                    tipEq: {
+                        valueNotEquals: "Seleccione Categoría",
+                        required: "Dato querido",
+                    },
+                    nroEquipo: {
+                        required: "Ingrese dato requerido",
+                    },
+                    ip_comp: {
+                        required: "Ingrese dato requerido",
+                    },
+                    serieLaptop: {
+                        valueNotEquals: "Selecciona Serie Laptop o Servidor",
+                        required: true,
+                    },
+                },
+                errorElement: "span",
+                errorPlacement: function (error, element) {
+                    error.addClass("invalid-feedback");
+                    element.closest(".form-group").append(error);
+                },
+                highlight: function (element, errorClass, validClass) {
+                    $(element).addClass("is-invalid");
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).removeClass("is-invalid");
+                },
+            });
+        }
+    }
 });
+
+$.validator.addMethod(
+    "valueNotEquals",
+    function (value, element, arg) {
+        return arg !== value;
+    },
+    "Value must not equal arg."
+);
+$("#btnEdtIntC").on("click", function () {
+    var tipoIntegra2 = $("#edtTip").val();
+    if (tipoIntegra2 == 1) {
+        $("#formEdtIntC").validate({
+            rules: {
+                edtTip: {
+                    valueNotEquals: "0",
+                    required: true,
+                },
+                edtNEquipo: {
+                    required: true,
+                },
+                idIp: {
+                    required: true,
+                },
+                edtSeriePC: {
+                    valueNotEquals: "0",
+                    required: true,
+                },
+                edtSerieMon: {
+                    valueNotEquals: "0",
+                    required: true,
+                },
+                edtSerieTec: {
+                    valueNotEquals: "0",
+                    required: true,
+                },
+                edtSerieAcu: {
+                    valueNotEquals: "0",
+                    required: true,
+                },
+            },
+            messages: {
+                edtTip: {
+                    valueNotEquals: "Seleccione Categoría",
+                    required: "Dato querido",
+                },
+                idIp: {
+                    required: "Ingrese dato requerido",
+                },
+                ip_comp: {
+                    required: "Ingrese dato requerido",
+                },
+                edtSeriePC: {
+                    valueNotEquals: "Selecciona Serie PC",
+                    required: true,
+                },
+                edtserieMon: {
+                    valueNotEquals: "Selecciona Serie Monitor",
+                    required: true,
+                },
+                edtserieTec: {
+                    valueNotEquals: "Selecciona Serie Teclado",
+                    required: true,
+                },
+                edtserieAcuEne: {
+                    valueNotEquals: "Selecciona Acumuludor o F. Energía",
+                    required: true,
+                },
+            },
+            errorElement: "span",
+            errorPlacement: function (error, element) {
+                error.addClass("invalid-feedback");
+                element.closest(".form-group").append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass("is-invalid");
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass("is-invalid");
+            },
+        });
+    }
+    else {
+        if (tipoIntegra2 == 4) {
+            $("#formEdtIntC").validate({
+                rules: {
+                    edtTip: {
+                        valueNotEquals: "0",
+                        required: true,
+                    },
+                    edtNEquipo: {
+                        required: true,
+                    },
+                    idIp: {
+                        required: true,
+                    },
+                    edtSerieLap: {
+                        valueNotEquals: "0",
+                        required: true,
+                    },
+                },
+                messages: {
+                    edtTip: {
+                        valueNotEquals: "Seleccione Categoría",
+                        required: "Dato querido",
+                    },
+                    edtNEquipo: {
+                        required: "Ingrese dato requerido",
+                    },
+                    idIp: {
+                        required: "Ingrese dato requerido",
+                    },
+                    edtSerieLap: {
+                        valueNotEquals: "Selecciona Serie Laptop o Servidor",
+                        required: true,
+                    },
+                },
+                errorElement: "span",
+                errorPlacement: function (error, element) {
+                    error.addClass("invalid-feedback");
+                    element.closest(".form-group").append(error);
+                },
+                highlight: function (element, errorClass, validClass) {
+                    $(element).addClass("is-invalid");
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).removeClass("is-invalid");
+                },
+            });
+        }
+        if (tipoIntegra2 == 5) {
+            $("#formEdtIntC").validate({
+                rules: {
+                    edtTip: {
+                        valueNotEquals: "0",
+                        required: true,
+                    },
+                    edtNEquipo: {
+                        required: true,
+                    },
+                    idIp: {
+                        required: true,
+                    },
+                    edtSerieLap: {
+                        valueNotEquals: "0",
+                        required: true,
+                    },
+                },
+                messages: {
+                    edtTip: {
+                        valueNotEquals: "Seleccione Categoría",
+                        required: "Dato querido",
+                    },
+                    edtNEquipo: {
+                        required: "Ingrese dato requerido",
+                    },
+                    idIp: {
+                        required: "Ingrese dato requerido",
+                    },
+                    edtSerieLap: {
+                        valueNotEquals: "Selecciona Serie Laptop o Servidor",
+                        required: true,
+                    },
+                },
+                errorElement: "span",
+                errorPlacement: function (error, element) {
+                    error.addClass("invalid-feedback");
+                    element.closest(".form-group").append(error);
+                },
+                highlight: function (element, errorClass, validClass) {
+                    $(element).addClass("is-invalid");
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).removeClass("is-invalid");
+                },
+            });
+        }
+    }
+});
+
+// Validar IP existente
+$("#nroEquipo").focusout(function () {
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 1500,
+    });
+    var validarNro = $(this).val();
+    var datos = new FormData();
+    datos.append("validarNro", validarNro);
+    $.ajax({
+        url: "lib/ajaxIntegraciones.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function (respuesta) {
+            if (respuesta) {
+                Toast.fire({
+                    icon: "warning",
+                    title: " El número de PC ya se encuentra registrado",
+                });
+                $("#nroEquipo").val("");
+                $("#nroEquipo").focus();
+            }
+        },
+    });
+});
+$("#edtNEquipo").focusout(function () {
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 1500,
+    });
+    var validarNro2 = $(this).val();
+    var v1 = $("#nroAnt").val();
+
+    if (validarNro2 != v1) {
+        var datos2 = new FormData();
+        datos2.append("validarNro", validarNro2);
+        $.ajax({
+            url: "lib/ajaxIntegraciones.php",
+            method: "POST",
+            data: datos2,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: "json",
+            success: function (respuesta) {
+                if (respuesta) {
+                    Toast.fire({
+                        icon: "warning",
+                        title: " El número de PC ya se encuentra registrado",
+                    });
+                    $("#edtNEquipo").val(v1);
+                    $("#edtNEquipo").focus();
+                }
+            },
+        });
+    }
+});
+$("#ip_comp").focusout(function () {
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 1500,
+    });
+    var validarIP = $(this).val();
+
+    if (validarIP != "") {
+        var datos = new FormData();
+        datos.append("validarIP", validarIP);
+        $.ajax({
+            url: "lib/ajaxIntegraciones.php",
+            method: "POST",
+            data: datos,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: "json",
+            success: function (respuesta) {
+                if (respuesta) {
+                    Toast.fire({
+                        icon: "warning",
+                        title: " El número de IP ya se encuentra registrado",
+                    });
+                    $("#ip_comp").val("");
+                    $("#ip_comp").focus();
+                }
+            },
+        });
+    }
+});
+$("#idIp").focusout(function () {
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 1500,
+    });
+    var validarIP2 = $(this).val();
+    var v2 = $("#ipAnt").val();
+
+    if (validarIP2 != v2) {
+        var datos = new FormData();
+        datos.append("validarIP", validarIP2);
+        $.ajax({
+            url: "lib/ajaxIntegraciones.php",
+            method: "POST",
+            data: datos,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: "json",
+            success: function (respuesta) {
+                if (respuesta) {
+                    Toast.fire({
+                        icon: "warning",
+                        title: " El número de IP ya se encuentra registrado",
+                    });
+                    $("#idIp").val(v2);
+                    $("#idIp").focus();
+                }
+            },
+        });
+    }
+});
+// Validar Nro de Equipo Existente

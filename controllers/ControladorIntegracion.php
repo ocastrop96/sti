@@ -1,6 +1,11 @@
 <?php
 class ControladorIntegracion
 {
+    static public function ctrValidarIpNro($item, $valor)
+    {
+        $respuesta = ModeloIntegracion::mdlListarIntegracionIPNro($item, $valor);
+        return $respuesta;
+    }
     static public function ctrListarIntegracionesC($item, $valor)
     {
         $respuesta = ModeloIntegracion::mdlListarIntegracionC($item, $valor);
@@ -68,93 +73,124 @@ class ControladorIntegracion
                 preg_match('/^[0-9]+$/', $_POST["tipEq"]) &&
                 preg_match('/^[a-zA-Z0-9_]+$/', $_POST["nroEquipo"])
             ) {
+                // Bloque de filtro en caso no selecciona series
                 if ($_POST["tipEq"] == 1) {
-                    // $tabla = "ws_integraciones";
-                    $fechaReg = date("Y-m-d");
-                    $datos = array(
-                        "nro_eq" => $_POST["nroEquipo"],
-                        "ip" => $_POST["ip_comp"],
-                        "fecha_registro" => $fechaReg,
-                        "serie_pc" => $_POST["seriePC"],
-                        "serie_monitor" => $_POST["serieMon"],
-                        "serie_teclado" => $_POST["serieTec"],
-                        "serie_EstAcu" => $_POST["serieAcuEne"],
-                        "tipo_equipo" => $_POST["tipEq"],
-                        "responsable" => $_POST["datResp"],
-                        "oficina_in" => $_POST["datOfi"],
-                        "servicio_in" => $_POST["datServ"],
-                        "estado" => $_POST["datEst"],
-                        "condicion" => $_POST["datCond"]
-                    );
-                    $rptRegI1 = ModeloIntegracion::mdlRegistrarIntegracion1($datos);
-                    if ($rptRegI1 == "ok") {
-                        echo '<script>
-                    Swal.fire({
-                      icon: "success",
-                      title: "La Ficha ha sido registrada con éxito",
-                      showConfirmButton: false,
-                      timer: 1400
-                  });
-                  function redirect() {
-                      window.location = "integracion-ec";
-                  }
-                  setTimeout(redirect, 1400);
-                </script>';
+
+                    if ($_POST["serie_pc"] > 0 && $_POST["serie_monitor"] > 0 && $_POST["serie_teclado"] > 0 && $_POST["serie_EstAcu"] > 0) {
+                        $fechaReg = date("Y-m-d");
+                        $datos = array(
+                            "nro_eq" => $_POST["nroEquipo"],
+                            "ip" => $_POST["ip_comp"],
+                            "fecha_registro" => $fechaReg,
+                            "serie_pc" => $_POST["seriePC"],
+                            "serie_monitor" => $_POST["serieMon"],
+                            "serie_teclado" => $_POST["serieTec"],
+                            "serie_EstAcu" => $_POST["serieAcuEne"],
+                            "tipo_equipo" => $_POST["tipEq"],
+                            "responsable" => $_POST["datResp"],
+                            "oficina_in" => $_POST["datOfi"],
+                            "servicio_in" => $_POST["datServ"],
+                            "estado" => $_POST["datEst"],
+                            "condicion" => $_POST["datCond"]
+                        );
+                        $rptRegI1 = ModeloIntegracion::mdlRegistrarIntegracion1($datos);
+                        if ($rptRegI1 == "ok") {
+                            echo '<script>
+                        Swal.fire({
+                          icon: "success",
+                          title: "La Ficha ha sido registrada con éxito",
+                          showConfirmButton: false,
+                          timer: 1400
+                      });
+                      function redirect() {
+                          window.location = "integracion-ec";
+                      }
+                      setTimeout(redirect, 1400);
+                        </script>';
+                        } else {
+                            echo '<script>
+                          Swal.fire({
+                          icon: "error",
+                          title: "Ha ocurrido un error, revíse sus datos",
+                          showConfirmButton: false,
+                          timer: 1400
+                          });
+                            function redirect() {
+                                window.location = "integracion-ec";
+                            }
+                            setTimeout(redirect, 1400);
+                         </script>';
+                        }
                     } else {
                         echo '<script>
-                    Swal.fire({
-                      icon: "error",
-                      title: "Ha ocurrido un error, revíse sus datos",
-                      showConfirmButton: false,
-                      timer: 1400
-                  });
-                  function redirect() {
-                      window.location = "integracion-ec";
-                  }
-                  setTimeout(redirect, 1400);
-                </script>';
+                         Swal.fire({
+                          icon: "error",
+                          title: "Faltan datos, ingrese todos los datos solicitados",
+                          showConfirmButton: false,
+                          timer: 1400
+                            });
+                            function redirect() {
+                                window.location = "integracion-ec";
+                            }
+                            setTimeout(redirect, 1400);
+                            </script>';
                     }
                 } else {
-                    $fechaReg2 = date("Y-m-d");
-                    $datos = array(
-                        "nro_eq" => $_POST["nroEquipo"],
-                        "ip" => $_POST["ip_comp"],
-                        "fecha_registro" => $fechaReg2,
-                        "serie_pc" => $_POST["serieLaptop"],
-                        "tipo_equipo" => $_POST["tipEq"],
-                        "responsable" => $_POST["datResp"],
-                        "oficina_in" => $_POST["datOfi"],
-                        "servicio_in" => $_POST["datServ"],
-                        "estado" => $_POST["datEst"],
-                        "condicion" => $_POST["datCond"]
-                    );
-                    $rptRegI2 = ModeloIntegracion::mdlRegistrarIntegracion2($datos);
-                    if ($rptRegI2 == "ok") {
-                        echo '<script>
-                    Swal.fire({
-                      icon: "success",
-                      title: "La Ficha ha sido registrada con éxito",
-                      showConfirmButton: false,
-                      timer: 1400
-                  });
-                  function redirect() {
-                      window.location = "integracion-ec";
-                  }
-                  setTimeout(redirect, 1400);
-                </script>';
+                    if ($_POST["serie_pc"] > 0) {
+                        $fechaReg2 = date("Y-m-d");
+                        $datos = array(
+                            "nro_eq" => $_POST["nroEquipo"],
+                            "ip" => $_POST["ip_comp"],
+                            "fecha_registro" => $fechaReg2,
+                            "serie_pc" => $_POST["serieLaptop"],
+                            "tipo_equipo" => $_POST["tipEq"],
+                            "responsable" => $_POST["datResp"],
+                            "oficina_in" => $_POST["datOfi"],
+                            "servicio_in" => $_POST["datServ"],
+                            "estado" => $_POST["datEst"],
+                            "condicion" => $_POST["datCond"]
+                        );
+                        $rptRegI2 = ModeloIntegracion::mdlRegistrarIntegracion2($datos);
+                        if ($rptRegI2 == "ok") {
+                            echo '<script>
+                                    Swal.fire({
+                                    icon: "success",
+                                    title: "La Ficha ha sido registrada con éxito",
+                                    showConfirmButton: false,
+                                    timer: 1400
+                                    });
+                                    function redirect() {
+                                        window.location = "integracion-ec";
+                                    }
+                                    setTimeout(redirect, 1400);
+                                    </script>';
+                        } else {
+                            echo '<script>
+                                    Swal.fire({
+                                    icon: "error",
+                                    title: "Ha ocurrido un error, revíse sus datos",
+                                    showConfirmButton: false,
+                                    timer: 1400
+                                    });
+                                    function redirect() {
+                                        window.location = "integracion-ec";
+                                    }
+                                    setTimeout(redirect, 1400);
+                                    </script>';
+                        }
                     } else {
                         echo '<script>
-                    Swal.fire({
-                      icon: "error",
-                      title: "Ha ocurrido un error, revíse sus datos",
-                      showConfirmButton: false,
-                      timer: 1400
-                  });
-                  function redirect() {
-                      window.location = "integracion-ec";
-                  }
-                  setTimeout(redirect, 1400);
-                </script>';
+                         Swal.fire({
+                          icon: "error",
+                          title: "Faltan datos, ingrese todos los datos solicitados",
+                          showConfirmButton: false,
+                          timer: 1400
+                            });
+                            function redirect() {
+                                window.location = "integracion-ec";
+                            }
+                            setTimeout(redirect, 1400);
+                            </script>';
                     }
                 }
             }
@@ -378,89 +414,120 @@ class ControladorIntegracion
                 preg_match('/^[a-zA-Z0-9_]+$/', $_POST["edtNEquipo"])
             ) {
                 if ($_POST["edtTip"] == 1) {
-                    $datos = array(
-                        "nro_eq" => $_POST["edtNEquipo"],
-                        "ip" => $_POST["idIp"],
-                        "serie_pc" => $_POST["edtSeriePC"],
-                        "serie_monitor" => $_POST["edtSerieMon"],
-                        "serie_teclado" => $_POST["edtSerieTec"],
-                        "serie_EstAcu" => $_POST["edtSerieAcu"],
-                        "tipo_equipo" => $_POST["edtTip"],
-                        "responsable" => $_POST["datResp2"],
-                        "oficina_in" => $_POST["datOfi2"],
-                        "servicio_in" => $_POST["datServ2"],
-                        "estado" => $_POST["datEst2"],
-                        "condicion" => $_POST["datCond2"],
-                        "idIntegracion" => $_POST["idIntegracion"]
-                    );
-                    $rptEdtI1 = ModeloIntegracion::mdlEditarIntegracion1($datos);
-                    if ($rptEdtI1 == "ok") {
-                        echo '<script>
-                    Swal.fire({
-                      icon: "success",
-                      title: "La Ficha ha sido editada con éxito",
-                      showConfirmButton: false,
-                      timer: 1400
-                  });
-                  function redirect() {
-                      window.location = "integracion-ec";
-                  }
-                  setTimeout(redirect, 1400);
-                </script>';
+
+                    if ($_POST["edtSeriePC"] > 0 && $_POST["edtSerieMon"] > 0 && $_POST["edtSerieTec"] > 0 && $_POST["edtSerieAcu"] > 0) {
+                        $datos = array(
+                            "nro_eq" => $_POST["edtNEquipo"],
+                            "ip" => $_POST["idIp"],
+                            "serie_pc" => $_POST["edtSeriePC"],
+                            "serie_monitor" => $_POST["edtSerieMon"],
+                            "serie_teclado" => $_POST["edtSerieTec"],
+                            "serie_EstAcu" => $_POST["edtSerieAcu"],
+                            "tipo_equipo" => $_POST["edtTip"],
+                            "responsable" => $_POST["datResp2"],
+                            "oficina_in" => $_POST["datOfi2"],
+                            "servicio_in" => $_POST["datServ2"],
+                            "estado" => $_POST["datEst2"],
+                            "condicion" => $_POST["datCond2"],
+                            "idIntegracion" => $_POST["idIntegracion"]
+                        );
+                        $rptEdtI1 = ModeloIntegracion::mdlEditarIntegracion1($datos);
+                        if ($rptEdtI1 == "ok") {
+                            echo '<script>
+                                Swal.fire({
+                                icon: "success",
+                                title: "La Ficha ha sido editada con éxito",
+                                showConfirmButton: false,
+                                timer: 1400
+                            });
+                            function redirect() {
+                                window.location = "integracion-ec";
+                            }
+                            setTimeout(redirect, 1400);
+                            </script>';
+                        } else {
+                            echo '<script>
+                                    Swal.fire({
+                                    icon: "error",
+                                    title: "Ha ocurrido un error, revíse sus datos",
+                                    showConfirmButton: false,
+                                    timer: 1400
+                                });
+                                function redirect() {
+                                    window.location = "integracion-ec";
+                                }
+                                setTimeout(redirect, 1400);
+                                </script>';
+                        }
                     } else {
                         echo '<script>
-                    Swal.fire({
-                      icon: "error",
-                      title: "Ha ocurrido un error, revíse sus datos",
-                      showConfirmButton: false,
-                      timer: 1400
-                  });
-                  function redirect() {
-                      window.location = "integracion-ec";
-                  }
-                  setTimeout(redirect, 1400);
-                </script>';
+                        Swal.fire({
+                         icon: "error",
+                         title: "Faltan datos, ingrese todos los datos solicitados",
+                         showConfirmButton: false,
+                         timer: 1400
+                           });
+                           function redirect() {
+                               window.location = "integracion-ec";
+                           }
+                           setTimeout(redirect, 1400);
+                           </script>';
                     }
                 } else {
-                    $datos2 = array(
-                        "nro_eq" => $_POST["edtNEquipo"],
-                        "ip" => $_POST["idIp"],
-                        "serie_pc" => $_POST["edtSerieLap"],
-                        "tipo_equipo" => $_POST["edtTip"],
-                        "responsable" => $_POST["datResp2"],
-                        "oficina_in" => $_POST["datOfi2"],
-                        "servicio_in" => $_POST["datServ2"],
-                        "estado" => $_POST["datEst2"],
-                        "condicion" => $_POST["datCond2"],
-                        "idIntegracion" => $_POST["idIntegracion"]
-                    );
-                    $rptEdtI2 = ModeloIntegracion::mdlEditarIntegracion2($datos2);
-                    if ($rptEdtI2 == "ok") {
-                        echo '<script>
-                    Swal.fire({
-                      icon: "success",
-                      title: "La Ficha ha sido editada con éxito",
-                      showConfirmButton: false,
-                      timer: 1400
-                  });
-                  function redirect() {
-                      window.location = "integracion-ec";
-                  }
-                  setTimeout(redirect, 1400);
-                </script>';
+                    if ($_POST["edtSerieLap"] > 0) {
+                        $datos2 = array(
+                            "nro_eq" => $_POST["edtNEquipo"],
+                            "ip" => $_POST["idIp"],
+                            "serie_pc" => $_POST["edtSerieLap"],
+                            "tipo_equipo" => $_POST["edtTip"],
+                            "responsable" => $_POST["datResp2"],
+                            "oficina_in" => $_POST["datOfi2"],
+                            "servicio_in" => $_POST["datServ2"],
+                            "estado" => $_POST["datEst2"],
+                            "condicion" => $_POST["datCond2"],
+                            "idIntegracion" => $_POST["idIntegracion"]
+                        );
+                        $rptEdtI2 = ModeloIntegracion::mdlEditarIntegracion2($datos2);
+                        if ($rptEdtI2 == "ok") {
+                            echo '<script>
+                        Swal.fire({
+                          icon: "success",
+                          title: "La Ficha ha sido editada con éxito",
+                          showConfirmButton: false,
+                          timer: 1400
+                      });
+                      function redirect() {
+                          window.location = "integracion-ec";
+                      }
+                      setTimeout(redirect, 1400);
+                        </script>';
+                        } else {
+                            echo '<script>
+                                        Swal.fire({
+                                        icon: "error",
+                                        title: "Ha ocurrido un error, revíse sus datos",
+                                        showConfirmButton: false,
+                                        timer: 1400
+                                    });
+                                    function redirect() {
+                                        window.location = "integracion-ec";
+                                    }
+                                    setTimeout(redirect, 1400);
+                                    </script>';
+                        }
                     } else {
                         echo '<script>
-                    Swal.fire({
-                      icon: "error",
-                      title: "Ha ocurrido un error, revíse sus datos",
-                      showConfirmButton: false,
-                      timer: 1400
-                  });
-                  function redirect() {
-                      window.location = "integracion-ec";
-                  }
-                  setTimeout(redirect, 1400);
-                </script>';
+                        Swal.fire({
+                         icon: "error",
+                         title: "Faltan datos, ingrese todos los datos solicitados",
+                         showConfirmButton: false,
+                         timer: 1400
+                           });
+                           function redirect() {
+                               window.location = "integracion-ec";
+                           }
+                           setTimeout(redirect, 1400);
+                           </script>';
                     }
                 }
             } else {
