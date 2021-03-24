@@ -174,7 +174,7 @@
                                 <p>Mantenimientos</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href="bajas" class="nav-link">
                                 <i class="nav-icon fas fa-file-contract"></i>
                                 <p>Bajas</p>
@@ -185,10 +185,10 @@
                                 <i class="nav-icon fas fa-ethernet"></i>
                                 <p>Cableados</p>
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                 </li>
-                <li class="nav-header">REPORTES</li>
+                <!-- <li class="nav-header">REPORTES</li> -->
             </ul>
         </nav>
     </div>

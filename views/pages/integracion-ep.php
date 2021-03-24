@@ -164,65 +164,65 @@
           <div class="row">
             <div class="col-12 col-md-4">
               <div class="form-group">
+                <label for="edtEqImp1">Tipo de Equipo &nbsp;</label>
+                <i class="fas fa-th"></i> *
                 <div class="input-group">
+                  <select class="form-control" style="width: 100%;" id="edtEqImp1" name="edtEqImp">
+                    <option id="edtEqImp"></option>
+                    <?php
+                    $cat24 = ControladorCategorias::ctrListarCategoriaOtros2();
+                    foreach ($cat24 as $key => $value) {
+                      echo '<option value="' . $value["idCategoria"] . '">' . $value["categoria"] . '</option>';
+                    }
+                    ?>
+                    <input type="hidden" name="idIntegracion" id="idIntegracion">
+                    <input type="hidden" name="nroAnt2" id="nroAnt2">
+                    <input type="hidden" name="ipAnt2" id="ipAnt2">
+                  </select>
                 </div>
               </div>
-              <label for="edtEqImp1">Tipo de Equipo &nbsp;</label>
-              <i class="fas fa-th"></i> *
-              <select class="form-control" style="width: 100%;" id="edtEqImp1" name="edtEqImp">
-                <option id="edtEqImp"></option>
-                <?php
-                $cat24 = ControladorCategorias::ctrListarCategoriaOtros2();
-                foreach ($cat24 as $key => $value) {
-                  echo '<option value="' . $value["idCategoria"] . '">' . $value["categoria"] . '</option>';
-                }
-                ?>
-                <input type="hidden" name="idIntegracion" id="idIntegracion">
-                <input type="hidden" name="nroAnt2" id="nroAnt2">
-                <input type="hidden" name="ipAnt2" id="ipAnt2">
-              </select>
             </div>
             <div class="col-12 col-md-4">
               <div class="form-group">
+                <label for="edtnroImp">N° de Equipo &nbsp;</label>
+                <i class="fas fa-hashtag"></i> *
                 <div class="input-group">
+                  <input type="text" class="form-control" autocomplete="off" id="edtnroImp" name="edtnroImp" maxlength="8" required>
                 </div>
               </div>
-              <label for="edtnroImp">N° de Equipo &nbsp;</label>
-              <i class="fas fa-hashtag"></i> *
-              <input type="text" class="form-control" autocomplete="off" id="edtnroImp" name="edtnroImp" maxlength="8" required>
             </div>
             <div class="col-12 col-md-4">
               <div class="form-group">
+                <label for="edtip_imp">IP &nbsp;</label>
+                <i class="fas fa-network-wired"></i> *
                 <div class="input-group">
+                  <input type="text" class="form-control" data-inputmask="'alias': 'ip'" data-mask autocomplete="off" id="edtip_imp" name="edtip_imp">
                 </div>
               </div>
-              <label for="edtip_imp">IP &nbsp;</label>
-              <i class="fas fa-network-wired"></i> *
-              <input type="text" class="form-control" data-inputmask="'alias': 'ip'" data-mask autocomplete="off" id="edtip_imp" name="edtip_imp">
             </div>
           </div>
           <div class="row mt-2">
             <div class="col-12 col-md-12">
               <div class="form-group">
+                <label for="edtserieImp1">IMPRESORA, ESCANER, FOTOCOPIADORA &nbsp;</label>
+                <i class="fas fa-laptop-code"></i> *
                 <div class="input-group">
+                  <select class="form-control" style="width: 100%;" id="edtserieImp1" name="edtserieImp">
+                    <option id="edtserieImp"></option>
+                    <?php
+                    $sImp2 = ControladorIntegracion::ctrListarSeriesImp();
+                    foreach ($sImp2 as $key => $value) {
+                      echo '<option value="' . $value["idEquipo"] . '">' . $value["serie"] . '</option>';
+                    }
+                    ?>
+                    <input type="hidden" id="edtimpResp" name="edtimpResp">
+                    <input type="hidden" id="edtimpOfi" name="edtimpOfi">
+                    <input type="hidden" id="edtimpServ" name="edtimpServ">
+                    <input type="hidden" id="edtimpEst" name="edtimpEst">
+                    <input type="hidden" id="edtimpCond" name="edtimpCond">
+                  </select>
                 </div>
               </div>
-              <label for="edtserieImp1">IMPRESORA, ESCANER, FOTOCOPIADORA &nbsp;</label>
-              <i class="fas fa-laptop-code"></i> *
-              <select class="form-control" style="width: 100%;" id="edtserieImp1" name="edtserieImp">
-                <option id="edtserieImp"></option>
-                <?php
-                $sImp2 = ControladorIntegracion::ctrListarSeriesImp();
-                foreach ($sImp2 as $key => $value) {
-                  echo '<option value="' . $value["idEquipo"] . '">' . $value["serie"] . '</option>';
-                }
-                ?>
-                <input type="hidden" id="edtimpResp" name="edtimpResp">
-                <input type="hidden" id="edtimpOfi" name="edtimpOfi">
-                <input type="hidden" id="edtimpServ" name="edtimpServ">
-                <input type="hidden" id="edtimpEst" name="edtimpEst">
-                <input type="hidden" id="edtimpCond" name="edtimpCond">
-              </select>
             </div>
           </div>
         </div>
