@@ -84,6 +84,8 @@ session_start();
         $_GET["ruta"] == "equipos-redes" ||
         $_GET["ruta"] == "equipos-otros" ||
         $_GET["ruta"] == "mantenimientos" ||
+        $_GET["ruta"] == "registrar-mantenimiento" ||
+        $_GET["ruta"] == "editar-mantenimiento" ||
         $_GET["ruta"] == "bajas" ||
         $_GET["ruta"] == "cableados" ||
         $_GET["ruta"] == "categorias" ||

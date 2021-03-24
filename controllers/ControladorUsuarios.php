@@ -29,12 +29,12 @@ class ControladorUsuarios
                                 icon: "success",
                                 title: "Acceso concedido...¡Bienvenido!",
                                 showConfirmButton: false,
-                                timer: 1300
+                                timer: 1200
                             });
                             function redirect(){
                                 window.location = "dashboard";
                             }
-                            setTimeout(redirect,1300);
+                            setTimeout(redirect,1200);
                              </script>';
                         } else {
                             echo '<script>
@@ -42,12 +42,12 @@ class ControladorUsuarios
                                 icon: "error",
                                 title: "Número de intentos de acceso excedidos, comuníquese con el administrador para desbloquear su cuenta",
                                 showConfirmButton: false,
-                                timer: 1400
+                                timer: 1200
                             });
                             function redirect(){
                                 window.location = "login";
                             }
-                            setTimeout(redirect,1400);
+                            setTimeout(redirect,1200);
                              </script>';
                         }
                         // Datos a usar en sesiones
@@ -58,12 +58,12 @@ class ControladorUsuarios
                             icon: "warning",
                             title: "Su cuenta de  usuario se encuentra desactivada, comuníquese con el administrador del sistema",
                             showConfirmButton: false,
-                            timer: 1400
+                            timer: 1200
                         });
                         function redirect(){
                             window.location = "login";
                         }
-                        setTimeout(redirect,1400);
+                        setTimeout(redirect,1200);
                             </script>';
                     }
                 } else if ($respuesta["cuenta"] == $_POST["logCuenta"]) {
@@ -84,12 +84,12 @@ class ControladorUsuarios
                         icon: "error",
                         title: "El usuario y/o contraseña ingresados no son correctos.' . $mensajeIntentos . '",
                         showConfirmButton: false,
-                        timer: 1400
+                        timer: 1200
                     });
                     function redirect(){
                         window.location = "login";
                     }
-                    setTimeout(redirect,1400);
+                    setTimeout(redirect,1200);
                 </script>';
                 } else {
                     echo '<script>
@@ -97,12 +97,12 @@ class ControladorUsuarios
                       icon: "error",
                       title: "El usuario y/o contraseña ingresados no son correctos",
                       showConfirmButton: false,
-                      timer: 1500
+                      timer: 1200
                     });
                     function redirect(){
                         window.location = "login";
                     }
-                    setTimeout(redirect,1500);
+                    setTimeout(redirect,1200);
                 </script>';
                 }
             }

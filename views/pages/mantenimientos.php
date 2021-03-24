@@ -23,26 +23,57 @@
         </h3>
       </div>
       <div class="card-body">
-        <button type="btn" class="btn btn-secondary mt-2" data-toggle="modal" data-target="#modal-registrar-mantto"><i class="fas fa-clipboard-list"></i> Registrar Mantenimiento</button>
+        <a href="registrar-mantenimiento"><button type="btn" class="btn btn-secondary mt-2"><i class="fas fa-clipboard-list"></i> Registrar Mantenimiento</button></a>
       </div>
       <div class="card-body">
         <table id="tablaMantenimientos" class="table table-bordered table-hover dt-responsive tablaMantenimientos">
           <thead>
             <tr>
               <th style="width: 10px">#</th>
-              <th style="width: 10px">N° Ficha</th>
-              <th style="width: 10px">F.Registro</th>
-              <th style="width: 10px">T.Equipo</th>
-              <th>N° Equipo</th>
-              <th>Marca</th>
+              <th>N° Ficha</th>
+              <th>F.Registro</th>
+              <th>T.Equipo</th>
               <th>Serie</th>
-              <th style="width: 10px">IP</th>
               <th>Usuario Responsable</th>
               <th>Departamento/Oficina</th>
               <th>Servicio/Área</th>
+              <th>Técnico Evaluador</th>
+              <th>Estado Atención</th>
               <th>Opciones</th>
             </tr>
           </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>FT-2021-00001</td>
+              <td>24-03-2021</td>
+              <td>PC</td>
+              <td>MXL2500TDK</td>
+              <td>Olger Ivan Castro Palacios</td>
+              <td>Estadística e Informática</td>
+              <td>Desarrollo</td>
+              <td>Edwin William Guerrero Sandoval</td>
+              <td><button type="button" class="btn btn-block btn-success"><i class="fas fa-thumbs-up"></i>&nbsp;Cerrada</button></td>
+              <td>
+                <div class="btn-group"><button class="btn btn-warning btnEditarMant" idMantenimiento=""><i class="fas fa-edit"></i></button><button class="btn btn-info btnImprimirFichaMant" idMantenimiento=""><i class="fas fa-print"></i></button><button class="btn btn-secondary btnAnularMantenimiento" idMantenimiento=""><i class="fas fa-window-close"></i></button></div>
+              </td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>FT-2021-00001</td>
+              <td>24-03-2021</td>
+              <td>PC</td>
+              <td>MXL2500TDK</td>
+              <td>Olger Ivan Castro Palacios</td>
+              <td>Estadística e Informática</td>
+              <td>Desarrollo</td>
+              <td>Edwin William Guerrero Sandoval</td>
+              <td><button type="button" class="btn btn-block btn-secondary"><i class="far fa-clock"></i>&nbsp;Pendiente</button></td>
+              <td>
+                <div class="btn-group"><button class="btn btn-warning btnEditarMant" idMantenimiento=""><i class="fas fa-edit"></i></button><button class="btn btn-info btnImprimirFichaMant" idMantenimiento=""><i class="fas fa-print"></i></button><button class="btn btn-secondary btnAnularMantenimiento" idMantenimiento=""><i class="fas fa-window-close"></i></button></div>
+              </td>
+            </tr>
+          </tbody>
         </table>
       </div>
     </div>
