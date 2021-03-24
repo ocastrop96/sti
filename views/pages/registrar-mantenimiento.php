@@ -159,6 +159,22 @@
                                 </div>
                             </div>
                             <div class="row">
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group">
+                                        <label for="">Fecha Inicio &nbsp;</label>
+                                        <i class="fas fa-calendar-alt"></i> *
+                                        <input type="text" name="" id="" class="form-control" required autocomplete="off" placeholder="Ingrese descripción del incidente">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group">
+                                        <label for="">Fecha Fin &nbsp;</label>
+                                        <i class="fas fa-calendar-alt"></i> *
+                                        <input type="text" name="" id="" class="form-control" required autocomplete="off" placeholder="Ingrese descripción del incidente">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <p class="font-weight-bolder text-gray disabled">IV. Observaciones del estado del Equipo</p>
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
