@@ -41,7 +41,7 @@ $(".tablaAcciones tbody").on("click", ".btnEditarAccion", function () {
     });
 });
 // Validar accion
-$("#newAccion").change(function () {
+$("#newAccion").focusout(function () {
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -68,11 +68,12 @@ $("#newAccion").change(function () {
                     title: 'La acción ingresada ya existe para el segmento'
                 });
                 $("#newAccion").val("");
+                $("#newAccion").focus();
             }
         }
     });
 });
-$("#edtAccion").change(function () {
+$("#edtAccion").focusout(function () {
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -80,28 +81,84 @@ $("#edtAccion").change(function () {
         timer: 1500
     });
     var categoria2 = $("#edtacDiag2").val();
+    var abcSeg = $("#nSeg2").val();
+    var bcAcci = $("#accAnt").val();
     var accion = $(this).val();
-    var datos = new FormData();
-    datos.append("validarAccion", accion);
-    datos.append("validarCategoria", categoria2);
-    $.ajax({
-        url: "lib/ajaxAcciones.php",
-        method: "POST",
-        data: datos,
-        cache: false,
-        contentType: false,
-        processData: false,
-        dataType: "json",
-        success: function (respuesta) {
-            if (respuesta) {
-                Toast.fire({
-                    icon: 'warning',
-                    title: 'La acción ingresada ya existe para el segmento'
-                });
-                $("#edtAccion").val("");
-            }
+
+    if (accion != "" && categoria2 != 0) {
+        if (categoria2 != abcSeg && accion != bcAcci) {
+            var datos = new FormData();
+            datos.append("validarAccion", accion);
+            datos.append("validarCategoria", categoria2);
+            $.ajax({
+                url: "lib/ajaxAcciones.php",
+                method: "POST",
+                data: datos,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: "json",
+                success: function (respuesta) {
+                    if (respuesta) {
+                        Toast.fire({
+                            icon: 'warning',
+                            title: 'La acción ingresada ya existe para el segmento'
+                        });
+                        $("#edtAccion").val("");
+                        $("#edtAccion").focus();
+                    }
+                }
+            });
         }
-    });
+        else if (categoria2 == abcSeg && accion != bcAcci) {
+            var datos = new FormData();
+            datos.append("validarAccion", accion);
+            datos.append("validarCategoria", categoria2);
+            $.ajax({
+                url: "lib/ajaxAcciones.php",
+                method: "POST",
+                data: datos,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: "json",
+                success: function (respuesta) {
+                    if (respuesta) {
+                        Toast.fire({
+                            icon: 'warning',
+                            title: 'La acción ingresada ya existe para el segmento'
+                        });
+                        $("#edtAccion").val("");
+                        $("#edtAccion").focus();
+                    }
+                }
+            });
+        }
+        else if (categoria2 != abcSeg && accion == bcAcci) {
+            var datos = new FormData();
+            datos.append("validarAccion", accion);
+            datos.append("validarCategoria", categoria2);
+            $.ajax({
+                url: "lib/ajaxAcciones.php",
+                method: "POST",
+                data: datos,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: "json",
+                success: function (respuesta) {
+                    if (respuesta) {
+                        Toast.fire({
+                            icon: 'warning',
+                            title: 'La acción ingresada ya existe para el segmento'
+                        });
+                        $("#edtAccion").val("");
+                        $("#edtAccion").focus();
+                    }
+                }
+            });
+        }
+    }
 });
 // Validar accion
 // Editar Accion realizada

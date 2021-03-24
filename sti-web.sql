@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 23-03-2021 a las 20:10:11
+-- Tiempo de generación: 24-03-2021 a las 04:47:59
 -- Versión del servidor: 5.7.24
--- Versión de PHP: 7.4.15
+-- Versión de PHP: 7.4.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -176,7 +176,7 @@ UPDATE ws_usuarios set nintentos = nintentos + 1 where id_usuario = _id_usuario;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_ACCIONES` ()  BEGIN
-SELECT idAccion,accionrealizada,segment,descSegmento FROM ws_acciones AS a INNER JOIN ws_segmento AS s ON a.segment = s.idSegmento order by idAccion DESC;
+SELECT idAccion,accionrealizada,segment,descSegmento FROM ws_acciones AS a INNER JOIN ws_segmento AS s ON a.segment = s.idSegmento order by accionrealizada asc;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_CATEGORIAS` ()  BEGIN
@@ -384,11 +384,32 @@ CREATE TABLE `ws_acciones` (
 --
 
 INSERT INTO `ws_acciones` (`idAccion`, `segment`, `accionrealizada`, `contador_acc`) VALUES
-(1, 1, 'Formateo de sistema operativo', 0),
-(3, 3, 'Tambor malogrado', 0),
-(4, 2, 'Limpieza de puerto RJ45', 0),
-(5, 2, 'Limpieza de puertos RJ11', 0),
-(6, 3, 'Cabezal malogrado', 0);
+(1, 1, 'Copia de Seguridad', 0),
+(2, 1, 'Formateo de disco duro', 0),
+(3, 3, 'Desmontaje de impresora', 0),
+(4, 1, 'Mantenimiento físico', 0),
+(5, 1, 'Mantenimiento lógico', 0),
+(6, 1, 'Instalación de sistema operativo', 0),
+(7, 3, 'Verificación de teclas y contactos', 0),
+(8, 1, 'Verificación de teclas y contactos', 0),
+(9, 3, 'Configuración de impresora', 0),
+(10, 1, 'Revisión de disco duro', 0),
+(11, 1, 'Revisión de tarjeta de vídeo', 0),
+(12, 1, 'Eliminación de temporales', 0),
+(13, 1, 'Instalación de programas', 0),
+(14, 1, 'Instalación de drivers o controladores', 0),
+(15, 1, 'Eliminación de virus', 0),
+(16, 1, 'Instalación de sistema operativo', 0),
+(17, 1, 'Instalación de antivirus', 0),
+(18, 1, 'Mantenimiento general', 0),
+(19, 2, 'Mantenimiento general', 0),
+(20, 3, 'Mantenimiento general', 0),
+(21, 3, 'Desmontaje y limpieza', 0),
+(22, 1, 'Se recomienda baja por obsolescencia técnica', 0),
+(23, 2, 'Se recomienda baja por obsolescencia técnica', 0),
+(24, 3, 'Se recomienda baja por obsolescencia técnica', 0),
+(25, 2, 'Limpieza de puertos RJ45', 0),
+(26, 2, 'Limpieza de puertos RJ11', 0);
 
 -- --------------------------------------------------------
 
@@ -998,7 +1019,7 @@ ALTER TABLE `ws_usuarios`
 -- AUTO_INCREMENT de la tabla `ws_acciones`
 --
 ALTER TABLE `ws_acciones`
-  MODIFY `idAccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idAccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_bajas`
