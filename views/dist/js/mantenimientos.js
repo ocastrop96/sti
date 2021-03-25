@@ -34,6 +34,7 @@ $(".tablaMDiagnosticoFrm").DataTable({
     ],
     "info": false,
     "autoWidth": false,
+    "dom": '<lf<t>ip>',
     "oLanguage": {
         "sSearch": "Buscar diagnóstico :",
         "oPaginate": {
@@ -62,6 +63,7 @@ $(".tablaAccionesFrm").DataTable({
     ],
     "info": false,
     "autoWidth": false,
+    "dom": '<lf<t>ip>',
     "oLanguage": {
         "sSearch": "Buscar acción realizada :",
         "oPaginate": {
@@ -73,4 +75,62 @@ $(".tablaAccionesFrm").DataTable({
     },
 });
 // Tabla de Acciones
-$(".select2").select2()
+$(".select2").select2();
+$("#fEva").inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+$('#fEva').datepicker({
+    'format': 'dd/mm/yyyy',
+    'autoclose': true,
+    'language': 'es',
+    'endDate': new Date(),
+});
+$("#fInicio").inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+$('#fInicio').datepicker({
+    'format': 'dd/mm/yyyy',
+    'autoclose': true,
+    'language': 'es',
+    'endDate': new Date(),
+});
+$("#fFin").inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+$('#fFin').datepicker({
+    'format': 'dd/mm/yyyy',
+    'autoclose': true,
+    'language': 'es',
+    'endDate': new Date(),
+});
+// Cargar lista de series en base al tipo
+$("#tipEquipo").on("change", function () {
+    var idCatego = $(this).val();
+    if (idCatego > 0) {
+        $.ajax({
+            type: "POST",
+            url: "lib/comboSeriesManto.php",
+            data: "idCatego=" + idCatego,
+            success: function (html) {
+                $("#serieEQ").prop("disabled", false);
+                $("#serieEQ").html(html);
+            },
+        });
+    }
+    else {
+
+    }
+});
+
+
+// $("#oficinaRes").on("change", function () {
+//     var idOficina = $(this).val();
+//     if (idOficina > 0) {
+//         $.ajax({
+//             type: "POST",
+//             url: "lib/comboServicios.php",
+//             data: "idOficina=" + idOficina,
+//             success: function (html) {
+//                 $("#servicioRes").prop("disabled", false);
+//                 $("#servicioRes").html(html);
+//             },
+//         });
+//     } else {
+//         $("#servicioRes").html('<option value="">Seleccione área primero</option>');
+//         $("#servicioRes").prop("disabled", true);
+//     }
+// });

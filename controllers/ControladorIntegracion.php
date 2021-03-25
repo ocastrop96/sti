@@ -75,8 +75,7 @@ class ControladorIntegracion
             ) {
                 // Bloque de filtro en caso no selecciona series
                 if ($_POST["tipEq"] == 1) {
-
-                    if ($_POST["serie_pc"] > 0 && $_POST["serie_monitor"] > 0 && $_POST["serie_teclado"] > 0 && $_POST["serie_EstAcu"] > 0) {
+                    if ($_POST["seriePC"] > 0 && $_POST["serieMon"] > 0 && $_POST["serieTec"] > 0 && $_POST["serieAcuEne"] > 0) {
                         $fechaReg = date("Y-m-d");
                         $datos = array(
                             "nro_eq" => $_POST["nroEquipo"],
@@ -136,7 +135,7 @@ class ControladorIntegracion
                             </script>';
                     }
                 } else {
-                    if ($_POST["serie_pc"] > 0) {
+                    if ($_POST["serieLaptop"] > 0) {
                         $fechaReg2 = date("Y-m-d");
                         $datos = array(
                             "nro_eq" => $_POST["nroEquipo"],
@@ -585,13 +584,13 @@ class ControladorIntegracion
                         Swal.fire({
                         icon: "success",
                         title: "¡La Ficha de Integración ha sido anulada con éxito!",
-                        showConfirmButton: true,
-                        confirmButtonText: "Cerrar",
-                        closeOnConfirm: false
-                        }).then((result)=>{
-                        if(result.value){
-                            window.location = "integracion-ep";
-                        }});
+                        showConfirmButton: false,
+                        timer: 1400
+                          });
+                          function redirect() {
+                              window.location = "integracion-ep";
+                          }
+                          setTimeout(redirect, 1400);
                     </script>';
             }
         }
@@ -610,13 +609,13 @@ class ControladorIntegracion
                         Swal.fire({
                         icon: "success",
                         title: "¡La Ficha de Integración ha sido anulada con éxito!",
-                        showConfirmButton: true,
-                        confirmButtonText: "Cerrar",
-                        closeOnConfirm: false
-                        }).then((result)=>{
-                        if(result.value){
-                            window.location = "integracion-er";
-                        }});
+                        showConfirmButton: false,
+                        timer: 1400
+                          });
+                          function redirect() {
+                              window.location = "integracion-er";
+                          }
+                          setTimeout(redirect, 1400);
                     </script>';
             }
         }

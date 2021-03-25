@@ -7,6 +7,11 @@ class ControladorDiagnosticos
         $respuesta = ModeloDiagnosticos::mdlListarDiagnosticos($tabla, $item, $valor);
         return $respuesta;
     }
+    static public function ctrListarTrabajosManto($item, $valor)
+    {
+        $respuesta = ModeloDiagnosticos::mdlListarTrabajosManto($item, $valor);
+        return $respuesta;
+    }
 
     static public function ctrRegistrarDiagnosticos()
     {

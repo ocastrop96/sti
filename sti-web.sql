@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 24-03-2021 a las 04:47:59
+-- Tiempo de generación: 25-03-2021 a las 19:58:31
 -- Versión del servidor: 5.7.24
--- Versión de PHP: 7.4.13
+-- Versión de PHP: 7.4.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -180,7 +180,7 @@ SELECT idAccion,accionrealizada,segment,descSegmento FROM ws_acciones AS a INNER
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_CATEGORIAS` ()  BEGIN
-SELECT idCategoria,segmento,categoria,descSegmento FROM ws_categorias as cat inner join ws_segmento as seg on cat.segmento = seg.idSegmento;
+SELECT idCategoria,segmento,categoria,descSegmento FROM ws_categorias as cat inner join ws_segmento as seg on cat.segmento = seg.idSegmento order by segmento asc;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_CATEGORIASC` ()  BEGIN
@@ -199,6 +199,10 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_CATEGORIASR` ()  BEGIN
 SELECT * FROM ws_categorias where segmento = 2;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_CONDICIONMANTO` ()  BEGIN
+select * from ws_situacion where idSituacion between 1 and 2;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_DIAGNOSTICOS` ()  BEGIN
 select idDiagnostico,diagnostico,sgmto,descSegmento from ws_diagnosticos as d inner join ws_segmento as s on d.sgmto = s.idSegmento order by diagnostico asc;
 END$$
@@ -213,6 +217,19 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_EQUIPOSR` ()  BEGIN
 SELECT idEquipo,date_format(fechaCompra,'%d-%m-%Y') as fComp,idTipo,categoria,segmento,serie,sbn,marca,modelo,descripcion,condicion,situacion,estadoEQ,descEstado FROM ws_equipos as eq inner join ws_categorias as cat on eq.idTipo = cat.idCategoria inner join ws_situacion as sit on eq.condicion = sit.idSituacion inner join ws_estado as est on eq.estadoEQ = est.idEstado inner join ws_usuarios as us on eq.registrador = us.id_usuario where segmento = 2 order by idTipo desc;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_EQUPOSCOMPUTOMANT` (IN `_idTipo` INT(11))  BEGIN
+SELECT idEquipo,serie,nro_eq FROM ws_equipos eq 
+inner join ws_integraciones as inte 
+on eq.idEquipo = inte.serie_pc
+	WHERE EXISTS (SELECT NULL
+	FROM ws_integraciones epc
+	WHERE epc.serie_pc = eq.idEquipo AND idTipo = _idTipo);
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_ESTATENCION` ()  BEGIN
+SELECT idEstAte,estAte FROM ws_estadoatencion;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_INTEGRACIONC` ()  BEGIN
@@ -310,6 +327,14 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_SERVICIOS` (IN `_id_area` INT)  BEGIN
 	SELECT * FROM ws_servicios WHERE id_area = _id_area;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_TRABAJOSMANTO` ()  BEGIN
+SELECT * FROM ws_tipotrabajo where idTipoTrabajo between 1 and 3;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_UTECNICOS` ()  BEGIN
+select id_usuario,nombres,apellido_paterno,apellido_materno from ws_usuarios where id_perfil between 3 and 4;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LOGIN_USUARIO` (IN `_cuenta` TEXT)  BEGIN
@@ -604,10 +629,11 @@ INSERT INTO `ws_equipos` (`idEquipo`, `tipSegmento`, `idTipo`, `uResponsable`, `
 (69, 3, 16, 9, 13, 18, 'RE', '1', 'VACJ', 'VA', 'VA', '2021-03-08', 'AV', 'AS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-22 10:55:16'),
 (75, 2, 2, 12, 10, 24, 'ARUBA1', '1122', 'ARUBA', 'ARUBA2323', 'ASAS', '2021-03-17', 'AS', 'AS', NULL, NULL, NULL, NULL, NULL, '48', '3', 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-22 12:19:40'),
 (76, 1, 4, 9, 13, 18, 'LAPTO1', '155', 'LAPTOP', 'LAP1', 'LAP1', '2021-03-01', '11-111', '3 AÑOS', 'ASUS', 'CORE I7', '3.40 GHZ', '8GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-22 14:53:24'),
-(77, 1, 4, 12, 10, 24, 'A', '111', 'AA', 'AAA', 'AA', '2021-03-10', 'AA1', 'A', 'A', 'A', 'A', 'A', 'A', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-22 15:09:19'),
 (78, 3, 3, 11, 10, 24, 'IMP', '112', 'IMP', 'UMO', 'UMo', '2021-03-02', '11-11', '5 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-23 12:06:47'),
-(79, 3, 9, 9, 13, 18, 'AAAA', '112332', 'A', 'A', 'A', '2021-03-17', 'A', 'AJA', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-23 12:38:10'),
-(80, 2, 2, 11, 10, 24, 'AAAAAAA', '1111111', 'AAAAAA', 'AAAAA', 'AAAAAA', '2021-03-03', 'AA11', 'AAAA', NULL, NULL, NULL, NULL, NULL, 'AA', 'AA', 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-23 12:46:58');
+(80, 2, 2, 11, 10, 24, 'AAAAAAA', '1111111', 'AAAAAA', 'AAAAA', 'AAAAAA', '2021-03-03', 'AA11', 'AAAA', NULL, NULL, NULL, NULL, NULL, 'AA', 'AA', 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-23 12:46:58'),
+(81, 1, 4, 9, 13, 18, 'AKA', '13253', 'AKA', 'AKA', 'AKA', '2021-03-04', 'AKA', 'AKA', 'AKA', 'AKA', 'AK', 'AKA', 'AKA', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-25 10:23:10'),
+(82, 3, 11, 12, 10, 24, 'TECXLA', '1262', 'TECLADOA', 'ASJ', 'AJS', '2021-03-18', 'AJ', '5 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-25 14:27:01'),
+(83, 1, 5, 9, 13, 18, 'SERV1', '1177212', 'SAERV', 'SERV', 'SERV', '2021-03-11', 'SERV', '5 AÑOS', 'SERV', 'SERV', 'SERV', 'SERV', 'SERV', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-25 14:45:32');
 
 -- --------------------------------------------------------
 
@@ -627,7 +653,27 @@ CREATE TABLE `ws_estado` (
 INSERT INTO `ws_estado` (`idEstado`, `descEstado`) VALUES
 (1, 'Activo'),
 (2, 'Baja'),
-(3, 'Repuesto');
+(3, 'Reposición');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ws_estadoatencion`
+--
+
+CREATE TABLE `ws_estadoatencion` (
+  `idEstAte` int(11) NOT NULL,
+  `estAte` text NOT NULL,
+  `fecha_creacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `ws_estadoatencion`
+--
+
+INSERT INTO `ws_estadoatencion` (`idEstAte`, `estAte`, `fecha_creacion`) VALUES
+(1, 'Cerrada', '2021-03-25 16:48:55'),
+(2, 'Pendiente', '2021-03-25 16:48:55');
 
 -- --------------------------------------------------------
 
@@ -699,17 +745,21 @@ INSERT INTO `ws_integraciones` (`idIntegracion`, `correlativo_integracion`, `nro
 (35, 'FT-2021-00035', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-09', 0, 0, 0, 0, 0, 0, 1, '2021-03-09 16:15:20'),
 (36, 'FT-2021-00036', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-09', 0, 0, 0, 0, 0, 0, 1, '2021-03-09 18:46:31'),
 (37, 'FT-2021-00037', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-10', 0, 0, 0, 0, 0, 0, 1, '2021-03-10 14:23:57'),
-(38, 'FT-2021-00038', 'OPTIMUS', '172.16.5.108', 54, 56, 55, 57, NULL, NULL, '2021-03-15', 1, 9, 13, 18, 1, 1, 0, '2021-03-15 15:20:23'),
+(38, 'FT-2021-00038', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-15', 0, 0, 0, 0, 0, 0, 1, '2021-03-15 15:20:23'),
 (39, 'FT-2021-00039', 'IMP_0001', '172.16.5.210', NULL, NULL, NULL, NULL, NULL, 59, '2021-03-15', 3, 9, 13, 18, 1, 1, 0, '2021-03-15 15:26:13'),
 (40, 'FT-2021-00040', 'SW_00001', '172.16.10.100', NULL, NULL, NULL, NULL, 58, NULL, '2021-03-15', 2, 9, 13, 18, 1, 1, 0, '2021-03-15 15:26:46'),
 (41, 'FT-2021-00041', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-15', 0, 0, 0, 0, 0, 0, 1, '2021-03-15 15:35:39'),
-(42, 'FT-2021-00042', 'PRYT', '', NULL, NULL, NULL, NULL, NULL, 69, '2021-03-22', 16, 13, 13, 16, 1, 1, 0, '2021-03-22 15:22:50'),
-(43, 'FT-2021-00043', 'SW_00002', '', NULL, NULL, NULL, NULL, 75, NULL, '2021-03-22', 2, 12, 10, 24, 1, 1, 0, '2021-03-22 17:20:09'),
+(42, 'FT-2021-00042', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-22', 0, 0, 0, 0, 0, 0, 1, '2021-03-22 15:22:50'),
+(43, 'FT-2021-00043', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-22', 0, 0, 0, 0, 0, 0, 1, '2021-03-22 17:20:09'),
 (44, 'FT-2021-00044', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-22', 0, 0, 0, 0, 0, 0, 1, '2021-03-22 19:53:44'),
 (45, 'FT-2021-00045', 'LAP_0004', '172.16.5.125', 76, NULL, NULL, NULL, NULL, NULL, '2021-03-22', 4, 9, 13, 18, 1, 1, 0, '2021-03-22 19:56:21'),
-(46, 'FT-2021-00046', 'AK', '172.16.0.1', 77, NULL, NULL, NULL, NULL, NULL, '2021-03-22', 4, 12, 10, 24, 1, 1, 0, '2021-03-22 20:09:43'),
-(49, 'FT-2021-00047', 'IMP_0002', '', NULL, NULL, NULL, NULL, NULL, 78, '2021-03-23', 3, 11, 10, 24, 1, 1, 0, '2021-03-23 17:07:08'),
-(50, 'FT-2021-00048', 'SW_00003', '172.16.5.100', NULL, NULL, NULL, NULL, 80, NULL, '2021-03-23', 2, 11, 10, 24, 1, 1, 0, '2021-03-23 17:47:51');
+(46, 'FT-2021-00046', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-22', 0, 0, 0, 0, 0, 0, 1, '2021-03-22 20:09:43'),
+(49, 'FT-2021-00047', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-23', 0, 0, 0, 0, 0, 0, 1, '2021-03-23 17:07:08'),
+(50, 'FT-2021-00048', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-23', 0, 0, 0, 0, 0, 0, 1, '2021-03-23 17:47:51'),
+(51, 'FT-2021-00049', 'IMP_', '', NULL, NULL, NULL, NULL, NULL, 69, '2021-03-25', 3, 9, 13, 18, 1, 1, 0, '2021-03-25 19:27:35'),
+(52, 'FT-2021-00050', 'LAP_054', '172.31.6.50', 81, NULL, NULL, NULL, NULL, NULL, '2021-03-25', 4, 9, 13, 18, 1, 1, 0, '2021-03-25 19:35:10'),
+(53, 'FT-2021-00051', 'PC_OCP', '172.16.5.100', 54, 56, 55, 57, NULL, NULL, '2021-03-25', 1, 9, 13, 18, 1, 1, 0, '2021-03-25 19:35:29'),
+(54, 'FT-2021-00052', 'SERV_0001', '172.16.0.4', 83, NULL, NULL, NULL, NULL, NULL, '2021-03-25', 5, 9, 13, 18, 1, 1, 0, '2021-03-25 19:45:50');
 
 --
 -- Disparadores `ws_integraciones`
@@ -737,9 +787,51 @@ DELIMITER ;
 --
 
 CREATE TABLE `ws_mantenimientos` (
-  `idMant` int(11) NOT NULL,
-  `fechaRegistro` date NOT NULL
+  `idManteniimiento` int(11) NOT NULL,
+  `correlativo_Mant` int(11) NOT NULL,
+  `fRegistroMant` date NOT NULL,
+  `tipEquipo` int(11) NOT NULL,
+  `condInicial` int(11) NOT NULL,
+  `idEquip` int(11) NOT NULL,
+  `oficEquip` int(11) NOT NULL,
+  `areaEquip` int(11) NOT NULL,
+  `respoEquip` int(11) NOT NULL,
+  `descInc` int(11) NOT NULL,
+  `diagnosticos` int(11) NOT NULL,
+  `tecEvalua` int(11) NOT NULL,
+  `fEvalua` date NOT NULL,
+  `primera_eval` text COLLATE utf8_spanish_ci NOT NULL,
+  `fInicio` date NOT NULL,
+  `fFin` date NOT NULL,
+  `tipTrabajo` int(11) NOT NULL,
+  `acciones` text COLLATE utf8_spanish_ci NOT NULL,
+  `recomendaciones` text COLLATE utf8_spanish_ci NOT NULL,
+  `estAtencion` int(11) NOT NULL,
+  `condFinal` int(11) NOT NULL,
+  `servTerce` int(11) NOT NULL,
+  `otros` int(11) NOT NULL,
+  `obsOtros` text COLLATE utf8_spanish_ci,
+  `usRegistra` int(11) NOT NULL,
+  `fecha_creacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Disparadores `ws_mantenimientos`
+--
+DELIMITER $$
+CREATE TRIGGER `GENERAR_CORRELATIVO_MANTENIMIENTO` BEFORE INSERT ON `ws_mantenimientos` FOR EACH ROW BEGIN
+    DECLARE cont1 int default 0;
+    DECLARE anio text;
+    set anio = (SELECT YEAR(CURDATE()));
+    SET cont1= (SELECT count(*) FROM ws_mantenimientos WHERE year(fRegistroMant) = year(now()));
+    IF (cont1 < 1) THEN
+    SET NEW.correlativo_Mant = CONCAT('FM-',anio,'-', LPAD(cont1 + 1, 5, '0'));
+    ELSE
+    SET NEW.correlativo_Mant = CONCAT('FM-',anio,'-', LPAD(cont1 + 1, 5, '0'));
+    END IF;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -877,7 +969,9 @@ CREATE TABLE `ws_tipotrabajo` (
 INSERT INTO `ws_tipotrabajo` (`idTipoTrabajo`, `tipoTrabajo`) VALUES
 (1, 'Mantenimiento Preventivo'),
 (2, 'Mantenimiento Correctivo'),
-(3, 'Otros');
+(3, 'Otro'),
+(4, 'Baja'),
+(5, 'Reposición');
 
 -- --------------------------------------------------------
 
@@ -904,7 +998,7 @@ CREATE TABLE `ws_usuarios` (
 --
 
 INSERT INTO `ws_usuarios` (`id_usuario`, `id_perfil`, `dni`, `nombres`, `apellido_paterno`, `apellido_materno`, `cuenta`, `clave`, `fecha_registro`, `estado`, `nintentos`) VALUES
-(1, 1, '77478995', 'Olger Ivan', 'Castro', 'Palacios', 'ocastrop', '$2a$07$usesomesillystringforeVF6hLwtgsUBAmUN4cGEd8tYF74gSHRW', '2020-03-02 16:22:25', 1, 0),
+(1, 1, '77478995', 'Olger Ivan', 'Castro', 'Palacios', 'ocastrop', '$2a$07$usesomesillystringforeVF6hLwtgsUBAmUN4cGEd8tYF74gSHRW', '2020-03-02 16:22:25', 1, 1),
 (2, 2, '40195996', 'Monica Nohemi', 'Rosas', 'Sanchez', 'rosasmn', '$2a$07$usesomesillystringforeoRNSqF5ebwOJ.HFIcVhNJ65bww3hpNi', '2021-03-11 15:46:33', 1, 0),
 (3, 3, '09966920', 'Javier Octavio', 'Sernaque', 'Quintana', 'jsernaqueq', '$2a$07$usesomesillystringforeAR0AYDLcMUwZJGc02Ta3T98Pn6LH7pi', '2021-03-11 15:48:50', 1, 0),
 (4, 3, '42162499', 'Edwin William', 'Guerrero', 'Sandoval', 'wguerreros', '$2a$07$usesomesillystringforeLTVm.b0q8aUqKwOyqhotBMNXub2QEkq', '2021-03-11 15:52:31', 1, 0),
@@ -958,6 +1052,12 @@ ALTER TABLE `ws_estado`
   ADD PRIMARY KEY (`idEstado`);
 
 --
+-- Indices de la tabla `ws_estadoatencion`
+--
+ALTER TABLE `ws_estadoatencion`
+  ADD PRIMARY KEY (`idEstAte`);
+
+--
 -- Indices de la tabla `ws_integraciones`
 --
 ALTER TABLE `ws_integraciones`
@@ -967,7 +1067,7 @@ ALTER TABLE `ws_integraciones`
 -- Indices de la tabla `ws_mantenimientos`
 --
 ALTER TABLE `ws_mantenimientos`
-  ADD PRIMARY KEY (`idMant`);
+  ADD PRIMARY KEY (`idManteniimiento`);
 
 --
 -- Indices de la tabla `ws_perfiles`
@@ -1031,7 +1131,7 @@ ALTER TABLE `ws_bajas`
 -- AUTO_INCREMENT de la tabla `ws_categorias`
 --
 ALTER TABLE `ws_categorias`
-  MODIFY `idCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `idCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_departamentos`
@@ -1049,7 +1149,7 @@ ALTER TABLE `ws_diagnosticos`
 -- AUTO_INCREMENT de la tabla `ws_equipos`
 --
 ALTER TABLE `ws_equipos`
-  MODIFY `idEquipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `idEquipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_estado`
@@ -1058,16 +1158,22 @@ ALTER TABLE `ws_estado`
   MODIFY `idEstado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT de la tabla `ws_estadoatencion`
+--
+ALTER TABLE `ws_estadoatencion`
+  MODIFY `idEstAte` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de la tabla `ws_integraciones`
 --
 ALTER TABLE `ws_integraciones`
-  MODIFY `idIntegracion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `idIntegracion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_mantenimientos`
 --
 ALTER TABLE `ws_mantenimientos`
-  MODIFY `idMant` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idManteniimiento` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_perfiles`
@@ -1103,7 +1209,7 @@ ALTER TABLE `ws_situacion`
 -- AUTO_INCREMENT de la tabla `ws_tipotrabajo`
 --
 ALTER TABLE `ws_tipotrabajo`
-  MODIFY `idTipoTrabajo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idTipoTrabajo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_usuarios`

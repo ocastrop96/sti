@@ -27,12 +27,13 @@ $(".tablaResponsables").DataTable({
 // Cargar combos
 $("#oficinaRes").on("change", function () {
     var idOficina = $(this).val();
-    if (idOficina) {
+    if (idOficina > 0) {
         $.ajax({
             type: "POST",
             url: "lib/comboServicios.php",
             data: "idOficina=" + idOficina,
             success: function (html) {
+                console.log(html);
                 $("#servicioRes").prop("disabled", false);
                 $("#servicioRes").html(html);
             },

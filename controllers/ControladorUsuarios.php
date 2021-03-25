@@ -278,4 +278,10 @@ class ControladorUsuarios
             }
         }
     }
+
+    static public function ctrListarTecnicos($item, $valor)
+    {
+        $respuesta = ModeloUsuarios::mdlListaTecnicos($item, $valor);
+        return $respuesta;
+    }
 }

@@ -21,7 +21,8 @@ class ModeloUsuarios
 		$stmt->close();
 		$stmt = null;
 	}
-	static public function mdlRegistroIntentos($dato){
+	static public function mdlRegistroIntentos($dato)
+	{
 		$stmt = Conexion::conectar()->prepare("CALL INTENTOS_USUARIO(:id_usuario)");
 		$stmt->bindParam(":id_usuario", $dato, PDO::PARAM_STR);
 		$stmt->execute();
@@ -39,6 +40,23 @@ class ModeloUsuarios
 			return $stmt->fetch();
 		} else {
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+			$stmt->execute();
+			return $stmt->fetchAll();
+		}
+		//Cerramos la conexion por seguridad
+		$stmt->close();
+		$stmt = null;
+	}
+
+	static public function mdlListaTecnicos($item, $valor)
+	{
+		if ($item != null) {
+			$stmt = Conexion::conectar()->prepare("SELECT id_usuario,nombres,apellido_paterno,apellido_materno from ws_usuarios WHERE id_perfil between 3 and 4 and $item = :$item");
+			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
+			$stmt->execute();
+			return $stmt->fetch();
+		} else {
+			$stmt = Conexion::conectar()->prepare("CALL LISTAR_UTECNICOS()");
 			$stmt->execute();
 			return $stmt->fetchAll();
 		}

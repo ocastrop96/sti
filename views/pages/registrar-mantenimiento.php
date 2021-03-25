@@ -16,7 +16,7 @@
     </section>
     <section class="content">
         <div class="row">
-            <div class="col-lg-7 col-xs-12">
+            <div class="col-lg-6 col-xs-12">
                 <div class="card card-secondary">
                     <div class="card-header with-border">
                         <h3 class="card-title">
@@ -50,15 +50,18 @@
                                                 echo '<option value="' . $value["idCategoria"] . '">' . $value["categoria"] . '</option>';
                                             }
                                             ?>
+                                            <input type="hidden" name="uregMant" id="uregMant" value="<?php echo $_SESSION["id"]; ?>">
+                                            <input type="hidden" name="sgtoManto" id="sgtoManto">
                                         </select>
+
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-5">
                                     <div class="form-group">
-                                        <label for="serieEQ">N° de Serie &nbsp;</label>
+                                        <label for="">N° de Serie &nbsp;</label>
                                         <i class="fas fa-desktop"></i> *
-                                        <select class="form-control" style="width: 100%;" name="serieEQ" id="serieEQ">
-                                            <option value="0">Seleccione Serie de Equipo</option>
+                                        <select class="form-control" style="width: 100%;" name="" id="">
+                                            <option id="serieEQ"></option>
                                         </select>
                                     </div>
                                 </div>
@@ -107,7 +110,7 @@
                                     <div class="form-group">
                                         <label for="">F.Evaluación &nbsp;</label>
                                         <i class="fas fa-calendar-alt"></i> *
-                                        <input type="text" name="" id="" class="form-control" required autocomplete="off" placeholder="dd/mm/yyyy">
+                                        <input type="text" name="fEva" id="fEva" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask required autocomplete="off" placeholder="dd/mm/yyyy">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
@@ -116,6 +119,14 @@
                                         <i class="fas fa-thermometer-half"></i> *
                                         <select class="form-control" style="width: 100%;" name="" id="">
                                             <option value="0">Seleccione Condición</option>
+                                            <?php
+                                            $itemCIM = null;
+                                            $valorCIM  = null;
+                                            $ciManto = ControladorSituacion::ctrListarSituacionManto($itemCIM, $valorCIM);
+                                            foreach ($ciManto as $key => $value) {
+                                                echo '<option value="' . $value["idSituacion"] . '">' . $value["situacion"] . '</option>';
+                                            }
+                                            ?>
                                         </select>
                                     </div>
                                 </div>
@@ -125,6 +136,14 @@
                                         <i class="fas fa-thermometer-half"></i> *
                                         <select class="form-control" style="width: 100%;" name="" id="">
                                             <option value="0">Seleccione Técnico Evaluador</option>
+                                            <?php
+                                            $itemTecEva = null;
+                                            $valorTecEva  = null;
+                                            $tecEva = ControladorUsuarios::ctrListarTecnicos($itemTecEva, $valorTecEva);
+                                            foreach ($tecEva as $key => $value) {
+                                                echo '<option value="' . $value["id_usuario"] . '">' . $value["nombres"] . ' ' . $value["apellido_paterno"] . ' ' . $value["apellido_materno"] . '</option>';
+                                            }
+                                            ?>
                                         </select>
                                     </div>
                                 </div>
@@ -138,14 +157,20 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Bloque de diagnosticos -->
                             <div class="row">
                                 <div class="col-12 col-md-12">
-                                    <div class="form-group row nuevoDiagnostico">
+                                    <div class="form-group">
+                                        <label for="">Diagnósticos Realizados &nbsp;</label>
+                                        <i class="fas fa-laptop-medical"></i> *
+                                        <input type="hidden" id="listaDiagnosticos" name="listaDiagnosticos">
+                                    </div>
+                                    <div class="col-12 col-md-12">
+                                        <div class="form-group row nuevoDiagnostico">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <input type="hidden" id="listaDiagnosticos" name="listaDiagnosticos">
+                            <!-- Bloque de diagnosticos -->
                             <!-- Bloque de diagnosticos -->
                             <p class="font-weight-bolder text-gray disabled">III. Descripción de Acciones realizadas</p>
 
@@ -154,30 +179,133 @@
                                     <div class="form-group">
                                         <label for="">Primera Evaluación &nbsp;</label>
                                         <i class="fas fa-camera-retro"></i> * (Impresión diagnóstica observada por el Tec. evaluador)
-                                        <input type="text" name="" id="" class="form-control" required autocomplete="off" placeholder="Ingrese descripción del incidente">
+                                        <input type="text" name="" id="" class="form-control" required autocomplete="off" placeholder="Ingrese descripción primera evaluación">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-12 col-md-4">
+                                <div class="col-12 col-md-3">
                                     <div class="form-group">
                                         <label for="">Fecha Inicio &nbsp;</label>
                                         <i class="fas fa-calendar-alt"></i> *
-                                        <input type="text" name="" id="" class="form-control" required autocomplete="off" placeholder="Ingrese descripción del incidente">
+                                        <input type="text" name="fInicio" id="fInicio" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask required autocomplete="off" placeholder="dd/mm/yyyy">
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-4">
+                                <div class="col-12 col-md-3">
                                     <div class="form-group">
                                         <label for="">Fecha Fin &nbsp;</label>
                                         <i class="fas fa-calendar-alt"></i> *
-                                        <input type="text" name="" id="" class="form-control" required autocomplete="off" placeholder="Ingrese descripción del incidente">
+                                        <input type="text" name="fFin" id="fFin" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask required autocomplete="off" placeholder="dd/mm/yyyy">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Trabajo Realizado &nbsp;</label>
+                                        <i class="fas fa-code-branch"></i> *
+                                        <select class="form-control" style="width: 100%;" name="" id="">
+                                            <option value="0">Seleccione Trabajo realizado</option>
+                                            <?php
+                                            $itemTrabM = null;
+                                            $valorTrabM  = null;
+                                            $trabM = ControladorDiagnosticos::ctrListarTrabajosManto($itemTrabM, $valorTrabM);
+                                            foreach ($trabM as $key => $value) {
+                                                echo '<option value="' . $value["idTipoTrabajo"] . '">' . $value["tipoTrabajo"] . '</option>';
+                                            }
+                                            ?>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <p class="font-weight-bolder text-gray disabled">IV. Observaciones del estado del Equipo</p>
+                                <div class="col-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="">Acciones Realizadas &nbsp;</label>
+                                        <i class="fas fa-tools"></i> *
+                                        <input type="hidden" id="listaAcciones" name="listaAcciones">
+                                    </div>
+                                    <div class="col-12 col-md-12">
+                                        <div class="form-group row nuevoAcciones">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="">Recomendaciones u Observaciones finales &nbsp;</label>
+                                        <i class="fas fa-comment-medical"></i> * (Recomendaciones después de finalizado el trabajo)
+                                        <input type="text" name="" id="" class="form-control" required autocomplete="off" placeholder="Ingrese Recomendación u observacion final">
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="font-weight-bolder text-gray disabled">IV. Observaciones del estado del Equipo</p>
+                            <div class="row">
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
+                                        <label for="">Estado de Atención &nbsp;</label>
+                                        <i class="fas fa-signal"></i> *
+                                        <select class="form-control" style="width: 100%;" name="" id="">
+                                            <option value="0">Seleccione Est. Atención</option>
+                                            <?php
+                                            $itemTEstaAtM = null;
+                                            $valorTEstaAtM  = null;
+                                            $tEstaAtM = ControladorEstados::ctrListarEstadosAtencion($itemTEstaAtM, $valorTEstaAtM);
+                                            foreach ($tEstaAtM as $key => $value) {
+                                                echo '<option value="' . $value["idEstAte"] . '">' . $value["estAte"] . '</option>';
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group">
+                                        <label for="">Cond. Final(EQ) &nbsp;</label>
+                                        <i class="fas fa-thermometer-full"></i> *
+                                        <select class="form-control" style="width: 100%;" name="" id="">
+                                            <option value="0">Seleccione Cond. Final</option>
+                                            <?php
+                                            $itemCondM = null;
+                                            $valorCondM  = null;
+                                            $CondM = ControladorSituacion::ctrListarSituacionManto($itemCondM, $valorCondM);
+                                            foreach ($CondM as $key => $value) {
+                                                echo '<option value="' . $value["idSituacion"] . '">' . $value["situacion"] . '</option>';
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group">
+                                        <label for="">Serv. Terceros &nbsp;</label>
+                                        <i class="fas fa-thermometer-full"></i> *
+                                        <select class="form-control" style="width: 100%;" name="" id="">
+                                            <option value="SI">SI</option>
+                                            <option value="NO" selected>NO</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-sm-11 col-md-1 col-lg-1 col-xl-1">
+                                    <label>Otros</label>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2">
+                                    <div class="input-group">
+                                        <div class="icheck-dark d-inline">
+                                            <input type="radio" id="radiorep1" name="obsOtros" value="SI">
+                                            <label for="radiorep1"> SI
+                                            </label>&nbsp;&nbsp;
+                                        </div>
+                                        <div class="icheck-dark d-inline">
+                                            <input type="radio" id="radiorep2" name="obsOtros" value="NO" checked>
+                                            <label for="radiorep2"> NO
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-5 col-lg-6 col-xl-6">
+                                    <div class="form-group">
+                                        <input type="text" name="detalleOtros" id="detalleOtros" class="form-control" autocomplete="off" readonly placeholder="Detalle otros">
                                     </div>
                                 </div>
                             </div>
@@ -188,7 +316,7 @@
                     </form>
                 </div>
             </div>
-            <div class="col-lg-5 col-xs-12">
+            <div class="col-lg-6 col-xs-12">
                 <div class="row">
                     <div class="col-12">
                         <div class="card card-info">
