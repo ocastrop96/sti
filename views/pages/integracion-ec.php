@@ -62,111 +62,144 @@
         <div class="modal-body">
           <div class="row">
             <div class="col-12 col-md-3">
-              <label for="fechita">Fecha de Registro &nbsp;</label>
-              <i class="fas fa-calendar-alt"></i> *
-              <input type="text" class="form-control" readonly value="
-              <?php
-              date_default_timezone_set('America/Lima');
-              $fechaActual = date('d-m-Y');
-              echo $fechaActual; ?>
-                " id="fechita" name="fechita">
+              <div class="form-group">
+                <label for="fechita">Fecha de Registro &nbsp;</label>
+                <i class="fas fa-calendar-alt"></i> *
+                <div class="input-group">
+                  <input type="text" class="form-control" readonly value="<?php date_default_timezone_set('America/Lima');
+                                                                          $fechaActual = date('d-m-Y');
+                                                                          echo $fechaActual; ?>" id="fechita" name="fechita">
+                </div>
+              </div>
             </div>
             <div class="col-12 col-md-3">
-              <label for="tipEq">Tipo de Equipo &nbsp;</label>
-              <i class="fas fa-th"></i> *
-              <select class="form-control" style="width: 100%;" id="tipEq" name="tipEq">
-                <option value="0">Seleccione tipo</option>
-                <?php
-                $cat1 = ControladorCategorias::ctrListarCategoriaComputo();
-                foreach ($cat1 as $key => $value) {
-                  echo '<option value="' . $value["idCategoria"] . '">' . $value["categoria"] . '</option>';
-                }
-                ?>
-              </select>
+              <div class="form-group">
+                <label for="tipEq">Tipo de Equipo &nbsp;</label>
+                <i class="fas fa-th"></i> *
+                <div class="input-group">
+                  <select class="form-control" style="width: 100%;" id="tipEq" name="tipEq">
+                    <option value="0">Seleccione tipo</option>
+                    <?php
+                    $cat1 = ControladorCategorias::ctrListarCategoriaComputo();
+                    foreach ($cat1 as $key => $value) {
+                      echo '<option value="' . $value["idCategoria"] . '">' . $value["categoria"] . '</option>';
+                    }
+                    ?>
+                  </select>
+                </div>
+              </div>
             </div>
             <div class="col-12 col-md-3">
-              <label for="nroEquipo">N° de Equipo &nbsp;</label>
-              <i class="fas fa-hashtag"></i> *
-              <input type="text" class="form-control" autocomplete="off" id="nroEquipo" name="nroEquipo" maxlength="15" placeholder="Ingrese N° de PC" required>
+              <div class="form-group">
+                <label for="nroEquipo">N° de Equipo &nbsp;</label>
+                <i class="fas fa-hashtag"></i> *
+                <div class="input-group">
+                  <input type="text" class="form-control" autocomplete="off" id="nroEquipo" name="nroEquipo" maxlength="15" placeholder="Ingrese N° de PC" required>
+                </div>
+              </div>
             </div>
             <div class="col-12 col-md-3">
-              <label for="ip_comp">IP &nbsp;</label>
-              <i class="fas fa-network-wired"></i> *
-              <input type="text" class="form-control" data-inputmask="'alias': 'ip'" data-mask required autocomplete="off" placeholder="Ingrese IP del Equipo" id="ip_comp" name="ip_comp">
+              <div class="form-group">
+                <label for="ip_comp">IP &nbsp;</label>
+                <i class="fas fa-network-wired"></i> *
+                <div class="input-group">
+                  <input type="text" class="form-control" data-inputmask="'alias': 'ip'" data-mask required autocomplete="off" placeholder="Ingrese IP del Equipo" id="ip_comp" name="ip_comp">
+                </div>
+              </div>
             </div>
           </div>
           <div class="row mt-2 d-none" id="bloquePC">
             <div class="col-12 col-md-3">
-              <label for="seriePC">PC &nbsp;</label>
-              <i class="fas fa-laptop-code"></i> *
-              <select class="form-control" style="width: 100%;" id="seriePC" name="seriePC">
-                <option value="0">Seleccione PC</option>
-                <?php
-                $sPC = ControladorIntegracion::ctrListarSeriesPC();
-                foreach ($sPC as $key => $value) {
-                  echo '<option value="' . $value["idEquipo"] . '">' . $value["serie"] . '</option>';
-                }
-                ?>
-              </select>
+              <div class="form-group">
+                <label for="seriePC">PC &nbsp;</label>
+                <i class="fas fa-laptop-code"></i> *
+                <div class="input-group">
+                  <select class="form-control" style="width: 100%;" id="seriePC" name="seriePC">
+                    <option value="0">Seleccione PC</option>
+                    <?php
+                    $sPC = ControladorIntegracion::ctrListarSeriesPC();
+                    foreach ($sPC as $key => $value) {
+                      echo '<option value="' . $value["idEquipo"] . '">' . $value["serie"] . '</option>';
+                    }
+                    ?>
+                  </select>
+                </div>
+              </div>
             </div>
             <div class="col-12 col-md-3">
-              <label for="serieMon">Monitor &nbsp;</label>
-              <i class="fas fa-desktop"></i> *
-              <select class="form-control" style="width: 100%;" id="serieMon" name="serieMon">
-                <option value="0">Seleccione Monitor</option>
-                <?php
-                $sMon = ControladorIntegracion::ctrListarSeriesMon();
-                foreach ($sMon as $key => $value) {
-                  echo '<option value="' . $value["idEquipo"] . '">' . $value["serie"] . '</option>';
-                }
-                ?>
-              </select>
+              <div class="form-group">
+                <label for="serieMon">Monitor &nbsp;</label>
+                <i class="fas fa-desktop"></i> *
+                <div class="input-group">
+                  <select class="form-control" style="width: 100%;" id="serieMon" name="serieMon">
+                    <option value="0">Seleccione Monitor</option>
+                    <?php
+                    $sMon = ControladorIntegracion::ctrListarSeriesMon();
+                    foreach ($sMon as $key => $value) {
+                      echo '<option value="' . $value["idEquipo"] . '">' . $value["serie"] . '</option>';
+                    }
+                    ?>
+                  </select>
+                </div>
+              </div>
             </div>
             <div class="col-12 col-md-3">
-              <label for="serieTec">Teclado &nbsp;</label>
-              <i class="fas fa-keyboard"></i> *
-              <select class="form-control" style="width: 100%;" id="serieTec" name="serieTec">
-                <option value="0">Seleccione Teclado</option>
-                <?php
-                $sTec = ControladorIntegracion::ctrListarSeriesTec();
-                foreach ($sTec as $key => $value) {
-                  echo '<option value="' . $value["idEquipo"] . '">' . $value["serie"] . '</option>';
-                }
-                ?>
-              </select>
+              <div class="form-group">
+                <label for="serieTec">Teclado &nbsp;</label>
+                <i class="fas fa-keyboard"></i> *
+                <div class="input-group">
+                  <select class="form-control" style="width: 100%;" id="serieTec" name="serieTec">
+                    <option value="0">Seleccione Teclado</option>
+                    <?php
+                    $sTec = ControladorIntegracion::ctrListarSeriesTec();
+                    foreach ($sTec as $key => $value) {
+                      echo '<option value="' . $value["idEquipo"] . '">' . $value["serie"] . '</option>';
+                    }
+                    ?>
+                  </select>
+                </div>
+              </div>
             </div>
             <div class="col-12 col-md-3">
-              <label for="serieAcuEne">Energía&nbsp;</label>
-              <i class="fas fa-charging-station"></i> *
-              <select class="form-control" style="width: 100%;" id="serieAcuEne" name="serieAcuEne">
-                <option value="0">Seleccione F. Energía</option>
-                <?php
-                $sFuen = ControladorIntegracion::ctrListarSeriesEnergia();
-                foreach ($sFuen as $key => $value) {
-                  echo '<option value="' . $value["idEquipo"] . '">' . $value["serie"] . '</option>';
-                }
-                ?>
-                <input type="hidden" id="datResp" name="datResp">
-                <input type="hidden" id="datOfi" name="datOfi">
-                <input type="hidden" id="datServ" name="datServ">
-                <input type="hidden" id="datEst" name="datEst">
-                <input type="hidden" id="datCond" name="datCond">
-              </select>
+              <div class="form-group">
+                <label for="serieAcuEne">Energía&nbsp;</label>
+                <i class="fas fa-charging-station"></i> *
+                <div class="input-group">
+                  <select class="form-control" style="width: 100%;" id="serieAcuEne" name="serieAcuEne">
+                    <option value="0">Seleccione F. Energía</option>
+                    <?php
+                    $sFuen = ControladorIntegracion::ctrListarSeriesEnergia();
+                    foreach ($sFuen as $key => $value) {
+                      echo '<option value="' . $value["idEquipo"] . '">' . $value["serie"] . '</option>';
+                    }
+                    ?>
+                    <input type="hidden" id="datResp" name="datResp">
+                    <input type="hidden" id="datOfi" name="datOfi">
+                    <input type="hidden" id="datServ" name="datServ">
+                    <input type="hidden" id="datEst" name="datEst">
+                    <input type="hidden" id="datCond" name="datCond">
+                  </select>
+                </div>
+              </div>
             </div>
           </div>
           <div class="row mt-2 d-none" id="bloqueLapServ">
             <div class="col-12 col-md-12">
-              <label for="serieLaptop">LAPTOP O SERVIDOR &nbsp;</label>
-              <i class="fas fa-laptop-code"></i> *
-              <select class="form-control" style="width: 100%;" id="serieLaptop" name="serieLaptop">
-                <option value="0">Selecciona Servidor o Laptop</option>
-                <?php
-                $sLap = ControladorIntegracion::ctrListarSeriesLapServ();
-                foreach ($sLap as $key => $value) {
-                  echo '<option value="' . $value["idEquipo"] . '">' . $value["serie"] . '</option>';
-                }
-                ?>
-              </select>
+              <div class="form-group">
+                <label for="serieLaptop">LAPTOP O SERVIDOR &nbsp;</label>
+                <i class="fas fa-laptop-code"></i> *
+                <div class="input-group">
+                  <select class="form-control" style="width: 100%;" id="serieLaptop" name="serieLaptop">
+                    <option value="0">Selecciona Servidor o Laptop</option>
+                    <?php
+                    $sLap = ControladorIntegracion::ctrListarSeriesLapServ();
+                    foreach ($sLap as $key => $value) {
+                      echo '<option value="' . $value["idEquipo"] . '">' . $value["serie"] . '</option>';
+                    }
+                    ?>
+                  </select>
+                </div>
+              </div>
             </div>
           </div>
         </div>

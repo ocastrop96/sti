@@ -19,6 +19,8 @@ session_start();
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <link rel="stylesheet" href="views/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
   <link rel="stylesheet" href="views/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="views/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+  <link rel="stylesheet" href="views/dist/css/own.css">
   <link rel="stylesheet" href="views/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
   <link rel="stylesheet" href="views/plugins/bootstrap-datepicker/bootstrap-datepicker.css">
   <link rel="stylesheet" href="views/plugins/bootstrap-datepicker/bootstrap-datepicker.min.css.map">

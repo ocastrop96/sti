@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h4><strong>Registro de Mantenimientos</strong></h4>
+                    <h4><strong> Registro de Mantenimientos</strong></h4>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -16,7 +16,7 @@
     </section>
     <section class="content">
         <div class="row">
-            <div class="col-lg-6 col-xs-12">
+            <div class="col-lg-7 col-xs-12">
                 <div class="card card-secondary">
                     <div class="card-header with-border">
                         <h3 class="card-title">
@@ -30,7 +30,7 @@
                             <div class="row">
                                 <div class="col-12 col-md-3">
                                     <div class="form-group">
-                                        <label for="fechita">Fecha de Registro &nbsp; <i class="fas fa-calendar-alt"></i> *</label>
+                                        <label for="fechita">F.Registro &nbsp; <i class="fas fa-calendar-alt"></i> *</label>
                                         <input type="text" class="form-control" readonly value="<?php date_default_timezone_set('America/Lima');
                                                                                                 $fechaActual = date('d-m-Y');
                                                                                                 echo $fechaActual; ?>">
@@ -66,7 +66,7 @@
                             <div class="row">
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
-                                        <label for="">Oficina/Departamento &nbsp;</label>
+                                        <label for="">Oficina/Dep &nbsp;</label>
                                         <i class="fas fa-sitemap"></i> *
                                         <select class="form-control" style="width: 100%;" name="" id="">
                                             <option value="0">Seleccione Serie de Equipo</option>
@@ -105,14 +105,14 @@
                             <div class="row">
                                 <div class="col-12 col-md-3">
                                     <div class="form-group">
-                                        <label for="">Fecha Evaluación &nbsp;</label>
+                                        <label for="">F.Evaluación &nbsp;</label>
                                         <i class="fas fa-calendar-alt"></i> *
                                         <input type="text" name="" id="" class="form-control" required autocomplete="off" placeholder="dd/mm/yyyy">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
-                                        <label for="">Condición Inicial del Equipo &nbsp;</label>
+                                        <label for="">Cond. Inicial(EQ) &nbsp;</label>
                                         <i class="fas fa-thermometer-half"></i> *
                                         <select class="form-control" style="width: 100%;" name="" id="">
                                             <option value="0">Seleccione Condición</option>
@@ -188,7 +188,7 @@
                     </form>
                 </div>
             </div>
-            <div class="col-lg-6 col-xs-12">
+            <div class="col-lg-5 col-xs-12">
                 <div class="row">
                     <div class="col-12">
                         <div class="card card-info">
