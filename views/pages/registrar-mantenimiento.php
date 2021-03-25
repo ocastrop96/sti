@@ -34,6 +34,8 @@
                                         <input type="text" class="form-control" readonly value="<?php date_default_timezone_set('America/Lima');
                                                                                                 $fechaActual = date('d-m-Y');
                                                                                                 echo $fechaActual; ?>">
+                                        <input type="hidden" name="uregMant" id="uregMant" value="<?php echo $_SESSION["id"]; ?>">
+                                        <input type="hidden" name="sgtoManto" id="sgtoManto">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
@@ -50,18 +52,16 @@
                                                 echo '<option value="' . $value["idCategoria"] . '">' . $value["categoria"] . '</option>';
                                             }
                                             ?>
-                                            <input type="hidden" name="uregMant" id="uregMant" value="<?php echo $_SESSION["id"]; ?>">
-                                            <input type="hidden" name="sgtoManto" id="sgtoManto">
                                         </select>
 
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-5">
                                     <div class="form-group">
-                                        <label for="">N° de Serie &nbsp;</label>
+                                        <label for="serieEQ">N° de Serie &nbsp;</label>
                                         <i class="fas fa-desktop"></i> *
-                                        <select class="form-control" style="width: 100%;" name="" id="">
-                                            <option id="serieEQ"></option>
+                                        <select class="form-control" style="width: 100%;" name="serieEQ" id="serieEQ" disabled>
+                                            <option value="0">Seleccione tip EQ</option>
                                         </select>
                                     </div>
                                 </div>
@@ -71,7 +71,7 @@
                                     <div class="form-group">
                                         <label for="">Oficina/Dep &nbsp;</label>
                                         <i class="fas fa-sitemap"></i> *
-                                        <select class="form-control" style="width: 100%;" name="" id="">
+                                        <select class="form-control" style="width: 100%;" name="" id="" disabled>
                                             <option value="0">Seleccione Serie de Equipo</option>
                                         </select>
                                     </div>
@@ -80,7 +80,7 @@
                                     <div class="form-group">
                                         <label for="">Área/Servicio &nbsp;</label>
                                         <i class="fas fa-building"></i> *
-                                        <select class="form-control" style="width: 100%;" name="" id="">
+                                        <select class="form-control" style="width: 100%;" name="" id="" disabled>
                                             <option value="0">Seleccione Serie de Equipo</option>
                                         </select>
                                     </div>
@@ -89,7 +89,7 @@
                                     <div class="form-group">
                                         <label for="">Usuario Responsable &nbsp;</label>
                                         <i class="fas fa-user"></i> *
-                                        <select class="form-control" style="width: 100%;" name="" id="">
+                                        <select class="form-control" style="width: 100%;" name="" id="" disabled>
                                             <option value="0">Seleccione Serie de Equipo</option>
                                         </select>
                                     </div>

@@ -112,7 +112,8 @@ $("#tipEquipo").on("change", function () {
         });
     }
     else {
-
+        $("#serieEQ").html('<option value="">Seleccione área primero</option>');
+        $("#serieEQ").prop("disabled", true);
     }
 });
 
