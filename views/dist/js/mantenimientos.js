@@ -112,26 +112,50 @@ $("#tipEquipo").on("change", function () {
         });
     }
     else {
-        $("#serieEQ").html('<option value="">Seleccione área primero</option>');
-        $("#serieEQ").prop("disabled", true);
+        $("#serieEQ").html('<option value="">Seleccione tipo Equipo primero</option>');
+        $("#serieEQ").prop("disabled", false);
     }
 });
+// Cargar lista de series en base al tipo
+// Cargar información de equipo en base a serie y tipo seleccionado
+$("#serieEQ").on("change", function () {
+    var idEq1 = $(this).val();
+    var idTip1 = $("#tipEquipo").val();
+    // console.log(idEq1);
+    // console.log(idTip1);
+    if (idEq1 > 0) {
+        var datosEQ = new FormData();
+        datosEQ.append("idEq1", idEq1);
+        datosEQ.append("idTip1", idTip1);
+        $.ajax({
+            url: "lib/ajaxMantenimientos.php",
+            method: "POST",
+            data: datosEQ,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: "json",
+            success: function (respuesta) {
+                if (idTip1 > 0) {
+                    if (idTip1 == 1 || idTip1 == 4 || idTip1 == 5) {
+                        $("#ofiEq").val(respuesta["office"]);
+                        $("#ofiEq").html(respuesta["area"]);
+                    }
+                }
+            }
+        });
+    }
+    else {
+        $("#ofiEq1").prop("disabled", false);
+        $("#ofiEq").val("0");
+        $("#ofiEq").html('Seleccione Serie EQ primero');
+        $("#servEq1").prop("disabled", false);
+        $("#servEq").val("0");
+        $("#servEq").html('Seleccione Serie EQ primero');
+        $("#respEq1").prop("disabled", false);
+        $("#respEq").val("0");
+        $("#respEq").html('Seleccione Serie EQ primero');
+    }
 
-
-// $("#oficinaRes").on("change", function () {
-//     var idOficina = $(this).val();
-//     if (idOficina > 0) {
-//         $.ajax({
-//             type: "POST",
-//             url: "lib/comboServicios.php",
-//             data: "idOficina=" + idOficina,
-//             success: function (html) {
-//                 $("#servicioRes").prop("disabled", false);
-//                 $("#servicioRes").html(html);
-//             },
-//         });
-//     } else {
-//         $("#servicioRes").html('<option value="">Seleccione área primero</option>');
-//         $("#servicioRes").prop("disabled", true);
-//     }
-// });
+});
+// Cargar información de equipo en base a serie y tipo seleccionado

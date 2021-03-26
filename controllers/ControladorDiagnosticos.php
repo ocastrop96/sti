@@ -3,8 +3,7 @@ class ControladorDiagnosticos
 {
     static public function ctrListarDiagnosticos($item, $valor)
     {
-        $tabla = "ws_diagnosticos";
-        $respuesta = ModeloDiagnosticos::mdlListarDiagnosticos($tabla, $item, $valor);
+        $respuesta = ModeloDiagnosticos::mdlListarDiagnosticos($item, $valor);
         return $respuesta;
     }
     static public function ctrListarTrabajosManto($item, $valor)

@@ -320,7 +320,7 @@ $("#edtipERed").focusout(function () {
     var validarIP2 = $(this).val();
     var v222 = $("#ipAnt3").val();
 
-    if (validarIP2 != v222) {
+    if (validarIP2 != v222 && validarIP2 != "") {
         var datos = new FormData();
         datos.append("validarIP", validarIP2);
         $.ajax({

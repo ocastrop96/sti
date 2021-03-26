@@ -60,7 +60,7 @@
                                     <div class="form-group">
                                         <label for="serieEQ">N° de Serie &nbsp;</label>
                                         <i class="fas fa-desktop"></i> *
-                                        <select class="form-control" style="width: 100%;" name="serieEQ" id="serieEQ" disabled>
+                                        <select class="form-control" style="width: 100%;" name="serieEQ" id="serieEQ">
                                             <option value="0">Seleccione tip EQ</option>
                                         </select>
                                     </div>
@@ -69,28 +69,29 @@
                             <div class="row">
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
-                                        <label for="">Oficina/Dep &nbsp;</label>
+                                        <label for="ofiEq1">Oficina/Dep &nbsp;</label>
                                         <i class="fas fa-sitemap"></i> *
-                                        <select class="form-control" style="width: 100%;" name="" id="" disabled>
-                                            <option value="0">Seleccione Serie de Equipo</option>
+                                        <select class="form-control" style="width: 100%;" name="ofiEq" id="ofiEq1">
+                                            <option value="0" id="ofiEq">Seleccione Serie EQ</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
-                                        <label for="">Área/Servicio &nbsp;</label>
+                                        <label for="servEq1">Área/Servicio &nbsp;</label>
                                         <i class="fas fa-building"></i> *
-                                        <select class="form-control" style="width: 100%;" name="" id="" disabled>
-                                            <option value="0">Seleccione Serie de Equipo</option>
+                                        <select class="form-control" style="width: 100%;" name="servEq" id="servEq1">
+                                            <option value="0" id="servEq">Seleccione Serie EQ</option>
+
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
-                                        <label for="">Usuario Responsable &nbsp;</label>
+                                        <label for="respEq1">Usuario Responsable &nbsp;</label>
                                         <i class="fas fa-user"></i> *
-                                        <select class="form-control" style="width: 100%;" name="" id="" disabled>
-                                            <option value="0">Seleccione Serie de Equipo</option>
+                                        <select class="form-control" style="width: 100%;" name="respEq" id="respEq1">
+                                            <option value="0" id="respEq">Seleccione Serie EQ</option>
                                         </select>
                                     </div>
                                 </div>

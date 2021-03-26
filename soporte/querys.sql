@@ -1,0 +1,12 @@
+select idEquipo,serie from ws_equipos where idTipo = 1;
+
+/* CONSULTAR DATOS COMPLETOS DE EQUIPO A PARTIR DE SERIE ID EQUIPO, BUSCAR EN TABLA  EQUIPOS Y TRABLA INTEGRACIONES BLOQUE PC,LAPTOP,SERVIDOR*/
+
+select * from ws_equipos as tabeq 
+inner join ws_integraciones as tabint on tabeq.idEquipo = tabint.serie_pc;
+
+/* CONSULTAR DATOS COMPLETOS DE EQUIPO A PARTIR DE SERIE ID EQUIPO, BUSCAR EN TABLA  EQUIPOS Y TRABLA INTEGRACIONES BLOQUE Impresora, Fotocopiadora, Ticketera, Escáner, Proyector,Marcador Electrónico*/
+
+
+/* CONSULTAR DATOS COMPLETOS DE EQUIPO A PARTIR DE SERIE ID EQUIPO, BUSCAR EN TABLA  EQUIPOS Y TRABLA INTEGRACIONES BLOQUE EQUIPOS DE RED*/
+

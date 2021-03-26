@@ -3,7 +3,7 @@ require_once "ConnectPDO.php";
 
 class ModeloDiagnosticos
 {
-    static public function mdlListarDiagnosticos($tabla, $item, $valor)
+    static public function mdlListarDiagnosticos($item, $valor)
     {
         if ($item != null) {
             $stmt = Conexion::conectar()->prepare("SELECT idDiagnostico,diagnostico,sgmto,descSegmento from ws_diagnosticos as d inner join ws_segmento as s on d.sgmto = s.idSegmento WHERE $item = :$item");

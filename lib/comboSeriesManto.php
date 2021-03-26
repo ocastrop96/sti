@@ -13,25 +13,41 @@ if (isset($_POST["idCatego"]) && !empty($_POST["idCatego"])) {
         } else {
             echo '<option value="0">No hay  equipos existentes</option>';
         }
-    } 
-    elseif ($_POST["idCatego"] == 2 || $_POST["idCatego"] == 6 || $_POST["idCatego"] == 7 || $_POST["idCatego"] == 8) {
-        # code...
-    }
-    else {
-        echo '<option value="0">No hay  equipos existentes</option>';
+    } elseif ($_POST["idCatego"] == 2 || $_POST["idCatego"] == 6 || $_POST["idCatego"] == 7 || $_POST["idCatego"] == 8) {
+        $qstmt = $db->query("CALL LISTAR_EQUPOSREDMANT(" . $_POST["idCatego"] . ")");
+        $rowCount = $qstmt->num_rows;
+        if ($rowCount > 0) {
+            echo '<option value="0">Seleccione serie EQ</option>';
+
+            while ($row = $qstmt->fetch_assoc()) {
+                echo '<option value="' . $row['idEquipo'] . '">' . $row['serie'] . '</option>';
+            }
+        } else {
+            echo '<option value="0">No hay  equipos existentes</option>';
+        }
+    } elseif ($_POST["idCatego"] == 3 || $_POST["idCatego"] == 9 || $_POST["idCatego"] == 14 || $_POST["idCatego"] == 15 || $_POST["idCatego"] == 16 || $_POST["idCatego"] == 17) {
+        $qstmt = $db->query("CALL LISTAR_EQUPOSIMPREMANT(" . $_POST["idCatego"] . ")");
+        $rowCount = $qstmt->num_rows;
+        if ($rowCount > 0) {
+            echo '<option value="0">Seleccione serie EQ</option>';
+
+            while ($row = $qstmt->fetch_assoc()) {
+                echo '<option value="' . $row['idEquipo'] . '">' . $row['serie'] . '</option>';
+            }
+        } else {
+            echo '<option value="0">No hay  equipos existentes</option>';
+        }
+    } else {
+        $qstmt = $db->query("CALL LISTAR_EQUPOSOTROS(" . $_POST["idCatego"] . ")");
+        $rowCount = $qstmt->num_rows;
+        if ($rowCount > 0) {
+            echo '<option value="0">Seleccione serie EQ</option>';
+
+            while ($row = $qstmt->fetch_assoc()) {
+                echo '<option value="' . $row['idEquipo'] . '">' . $row['serie'] . '</option>';
+            }
+        } else {
+            echo '<option value="0">No hay  equipos existentes</option>';
+        }
     }
 }
-// if (isset($_POST["idOficina"]) && !empty($_POST["idOficina"])) {
-//     $qstmt = $db->query("CALL LISTAR_SERVICIOS(" . $_POST["idOficina"] . ")");
-//     $rowCount = $qstmt->num_rows;
-
-//     if ($rowCount > 0) {
-//         echo '<option value="0">Seleccione Servicio</option>';
-
-//         while ($row = $qstmt->fetch_assoc()) {
-//             echo '<option value="' . $row['id_subarea'] . '">' . $row['subarea'] . '</option>';
-//         }
-//     } else {
-//         echo '<option value="0">No hay servicios relacionados</option>';
-//     }
-// }

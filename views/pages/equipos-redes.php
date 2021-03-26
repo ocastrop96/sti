@@ -313,7 +313,7 @@
                   <select class="form-control" style="width: 100%;" name="edtrCat" id="edtrCat1">
                     <option value="" id="edtrCat"></option>
                     <?php
-                    $cat32 = ControladorCategorias::ctrListarCategoriaOtros();
+                    $cat32 = ControladorCategorias::ctrListarCategoriaRedes();
                     foreach ($cat32 as $key => $value) {
                       echo '<option value="' . $value["idCategoria"] . '">' . $value["categoria"] . '</option>';
                     }

@@ -318,7 +318,7 @@ $("#edtip_imp").focusout(function () {
     var validarIP2 = $(this).val();
     var v22 = $("#ipAnt2").val();
 
-    if (validarIP2 != v22) {
+    if (validarIP2 != v22 && validarIP2 != "") {
         var datos = new FormData();
         datos.append("validarIP", validarIP2);
         $.ajax({
