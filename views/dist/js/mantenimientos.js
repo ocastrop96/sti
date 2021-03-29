@@ -108,6 +108,7 @@ $("#tipEquipo").on("change", function () {
     $("#respEq1").prop("disabled", false);
     $("#respEq").val("0");
     $("#respEq").html('Seleccione Serie EQ primero');
+    $("#detaEQ").val("");
     var idCatego = $(this).val();
     if (idCatego > 0) {
         $.ajax({
@@ -132,6 +133,7 @@ $("#tipEquipo").on("change", function () {
         $("#respEq1").prop("disabled", false);
         $("#respEq").val("0");
         $("#respEq").html('Seleccione Serie EQ primero');
+        $("#detaEQ").val("");
     }
 });
 // Cargar lista de series en base al tipo
@@ -139,7 +141,7 @@ $("#tipEquipo").on("change", function () {
 $("#serieEQ").on("change", function () {
     var idEq1 = $(this).val();
     var idTip1 = $("#tipEquipo").val();
-    
+
     if (idEq1 > 0) {
         var datosEQ = new FormData();
         datosEQ.append("idEq1", idEq1);
@@ -157,6 +159,41 @@ $("#serieEQ").on("change", function () {
                     if (idTip1 == 1 || idTip1 == 4 || idTip1 == 5) {
                         $("#ofiEq").val(respuesta["office"]);
                         $("#ofiEq").html(respuesta["area"]);
+                        $("#servEq").val(respuesta["service"]);
+                        $("#servEq").html(respuesta["subarea"]);
+                        $("#respEq").val(respuesta["uResponsable"]);
+                        $("#respEq").html(respuesta["nombresResp"] + " " + respuesta["apellidosResp"]);
+                        $("#detaEQ").val("N° Equipo: " + respuesta["nro_eq"] +
+                            "|| Serie N°: " + respuesta["serie"] + "|| Cod.Patr: " + respuesta["sbn"] + "|| Marca: " + respuesta["marca"] + "|| Modelo: " + respuesta["modelo"] + "|| Descripción: " + respuesta["descripcion"] + "|| IP: " + respuesta["ip"]);
+                    }
+                    else if (idTip1 == 2 || idTip1 == 6 || idTip1 == 7 || idTip1 == 8) {
+                        $("#ofiEq").val(respuesta["office"]);
+                        $("#ofiEq").html(respuesta["area"]);
+                        $("#servEq").val(respuesta["service"]);
+                        $("#servEq").html(respuesta["subarea"]);
+                        $("#respEq").val(respuesta["uResponsable"]);
+                        $("#respEq").html(respuesta["nombresResp"] + " " + respuesta["apellidosResp"]);
+                        $("#detaEQ").val("N° Equipo: " + respuesta["nro_eq"] +
+                            "|| Serie N°: " + respuesta["serie"] + "|| Cod.Patr: " + respuesta["sbn"] + "|| Marca: " + respuesta["marca"] + "|| Modelo: " + respuesta["modelo"] + "|| Descripción: " + respuesta["descripcion"] + "|| IP: " + respuesta["ip"]);
+                    }
+                    else if (idTip1 == 3 || idTip1 == 9 || idTip1 == 14 || idTip1 == 15 || idTip1 == 16 || idTip1 == 17) {
+                        $("#ofiEq").val(respuesta["office"]);
+                        $("#ofiEq").html(respuesta["area"]);
+                        $("#servEq").val(respuesta["service"]);
+                        $("#servEq").html(respuesta["subarea"]);
+                        $("#respEq").val(respuesta["uResponsable"]);
+                        $("#respEq").html(respuesta["nombresResp"] + " " + respuesta["apellidosResp"]);
+                        $("#detaEQ").val("N° Equipo: " + respuesta["nro_eq"] +
+                            "|| Serie N°: " + respuesta["serie"] + "|| Cod.Patr: " + respuesta["sbn"] + "|| Marca: " + respuesta["marca"] + "|| Modelo: " + respuesta["modelo"] + "|| Descripción: " + respuesta["descripcion"] + "|| IP: " + respuesta["ip"]);
+                    }
+                    else {
+                        $("#ofiEq").val(respuesta["office"]);
+                        $("#ofiEq").html(respuesta["area"]);
+                        $("#servEq").val(respuesta["service"]);
+                        $("#servEq").html(respuesta["subarea"]);
+                        $("#respEq").val(respuesta["uResponsable"]);
+                        $("#respEq").html(respuesta["nombresResp"] + " " + respuesta["apellidosResp"]);
+                        $("#detaEQ").val("Serie N°: " + respuesta["serie"] + "|| Cod.Patr: " + respuesta["sbn"] + "|| Marca: " + respuesta["marca"] + "|| Modelo: " + respuesta["modelo"] + "|| Descripción: " + respuesta["descripcion"]);
                     }
                 }
             }
@@ -172,6 +209,7 @@ $("#serieEQ").on("change", function () {
         $("#respEq1").prop("disabled", false);
         $("#respEq").val("0");
         $("#respEq").html('Seleccione Serie EQ primero');
+        $("#detaEQ").val("");
     }
 
 });

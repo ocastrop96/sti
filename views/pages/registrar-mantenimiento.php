@@ -101,7 +101,7 @@
                                     <div class="form-group">
                                         <label for="">Información detallada del Equipo &nbsp;</label>
                                         <i class="fas fa-hashtag"></i> *
-                                        <textarea class="form-control" name="" id="" cols="2" rows="2" placeholder="Detalle del Equipo" readonly></textarea>
+                                        <textarea class="form-control" name="detaEQ" id="detaEQ" cols="1" rows="2" placeholder="Detalle del Equipo" readonly></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -312,7 +312,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-secondary" id="btnRegMant"><i class="fas fa-save"></i> Registrar Ficha</button>
+                            <center><button type="submit" class="btn btn-secondary" id="btnRegMant"><i class="fas fa-save"></i> Registrar Ficha</button></center>
                         </div>
                     </form>
                 </div>
