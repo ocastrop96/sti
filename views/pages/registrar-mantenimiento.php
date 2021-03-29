@@ -16,7 +16,7 @@
     </section>
     <section class="content">
         <div class="row">
-            <div class="col-lg-6 col-xs-12">
+            <div class="col-lg-7 col-xs-12">
                 <div class="card card-secondary">
                     <div class="card-header with-border">
                         <h3 class="card-title">
@@ -317,7 +317,7 @@
                     </form>
                 </div>
             </div>
-            <div class="col-lg-6 col-xs-12">
+            <div class="col-lg-5 col-xs-12">
                 <div class="row">
                     <div class="col-12">
                         <div class="card card-info">

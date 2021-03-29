@@ -99,6 +99,15 @@ $('#fFin').datepicker({
 });
 // Cargar lista de series en base al tipo
 $("#tipEquipo").on("change", function () {
+    $("#ofiEq1").prop("disabled", false);
+    $("#ofiEq").val("0");
+    $("#ofiEq").html('Seleccione Serie EQ primero');
+    $("#servEq1").prop("disabled", false);
+    $("#servEq").val("0");
+    $("#servEq").html('Seleccione Serie EQ primero');
+    $("#respEq1").prop("disabled", false);
+    $("#respEq").val("0");
+    $("#respEq").html('Seleccione Serie EQ primero');
     var idCatego = $(this).val();
     if (idCatego > 0) {
         $.ajax({
@@ -114,6 +123,15 @@ $("#tipEquipo").on("change", function () {
     else {
         $("#serieEQ").html('<option value="">Seleccione tipo Equipo primero</option>');
         $("#serieEQ").prop("disabled", false);
+        $("#ofiEq1").prop("disabled", false);
+        $("#ofiEq").val("0");
+        $("#ofiEq").html('Seleccione Serie EQ primero');
+        $("#servEq1").prop("disabled", false);
+        $("#servEq").val("0");
+        $("#servEq").html('Seleccione Serie EQ primero');
+        $("#respEq1").prop("disabled", false);
+        $("#respEq").val("0");
+        $("#respEq").html('Seleccione Serie EQ primero');
     }
 });
 // Cargar lista de series en base al tipo
@@ -121,8 +139,7 @@ $("#tipEquipo").on("change", function () {
 $("#serieEQ").on("change", function () {
     var idEq1 = $(this).val();
     var idTip1 = $("#tipEquipo").val();
-    // console.log(idEq1);
-    // console.log(idTip1);
+    
     if (idEq1 > 0) {
         var datosEQ = new FormData();
         datosEQ.append("idEq1", idEq1);
