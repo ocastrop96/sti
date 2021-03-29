@@ -24,7 +24,7 @@
                             Ficha de Mantenimiento
                         </h3>
                     </div>
-                    <form action="" role="form" id="formRegMant" method="post" class="frmManto1">
+                    <form action="" role="form" id="formRegMant" method="post">
                         <div class="card-body">
                             <p class="font-weight-bolder text-gray">I. Datos Generales del Equipo</p>
                             <div class="row">
@@ -165,7 +165,14 @@
                                         <i class="fas fa-laptop-medical"></i> *
                                     </div>
                                     <div class="col-12 col-md-12">
-                                        <div class="form-group row nuevoDiagnostico"></div>
+                                        <div class="form-group row nuevoDiagnostico">
+                                            <div class="col-md-12" style="padding-right:0px">
+                                                <div class="input-group mt-1">
+                                                    <span class="input-group-addon"><button type="button" class="btn btn-danger btn-md quitarDiagnostico" idDiagnostico=""><i class="fas fa-trash-restore"></i></button></span> &nbsp;
+                                                    <input type="text" class="form-control nuevaDescripcionDiagnostico" id="agregarDiagnostico" name="agregarDiagnostico" placeholder="Descripción del diagnóstico" idProducto="" value="" required readonly>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <input type="hidden" id="listaDiagnosticos" name="listaDiagnosticos">
                                     </div>
                                 </div>
@@ -224,7 +231,8 @@
                                         <input type="hidden" id="listaAcciones" name="listaAcciones">
                                     </div>
                                     <div class="col-12 col-md-12">
-                                        <div class="form-group row nuevoAcciones"></div>
+                                        <div class="form-group row nuevoAcciones">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
