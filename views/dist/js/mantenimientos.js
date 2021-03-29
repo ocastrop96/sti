@@ -164,7 +164,7 @@ $("#serieEQ").on("change", function () {
                         $("#respEq").val(respuesta["uResponsable"]);
                         $("#respEq").html(respuesta["nombresResp"] + " " + respuesta["apellidosResp"]);
                         $("#detaEQ").val("N° Equipo: " + respuesta["nro_eq"] +
-                            "|| Serie N°: " + respuesta["serie"] + "|| Cod.Patr: " + respuesta["sbn"] + "|| Marca: " + respuesta["marca"] + "|| Modelo: " + respuesta["modelo"] + "|| Descripción: " + respuesta["descripcion"] + "|| IP: " + respuesta["ip"]);
+                            " || Serie N°: " + respuesta["serie"] + " || Cod.Patr: " + respuesta["sbn"] + " || Marca: " + respuesta["marca"] + " || Modelo: " + respuesta["modelo"] + " || Descripción: " + respuesta["descripcion"] + " || IP: " + respuesta["ip"] + " || Procesador: " + respuesta["procesador"] + "-" + respuesta["vprocesador"] + " || RAM: " + respuesta["ram"] + " || Disco Duro: " + respuesta["discoDuro"]);
                     }
                     else if (idTip1 == 2 || idTip1 == 6 || idTip1 == 7 || idTip1 == 8) {
                         $("#ofiEq").val(respuesta["office"]);
@@ -174,7 +174,7 @@ $("#serieEQ").on("change", function () {
                         $("#respEq").val(respuesta["uResponsable"]);
                         $("#respEq").html(respuesta["nombresResp"] + " " + respuesta["apellidosResp"]);
                         $("#detaEQ").val("N° Equipo: " + respuesta["nro_eq"] +
-                            "|| Serie N°: " + respuesta["serie"] + "|| Cod.Patr: " + respuesta["sbn"] + "|| Marca: " + respuesta["marca"] + "|| Modelo: " + respuesta["modelo"] + "|| Descripción: " + respuesta["descripcion"] + "|| IP: " + respuesta["ip"]);
+                            " || Serie N°: " + respuesta["serie"] + " || Cod.Patr: " + respuesta["sbn"] + " || Marca: " + respuesta["marca"] + " || Modelo: " + respuesta["modelo"] + " || Descripción: " + respuesta["descripcion"] + " || IP: " + respuesta["ip"]);
                     }
                     else if (idTip1 == 3 || idTip1 == 9 || idTip1 == 14 || idTip1 == 15 || idTip1 == 16 || idTip1 == 17) {
                         $("#ofiEq").val(respuesta["office"]);
@@ -184,7 +184,7 @@ $("#serieEQ").on("change", function () {
                         $("#respEq").val(respuesta["uResponsable"]);
                         $("#respEq").html(respuesta["nombresResp"] + " " + respuesta["apellidosResp"]);
                         $("#detaEQ").val("N° Equipo: " + respuesta["nro_eq"] +
-                            "|| Serie N°: " + respuesta["serie"] + "|| Cod.Patr: " + respuesta["sbn"] + "|| Marca: " + respuesta["marca"] + "|| Modelo: " + respuesta["modelo"] + "|| Descripción: " + respuesta["descripcion"] + "|| IP: " + respuesta["ip"]);
+                            " || Serie N°: " + respuesta["serie"] + " || Cod.Patr: " + respuesta["sbn"] + " || Marca: " + respuesta["marca"] + " || Modelo: " + respuesta["modelo"] + " || Descripción: " + respuesta["descripcion"] + " || IP: " + respuesta["ip"]);
                     }
                     else {
                         $("#ofiEq").val(respuesta["office"]);
@@ -193,7 +193,7 @@ $("#serieEQ").on("change", function () {
                         $("#servEq").html(respuesta["subarea"]);
                         $("#respEq").val(respuesta["uResponsable"]);
                         $("#respEq").html(respuesta["nombresResp"] + " " + respuesta["apellidosResp"]);
-                        $("#detaEQ").val("Serie N°: " + respuesta["serie"] + "|| Cod.Patr: " + respuesta["sbn"] + "|| Marca: " + respuesta["marca"] + "|| Modelo: " + respuesta["modelo"] + "|| Descripción: " + respuesta["descripcion"]);
+                        $("#detaEQ").val("Serie N°: " + respuesta["serie"] + " || Cod.Patr: " + respuesta["sbn"] + " || Marca: " + respuesta["marca"] + " || Modelo: " + respuesta["modelo"] + " || Descripción: " + respuesta["descripcion"]);
                     }
                 }
             }
@@ -376,3 +376,79 @@ function listarAcciones() {
     $("#listaAcciones").val(JSON.stringify(listaAcciones));
 }
 // Listar Acciones Realizadas
+
+// Radio otros
+$('input[type=radio][name=obsOtros]').change(function () {
+    if (this.value == 'NO') {
+        $("#detalleOtros").val("");
+        $("#detalleOtros").attr("readonly", true);
+    }
+    else if (this.value == 'SI') {
+        $("#detalleOtros").attr("readonly", false);
+        $("#detalleOtros").focus();
+    }
+});
+// Radio otros
+$("#fEva").change(function () {
+    var fechaEva = $(this).val();
+    var newFechaEva = fechaEva.split("/").reverse().join("-");
+    $("#fEvaC").val(newFechaEva);
+
+});
+// Filtro de fechas
+$("#fInicio").change(function () {
+    var fechaEva1 = $(this).val();
+    var newFechaEva1 = fechaEva1.split("/").reverse().join("-");
+    var fevOr = $("#fEvaC").val();
+    $("#fIniEv").val(newFechaEva1);
+
+    if (newFechaEva1 < fevOr) {
+        Swal.fire({
+            icon: "error",
+            title: "La fecha de Inicio debe ser mayor o igual que la Fecha de Evaluación",
+            showConfirmButton: false,
+            timer: 1300
+        });
+        $("#fInicio").focus();
+        $("#fInicio").val("");
+        $("#fFin").val("");
+    }
+    else {
+        $("#fFin").focus();
+    }
+    // $("#fInicio").val(newFechaEva);
+
+});
+$("#fFin").change(function () {
+    var fechaEva2 = $(this).val();
+    var newFechaEva2 = fechaEva2.split("/").reverse().join("-");
+    var fevOr2 = $("#fIniEv").val();
+    $("#fFinEv").val(newFechaEva2);
+
+    if (newFechaEva2 < fevOr2) {
+        Swal.fire({
+            icon: "error",
+            title: "La fecha de Fin debe ser mayor o igual que la Fecha de Inicio",
+            showConfirmButton: false,
+            timer: 1300
+        });
+
+        $("#fFin").focus();
+        $("#fFin").val("");
+    }
+    else {
+        $("#tipTrabEQ").focus();
+    }
+});
+// Filtro de Fechas
+
+
+
+// var date1 = '2021-01-01';
+// var date2 = '2009-01-01';
+// if (date1 > date2) {
+//     console.log("es mayor")
+// }
+// else {
+//     console.log("es menor o igual")
+// }

@@ -109,16 +109,17 @@
                             <div class="row">
                                 <div class="col-12 col-md-3">
                                     <div class="form-group">
-                                        <label for="">F.Evaluación &nbsp;</label>
+                                        <label for="fEva">F.Evaluación &nbsp;</label>
                                         <i class="fas fa-calendar-alt"></i> *
                                         <input type="text" name="fEva" id="fEva" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask required autocomplete="off" placeholder="dd/mm/yyyy">
+                                        <input type="hidden" id="fEvaC" name="fEvaC">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
-                                        <label for="">Cond. Inicial(EQ) &nbsp;</label>
+                                        <label for="condInEQ">Cond. Inicial(EQ) &nbsp;</label>
                                         <i class="fas fa-thermometer-half"></i> *
-                                        <select class="form-control" style="width: 100%;" name="" id="">
+                                        <select class="form-control" style="width: 100%;" name="condInEQ" id="condInEQ">
                                             <option value="0">Seleccione Condición</option>
                                             <?php
                                             $itemCIM = null;
@@ -133,9 +134,9 @@
                                 </div>
                                 <div class="col-12 col-md-5">
                                     <div class="form-group">
-                                        <label for="">Técnico Evaluador &nbsp;</label>
+                                        <label for="tecEvEQ">Técnico Evaluador &nbsp;</label>
                                         <i class="fas fa-thermometer-half"></i> *
-                                        <select class="form-control" style="width: 100%;" name="" id="">
+                                        <select class="form-control" style="width: 100%;" name="tecEvEQ" id="tecEvEQ">
                                             <option value="0">Seleccione Técnico Evaluador</option>
                                             <?php
                                             $itemTecEva = null;
@@ -152,9 +153,9 @@
                             <div class="row">
                                 <div class="col-12 col-md-12">
                                     <div class="form-group">
-                                        <label for="">Descripción del Incidente inicial &nbsp;</label>
+                                        <label for="descIniEQ">Descripción del Incidente inicial &nbsp;</label>
                                         <i class="fas fa-chalkboard-teacher"></i> * (Indicar el problema, falla o inconveniente que presenta el equipo)
-                                        <input type="text" name="" id="" class="form-control" required autocomplete="off" placeholder="Ingrese descripción del incidente">
+                                        <input type="text" name="descIniEQ" id="descIniEQ" class="form-control" required autocomplete="off" placeholder="Ingrese descripción del incidente">
                                     </div>
                                 </div>
                             </div>
@@ -177,32 +178,34 @@
                             <div class="row">
                                 <div class="col-12 col-md-12">
                                     <div class="form-group">
-                                        <label for="">Primera Evaluación &nbsp;</label>
+                                        <label for="priEvaEQ">Primera Evaluación &nbsp;</label>
                                         <i class="fas fa-camera-retro"></i> * (Impresión diagnóstica observada por el Tec. evaluador)
-                                        <input type="text" name="" id="" class="form-control" required autocomplete="off" placeholder="Ingrese descripción primera evaluación">
+                                        <input type="text" name="priEvaEQ" id="priEvaEQ" class="form-control" required autocomplete="off" placeholder="Ingrese descripción primera evaluación">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-12 col-md-3">
                                     <div class="form-group">
-                                        <label for="">Fecha Inicio &nbsp;</label>
+                                        <label for="fInicio">Fecha Inicio &nbsp;</label>
                                         <i class="fas fa-calendar-alt"></i> *
                                         <input type="text" name="fInicio" id="fInicio" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask required autocomplete="off" placeholder="dd/mm/yyyy">
+                                        <input type="hidden" name="fIniEv" id="fIniEv">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-3">
                                     <div class="form-group">
-                                        <label for="">Fecha Fin &nbsp;</label>
+                                        <label for="fFin">Fecha Fin &nbsp;</label>
                                         <i class="fas fa-calendar-alt"></i> *
                                         <input type="text" name="fFin" id="fFin" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask required autocomplete="off" placeholder="dd/mm/yyyy">
+                                        <input type="hidden" name="fFinEv" id="fFinEv">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
-                                        <label for="">Trabajo Realizado &nbsp;</label>
+                                        <label for="tipTrabEQ">Trabajo Realizado &nbsp;</label>
                                         <i class="fas fa-code-branch"></i> *
-                                        <select class="form-control" style="width: 100%;" name="" id="">
+                                        <select class="form-control" style="width: 100%;" name="tipTrabEQ" id="tipTrabEQ">
                                             <option value="0">Seleccione Trabajo realizado</option>
                                             <?php
                                             $itemTrabM = null;
@@ -231,9 +234,9 @@
                             <div class="row">
                                 <div class="col-12 col-md-12">
                                     <div class="form-group">
-                                        <label for="">Recomendaciones u Observaciones finales &nbsp;</label>
+                                        <label for="recoFEQ">Recomendaciones u Observaciones finales &nbsp;</label>
                                         <i class="fas fa-comment-medical"></i> * (Recomendaciones después de finalizado el trabajo)
-                                        <input type="text" name="" id="" class="form-control" required autocomplete="off" placeholder="Ingrese Recomendación u observacion final">
+                                        <input type="text" name="recoFEQ" id="recoFEQ" class="form-control" required autocomplete="off" placeholder="Ingrese Recomendación u observacion final">
                                     </div>
                                 </div>
                             </div>
@@ -241,9 +244,9 @@
                             <div class="row">
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
-                                        <label for="">Estado de Atención &nbsp;</label>
+                                        <label for="estAtEQ">Estado de Atención &nbsp;</label>
                                         <i class="fas fa-signal"></i> *
-                                        <select class="form-control" style="width: 100%;" name="" id="">
+                                        <select class="form-control" style="width: 100%;" name="estAtEQ" id="estAtEQ">
                                             <option value="0">Seleccione Est. Atención</option>
                                             <?php
                                             $itemTEstaAtM = null;
@@ -258,9 +261,9 @@
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
-                                        <label for="">Cond. Final(EQ) &nbsp;</label>
+                                        <label for="condFEQ">Cond. Final(EQ) &nbsp;</label>
                                         <i class="fas fa-thermometer-full"></i> *
-                                        <select class="form-control" style="width: 100%;" name="" id="">
+                                        <select class="form-control" style="width: 100%;" name="condFEQ" id="condFEQ">
                                             <option value="0">Seleccione Cond. Final</option>
                                             <?php
                                             $itemCondM = null;
@@ -275,9 +278,9 @@
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
-                                        <label for="">Serv. Terceros &nbsp;</label>
+                                        <label for="tercEq">Serv. Terceros &nbsp;</label>
                                         <i class="fas fa-thermometer-full"></i> *
-                                        <select class="form-control" style="width: 100%;" name="" id="">
+                                        <select class="form-control" style="width: 100%;" name="tercEq" id="tercEq">
                                             <option value="SI">SI</option>
                                             <option value="NO" selected>NO</option>
                                         </select>
@@ -302,7 +305,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-sm-12 col-md-5 col-lg-6 col-xl-6">
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                                     <div class="form-group">
                                         <input type="text" name="detalleOtros" id="detalleOtros" class="form-control" autocomplete="off" readonly placeholder="Detalle otros">
                                     </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 26-03-2021 a las 20:01:38
+-- Tiempo de generación: 29-03-2021 a las 20:05:33
 -- Versión del servidor: 5.7.24
 -- Versión de PHP: 7.4.15
 
@@ -204,7 +204,7 @@ select * from ws_situacion where idSituacion between 1 and 2;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_DATOS_EQCOMPUTO` (IN `_idEquipo` INT(11))  BEGIN
-SELECT idEquipo,uResponsable,nombresResp,apellidosResp,office,area,service,subarea,nro_eq,serie,sbn,ip,marca,modelo,descripcion FROM ws_equipos eq 
+SELECT idEquipo,uResponsable,nombresResp,apellidosResp,office,area,service,subarea,nro_eq,serie,sbn,ip,marca,modelo,descripcion,procesador,vprocesador,ram,discoDuro FROM ws_equipos eq 
 inner join ws_integraciones as eint on eq.idEquipo = eint.serie_pc
 inner join ws_responsables as eure on eq.uResponsable = eure.idResponsable
 inner join ws_departamentos as edep on eq.office = edep.id_area
@@ -224,7 +224,7 @@ WHERE epc.serie_imp = eqp.idEquipo) and idEquipo = _idEquipo;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_DATOS_EQOTROS` (IN `_idEquipo` INT(11))  BEGIN
-SELECT idEquipo,uResponsable,nombresResp,apellidosResp,office,area,service,subarea,serie,marca,modelo,descripcion FROM ws_equipos  as eqm 
+SELECT idEquipo,uResponsable,nombresResp,apellidosResp,office,area,service,subarea,serie,sbn,marca,modelo,descripcion FROM ws_equipos  as eqm 
 inner join ws_responsables as erm on eqm.uResponsable = erm.idResponsable
 inner join ws_departamentos as edm on eqm.office = edm.id_area
 inner join ws_servicios as esm on eqm.service = esm.id_subarea
@@ -479,7 +479,6 @@ INSERT INTO `ws_acciones` (`idAccion`, `segment`, `accionrealizada`, `contador_a
 (13, 1, 'Instalación de programas', 0),
 (14, 1, 'Instalación de drivers o controladores', 0),
 (15, 1, 'Eliminación de virus', 0),
-(16, 1, 'Instalación de sistema operativo', 0),
 (17, 1, 'Instalación de antivirus', 0),
 (18, 1, 'Mantenimiento general', 0),
 (19, 2, 'Mantenimiento general', 0),
@@ -688,7 +687,7 @@ INSERT INTO `ws_equipos` (`idEquipo`, `tipSegmento`, `idTipo`, `uResponsable`, `
 (80, 2, 7, 11, 10, 24, 'AAAAAAA', '1111111', 'AAAAAA', 'AAAAA', 'AAAAAA', '2021-03-03', 'AA11', 'AAAA', NULL, NULL, NULL, NULL, NULL, 'AA', 'AA', 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-23 12:46:58'),
 (81, 1, 4, 9, 13, 18, 'AKA', '13253', 'AKA', 'AKA', 'AKA', '2021-03-04', 'AKA', 'AKA', 'AKA', 'AKA', 'AK', 'AKA', 'AKA', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-25 10:23:10'),
 (82, 3, 11, 12, 10, 24, 'TECXLA', '1262', 'TECLADOA', 'ASJ', 'AJS', '2021-03-18', 'AJ', '5 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-25 14:27:01'),
-(83, 1, 5, 13, 13, 16, 'SERV1', '1177212', 'SAERV', 'SERV', 'SERV', '2021-03-11', 'SERV', '5 AÑOS', 'SERV', 'SERV', 'SERV', 'SERV', 'SERV', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-25 14:45:32'),
+(83, 1, 5, 13, 13, 16, 'SERV1', '1177212', 'SAERV', 'SERV', 'SERV', '2021-03-11', 'SERV', '5 AÑOS', 'HP', 'XEON', '3.20 GHZ', '32GB', '4TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-25 14:45:32'),
 (84, 2, 8, 9, 13, 18, 'ACP', '12232', 'ACO', 'ACP', 'ACP', '2021-03-12', 'ACP', 'ACP', NULL, NULL, NULL, NULL, NULL, 'ACPO', 'ACP', 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-26 09:32:30'),
 (85, 3, 15, 9, 13, 18, 'ESCANOR', '1237', 'ESCANER', 'ESCANER', 'ESNCAER', '2021-03-05', 'ESCA', '5 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-26 09:59:06'),
 (86, 3, 9, 9, 13, 18, 'FOCOTOCOPIOA', '136172', 'FOTO', 'FOTO', 'FOTO', '2021-03-12', '231-11221', '5 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-26 09:59:49'),
@@ -863,7 +862,7 @@ DELIMITER ;
 --
 
 CREATE TABLE `ws_mantenimientos` (
-  `idManteniimiento` int(11) NOT NULL,
+  `idMantenimiento` int(11) NOT NULL,
   `correlativo_Mant` int(11) NOT NULL,
   `fRegistroMant` date NOT NULL,
   `tipEquipo` int(11) NOT NULL,
@@ -872,6 +871,7 @@ CREATE TABLE `ws_mantenimientos` (
   `oficEquip` int(11) NOT NULL,
   `areaEquip` int(11) NOT NULL,
   `respoEquip` int(11) NOT NULL,
+  `logdeta` text COLLATE utf8_spanish_ci NOT NULL,
   `descInc` int(11) NOT NULL,
   `diagnosticos` int(11) NOT NULL,
   `tecEvalua` int(11) NOT NULL,
@@ -888,6 +888,8 @@ CREATE TABLE `ws_mantenimientos` (
   `otros` int(11) NOT NULL,
   `obsOtros` text COLLATE utf8_spanish_ci,
   `usRegistra` int(11) NOT NULL,
+  `sgmtoManto` int(11) NOT NULL DEFAULT '0',
+  `estAnulado` int(11) NOT NULL DEFAULT '0',
   `fecha_creacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -1143,7 +1145,7 @@ ALTER TABLE `ws_integraciones`
 -- Indices de la tabla `ws_mantenimientos`
 --
 ALTER TABLE `ws_mantenimientos`
-  ADD PRIMARY KEY (`idManteniimiento`);
+  ADD PRIMARY KEY (`idMantenimiento`);
 
 --
 -- Indices de la tabla `ws_perfiles`
@@ -1249,7 +1251,7 @@ ALTER TABLE `ws_integraciones`
 -- AUTO_INCREMENT de la tabla `ws_mantenimientos`
 --
 ALTER TABLE `ws_mantenimientos`
-  MODIFY `idManteniimiento` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idMantenimiento` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_perfiles`

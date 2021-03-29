@@ -68,7 +68,6 @@ class ControladorIntegracion
     // Bloque de Registro de Intregraciones
     static public function ctrRegistrarIntegracionC()
     {
-        if (isset($_POST["tipEq"]) && isset($_POST["nroEquipo"])) {
             if (
                 preg_match('/^[0-9]+$/', $_POST["tipEq"]) &&
                 preg_match('/^[a-zA-Z0-9_]+$/', $_POST["nroEquipo"])
