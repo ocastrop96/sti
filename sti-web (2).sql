@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 29-03-2021 a las 20:05:33
+-- Tiempo de generación: 30-03-2021 a las 19:58:20
 -- Versión del servidor: 5.7.24
 -- Versión de PHP: 7.4.15
 
@@ -204,7 +204,7 @@ select * from ws_situacion where idSituacion between 1 and 2;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_DATOS_EQCOMPUTO` (IN `_idEquipo` INT(11))  BEGIN
-SELECT idEquipo,uResponsable,nombresResp,apellidosResp,office,area,service,subarea,nro_eq,serie,sbn,ip,marca,modelo,descripcion,procesador,vprocesador,ram,discoDuro FROM ws_equipos eq 
+SELECT idEquipo,tipSegmento,uResponsable,nombresResp,apellidosResp,office,area,service,subarea,nro_eq,serie,sbn,ip,marca,modelo,descripcion,procesador,vprocesador,ram,discoDuro FROM ws_equipos eq 
 inner join ws_integraciones as eint on eq.idEquipo = eint.serie_pc
 inner join ws_responsables as eure on eq.uResponsable = eure.idResponsable
 inner join ws_departamentos as edep on eq.office = edep.id_area
@@ -213,7 +213,7 @@ WHERE EXISTS (SELECT NULL FROM ws_integraciones epc WHERE epc.serie_pc = eq.idEq
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_DATOS_EQIMP_OTROS` (IN `_idEquipo` INT(11))  BEGIN
-SELECT idEquipo,uResponsable,nombresResp,apellidosResp,office,area,service,subarea,nro_eq,serie,sbn,ip,marca,modelo,descripcion FROM ws_equipos eqp
+SELECT idEquipo,tipSegmento,uResponsable,nombresResp,apellidosResp,office,area,service,subarea,nro_eq,serie,sbn,ip,marca,modelo,descripcion FROM ws_equipos eqp
 inner join ws_integraciones as inteR on eqp.idEquipo = inteR.serie_imp
 inner join ws_responsables as ures on eqp.uResponsable = ures.idResponsable
 inner join ws_departamentos as deq on eqp.office = deq.id_area
@@ -224,7 +224,7 @@ WHERE epc.serie_imp = eqp.idEquipo) and idEquipo = _idEquipo;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_DATOS_EQOTROS` (IN `_idEquipo` INT(11))  BEGIN
-SELECT idEquipo,uResponsable,nombresResp,apellidosResp,office,area,service,subarea,serie,sbn,marca,modelo,descripcion FROM ws_equipos  as eqm 
+SELECT idEquipo,tipSegmento,uResponsable,nombresResp,apellidosResp,office,area,service,subarea,serie,sbn,marca,modelo,descripcion FROM ws_equipos  as eqm 
 inner join ws_responsables as erm on eqm.uResponsable = erm.idResponsable
 inner join ws_departamentos as edm on eqm.office = edm.id_area
 inner join ws_servicios as esm on eqm.service = esm.id_subarea
@@ -232,7 +232,7 @@ where idEquipo = _idEquipo;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_DATOS_EQREDES` (IN `_idEquipo` INT(11))  BEGIN
-SELECT idEquipo,uResponsable,nombresResp,apellidosResp,office,area,service,subarea,nro_eq,serie,sbn,ip,marca,modelo,descripcion FROM ws_equipos eqp
+SELECT idEquipo,tipSegmento,uResponsable,nombresResp,apellidosResp,office,area,service,subarea,nro_eq,serie,sbn,ip,marca,modelo,descripcion FROM ws_equipos eqp
 inner join ws_integraciones as inteR on eqp.idEquipo = inteR.serie_eqred
 inner join ws_responsables as ures on eqp.uResponsable = ures.idResponsable
 inner join ws_departamentos as deq on eqp.office = deq.id_area
@@ -863,35 +863,46 @@ DELIMITER ;
 
 CREATE TABLE `ws_mantenimientos` (
   `idMantenimiento` int(11) NOT NULL,
-  `correlativo_Mant` int(11) NOT NULL,
+  `correlativo_Mant` text COLLATE utf8_spanish_ci NOT NULL,
   `fRegistroMant` date NOT NULL,
-  `tipEquipo` int(11) NOT NULL,
-  `condInicial` int(11) NOT NULL,
-  `idEquip` int(11) NOT NULL,
-  `oficEquip` int(11) NOT NULL,
-  `areaEquip` int(11) NOT NULL,
-  `respoEquip` int(11) NOT NULL,
-  `logdeta` text COLLATE utf8_spanish_ci NOT NULL,
-  `descInc` int(11) NOT NULL,
-  `diagnosticos` int(11) NOT NULL,
-  `tecEvalua` int(11) NOT NULL,
-  `fEvalua` date NOT NULL,
-  `primera_eval` text COLLATE utf8_spanish_ci NOT NULL,
-  `fInicio` date NOT NULL,
-  `fFin` date NOT NULL,
-  `tipTrabajo` int(11) NOT NULL,
-  `acciones` text COLLATE utf8_spanish_ci NOT NULL,
-  `recomendaciones` text COLLATE utf8_spanish_ci NOT NULL,
-  `estAtencion` int(11) NOT NULL,
-  `condFinal` int(11) NOT NULL,
-  `servTerce` int(11) NOT NULL,
-  `otros` int(11) NOT NULL,
+  `tipEquipo` int(11) DEFAULT NULL,
+  `condInicial` int(11) DEFAULT NULL,
+  `idEquip` int(11) DEFAULT NULL,
+  `oficEquip` int(11) DEFAULT NULL,
+  `areaEquip` int(11) DEFAULT NULL,
+  `respoEquip` int(11) DEFAULT NULL,
+  `logdeta` text COLLATE utf8_spanish_ci,
+  `descInc` text COLLATE utf8_spanish_ci,
+  `diagnosticos` text COLLATE utf8_spanish_ci,
+  `tecEvalua` int(11) DEFAULT NULL,
+  `fEvalua` date DEFAULT NULL,
+  `primera_eval` text COLLATE utf8_spanish_ci,
+  `fInicio` date DEFAULT NULL,
+  `fFin` date DEFAULT NULL,
+  `tipTrabajo` int(11) DEFAULT NULL,
+  `acciones` text COLLATE utf8_spanish_ci,
+  `recomendaciones` text COLLATE utf8_spanish_ci,
+  `estAtencion` int(11) DEFAULT NULL,
+  `condFinal` int(11) DEFAULT NULL,
+  `servTerce` text COLLATE utf8_spanish_ci,
+  `otros` text COLLATE utf8_spanish_ci,
   `obsOtros` text COLLATE utf8_spanish_ci,
-  `usRegistra` int(11) NOT NULL,
+  `usRegistra` int(11) DEFAULT NULL,
   `sgmtoManto` int(11) NOT NULL DEFAULT '0',
   `estAnulado` int(11) NOT NULL DEFAULT '0',
   `fecha_creacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `ws_mantenimientos`
+--
+
+INSERT INTO `ws_mantenimientos` (`idMantenimiento`, `correlativo_Mant`, `fRegistroMant`, `tipEquipo`, `condInicial`, `idEquip`, `oficEquip`, `areaEquip`, `respoEquip`, `logdeta`, `descInc`, `diagnosticos`, `tecEvalua`, `fEvalua`, `primera_eval`, `fInicio`, `fFin`, `tipTrabajo`, `acciones`, `recomendaciones`, `estAtencion`, `condFinal`, `servTerce`, `otros`, `obsOtros`, `usRegistra`, `sgmtoManto`, `estAnulado`, `fecha_creacion`) VALUES
+(1, 'FM-2021-00001', '2021-03-30', 1, 2, 54, 13, 18, 9, 'N° Equipo: PC_OCP || Serie N°: MXL2500TDK || Cod.Patr: 740899500413 || Marca: HP || Modelo: ELITE 8300 || Descripción: PC DE ESCRITORIO || IP: 172.16.5.100 || Procesador: CORE I7-3.40 GHZ || RAM: 12GB || Disco Duro: 1TB', 'PRUEBA', '[{\"id\":\"24\",\"diagnostico\":\"Detección de virus\"},{\"id\":\"4\",\"diagnostico\":\"Equipo Averiado\"},{\"id\":\"25\",\"diagnostico\":\"Equipo Obsoleto\"}]', 4, '2021-03-30', 'PRUEBA', '2021-03-30', '2021-03-30', 1, '[{\"id\":\"1\",\"accion\":\"Copia de Seguridad\"},{\"id\":\"12\",\"accion\":\"Eliminación de temporales\"},{\"id\":\"2\",\"accion\":\"Formateo de disco duro\"}]', 'PRUEBA RECO', 1, 1, 'NO', 'SI', 'AEA', 1, 1, 0, '2021-03-30 16:18:29'),
+(2, 'FM-2021-00002', '2021-03-30', 1, 2, 54, 13, 18, 9, 'N° Equipo: PC_OCP || Serie N°: MXL2500TDK || Cod.Patr: 740899500413 || Marca: HP || Modelo: ELITE 8300 || Descripción: PC DE ESCRITORIO || IP: 172.16.5.100 || Procesador: CORE I7-3.40 GHZ || RAM: 12GB || Disco Duro: 1TB', 'PRUEBA', '[{\"id\":\"24\",\"diagnostico\":\"Detección de virus\"},{\"id\":\"4\",\"diagnostico\":\"Equipo Averiado\"},{\"id\":\"25\",\"diagnostico\":\"Equipo Obsoleto\"}]', 4, '2021-03-30', 'PRUEBA', '2021-03-30', '2021-03-30', 1, '[{\"id\":\"1\",\"accion\":\"Copia de Seguridad\"},{\"id\":\"12\",\"accion\":\"Eliminación de temporales\"},{\"id\":\"2\",\"accion\":\"Formateo de disco duro\"}]', 'PRUEBA RECO', 1, 1, 'NO', 'SI', 'AEA', 1, 1, 0, '2021-03-30 16:37:11'),
+(3, 'FM-2021-00003', '2021-03-30', 1, 2, 54, 13, 18, 9, 'N° Equipo: PC_OCP || Serie N°: MXL2500TDK || Cod.Patr: 740899500413 || Marca: HP || Modelo: ELITE 8300 || Descripción: PC DE ESCRITORIO || IP: 172.16.5.100 || Procesador: CORE I7-3.40 GHZ || RAM: 12GB || Disco Duro: 1TB', 'PRUEBA', '[{\"id\":\"24\",\"diagnostico\":\"Detección de virus\"},{\"id\":\"4\",\"diagnostico\":\"Equipo Averiado\"},{\"id\":\"25\",\"diagnostico\":\"Equipo Obsoleto\"}]', 4, '2021-03-30', 'PRUEBA', '2021-03-30', '2021-03-30', 1, '[{\"id\":\"1\",\"accion\":\"Copia de Seguridad\"},{\"id\":\"12\",\"accion\":\"Eliminación de temporales\"},{\"id\":\"2\",\"accion\":\"Formateo de disco duro\"}]', 'PRUEBA RECO', 1, 1, 'NO', 'SI', 'AEA', 1, 1, 0, '2021-03-30 16:41:19'),
+(4, 'FM-2021-00004', '2021-03-30', 1, 2, 54, 13, 18, 9, 'N° Equipo: PC_OCP || Serie N°: MXL2500TDK || Cod.Patr: 740899500413 || Marca: HP || Modelo: ELITE 8300 || Descripción: PC DE ESCRITORIO || IP: 172.16.5.100 || Procesador: CORE I7-3.40 GHZ || RAM: 12GB || Disco Duro: 1TB', 'PRUEBA', '[{\"id\":\"24\",\"diagnostico\":\"Detección de virus\"},{\"id\":\"4\",\"diagnostico\":\"Equipo Averiado\"},{\"id\":\"25\",\"diagnostico\":\"Equipo Obsoleto\"}]', 4, '2021-03-30', 'PRUEBA', '2021-03-30', '2021-03-30', 1, '[{\"id\":\"1\",\"accion\":\"Copia de Seguridad\"},{\"id\":\"12\",\"accion\":\"Eliminación de temporales\"},{\"id\":\"2\",\"accion\":\"Formateo de disco duro\"}]', 'PRUEBA RECO', 1, 1, 'NO', 'SI', 'AEA', 1, 1, 0, '2021-03-30 17:01:50'),
+(5, 'FM-2021-00005', '2021-03-30', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2021-03-30 19:00:21');
 
 --
 -- Disparadores `ws_mantenimientos`
@@ -1251,7 +1262,7 @@ ALTER TABLE `ws_integraciones`
 -- AUTO_INCREMENT de la tabla `ws_mantenimientos`
 --
 ALTER TABLE `ws_mantenimientos`
-  MODIFY `idMantenimiento` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idMantenimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_perfiles`

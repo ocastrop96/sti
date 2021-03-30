@@ -35,7 +35,7 @@
                                                                                                 $fechaActual = date('d-m-Y');
                                                                                                 echo $fechaActual; ?>">
                                         <input type="hidden" name="uregMant" id="uregMant" value="<?php echo $_SESSION["id"]; ?>">
-                                        <input type="hidden" name="sgtoManto" id="sgtoManto">
+                                        <input type="hidden" name="segmentado" id="segmentado">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
@@ -111,7 +111,7 @@
                                     <div class="form-group">
                                         <label for="fEva">F.Evaluación &nbsp;</label>
                                         <i class="fas fa-calendar-alt"></i> *
-                                        <input type="text" name="fEva" id="fEva" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask required autocomplete="off" placeholder="dd/mm/yyyy">
+                                        <input type="text" name="fEva" id="fEva" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask autocomplete="off" placeholder="dd/mm/yyyy">
                                         <input type="hidden" id="fEvaC" name="fEvaC">
                                     </div>
                                 </div>
@@ -155,7 +155,7 @@
                                     <div class="form-group">
                                         <label for="descIniEQ">Descripción del Incidente inicial &nbsp;</label>
                                         <i class="fas fa-chalkboard-teacher"></i> * (Indicar el problema, falla o inconveniente que presenta el equipo)
-                                        <input type="text" name="descIniEQ" id="descIniEQ" class="form-control" required autocomplete="off" placeholder="Ingrese descripción del incidente">
+                                        <input type="text" name="descIniEQ" id="descIniEQ" class="form-control" autocomplete="off" placeholder="Ingrese descripción del incidente">
                                     </div>
                                 </div>
                             </div>
@@ -180,7 +180,7 @@
                                     <div class="form-group">
                                         <label for="priEvaEQ">Primera Evaluación &nbsp;</label>
                                         <i class="fas fa-camera-retro"></i> * (Impresión diagnóstica observada por el Tec. evaluador)
-                                        <input type="text" name="priEvaEQ" id="priEvaEQ" class="form-control" required autocomplete="off" placeholder="Ingrese descripción primera evaluación">
+                                        <input type="text" name="priEvaEQ" id="priEvaEQ" class="form-control" autocomplete="off" placeholder="Ingrese descripción primera evaluación">
                                     </div>
                                 </div>
                             </div>
@@ -189,7 +189,7 @@
                                     <div class="form-group">
                                         <label for="fInicio">Fecha Inicio &nbsp;</label>
                                         <i class="fas fa-calendar-alt"></i> *
-                                        <input type="text" name="fInicio" id="fInicio" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask required autocomplete="off" placeholder="dd/mm/yyyy">
+                                        <input type="text" name="fInicio" id="fInicio" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask autocomplete="off" placeholder="dd/mm/yyyy">
                                         <input type="hidden" name="fIniEv" id="fIniEv">
                                     </div>
                                 </div>
@@ -197,7 +197,7 @@
                                     <div class="form-group">
                                         <label for="fFin">Fecha Fin &nbsp;</label>
                                         <i class="fas fa-calendar-alt"></i> *
-                                        <input type="text" name="fFin" id="fFin" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask required autocomplete="off" placeholder="dd/mm/yyyy">
+                                        <input type="text" name="fFin" id="fFin" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask autocomplete="off" placeholder="dd/mm/yyyy">
                                         <input type="hidden" name="fFinEv" id="fFinEv">
                                     </div>
                                 </div>
@@ -236,7 +236,7 @@
                                     <div class="form-group">
                                         <label for="recoFEQ">Recomendaciones u Observaciones finales &nbsp;</label>
                                         <i class="fas fa-comment-medical"></i> * (Recomendaciones después de finalizado el trabajo)
-                                        <input type="text" name="recoFEQ" id="recoFEQ" class="form-control" required autocomplete="off" placeholder="Ingrese Recomendación u observacion final">
+                                        <input type="text" name="recoFEQ" id="recoFEQ" class="form-control" autocomplete="off" placeholder="Ingrese Recomendación u observacion final">
                                     </div>
                                 </div>
                             </div>
@@ -315,6 +315,10 @@
                         <div class="card-footer">
                             <center><button type="submit" class="btn btn-secondary" id="btnRegMant"><i class="fas fa-save"></i> Registrar Ficha</button></center>
                         </div>
+                        <?php
+                        $registraMante = new ControladorMantenimientos();
+                        $registraMante->ctrRegistrarMantenimiento();
+                        ?>
                     </form>
                 </div>
             </div>
@@ -328,7 +332,7 @@
                                     Diagnósticos
                                 </h3>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body" id="tabDiagTemp">
                                 <table id="tablaMDiagnosticoFrm" class="table table-bordered table-hover dt-responsive tablaMDiagnosticoFrm">
                                     <thead>
                                         <tr>

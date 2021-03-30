@@ -73,6 +73,7 @@ class ControladorIntegracion
                 preg_match('/^[0-9]+$/', $_POST["tipEq"]) &&
                 preg_match('/^[a-zA-Z0-9_]+$/', $_POST["nroEquipo"])
             ) {
+                date_default_timezone_set('America/Lima');
                 // Bloque de filtro en caso no selecciona series
                 if ($_POST["tipEq"] == 1) {
                     if ($_POST["seriePC"] > 0 && $_POST["serieMon"] > 0 && $_POST["serieTec"] > 0 && $_POST["serieAcuEne"] > 0) {

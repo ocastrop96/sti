@@ -134,6 +134,7 @@ $("#tipEquipo").on("change", function () {
         $("#respEq").val("0");
         $("#respEq").html('Seleccione Serie EQ primero');
         $("#detaEQ").val("");
+        $("#segmentado").val("0");
     }
 });
 // Cargar lista de series en base al tipo
@@ -165,6 +166,7 @@ $("#serieEQ").on("change", function () {
                         $("#respEq").html(respuesta["nombresResp"] + " " + respuesta["apellidosResp"]);
                         $("#detaEQ").val("N° Equipo: " + respuesta["nro_eq"] +
                             " || Serie N°: " + respuesta["serie"] + " || Cod.Patr: " + respuesta["sbn"] + " || Marca: " + respuesta["marca"] + " || Modelo: " + respuesta["modelo"] + " || Descripción: " + respuesta["descripcion"] + " || IP: " + respuesta["ip"] + " || Procesador: " + respuesta["procesador"] + "-" + respuesta["vprocesador"] + " || RAM: " + respuesta["ram"] + " || Disco Duro: " + respuesta["discoDuro"]);
+                        $("#segmentado").val(respuesta["tipSegmento"]);
                     }
                     else if (idTip1 == 2 || idTip1 == 6 || idTip1 == 7 || idTip1 == 8) {
                         $("#ofiEq").val(respuesta["office"]);
@@ -175,6 +177,8 @@ $("#serieEQ").on("change", function () {
                         $("#respEq").html(respuesta["nombresResp"] + " " + respuesta["apellidosResp"]);
                         $("#detaEQ").val("N° Equipo: " + respuesta["nro_eq"] +
                             " || Serie N°: " + respuesta["serie"] + " || Cod.Patr: " + respuesta["sbn"] + " || Marca: " + respuesta["marca"] + " || Modelo: " + respuesta["modelo"] + " || Descripción: " + respuesta["descripcion"] + " || IP: " + respuesta["ip"]);
+                        $("#segmentado").val(respuesta["tipSegmento"]);
+
                     }
                     else if (idTip1 == 3 || idTip1 == 9 || idTip1 == 14 || idTip1 == 15 || idTip1 == 16 || idTip1 == 17) {
                         $("#ofiEq").val(respuesta["office"]);
@@ -185,6 +189,7 @@ $("#serieEQ").on("change", function () {
                         $("#respEq").html(respuesta["nombresResp"] + " " + respuesta["apellidosResp"]);
                         $("#detaEQ").val("N° Equipo: " + respuesta["nro_eq"] +
                             " || Serie N°: " + respuesta["serie"] + " || Cod.Patr: " + respuesta["sbn"] + " || Marca: " + respuesta["marca"] + " || Modelo: " + respuesta["modelo"] + " || Descripción: " + respuesta["descripcion"] + " || IP: " + respuesta["ip"]);
+                        $("#segmentado").val(respuesta["tipSegmento"]);
                     }
                     else {
                         $("#ofiEq").val(respuesta["office"]);
@@ -194,6 +199,7 @@ $("#serieEQ").on("change", function () {
                         $("#respEq").val(respuesta["uResponsable"]);
                         $("#respEq").html(respuesta["nombresResp"] + " " + respuesta["apellidosResp"]);
                         $("#detaEQ").val("Serie N°: " + respuesta["serie"] + " || Cod.Patr: " + respuesta["sbn"] + " || Marca: " + respuesta["marca"] + " || Modelo: " + respuesta["modelo"] + " || Descripción: " + respuesta["descripcion"]);
+                        $("#segmentado").val(respuesta["tipSegmento"]);
                     }
                 }
             }
@@ -210,6 +216,7 @@ $("#serieEQ").on("change", function () {
         $("#respEq").val("0");
         $("#respEq").html('Seleccione Serie EQ primero');
         $("#detaEQ").val("");
+        $("#segmentado").val("0");
     }
 
 });
@@ -441,14 +448,6 @@ $("#fFin").change(function () {
     }
 });
 // Filtro de Fechas
+// Validacion de campos
 
-
-
-// var date1 = '2021-01-01';
-// var date2 = '2009-01-01';
-// if (date1 > date2) {
-//     console.log("es mayor")
-// }
-// else {
-//     console.log("es menor o igual")
-// }
+// Validacion de campos
