@@ -46,9 +46,9 @@ class ControladorMantenimientos
                 $tabla = "ws_mantenimientos";
                 $datos = array(
                     "fRegistroMant" => $fRegistroMant,
-                    "logdeta" => $_POST["detaEQ"],
                     "diagnosticos" => $_POST["listaDiagnosticos"],
-                    "acciones" => $_POST["listaAcciones"]
+                    "acciones" => $_POST["listaAcciones"],
+                    "logdeta" => $_POST["detaEQ"]
                 );
 
                 $rptRegDManto = ModeloMantenimientos::mdlRegistrarMantenimiento($tabla, $datos);

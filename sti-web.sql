@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 25-03-2021 a las 19:58:31
+-- Tiempo de generación: 31-03-2021 a las 10:51:51
 -- Versión del servidor: 5.7.24
--- Versión de PHP: 7.4.15
+-- Versión de PHP: 7.4.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -180,7 +180,7 @@ SELECT idAccion,accionrealizada,segment,descSegmento FROM ws_acciones AS a INNER
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_CATEGORIAS` ()  BEGIN
-SELECT idCategoria,segmento,categoria,descSegmento FROM ws_categorias as cat inner join ws_segmento as seg on cat.segmento = seg.idSegmento order by segmento asc;
+SELECT idCategoria,segmento,categoria,descSegmento FROM ws_categorias as cat inner join ws_segmento as seg on cat.segmento = seg.idSegmento order by segmento ,categoria asc;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_CATEGORIASC` ()  BEGIN
@@ -203,6 +203,45 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_CONDICIONMANTO` ()  BEGIN
 select * from ws_situacion where idSituacion between 1 and 2;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_DATOS_EQCOMPUTO` (IN `_idEquipo` INT(11))  BEGIN
+SELECT idEquipo,tipSegmento,uResponsable,nombresResp,apellidosResp,office,area,service,subarea,nro_eq,serie,sbn,ip,marca,modelo,descripcion,procesador,vprocesador,ram,discoDuro FROM ws_equipos eq 
+inner join ws_integraciones as eint on eq.idEquipo = eint.serie_pc
+inner join ws_responsables as eure on eq.uResponsable = eure.idResponsable
+inner join ws_departamentos as edep on eq.office = edep.id_area
+inner join ws_servicios as eserv on eq.service = eserv.id_subarea
+WHERE EXISTS (SELECT NULL FROM ws_integraciones epc WHERE epc.serie_pc = eq.idEquipo) and idEquipo = _idEquipo;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_DATOS_EQIMP_OTROS` (IN `_idEquipo` INT(11))  BEGIN
+SELECT idEquipo,tipSegmento,uResponsable,nombresResp,apellidosResp,office,area,service,subarea,nro_eq,serie,sbn,ip,marca,modelo,descripcion FROM ws_equipos eqp
+inner join ws_integraciones as inteR on eqp.idEquipo = inteR.serie_imp
+inner join ws_responsables as ures on eqp.uResponsable = ures.idResponsable
+inner join ws_departamentos as deq on eqp.office = deq.id_area
+inner join ws_servicios as sreq on eqp.service = sreq.id_subarea
+WHERE EXISTS (SELECT NULL
+FROM ws_integraciones epc
+WHERE epc.serie_imp = eqp.idEquipo) and idEquipo = _idEquipo;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_DATOS_EQOTROS` (IN `_idEquipo` INT(11))  BEGIN
+SELECT idEquipo,tipSegmento,uResponsable,nombresResp,apellidosResp,office,area,service,subarea,serie,sbn,marca,modelo,descripcion FROM ws_equipos  as eqm 
+inner join ws_responsables as erm on eqm.uResponsable = erm.idResponsable
+inner join ws_departamentos as edm on eqm.office = edm.id_area
+inner join ws_servicios as esm on eqm.service = esm.id_subarea
+where idEquipo = _idEquipo;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_DATOS_EQREDES` (IN `_idEquipo` INT(11))  BEGIN
+SELECT idEquipo,tipSegmento,uResponsable,nombresResp,apellidosResp,office,area,service,subarea,nro_eq,serie,sbn,ip,marca,modelo,descripcion FROM ws_equipos eqp
+inner join ws_integraciones as inteR on eqp.idEquipo = inteR.serie_eqred
+inner join ws_responsables as ures on eqp.uResponsable = ures.idResponsable
+inner join ws_departamentos as deq on eqp.office = deq.id_area
+inner join ws_servicios as sreq on eqp.service = sreq.id_subarea
+WHERE EXISTS (SELECT NULL
+FROM ws_integraciones epc
+WHERE epc.serie_eqred = eqp.idEquipo) and idEquipo = _idEquipo;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_DIAGNOSTICOS` ()  BEGIN
 select idDiagnostico,diagnostico,sgmto,descSegmento from ws_diagnosticos as d inner join ws_segmento as s on d.sgmto = s.idSegmento order by diagnostico asc;
 END$$
@@ -220,12 +259,28 @@ SELECT idEquipo,date_format(fechaCompra,'%d-%m-%Y') as fComp,idTipo,categoria,se
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_EQUPOSCOMPUTOMANT` (IN `_idTipo` INT(11))  BEGIN
-SELECT idEquipo,serie,nro_eq FROM ws_equipos eq 
-inner join ws_integraciones as inte 
-on eq.idEquipo = inte.serie_pc
+SELECT idEquipo,serie FROM ws_equipos eq 
 	WHERE EXISTS (SELECT NULL
 	FROM ws_integraciones epc
 	WHERE epc.serie_pc = eq.idEquipo AND idTipo = _idTipo);
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_EQUPOSIMPREMANT` (IN `_idTipo` INT(11))  BEGIN
+SELECT idEquipo,serie FROM ws_equipos eq 
+	WHERE EXISTS (SELECT NULL
+	FROM ws_integraciones epc
+	WHERE epc.serie_imp = eq.idEquipo)AND idTipo = _idTipo;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_EQUPOSOTROS` (IN `_idTipo` INT(11))  BEGIN
+select idEquipo,serie from ws_equipos where idTipo = _idTipo;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_EQUPOSREDMANT` (IN `_idTipo` INT(11))  BEGIN
+SELECT idEquipo,serie FROM ws_equipos eq 
+	WHERE EXISTS (SELECT NULL
+	FROM ws_integraciones epc
+	WHERE epc.serie_eqred = eq.idEquipo AND idTipo = _idTipo);
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_ESTATENCION` ()  BEGIN
@@ -424,7 +479,6 @@ INSERT INTO `ws_acciones` (`idAccion`, `segment`, `accionrealizada`, `contador_a
 (13, 1, 'Instalación de programas', 0),
 (14, 1, 'Instalación de drivers o controladores', 0),
 (15, 1, 'Eliminación de virus', 0),
-(16, 1, 'Instalación de sistema operativo', 0),
 (17, 1, 'Instalación de antivirus', 0),
 (18, 1, 'Mantenimiento general', 0),
 (19, 2, 'Mantenimiento general', 0),
@@ -626,14 +680,22 @@ INSERT INTO `ws_equipos` (`idEquipo`, `tipSegmento`, `idTipo`, `uResponsable`, `
 (57, 3, 13, 9, 13, 18, 'ESTABLE1', '1515151515', 'APC', 'APC-125', 'ESTABILIZADOR DE ENERGIA', '2018-08-31', '11-151515', '5 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-15 10:19:03'),
 (58, 2, 2, 9, 13, 18, 'SWITCH123', '151518484546', 'HP', 'ARUBA', 'SWITCH ADMINISTRABLE', '2018-08-31', '11-151515', '5 AÑOS', NULL, NULL, NULL, NULL, NULL, '48', '3', 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-15 10:19:59'),
 (59, 3, 3, 9, 13, 18, 'BRBSXBT8XZ', '740841000067', 'HP', 'M426FDW', 'HP LASERJET LASERJET PRO', '2018-06-22', '11-11515', '5 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-15 10:24:19'),
-(69, 3, 16, 9, 13, 18, 'RE', '1', 'VACJ', 'VA', 'VA', '2021-03-08', 'AV', 'AS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-22 10:55:16'),
-(75, 2, 2, 12, 10, 24, 'ARUBA1', '1122', 'ARUBA', 'ARUBA2323', 'ASAS', '2021-03-17', 'AS', 'AS', NULL, NULL, NULL, NULL, NULL, '48', '3', 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-22 12:19:40'),
-(76, 1, 4, 9, 13, 18, 'LAPTO1', '155', 'LAPTOP', 'LAP1', 'LAP1', '2021-03-01', '11-111', '3 AÑOS', 'ASUS', 'CORE I7', '3.40 GHZ', '8GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-22 14:53:24'),
-(78, 3, 3, 11, 10, 24, 'IMP', '112', 'IMP', 'UMO', 'UMo', '2021-03-02', '11-11', '5 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-23 12:06:47'),
-(80, 2, 2, 11, 10, 24, 'AAAAAAA', '1111111', 'AAAAAA', 'AAAAA', 'AAAAAA', '2021-03-03', 'AA11', 'AAAA', NULL, NULL, NULL, NULL, NULL, 'AA', 'AA', 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-23 12:46:58'),
+(69, 3, 9, 9, 13, 18, 'REFTC', '111515155', 'VACJ', 'VA', 'VA', '2021-03-08', 'AV', 'AS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-22 10:55:16'),
+(75, 2, 6, 12, 10, 24, 'ARUBA1', '1122', 'ARUBA', 'ARUBA2323', 'ASAS', '2021-03-17', 'AS', 'AS', NULL, NULL, NULL, NULL, NULL, '48', '3', 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-22 12:19:40'),
+(76, 1, 4, 9, 13, 18, 'LAPTO1', '155', 'ACER', 'AC-151', 'LAPTOP DE TRABAJO', '2021-03-01', '11-111', '3 AÑOS', 'ASUS', 'CORE I7', '3.40 GHZ', '8GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-22 14:53:24'),
+(78, 3, 3, 11, 10, 24, 'IMPRE12', '112', 'IMP', 'UMO', 'UMo', '2021-03-02', '11-11', '5 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-23 12:06:47'),
+(80, 2, 7, 11, 10, 24, 'AAAAAAA', '1111111', 'AAAAAA', 'AAAAA', 'AAAAAA', '2021-03-03', 'AA11', 'AAAA', NULL, NULL, NULL, NULL, NULL, 'AA', 'AA', 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-23 12:46:58'),
 (81, 1, 4, 9, 13, 18, 'AKA', '13253', 'AKA', 'AKA', 'AKA', '2021-03-04', 'AKA', 'AKA', 'AKA', 'AKA', 'AK', 'AKA', 'AKA', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-25 10:23:10'),
 (82, 3, 11, 12, 10, 24, 'TECXLA', '1262', 'TECLADOA', 'ASJ', 'AJS', '2021-03-18', 'AJ', '5 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-25 14:27:01'),
-(83, 1, 5, 9, 13, 18, 'SERV1', '1177212', 'SAERV', 'SERV', 'SERV', '2021-03-11', 'SERV', '5 AÑOS', 'SERV', 'SERV', 'SERV', 'SERV', 'SERV', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-25 14:45:32');
+(83, 1, 5, 13, 13, 16, 'SERV1', '1177212', 'SAERV', 'SERV', 'SERV', '2021-03-11', 'SERV', '5 AÑOS', 'HP', 'XEON', '3.20 GHZ', '32GB', '4TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-25 14:45:32'),
+(84, 2, 8, 9, 13, 18, 'ACP', '12232', 'ACO', 'ACP', 'ACP', '2021-03-12', 'ACP', 'ACP', NULL, NULL, NULL, NULL, NULL, 'ACPO', 'ACP', 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-26 09:32:30'),
+(85, 3, 15, 9, 13, 18, 'ESCANOR', '1237', 'ESCANER', 'ESCANER', 'ESNCAER', '2021-03-05', 'ESCA', '5 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-26 09:59:06'),
+(86, 3, 9, 9, 13, 18, 'FOCOTOCOPIOA', '136172', 'FOTO', 'FOTO', 'FOTO', '2021-03-12', '231-11221', '5 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-26 09:59:49'),
+(87, 3, 14, 13, 13, 16, 'TICKET', '1712128', 'TICKET', 'TICKET', 'TICKET', '2021-03-05', '11-1515', '5 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-26 10:15:02'),
+(88, 3, 16, 13, 13, 16, 'PROYECTOR', '1151515', 'PYT', 'PYT', 'PYT', '2021-03-12', '11-1515', '5 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-26 10:16:59'),
+(89, 3, 17, 13, 13, 16, 'MARCADOR1', '11212', 'MARJ', 'MARK211', 'KK', '2021-03-05', '11-111', '5 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-26 10:19:32'),
+(90, 1, 4, 9, 13, 18, 'LENOVO12', '17171828', 'LENOVO', 'LEVONO', 'LENOVO', '2021-03-05', '11-1212', '5 AÑOS', 'AYERA', 'CORE I3', '3.20GHZ', '8GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-26 10:21:25'),
+(91, 3, 12, 13, 13, 16, 'ACUM1', '151515', 'ACUMU', 'ACUMLA', 'ACUMA', '2021-03-05', '11-122', '5 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-26 10:30:20');
 
 -- --------------------------------------------------------
 
@@ -746,8 +808,8 @@ INSERT INTO `ws_integraciones` (`idIntegracion`, `correlativo_integracion`, `nro
 (36, 'FT-2021-00036', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-09', 0, 0, 0, 0, 0, 0, 1, '2021-03-09 18:46:31'),
 (37, 'FT-2021-00037', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-10', 0, 0, 0, 0, 0, 0, 1, '2021-03-10 14:23:57'),
 (38, 'FT-2021-00038', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-15', 0, 0, 0, 0, 0, 0, 1, '2021-03-15 15:20:23'),
-(39, 'FT-2021-00039', 'IMP_0001', '172.16.5.210', NULL, NULL, NULL, NULL, NULL, 59, '2021-03-15', 3, 9, 13, 18, 1, 1, 0, '2021-03-15 15:26:13'),
-(40, 'FT-2021-00040', 'SW_00001', '172.16.10.100', NULL, NULL, NULL, NULL, 58, NULL, '2021-03-15', 2, 9, 13, 18, 1, 1, 0, '2021-03-15 15:26:46'),
+(39, 'FT-2021-00039', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-15', 0, 0, 0, 0, 0, 0, 1, '2021-03-15 15:26:13'),
+(40, 'FT-2021-00040', 'SW_00001', '', NULL, NULL, NULL, NULL, 58, NULL, '2021-03-15', 2, 9, 13, 18, 1, 1, 0, '2021-03-15 15:26:46'),
 (41, 'FT-2021-00041', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-15', 0, 0, 0, 0, 0, 0, 1, '2021-03-15 15:35:39'),
 (42, 'FT-2021-00042', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-22', 0, 0, 0, 0, 0, 0, 1, '2021-03-22 15:22:50'),
 (43, 'FT-2021-00043', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-22', 0, 0, 0, 0, 0, 0, 1, '2021-03-22 17:20:09'),
@@ -756,10 +818,23 @@ INSERT INTO `ws_integraciones` (`idIntegracion`, `correlativo_integracion`, `nro
 (46, 'FT-2021-00046', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-22', 0, 0, 0, 0, 0, 0, 1, '2021-03-22 20:09:43'),
 (49, 'FT-2021-00047', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-23', 0, 0, 0, 0, 0, 0, 1, '2021-03-23 17:07:08'),
 (50, 'FT-2021-00048', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-23', 0, 0, 0, 0, 0, 0, 1, '2021-03-23 17:47:51'),
-(51, 'FT-2021-00049', 'IMP_', '', NULL, NULL, NULL, NULL, NULL, 69, '2021-03-25', 3, 9, 13, 18, 1, 1, 0, '2021-03-25 19:27:35'),
+(51, 'FT-2021-00049', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-25', 0, 0, 0, 0, 0, 0, 1, '2021-03-25 19:27:35'),
 (52, 'FT-2021-00050', 'LAP_054', '172.31.6.50', 81, NULL, NULL, NULL, NULL, NULL, '2021-03-25', 4, 9, 13, 18, 1, 1, 0, '2021-03-25 19:35:10'),
 (53, 'FT-2021-00051', 'PC_OCP', '172.16.5.100', 54, 56, 55, 57, NULL, NULL, '2021-03-25', 1, 9, 13, 18, 1, 1, 0, '2021-03-25 19:35:29'),
-(54, 'FT-2021-00052', 'SERV_0001', '172.16.0.4', 83, NULL, NULL, NULL, NULL, NULL, '2021-03-25', 5, 9, 13, 18, 1, 1, 0, '2021-03-25 19:45:50');
+(54, 'FT-2021-00052', 'SERV_0001', '172.16.0.4', 83, NULL, NULL, NULL, NULL, NULL, '2021-03-25', 5, 9, 13, 18, 1, 1, 0, '2021-03-25 19:45:50'),
+(55, 'FT-2021-00053', 'ACP_0001', '', NULL, NULL, NULL, NULL, 84, NULL, '2021-03-26', 8, 9, 13, 18, 1, 1, 0, '2021-03-26 14:32:48'),
+(56, 'FT-2021-00054', 'RT_001', '', NULL, NULL, NULL, NULL, 75, NULL, '2021-03-26', 6, 12, 10, 24, 1, 1, 0, '2021-03-26 14:33:10'),
+(57, 'FT-2021-00055', 'FRW_0001', '', NULL, NULL, NULL, NULL, 80, NULL, '2021-03-26', 8, 11, 10, 24, 1, 1, 0, '2021-03-26 14:33:34'),
+(58, 'FT-2021-00056', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-26', 0, 0, 0, 0, 0, 0, 1, '2021-03-26 14:35:40'),
+(59, 'FT-2021-00057', 'FTC_0001', '', NULL, NULL, NULL, NULL, NULL, 69, '2021-03-26', 9, 9, 13, 18, 1, 1, 0, '2021-03-26 15:03:30'),
+(60, 'FT-2021-00058', 'ESC_001', '', NULL, NULL, NULL, NULL, NULL, 85, '2021-03-26', 3, 9, 13, 18, 1, 1, 0, '2021-03-26 15:04:50'),
+(61, 'FT-2021-00059', 'IMP_0001', '172.16.5.210', NULL, NULL, NULL, NULL, NULL, 59, '2021-03-26', 3, 9, 13, 18, 1, 1, 0, '2021-03-26 15:09:11'),
+(62, 'FT-2021-00060', 'FTC_001', '', NULL, NULL, NULL, NULL, NULL, 86, '2021-03-26', 9, 9, 13, 18, 1, 1, 0, '2021-03-26 15:12:42'),
+(63, 'FT-2021-00061', 'IMP_0004', '', NULL, NULL, NULL, NULL, NULL, 78, '2021-03-26', 3, 11, 10, 24, 1, 1, 0, '2021-03-26 15:13:31'),
+(64, 'FT-2021-00062', 'TIC_0001', '', NULL, NULL, NULL, NULL, NULL, 87, '2021-03-26', 14, 13, 13, 16, 1, 1, 0, '2021-03-26 15:15:50'),
+(65, 'FT-2021-00063', 'PYT_001', '', NULL, NULL, NULL, NULL, NULL, 88, '2021-03-26', 16, 13, 13, 16, 1, 1, 0, '2021-03-26 15:17:29'),
+(66, 'FT-2021-00064', 'MRK_0001', '', NULL, NULL, NULL, NULL, NULL, 89, '2021-03-26', 17, 13, 13, 16, 1, 1, 0, '2021-03-26 15:20:12'),
+(67, 'FT-2021-00065', 'LAP_0555', '172.16.8.100', 90, NULL, NULL, NULL, NULL, NULL, '2021-03-26', 4, 9, 13, 18, 1, 1, 0, '2021-03-26 18:02:14');
 
 --
 -- Disparadores `ws_integraciones`
@@ -787,33 +862,51 @@ DELIMITER ;
 --
 
 CREATE TABLE `ws_mantenimientos` (
-  `idManteniimiento` int(11) NOT NULL,
-  `correlativo_Mant` int(11) NOT NULL,
-  `fRegistroMant` date NOT NULL,
-  `tipEquipo` int(11) NOT NULL,
-  `condInicial` int(11) NOT NULL,
-  `idEquip` int(11) NOT NULL,
-  `oficEquip` int(11) NOT NULL,
-  `areaEquip` int(11) NOT NULL,
-  `respoEquip` int(11) NOT NULL,
-  `descInc` int(11) NOT NULL,
-  `diagnosticos` int(11) NOT NULL,
-  `tecEvalua` int(11) NOT NULL,
-  `fEvalua` date NOT NULL,
-  `primera_eval` text COLLATE utf8_spanish_ci NOT NULL,
-  `fInicio` date NOT NULL,
-  `fFin` date NOT NULL,
-  `tipTrabajo` int(11) NOT NULL,
-  `acciones` text COLLATE utf8_spanish_ci NOT NULL,
-  `recomendaciones` text COLLATE utf8_spanish_ci NOT NULL,
-  `estAtencion` int(11) NOT NULL,
-  `condFinal` int(11) NOT NULL,
-  `servTerce` int(11) NOT NULL,
-  `otros` int(11) NOT NULL,
+  `idMantenimiento` int(11) NOT NULL,
+  `correlativo_Mant` text COLLATE utf8_spanish_ci NOT NULL,
+  `fRegistroMant` date DEFAULT NULL,
+  `tipEquipo` int(11) DEFAULT NULL,
+  `condInicial` int(11) DEFAULT NULL,
+  `idEquip` int(11) DEFAULT NULL,
+  `oficEquip` int(11) DEFAULT NULL,
+  `areaEquip` int(11) DEFAULT NULL,
+  `respoEquip` int(11) DEFAULT NULL,
+  `logdeta` text COLLATE utf8_spanish_ci,
+  `descInc` text COLLATE utf8_spanish_ci,
+  `diagnosticos` text COLLATE utf8_spanish_ci,
+  `tecEvalua` int(11) DEFAULT NULL,
+  `fEvalua` date DEFAULT NULL,
+  `primera_eval` text COLLATE utf8_spanish_ci,
+  `fInicio` date DEFAULT NULL,
+  `fFin` date DEFAULT NULL,
+  `tipTrabajo` int(11) DEFAULT NULL,
+  `acciones` text COLLATE utf8_spanish_ci,
+  `recomendaciones` text COLLATE utf8_spanish_ci,
+  `estAtencion` int(11) DEFAULT NULL,
+  `condFinal` int(11) DEFAULT NULL,
+  `servTerce` text COLLATE utf8_spanish_ci,
+  `otros` text COLLATE utf8_spanish_ci,
   `obsOtros` text COLLATE utf8_spanish_ci,
-  `usRegistra` int(11) NOT NULL,
+  `usRegistra` int(11) DEFAULT NULL,
+  `sgmtoManto` int(11) NOT NULL DEFAULT '0',
+  `estAnulado` int(11) NOT NULL DEFAULT '0',
   `fecha_creacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `ws_mantenimientos`
+--
+
+INSERT INTO `ws_mantenimientos` (`idMantenimiento`, `correlativo_Mant`, `fRegistroMant`, `tipEquipo`, `condInicial`, `idEquip`, `oficEquip`, `areaEquip`, `respoEquip`, `logdeta`, `descInc`, `diagnosticos`, `tecEvalua`, `fEvalua`, `primera_eval`, `fInicio`, `fFin`, `tipTrabajo`, `acciones`, `recomendaciones`, `estAtencion`, `condFinal`, `servTerce`, `otros`, `obsOtros`, `usRegistra`, `sgmtoManto`, `estAnulado`, `fecha_creacion`) VALUES
+(1, 'FM-2021-00001', '2021-03-30', 1, 2, 54, 13, 18, 9, 'N° Equipo: PC_OCP || Serie N°: MXL2500TDK || Cod.Patr: 740899500413 || Marca: HP || Modelo: ELITE 8300 || Descripción: PC DE ESCRITORIO || IP: 172.16.5.100 || Procesador: CORE I7-3.40 GHZ || RAM: 12GB || Disco Duro: 1TB', 'PRUEBA', '[{\"id\":\"24\",\"diagnostico\":\"Detección de virus\"},{\"id\":\"4\",\"diagnostico\":\"Equipo Averiado\"},{\"id\":\"25\",\"diagnostico\":\"Equipo Obsoleto\"}]', 4, '2021-03-30', 'PRUEBA', '2021-03-30', '2021-03-30', 1, '[{\"id\":\"1\",\"accion\":\"Copia de Seguridad\"},{\"id\":\"12\",\"accion\":\"Eliminación de temporales\"},{\"id\":\"2\",\"accion\":\"Formateo de disco duro\"}]', 'PRUEBA RECO', 1, 1, 'NO', 'SI', 'AEA', 1, 1, 0, '2021-03-30 16:18:29'),
+(2, 'FM-2021-00002', '2021-03-30', 1, 2, 54, 13, 18, 9, 'N° Equipo: PC_OCP || Serie N°: MXL2500TDK || Cod.Patr: 740899500413 || Marca: HP || Modelo: ELITE 8300 || Descripción: PC DE ESCRITORIO || IP: 172.16.5.100 || Procesador: CORE I7-3.40 GHZ || RAM: 12GB || Disco Duro: 1TB', 'PRUEBA', '[{\"id\":\"24\",\"diagnostico\":\"Detección de virus\"},{\"id\":\"4\",\"diagnostico\":\"Equipo Averiado\"},{\"id\":\"25\",\"diagnostico\":\"Equipo Obsoleto\"}]', 4, '2021-03-30', 'PRUEBA', '2021-03-30', '2021-03-30', 1, '[{\"id\":\"1\",\"accion\":\"Copia de Seguridad\"},{\"id\":\"12\",\"accion\":\"Eliminación de temporales\"},{\"id\":\"2\",\"accion\":\"Formateo de disco duro\"}]', 'PRUEBA RECO', 1, 1, 'NO', 'SI', 'AEA', 1, 1, 0, '2021-03-30 16:37:11'),
+(3, 'FM-2021-00003', '2021-03-30', 1, 2, 54, 13, 18, 9, 'N° Equipo: PC_OCP || Serie N°: MXL2500TDK || Cod.Patr: 740899500413 || Marca: HP || Modelo: ELITE 8300 || Descripción: PC DE ESCRITORIO || IP: 172.16.5.100 || Procesador: CORE I7-3.40 GHZ || RAM: 12GB || Disco Duro: 1TB', 'PRUEBA', '[{\"id\":\"24\",\"diagnostico\":\"Detección de virus\"},{\"id\":\"4\",\"diagnostico\":\"Equipo Averiado\"},{\"id\":\"25\",\"diagnostico\":\"Equipo Obsoleto\"}]', 4, '2021-03-30', 'PRUEBA', '2021-03-30', '2021-03-30', 1, '[{\"id\":\"1\",\"accion\":\"Copia de Seguridad\"},{\"id\":\"12\",\"accion\":\"Eliminación de temporales\"},{\"id\":\"2\",\"accion\":\"Formateo de disco duro\"}]', 'PRUEBA RECO', 1, 1, 'NO', 'SI', 'AEA', 1, 1, 0, '2021-03-30 16:41:19'),
+(4, 'FM-2021-00004', '2021-03-30', 1, 2, 54, 13, 18, 9, 'N° Equipo: PC_OCP || Serie N°: MXL2500TDK || Cod.Patr: 740899500413 || Marca: HP || Modelo: ELITE 8300 || Descripción: PC DE ESCRITORIO || IP: 172.16.5.100 || Procesador: CORE I7-3.40 GHZ || RAM: 12GB || Disco Duro: 1TB', 'PRUEBA', '[{\"id\":\"24\",\"diagnostico\":\"Detección de virus\"},{\"id\":\"4\",\"diagnostico\":\"Equipo Averiado\"},{\"id\":\"25\",\"diagnostico\":\"Equipo Obsoleto\"}]', 4, '2021-03-30', 'PRUEBA', '2021-03-30', '2021-03-30', 1, '[{\"id\":\"1\",\"accion\":\"Copia de Seguridad\"},{\"id\":\"12\",\"accion\":\"Eliminación de temporales\"},{\"id\":\"2\",\"accion\":\"Formateo de disco duro\"}]', 'PRUEBA RECO', 1, 1, 'NO', 'SI', 'AEA', 1, 1, 0, '2021-03-30 17:01:50'),
+(5, 'FM-2021-00005', '2021-03-30', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2021-03-30 19:00:21'),
+(6, 'FM-2021-00006', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '[{\"id\":\"24\",\"diagnostico\":\"Detección de virus\"},{\"id\":\"4\",\"diagnostico\":\"Equipo Averiado\"},{\"id\":\"25\",\"diagnostico\":\"Equipo Obsoleto\"}]', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2021-03-31 10:32:31'),
+(7, 'FM-2021-00006', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '[{\"id\":\"24\",\"diagnostico\":\"Detección de virus\"},{\"id\":\"4\",\"diagnostico\":\"Equipo Averiado\"},{\"id\":\"7\",\"diagnostico\":\"Falla de disco duro\"}]', NULL, NULL, NULL, NULL, NULL, NULL, '[{\"id\":\"12\",\"accion\":\"Eliminación de temporales\"},{\"id\":\"1\",\"accion\":\"Copia de Seguridad\"},{\"id\":\"15\",\"accion\":\"Eliminación de virus\"}]', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2021-03-31 10:42:28'),
+(8, 'FM-2021-00006', '2021-03-31', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '[{\"id\":\"7\",\"diagnostico\":\"Falla de disco duro\"},{\"id\":\"25\",\"diagnostico\":\"Equipo Obsoleto\"}]', NULL, NULL, NULL, NULL, NULL, NULL, '[{\"id\":\"1\",\"accion\":\"Copia de Seguridad\"},{\"id\":\"12\",\"accion\":\"Eliminación de temporales\"},{\"id\":\"15\",\"accion\":\"Eliminación de virus\"}]', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2021-03-31 10:46:53'),
+(9, 'FM-2021-00007', '2021-03-31', NULL, NULL, NULL, NULL, NULL, NULL, 'Serie N°: 6CM2480JSF || Cod.Patr: 740880370017 || Marca: HP || Modelo: LV2311 || Descripción: MONITOR 24 PLGDAS', NULL, '[{\"id\":\"7\",\"diagnostico\":\"Falla de disco duro\"},{\"id\":\"14\",\"diagnostico\":\"Falla de Equipo\"}]', NULL, NULL, NULL, NULL, NULL, NULL, '[{\"id\":\"1\",\"accion\":\"Copia de Seguridad\"},{\"id\":\"12\",\"accion\":\"Eliminación de temporales\"},{\"id\":\"15\",\"accion\":\"Eliminación de virus\"}]', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2021-03-31 10:49:53');
 
 --
 -- Disparadores `ws_mantenimientos`
@@ -998,9 +1091,9 @@ CREATE TABLE `ws_usuarios` (
 --
 
 INSERT INTO `ws_usuarios` (`id_usuario`, `id_perfil`, `dni`, `nombres`, `apellido_paterno`, `apellido_materno`, `cuenta`, `clave`, `fecha_registro`, `estado`, `nintentos`) VALUES
-(1, 1, '77478995', 'Olger Ivan', 'Castro', 'Palacios', 'ocastrop', '$2a$07$usesomesillystringforeVF6hLwtgsUBAmUN4cGEd8tYF74gSHRW', '2020-03-02 16:22:25', 1, 1),
+(1, 1, '77478995', 'Olger Ivan', 'Castro', 'Palacios', 'ocastrop', '$2a$07$usesomesillystringforeVF6hLwtgsUBAmUN4cGEd8tYF74gSHRW', '2020-03-02 16:22:25', 1, 0),
 (2, 2, '40195996', 'Monica Nohemi', 'Rosas', 'Sanchez', 'rosasmn', '$2a$07$usesomesillystringforeoRNSqF5ebwOJ.HFIcVhNJ65bww3hpNi', '2021-03-11 15:46:33', 1, 0),
-(3, 3, '09966920', 'Javier Octavio', 'Sernaque', 'Quintana', 'jsernaqueq', '$2a$07$usesomesillystringforeAR0AYDLcMUwZJGc02Ta3T98Pn6LH7pi', '2021-03-11 15:48:50', 1, 0),
+(3, 2, '09966920', 'Javier Octavio', 'Sernaque', 'Quintana', 'jsernaqueq', '$2a$07$usesomesillystringforeAR0AYDLcMUwZJGc02Ta3T98Pn6LH7pi', '2021-03-11 15:48:50', 1, 0),
 (4, 3, '42162499', 'Edwin William', 'Guerrero', 'Sandoval', 'wguerreros', '$2a$07$usesomesillystringforeLTVm.b0q8aUqKwOyqhotBMNXub2QEkq', '2021-03-11 15:52:31', 1, 0),
 (5, 4, '09401769', 'Segundo Andres', 'Cruzado', 'Cotrina', 'acruzadoc', '$2a$07$usesomesillystringfore9OBdlwIyha0dt84yf389aUSqD287miS', '2021-03-11 16:02:14', 1, 0),
 (6, 4, '09965283', 'Ivan Victor', 'Chuquicaña', 'Fernandez', 'vchuquicañaf', '$2a$07$usesomesillystringforetG4v5XsxFT5vjiUpPsTv0VEdAMT4jmW', '2021-03-11 16:02:59', 1, 0);
@@ -1067,7 +1160,7 @@ ALTER TABLE `ws_integraciones`
 -- Indices de la tabla `ws_mantenimientos`
 --
 ALTER TABLE `ws_mantenimientos`
-  ADD PRIMARY KEY (`idManteniimiento`);
+  ADD PRIMARY KEY (`idMantenimiento`);
 
 --
 -- Indices de la tabla `ws_perfiles`
@@ -1149,7 +1242,7 @@ ALTER TABLE `ws_diagnosticos`
 -- AUTO_INCREMENT de la tabla `ws_equipos`
 --
 ALTER TABLE `ws_equipos`
-  MODIFY `idEquipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `idEquipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_estado`
@@ -1167,13 +1260,13 @@ ALTER TABLE `ws_estadoatencion`
 -- AUTO_INCREMENT de la tabla `ws_integraciones`
 --
 ALTER TABLE `ws_integraciones`
-  MODIFY `idIntegracion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `idIntegracion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_mantenimientos`
 --
 ALTER TABLE `ws_mantenimientos`
-  MODIFY `idManteniimiento` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idMantenimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_perfiles`
