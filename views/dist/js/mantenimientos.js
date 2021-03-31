@@ -17,7 +17,6 @@ $(".tablaMantenimientos").DataTable({
     }
 });
 // Tabla general
-
 // Tabla de Diagnosticos
 $(".tablaMDiagnosticoFrm").DataTable({
     "ajax": "util/datatable-diagnosticosMant.php",
@@ -46,7 +45,6 @@ $(".tablaMDiagnosticoFrm").DataTable({
     },
 });
 // Tabla de Diagnosticos
-
 // Tabla de Acciones
 $(".tablaAccionesFrm").DataTable({
     "ajax": "util/datatable-accionesMant.php",
@@ -242,13 +240,16 @@ $(".tablaMDiagnosticoFrm  tbody").on("click", "button.agregarDiagnostico", funct
         success: function (respuesta) {
             // console.log(respuesta);
             var descripcionDiag = respuesta["diagnostico"];
+            var segmentoDiag = respuesta["descSegmento"];
             // alert(descripcionDiag);
             // Pintado de los diagnosticos en el bloque
             $(".nuevoDiagnostico").append(
                 '<div class="col-md-12" style="padding-right:0px">' +
                 '<div class= "input-group mt-1" >' +
                 '<span class="input-group-addon"><button type="button" class="btn btn-danger btn-md quitarDiagnostico" idDiagnostico="' + idDiagnostico + '"><i class="fas fa-trash-restore"></i></button></span> &nbsp;' +
-                '<input type="text" class="form-control nuevaDescripcionDiagnostico" name="agregarDiagnostico" placeholder="Descripción del diagnóstico" idDiagnostico="' + idDiagnostico + '" value="' + descripcionDiag + '" required readonly>' +
+                '<input type="text" class="form-control nuevaDescripcionDiagnostico" name="agregarDiagnostico" placeholder="Descripción del diagnóstico" idDiagnostico="' + idDiagnostico + '" value="' + descripcionDiag + '" segmento="' + segmentoDiag + '" required readonly>' +
+                '<span class="input-group-addon ml-1"><button type="button" class="btn btn-warning btn-md"><i class="fas fa-border-style"></i></button></span> &nbsp;' +
+                '<input type="text" class="form-control" name="" value="' + segmentoDiag + '"required readonly>' +
                 '</div>' +
                 '</div >'
             );
@@ -302,7 +303,8 @@ function listarDiagnosticos() {
     for (var i = 0; i < diagnosticoDesc.length; i++) {
         listaDiagnosticos.push({
             "id": $(diagnosticoDesc[i]).attr("idDiagnostico"),
-            "diagnostico": $(diagnosticoDesc[i]).val()
+            "diagnostico": $(diagnosticoDesc[i]).val(),
+            "segmento": $(diagnosticoDesc[i]).attr("segmento"),
         });
     }
     $("#listaDiagnosticos").val(JSON.stringify(listaDiagnosticos));
@@ -326,11 +328,14 @@ $(".tablaAccionesFrm  tbody").on("click", "button.agregarAccion", function () {
         success: function (respuesta) {
             // console.log(respuesta);
             var descripcionAccion = respuesta["accionrealizada"];
+            var segmentoAccion = respuesta["descSegmento"];
             $(".nuevoAcciones").append(
                 '<div class="col-md-12" style="padding-right:0px">' +
                 '<div class= "input-group mt-1" >' +
                 '<span class="input-group-addon"><button type="button" class="btn btn-danger btn-md quitarAccion" idAccion="' + idAccionR + '"><i class="fas fa-trash-restore"></i></button></span> &nbsp;' +
-                '<input type="text" class="form-control nuevaDescripcionAccion" name="agregarAccion" placeholder="Descripción de acción realizada" idAccion="' + idAccionR + '" value="' + descripcionAccion + '" required readonly>' +
+                '<input type="text" class="form-control nuevaDescripcionAccion" name="agregarAccion" placeholder="Descripción de acción realizada" idAccion="' + idAccionR + '" value="' + descripcionAccion + '" segmento="' + segmentoAccion + '" required readonly>' +
+                '<span class="input-group-addon ml-1"><button type="button" class="btn btn-warning btn-md"><i class="fas fa-border-style"></i></button></span> &nbsp;' +
+                '<input type="text" class="form-control" name="" value="' + segmentoAccion + '"required readonly>' +
                 '</div>' +
                 '</div >'
             );
@@ -377,7 +382,8 @@ function listarAcciones() {
     for (var i = 0; i < accionDesc.length; i++) {
         listaAcciones.push({
             "id": $(accionDesc[i]).attr("idAccion"),
-            "accion": $(accionDesc[i]).val()
+            "accion": $(accionDesc[i]).val(),
+            "segmento": $(accionDesc[i]).attr("segmento")
         });
     }
     $("#listaAcciones").val(JSON.stringify(listaAcciones));
@@ -449,5 +455,152 @@ $("#fFin").change(function () {
 });
 // Filtro de Fechas
 // Validacion de campos
-
+$.validator.addMethod(
+    "valueNotEquals",
+    function (value, element, arg) {
+        return arg !== value;
+    },
+    "Value must not equal arg."
+);
+$("#btnRegMant").on("click", function () {
+    $("#formRegMant").validate({
+        rules: {
+            tipEquipo: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            serieEQ: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            ofiEq: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            servEq: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            respEq: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            detaEQ: {
+                required: true,
+            },
+            fEva: {
+                required: true,
+            },
+            condInEQ: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            tecEvEQ: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            tipTrabEQ: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            estAtEQ: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            condFEQ: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            descIniEQ: {
+                required: true,
+            },
+            priEvaEQ: {
+                required: true,
+            },
+            recoFEQ: {
+                required: true,
+            },
+            fInicio: {
+                required: true,
+            },
+            fFin: {
+                required: true,
+            },
+        },
+        messages: {
+            tipEquipo: {
+                valueNotEquals: "Seleccione Tipo de Equipo",
+                required: "Seleccione Tipo de Equipo",
+            },
+            serieEQ: {
+                valueNotEquals: "Selecciona Serie de EQ",
+                required: "Selecciona Serie de EQ",
+            },
+            ofiEq: {
+                valueNotEquals: "Selecciona Oficina",
+                required: "Selecciona Oficina",
+            },
+            servEq: {
+                valueNotEquals: "Selecciona Servicio",
+                required: "Selecciona Servicio",
+            },
+            respEq: {
+                valueNotEquals: "Selecciona Responsable",
+                required: "Selecciona Responsable",
+            },
+            detaEQ: {
+                required: "Complete detalles de Equipo",
+            },
+            fEva: {
+                required: "Ingrese Fecha de Evaluación",
+            },
+            condInEQ: {
+                valueNotEquals: "Selecciona Condición Inicial",
+                required: "Selecciona Responsable",
+            },
+            tecEvEQ: {
+                valueNotEquals: "Selecciona Técnico Evaluador",
+                required: "Selecciona Responsable",
+            },
+            tipTrabEQ: {
+                valueNotEquals: "Selecciona trabajo realizado",
+                required: "Selecciona Responsable",
+            },
+            estAtEQ: {
+                valueNotEquals: "Selecciona estado de Atención",
+                required: "Selecciona Responsable",
+            },
+            condFEQ: {
+                valueNotEquals: "Selecciona Condición Final",
+                required: "Selecciona Responsable",
+            },
+            descIniEQ: {
+                required: "Ingresa descripción inicial de incidente",
+            },
+            priEvaEQ: {
+                required: "Ingresa primera evaluación",
+            },
+            recoFEQ: {
+                required: "Ingresa recomendaciones finales",
+            },
+            fInicio: {
+                required: "Ingresa Fecha de Inicio de Trabajo",
+            },
+            fFin: {
+                required: "Ingresa Fecha de Fin de Trabajo",
+            },
+        },
+        errorElement: "span",
+        errorPlacement: function (error, element) {
+            error.addClass("invalid-feedback");
+            element.closest(".form-group").append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass("is-invalid");
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass("is-invalid");
+        },
+    });
+});
 // Validacion de campos
