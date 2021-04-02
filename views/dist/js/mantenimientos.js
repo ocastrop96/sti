@@ -1,5 +1,6 @@
 // Tabla general
 $(".tablaMantenimientos").DataTable({
+    "ajax": "util/datatable-mantenimientos.php",
     "deferRender": true,
     "retrieve": true,
     "processing": true,

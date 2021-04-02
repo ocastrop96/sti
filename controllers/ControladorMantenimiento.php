@@ -22,6 +22,12 @@ class ControladorMantenimientos
         $repuesta = ModeloMantenimientos::mdlListarDatosEqImp($dato);
         return $repuesta;
     }
+    // listar mantenimientos
+    static public function ctrListarFichasManto($item, $valor){
+        $respuesta = ModeloMantenimientos::mdlListarFichasMant($item, $valor);
+        return $respuesta;
+    }
+    // listar mantenimientos
     // Registrar Mantenimiento
     static public function ctrRegistrarMantenimiento()
     {

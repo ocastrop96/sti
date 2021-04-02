@@ -43,40 +43,6 @@
               <th>Opciones</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>FT-2021-00002</td>
-              <td>24-03-2021</td>
-              <td>PC</td>
-              <td>MXL2500TDK</td>
-              <td>Olger Ivan Castro Palacios</td>
-              <td>Estadística e Informática</td>
-              <td>Desarrollo</td>
-              <td>Edwin William Guerrero Sandoval</td>
-              <td><button type="button" class="btn btn-block btn-success"><i class="fas fa-thumbs-up"></i>&nbsp;Concluida</button></td>
-              <td><button type="button" class="btn btn-block btn-info"><i class="fas fa-check"></i>&nbsp;Atendida</button></td>
-              <td>
-                <div class="btn-group"><button class="btn btn-warning btnEditarMant" idMantenimiento=""><i class="fas fa-edit"></i></button><button class="btn btn-info btnImprimirFichaMant" idMantenimiento=""><i class="fas fa-print"></i></button><button class="btn btn-secondary btnAnularMantenimiento" idMantenimiento=""><i class="fas fa-window-close"></i></button></div>
-              </td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>FT-2021-00001</td>
-              <td>24-03-2021</td>
-              <td>PC</td>
-              <td>MXL2500TDK</td>
-              <td>Olger Ivan Castro Palacios</td>
-              <td>Estadística e Informática</td>
-              <td>Desarrollo</td>
-              <td>Edwin William Guerrero Sandoval</td>
-              <td><button type="button" class="btn btn-block btn-secondary"><i class="far fa-clock"></i>&nbsp;Pendiente</button></td>
-              <td><button type="button" class="btn btn-block btn-danger"><i class="fas fa-ban"></i>&nbsp;Anulada</button></td>
-              <td>
-                <div class="btn-group"><button class="btn btn-warning btnEditarMant" idMantenimiento=""><i class="fas fa-edit"></i></button><button class="btn btn-info btnImprimirFichaMant" idMantenimiento=""><i class="fas fa-print"></i></button><button class="btn btn-secondary btnAnularMantenimiento" idMantenimiento=""><i class="fas fa-window-close"></i></button></div>
-              </td>
-            </tr>
-          </tbody>
         </table>
       </div>
     </div>

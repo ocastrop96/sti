@@ -3,6 +3,33 @@ require_once "ConnectPDO.php";
 
 class ModeloMantenimientos
 {
+    static public function mdlListarFichasMant($item, $valor)
+    {
+        if ($item != null) {
+            $stmt = Conexion::conectar()->prepare("SELECT idMantenimiento,correlativo_Mant,date_format(fRegistroMant,'%d/%m/%Y') as fRegManto,tipEquipo,categoria,idEquip,serie,oficEquip,area,oficEquip,subarea,uResponsable,concat(nombresResp,' ',apellidosResp) as responsable,logdeta,date_format(fEvalua,'%d/%m/%Y') as fEval,condInicial,fsitu.situacion as cinicial,tecEvalua,concat(nombres,' ',apellido_paterno,' ',apellido_materno) as tecnico,descInc,diagnosticos,primera_eval,fInicio,fFin,tipTrabajo,tipoTrabajo,acciones,recomendaciones,estAtencion,estAte,condFinal,fsitu2.situacion as cfinal,servTerce,otros,obsOtros,sgmtoManto,estAnulado,estadoDoc from ws_mantenimientos as fmant
+            inner join ws_categorias as fcat on fmant.tipEquipo = fcat.idCategoria
+            inner join ws_situacion as fsitu on fmant.condInicial = fsitu.idSituacion
+            inner join ws_equipos as fequip on fmant.idEquip = fequip.idEquipo
+            inner join ws_departamentos as fdept on fmant.oficEquip = fdept.id_area
+            inner join ws_servicios as fserv on fmant.areaEquip = fserv.id_subarea
+            inner join ws_responsables as fresp on fmant.respoEquip = fresp.idResponsable
+            inner join ws_usuarios as ftec on fmant.tecEvalua = ftec.id_usuario
+            inner join ws_estadoatencion as festat on fmant.estAtencion = festat.idEstAte
+            inner join ws_situacion as fsitu2 on fmant.condFinal = fsitu2.idSituacion
+            inner join ws_estadosdoc as festdoc on fmant.estAnulado = festdoc.idEstaDoc
+            inner join ws_tipotrabajo as ftiptrab on fmant.tipTrabajo = ftiptrab.idTipoTrabajo WHERE $item = :$item");
+            $stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
+            $stmt->execute();
+            return $stmt->fetch();
+        } else {
+            $stmt = Conexion::conectar()->prepare("CALL LISTAR_FICHAS_MANTO()");
+            $stmt->execute();
+            return $stmt->fetchAll();
+        }
+        //Cerramos la conexion por seguridad
+        $stmt->close();
+        $stmt = null;
+    }
     static public function mdlListarDatosEqOtros($dato)
     {
         $stmt = Conexion::conectar()->prepare("CALL LISTAR_DATOS_EQOTROS(:idEquipo)");
