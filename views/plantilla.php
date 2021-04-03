@@ -63,7 +63,7 @@ session_start();
 <!-- hold-transition sidebar-mini layout-fixed  fijo-->
 <!-- sidebar-mini layout-fixed sidebar-collapse colapsado-->
 
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini sidebar-collapse">
   <!-- Validación de Login -->
   <?php
   if (isset($_SESSION["loginWS"]) && $_SESSION["loginWS"] == "ok") {

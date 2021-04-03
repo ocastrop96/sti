@@ -605,3 +605,9 @@ $("#btnRegMant").on("click", function () {
     });
 });
 // Validacion de campos
+// Editar Mantenimiento
+$(".tablaMantenimientos").on("click", ".btnEditarMant", function () {
+    var idMantenimiento = $(this).attr("idMantenimiento");
+    window.location = "index.php?ruta=editar-mantenimiento&idMantenimiento=" + idMantenimiento;
+})
+// Editar Mantenimiento

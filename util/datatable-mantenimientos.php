@@ -15,16 +15,16 @@ class TablaMantenimiento
         for ($i = 0; $i < count($mantenimiento); $i++) {
             // Botones de Estado de Atención
             if ($mantenimiento[$i]["estAtencion"] == 1) {
-                $estadoAte = "<div class='btn-group'><button type='button' class='btn btn-block btn-success'><i class='fas fa-thumbs-up'></i>&nbsp;" . $mantenimiento[$i]["estAte"] . "</button></div>";
+                $estadoAte = "<button type='button' class='btn btn-block btn-success'><i class='fas fa-thumbs-up'></i>&nbsp;" . $mantenimiento[$i]["estAte"] . "</button>";
             } else {
-                $estadoAte = "<div class='btn-group'><button type='button' class='btn btn-block btn-secondary'><i class='far fa-clock'></i>&nbsp;" . $mantenimiento[$i]["estAte"] . "</button></div>";
+                $estadoAte = "<button type='button' class='btn btn-block btn-secondary'><i class='far fa-clock'></i>&nbsp;" . $mantenimiento[$i]["estAte"] . "</button>";
             }
             // Botones de Estado de Atención
             // Botón de Estado de Ficha
             if ($mantenimiento[$i]["estAnulado"] == 1) {
-                $estadoFicha = "<div class='btn-group'><button type='button' class='btn btn-block btn-info'><i class='fas fa-check'></i>&nbsp;" . $mantenimiento[$i]["estadoDoc"] . "</button></div>";
+                $estadoFicha = "<button type='button' class='btn btn-block btn-info'><i class='fas fa-check'></i>&nbsp;" . $mantenimiento[$i]["estadoDoc"] . "</button>";
             } else {
-                $estadoFicha = "<div class='btn-group'><button type='button' class='btn btn-block btn btn-block btn-danger'><i class='fas fa-ban'></i>&nbsp;" . $mantenimiento[$i]["estadoDoc"] . "</button></div>";
+                $estadoFicha = "<button type='button' class='btn btn-block btn btn-block btn-danger'><i class='fas fa-ban'></i>&nbsp;" . $mantenimiento[$i]["estadoDoc"] . "</button>";
             }
 
             // Botón de Estado de Ficha
