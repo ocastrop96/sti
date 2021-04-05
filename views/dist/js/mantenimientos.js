@@ -96,6 +96,48 @@ $('#fFin').datepicker({
     'language': 'es',
     'endDate': new Date(),
 });
+// Setting parameters
+$("#descIniEQ").keyup(function () {
+    this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, "");
+});
+$("#descIniEQ").keyup(function () {
+    var st = $(this).val();
+    var mayust = st.toUpperCase();
+    $("#descIniEQ").val(mayust);
+});
+$("#descIniEQ").keyup(function () {
+    this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, "");
+});
+$("#descIniEQ").keyup(function () {
+    var st = $(this).val();
+    var mayust = st.toUpperCase();
+    $("#descIniEQ").val(mayust);
+});
+$("#priEvaEQ").keyup(function () {
+    this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, "");
+});
+$("#priEvaEQ").keyup(function () {
+    var st = $(this).val();
+    var mayust = st.toUpperCase();
+    $("#priEvaEQ").val(mayust);
+});
+$("#recoFEQ").keyup(function () {
+    this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, "");
+});
+$("#recoFEQ").keyup(function () {
+    var st = $(this).val();
+    var mayust = st.toUpperCase();
+    $("#recoFEQ").val(mayust);
+});
+$("#detalleOtros").keyup(function () {
+    this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, "");
+});
+$("#detalleOtros").keyup(function () {
+    var st = $(this).val();
+    var mayust = st.toUpperCase();
+    $("#detalleOtros").val(mayust);
+});
+// Setting parameters
 // Cargar lista de series en base al tipo
 $("#tipEquipo").on("change", function () {
     $("#ofiEq1").prop("disabled", false);
@@ -220,7 +262,6 @@ $("#serieEQ").on("change", function () {
 
 });
 // Cargar información de equipo en base a serie y tipo seleccionado
-
 // Listar datos del diagnostico vía ajax
 $(".tablaMDiagnosticoFrm  tbody").on("click", "button.agregarDiagnostico", function () {
     var idDiagnostico = $(this).attr("idDiagnostico");
@@ -248,7 +289,7 @@ $(".tablaMDiagnosticoFrm  tbody").on("click", "button.agregarDiagnostico", funct
                 '<div class="col-md-12" style="padding-right:0px">' +
                 '<div class= "input-group mt-1" >' +
                 '<span class="input-group-addon"><button type="button" class="btn btn-danger btn-md quitarDiagnostico" idDiagnostico="' + idDiagnostico + '"><i class="fas fa-trash-restore"></i></button></span> &nbsp;' +
-                '<input type="text" class="form-control nuevaDescripcionDiagnostico" name="agregarDiagnostico" placeholder="Descripción del diagnóstico" idDiagnostico="' + idDiagnostico + '" value="' + descripcionDiag + '" segmento="' + segmentoDiag + '" required readonly>' +
+                '<input type="text" class="form-control nuevaDescripcionDiagnostico" name="agregarDiagnostico" placeholder="Descripción del diagnóstico" idDiagnostico="' + idDiagnostico + '" value="' + descripcionDiag + '" segmento="' + segmentoDiag + '" contable2="1" required readonly>' +
                 '<span class="input-group-addon ml-1"><button type="button" class="btn btn-warning btn-md"><i class="fas fa-border-style"></i></button></span> &nbsp;' +
                 '<input type="text" class="form-control" name="" value="' + segmentoDiag + '"required readonly>' +
                 '</div>' +
@@ -269,7 +310,7 @@ $(".tablaMDiagnosticoFrm").on("draw.dt", function () {
         var listaIdDiagnosticos = JSON.parse(localStorage.getItem("quitarDiagnostico"));
         for (var i = 0; i < listaIdDiagnosticos.length; i++) {
             $("button.recuperarDiagnostico[idDiagnostico='" + listaIdDiagnosticos[i]["idDiagnostico"] + "']").removeClass('btn-default');
-            $("button.recuperarDiagnostico[idDiagnostico='" + listaIdDiagnosticos[i]["idDiagnostico"] + "']").addClass('btn-primary agregarDiagnostico');
+            $("button.recuperarDiagnostico[idDiagnostico='" + listaIdDiagnosticos[i]["idDiagnostico"] + "']").addClass('btn-success agregarDiagnostico');
         }
     }
 });
@@ -306,10 +347,33 @@ function listarDiagnosticos() {
             "id": $(diagnosticoDesc[i]).attr("idDiagnostico"),
             "diagnostico": $(diagnosticoDesc[i]).val(),
             "segmento": $(diagnosticoDesc[i]).attr("segmento"),
+            "conteo": $(diagnosticoDesc[i]).attr("contable2"),
         });
     }
     $("#listaDiagnosticos").val(JSON.stringify(listaDiagnosticos));
 }
+function quitaragregarDiagnostico() {
+    //Capturamos todos los id de productos que fueron elegidos en la venta
+    var idDiagnostico = $(".quitarDiagnostico");
+    //Capturamos todos los botones de agregar que aparecen en la tabla
+    var botonesTabla = $(".tablaMDiagnosticoFrm tbody button.agregarDiagnostico");
+    //Recorremos en un ciclo para obtener los diferentes idProductos que fueron agregados a la venta
+    for (var i = 0; i < idDiagnostico.length; i++) {
+        //Capturamos los Id de los productos agregados a la venta
+        var boton = $(idDiagnostico[i]).attr("idDiagnostico");
+        //Hacemos un recorrido por la tabla que aparece para desactivar los botones de agregar
+        for (var j = 0; j < botonesTabla.length; j++) {
+            if ($(botonesTabla[j]).attr("idDiagnostico") == boton) {
+                $(botonesTabla[j]).removeClass("btn-success agregarDiagnostico");
+                $(botonesTabla[j]).addClass("btn-default");
+            }
+        }
+    }
+}
+$('.tablaMDiagnosticoFrm').on('draw.dt', function () {
+    quitaragregarDiagnostico();
+});
+
 // Listar Diagnosticos
 // Listar Acciones Realizadas
 $(".tablaAccionesFrm  tbody").on("click", "button.agregarAccion", function () {
@@ -334,7 +398,7 @@ $(".tablaAccionesFrm  tbody").on("click", "button.agregarAccion", function () {
                 '<div class="col-md-12" style="padding-right:0px">' +
                 '<div class= "input-group mt-1" >' +
                 '<span class="input-group-addon"><button type="button" class="btn btn-danger btn-md quitarAccion" idAccion="' + idAccionR + '"><i class="fas fa-trash-restore"></i></button></span> &nbsp;' +
-                '<input type="text" class="form-control nuevaDescripcionAccion" name="agregarAccion" placeholder="Descripción de acción realizada" idAccion="' + idAccionR + '" value="' + descripcionAccion + '" segmento="' + segmentoAccion + '" required readonly>' +
+                '<input type="text" class="form-control nuevaDescripcionAccion" name="agregarAccion" placeholder="Descripción de acción realizada" idAccion="' + idAccionR + '" value="' + descripcionAccion + '" segmento="' + segmentoAccion + '" contable="1" required readonly>' +
                 '<span class="input-group-addon ml-1"><button type="button" class="btn btn-warning btn-md"><i class="fas fa-border-style"></i></button></span> &nbsp;' +
                 '<input type="text" class="form-control" name="" value="' + segmentoAccion + '"required readonly>' +
                 '</div>' +
@@ -384,11 +448,33 @@ function listarAcciones() {
         listaAcciones.push({
             "id": $(accionDesc[i]).attr("idAccion"),
             "accion": $(accionDesc[i]).val(),
-            "segmento": $(accionDesc[i]).attr("segmento")
+            "segmento": $(accionDesc[i]).attr("segmento"),
+            "conteo": $(accionDesc[i]).attr("contable")
         });
     }
     $("#listaAcciones").val(JSON.stringify(listaAcciones));
 }
+function quitaragregarAcciones() {
+    //Capturamos todos los id de productos que fueron elegidos en la venta
+    var idAccion = $(".quitarAccion");
+    //Capturamos todos los botones de agregar que aparecen en la tabla
+    var botonesTabla2 = $(".tablaAccionesFrm tbody button.agregarAccion");
+    //Recorremos en un ciclo para obtener los diferentes idProductos que fueron agregados a la venta
+    for (var i = 0; i < idAccion.length; i++) {
+        //Capturamos los Id de los productos agregados a la venta
+        var boton = $(idAccion[i]).attr("idAccion");
+        //Hacemos un recorrido por la tabla que aparece para desactivar los botones de agregar
+        for (var j = 0; j < botonesTabla2.length; j++) {
+            if ($(botonesTabla2[j]).attr("idAccion") == boton) {
+                $(botonesTabla2[j]).removeClass("btn-success agregarAccion");
+                $(botonesTabla2[j]).addClass("btn-default");
+            }
+        }
+    }
+}
+$('.tablaAccionesFrm').on('draw.dt', function () {
+    quitaragregarAcciones();
+});
 // Listar Acciones Realizadas
 
 // Radio otros
@@ -603,6 +689,215 @@ $("#btnRegMant").on("click", function () {
             $(element).removeClass("is-invalid");
         },
     });
+});
+$("#btnRegMant").click(function (e) {
+    var form1 = $("#formRegMant");
+    validacion = form1.valid();
+    if (validacion == true) {
+        let timerInterval;
+        Swal.fire({
+            title: "Registro en proceso!",
+            html:
+                "Su registro culminará en unos segundos.Espere ...",
+            timer: 10000,
+            timerProgressBar: true,
+            onBeforeOpen: () => {
+                Swal.showLoading();
+                timerInterval = setInterval(() => {
+                    const content = Swal.getContent();
+                    if (content) {
+                        const b = content.querySelector("b");
+                        if (b) {
+                            b.textContent = Swal.getTimerLeft();
+                        }
+                    }
+                }, 10000);
+            },
+            onClose: () => {
+                clearInterval(timerInterval);
+            },
+        }).then((result) => {
+            /* Read more about handling dismissals below */
+            if (result.dismiss === Swal.DismissReason.timer) {
+                //   console.log("I was closed by the timer");
+            }
+        });
+    }
+});
+$("#btnEdtMant").on("click", function () {
+    $("#formRegMant").validate({
+        rules: {
+            tipEquipo: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            serieEQ: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            ofiEq: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            servEq: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            respEq: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            detaEQ: {
+                required: true,
+            },
+            fEva: {
+                required: true,
+            },
+            condInEQ: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            tecEvEQ: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            tipTrabEQ: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            estAtEQ: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            condFEQ: {
+                valueNotEquals: "0",
+                required: true,
+            },
+            descIniEQ: {
+                required: true,
+            },
+            priEvaEQ: {
+                required: true,
+            },
+            recoFEQ: {
+                required: true,
+            },
+            fInicio: {
+                required: true,
+            },
+            fFin: {
+                required: true,
+            },
+        },
+        messages: {
+            tipEquipo: {
+                valueNotEquals: "Seleccione Tipo de Equipo",
+                required: "Seleccione Tipo de Equipo",
+            },
+            serieEQ: {
+                valueNotEquals: "Selecciona Serie de EQ",
+                required: "Selecciona Serie de EQ",
+            },
+            ofiEq: {
+                valueNotEquals: "Selecciona Oficina",
+                required: "Selecciona Oficina",
+            },
+            servEq: {
+                valueNotEquals: "Selecciona Servicio",
+                required: "Selecciona Servicio",
+            },
+            respEq: {
+                valueNotEquals: "Selecciona Responsable",
+                required: "Selecciona Responsable",
+            },
+            detaEQ: {
+                required: "Complete detalles de Equipo",
+            },
+            fEva: {
+                required: "Ingrese Fecha de Evaluación",
+            },
+            condInEQ: {
+                valueNotEquals: "Selecciona Condición Inicial",
+                required: "Selecciona Responsable",
+            },
+            tecEvEQ: {
+                valueNotEquals: "Selecciona Técnico Evaluador",
+                required: "Selecciona Responsable",
+            },
+            tipTrabEQ: {
+                valueNotEquals: "Selecciona trabajo realizado",
+                required: "Selecciona Responsable",
+            },
+            estAtEQ: {
+                valueNotEquals: "Selecciona estado de Atención",
+                required: "Selecciona Responsable",
+            },
+            condFEQ: {
+                valueNotEquals: "Selecciona Condición Final",
+                required: "Selecciona Responsable",
+            },
+            descIniEQ: {
+                required: "Ingresa descripción inicial de incidente",
+            },
+            priEvaEQ: {
+                required: "Ingresa primera evaluación",
+            },
+            recoFEQ: {
+                required: "Ingresa recomendaciones finales",
+            },
+            fInicio: {
+                required: "Ingresa Fecha de Inicio de Trabajo",
+            },
+            fFin: {
+                required: "Ingresa Fecha de Fin de Trabajo",
+            },
+        },
+        errorElement: "span",
+        errorPlacement: function (error, element) {
+            error.addClass("invalid-feedback");
+            element.closest(".form-group").append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass("is-invalid");
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass("is-invalid");
+        },
+    });
+});
+$("#btnEdtMant").click(function (e) {
+    var form1 = $("#formRegMant");
+    validacion = form1.valid();
+    if (validacion == true) {
+        let timerInterval;
+        Swal.fire({
+            title: "Registro en proceso!",
+            html:
+                "Su registro culminará en unos segundos.Espere ...",
+            timer: 10000,
+            timerProgressBar: true,
+            onBeforeOpen: () => {
+                Swal.showLoading();
+                timerInterval = setInterval(() => {
+                    const content = Swal.getContent();
+                    if (content) {
+                        const b = content.querySelector("b");
+                        if (b) {
+                            b.textContent = Swal.getTimerLeft();
+                        }
+                    }
+                }, 10000);
+            },
+            onClose: () => {
+                clearInterval(timerInterval);
+            },
+        }).then((result) => {
+            /* Read more about handling dismissals below */
+            if (result.dismiss === Swal.DismissReason.timer) {
+                //   console.log("I was closed by the timer");
+            }
+        });
+    }
 });
 // Validacion de campos
 // Editar Mantenimiento

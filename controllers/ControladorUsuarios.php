@@ -29,12 +29,12 @@ class ControladorUsuarios
                                 icon: "success",
                                 title: "Acceso concedido...¡Bienvenido!",
                                 showConfirmButton: false,
-                                timer: 1200
+                                timer: 1000
                             });
                             function redirect(){
                                 window.location = "dashboard";
                             }
-                            setTimeout(redirect,1200);
+                            setTimeout(redirect,1000);
                              </script>';
                         } else {
                             echo '<script>

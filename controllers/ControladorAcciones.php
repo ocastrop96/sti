@@ -3,8 +3,7 @@ class ControladorAcciones
 {
     static public function ctrListarAcciones($item, $valor)
     {
-        $tabla = "ws_acciones";
-        $respuesta = ModeloAcciones::mdlListarAcciones($tabla, $item, $valor);
+        $respuesta = ModeloAcciones::mdlListarAcciones($item, $valor);
         return $respuesta;
     }
 

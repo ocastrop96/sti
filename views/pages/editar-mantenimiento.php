@@ -36,8 +36,8 @@
                             <div class="row">
                                 <div class="col-12 col-md-3">
                                     <div class="form-group">
-                                        <label for="fechita">N° de Ficha &nbsp; <i class="fas fa-calendar-alt"></i> *</label>
-                                        <input type="text" class="form-control" readonly value="<?php echo $fichaManto["correlativo_Mant"]; ?>">
+                                        <label for="fechita">N° de Ficha &nbsp; <i class="fas fa-file-invoice"></i> *</label>
+                                        <input type="text" class="form-control" readonly value="<?php echo $fichaManto["correlativo_Mant"]; ?>" name="ncorrelativo">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-3">
@@ -45,7 +45,7 @@
                                         <label for="fechita">F.Registro &nbsp; <i class="fas fa-calendar-alt"></i> *</label>
                                         <input type="text" class="form-control" readonly value="<?php echo $fichaManto["fRegManto"]; ?>">
                                         <input type="hidden" name="uedtMant" id="uedtMant" value="<?php echo $_SESSION["id"]; ?>">
-                                        <input type="hidden" name="segmentado" id="segmentado">
+                                        <input type="hidden" name="segmentado" id="segmentado" value="<?php echo $fichaManto["sgmtoManto"]; ?>">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-3">
@@ -179,7 +179,22 @@
                                         <i class="fas fa-laptop-medical"></i> *
                                     </div>
                                     <div class="col-12 col-md-12">
-                                        <div class="form-group row nuevoDiagnostico"></div>
+                                        <div class="form-group row nuevoDiagnostico">
+                                            <?php
+                                            $listaDiagnosticos = json_decode($fichaManto["diagnosticos"], true);
+                                            // var_dump($listaDiagnosticos);
+                                            foreach ($listaDiagnosticos as $key => $value) {
+                                                echo '<div class="col-md-12" style="padding-right:0px">
+                                                            <div class= "input-group mt-1" >
+                                                                <span class="input-group-addon"><button type="button" class="btn btn-danger btn-md quitarDiagnostico" idDiagnostico="' . $value["id"] . '"><i class="fas fa-trash-restore"></i></button></span> &nbsp;
+                                                                <input type="text" class="form-control nuevaDescripcionDiagnostico" name="agregarDiagnostico" placeholder="Descripción del diagnóstico" idDiagnostico="' . $value["id"] . '" value="' . $value["diagnostico"] . '" segmento="' . $value["segmento"] . '" contable2="' . $value["conteo"] . '" required readonly>
+                                                                <span class="input-group-addon ml-1"><button type="button" class="btn btn-warning btn-md"><i class="fas fa-border-style"></i></button></span> &nbsp;
+                                                                <input type="text" class="form-control" name="" value="' . $value["segmento"] . '" required readonly>
+                                                            </div>
+                                                        </div >';
+                                            }
+                                            ?>
+                                        </div>
                                         <input type="hidden" id="listaDiagnosticos" name="listaDiagnosticos">
                                     </div>
                                 </div>
@@ -203,7 +218,10 @@
                                         <label for="fInicio">Fecha Inicio &nbsp;</label>
                                         <i class="fas fa-calendar-alt"></i> *
                                         <input type="text" name="fInicio" id="fInicio" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask autocomplete="off" placeholder="dd/mm/yyyy" value="<?php echo $fichaManto["fInic"]; ?>">
-                                        <input type="hidden" name="fIniEv" id="fIniEv">
+                                        <input type="hidden" name="fIniEv" id="fIniEv" value="<?php $fEvac1 = $fichaManto["fInic"];
+                                                                                                $dateFEva1 = str_replace('/', '-', $fEvac1);
+                                                                                                $fe1Eva1 = date('Y-m-d', strtotime($dateFEva1));
+                                                                                                echo $fe1Eva1 ?>">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-3">
@@ -211,7 +229,10 @@
                                         <label for="fFin">Fecha Fin &nbsp;</label>
                                         <i class="fas fa-calendar-alt"></i> *
                                         <input type="text" name="fFin" id="fFin" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask autocomplete="off" placeholder="dd/mm/yyyy" value="<?php echo $fichaManto["fFinE"]; ?>">
-                                        <input type="hidden" name="fFinEv" id="fFinEv">
+                                        <input type="hidden" name="fFinEv" id="fFinEv" value="<?php $fEvac2 = $fichaManto["fFinE"];
+                                                                                                $dateFEva2 = str_replace('/', '-', $fEvac2);
+                                                                                                $fe1Eva2 = date('Y-m-d', strtotime($dateFEva2));
+                                                                                                echo $fe1Eva2 ?>">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
@@ -240,7 +261,21 @@
                                         <input type="hidden" id="listaAcciones" name="listaAcciones">
                                     </div>
                                     <div class="col-12 col-md-12">
-                                        <div class="form-group row nuevoAcciones"></div>
+                                        <div class="form-group row nuevoAcciones">
+                                            <?php
+                                            $listaAcciones = json_decode($fichaManto["acciones"], true);
+                                            // var_dump($listaAcciones);
+                                            foreach ($listaAcciones as $key => $value) {
+                                                echo '<div class="col-md-12" style="padding-right:0px">
+                                                <div class= "input-group mt-1" >
+                                                <span class="input-group-addon"><button type="button" class="btn btn-danger btn-md quitarAccion" idAccion="' . $value["id"] . '"><i class="fas fa-trash-restore"></i></button></span> &nbsp;
+                                                <input type="text" class="form-control nuevaDescripcionAccion" name="agregarAccion" placeholder="Descripción de acción realizada" idAccion="' . $value["id"] . '" value="' . $value["accion"] . '" segmento="' . $value["segmento"] . '" contable="' . $value["conteo"] . '" required readonly>
+                                                <span class="input-group-addon ml-1"><button type="button" class="btn btn-warning btn-md"><i class="fas fa-border-style"></i></button></span> &nbsp;
+                                                <input type="text" class="form-control" name="" value="' . $value["segmento"] . '" required readonly>
+                                                </div>
+                                                </div >';
+                                            }
+                                            ?></div>
                                     </div>
                                 </div>
                             </div>
@@ -330,11 +365,11 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <center><button type="submit" class="btn btn-secondary" id="btnRegMant"><i class="fas fa-save"></i> Guardar cambios</button></center>
+                            <center><button type="submit" class="btn btn-secondary" id="btnEdtMant"><i class="fas fa-save"></i> Guardar cambios</button></center>
                         </div>
                         <?php
-                        // $registraMante = new ControladorMantenimientos();
-                        // $registraMante->ctrRegistrarMantenimiento();
+                        $editaMante = new ControladorMantenimientos();
+                        $editaMante->ctrEditarMantenimiento();
                         ?>
                     </form>
                 </div>
