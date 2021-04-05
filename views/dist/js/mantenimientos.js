@@ -100,43 +100,43 @@ $('#fFin').datepicker({
 $("#descIniEQ").keyup(function () {
     this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, "");
 });
-$("#descIniEQ").keyup(function () {
-    var st = $(this).val();
-    var mayust = st.toUpperCase();
-    $("#descIniEQ").val(mayust);
-});
+// $("#descIniEQ").keyup(function () {
+//     var st = $(this).val();
+//     var mayust = st.toUpperCase();
+//     $("#descIniEQ").val(mayust);
+// });
 $("#descIniEQ").keyup(function () {
     this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, "");
 });
-$("#descIniEQ").keyup(function () {
-    var st = $(this).val();
-    var mayust = st.toUpperCase();
-    $("#descIniEQ").val(mayust);
-});
+// $("#descIniEQ").keyup(function () {
+//     var st = $(this).val();
+//     var mayust = st.toUpperCase();
+//     $("#descIniEQ").val(mayust);
+// });
 $("#priEvaEQ").keyup(function () {
     this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, "");
 });
-$("#priEvaEQ").keyup(function () {
-    var st = $(this).val();
-    var mayust = st.toUpperCase();
-    $("#priEvaEQ").val(mayust);
-});
+// $("#priEvaEQ").keyup(function () {
+//     var st = $(this).val();
+//     var mayust = st.toUpperCase();
+//     $("#priEvaEQ").val(mayust);
+// });
 $("#recoFEQ").keyup(function () {
     this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, "");
 });
-$("#recoFEQ").keyup(function () {
-    var st = $(this).val();
-    var mayust = st.toUpperCase();
-    $("#recoFEQ").val(mayust);
-});
+// $("#recoFEQ").keyup(function () {
+//     var st = $(this).val();
+//     var mayust = st.toUpperCase();
+//     $("#recoFEQ").val(mayust);
+// });
 $("#detalleOtros").keyup(function () {
     this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, "");
 });
-$("#detalleOtros").keyup(function () {
-    var st = $(this).val();
-    var mayust = st.toUpperCase();
-    $("#detalleOtros").val(mayust);
-});
+// $("#detalleOtros").keyup(function () {
+//     var st = $(this).val();
+//     var mayust = st.toUpperCase();
+//     $("#detalleOtros").val(mayust);
+// });
 // Setting parameters
 // Cargar lista de series en base al tipo
 $("#tipEquipo").on("change", function () {
