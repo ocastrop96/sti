@@ -110,7 +110,7 @@ class ModeloMantenimientos
     }
     static public function mdlEditarMantenimiento($datos)
     {
-        $stmt = Conexion::conectar()->prepare("CALL EDITAR_MANTENIMIENTO(:correlativo_Mant,:fRegistroMant,:descInc,:tipEquipo,:condInicial,:idEquip,:oficEquip,:areaEquip,:respoEquip,:tecEvalua,:tipTrabajo,:fEvalua,:primera_eval,:fInicio,:fFin,:recomendaciones,:estAtencion,:condFinal,:servTerce,:otros,:obsOtros,:sgmtoManto,:logdeta,:diagnosticos,:acciones)");
+        $stmt = Conexion::conectar()->prepare("CALL EDITAR_MANTENIMIENTO(:correlativo_Mant,:descInc,:tipEquipo,:condInicial,:idEquip,:oficEquip,:areaEquip,:respoEquip,:tecEvalua,:tipTrabajo,:fEvalua,:primera_eval,:fInicio,:fFin,:recomendaciones,:estAtencion,:condFinal,:servTerce,:otros,:obsOtros,:sgmtoManto,:logdeta,:diagnosticos,:acciones)");
         $stmt->bindParam(":tipEquipo", $datos["tipEquipo"], PDO::PARAM_INT);
         $stmt->bindParam(":condInicial", $datos["condInicial"], PDO::PARAM_INT);
         $stmt->bindParam(":idEquip", $datos["idEquip"], PDO::PARAM_INT);
@@ -122,7 +122,6 @@ class ModeloMantenimientos
         $stmt->bindParam(":estAtencion", $datos["estAtencion"], PDO::PARAM_INT);
         $stmt->bindParam(":condFinal", $datos["condFinal"], PDO::PARAM_INT);
         $stmt->bindParam(":sgmtoManto", $datos["sgmtoManto"], PDO::PARAM_INT);
-        $stmt->bindParam(":fRegistroMant", $datos["fRegistroMant"], PDO::PARAM_STR);
         $stmt->bindParam(":descInc", $datos["descInc"], PDO::PARAM_STR);
         $stmt->bindParam(":logdeta", $datos["logdeta"], PDO::PARAM_STR);
         $stmt->bindParam(":correlativo_Mant", $datos["correlativo_Mant"], PDO::PARAM_STR);
@@ -182,6 +181,32 @@ class ModeloMantenimientos
         $stmt->close();
         $stmt = null;
     }
-
-    static public function mdlRegistroAuditoria($dato){}
+    static public function mdlAnularMantenimiento($datos)
+    {
+        $stmt = Conexion::conectar()->prepare("CALL ANULAR_MANTENIMIENTO(:idMantenimiento)");
+        $stmt->bindParam(":idMantenimiento", $datos, PDO::PARAM_STR);
+        $stmt->execute();
+        if ($stmt->execute()) {
+            return "ok";
+        } else {
+            return "error";
+        }
+        $stmt->close();
+        $stmt = null;
+    }
+    static public function mdlRegistroAuditoria($datos)
+    {
+        $stmt = Conexion::conectar()->prepare("CALL Z_REG_AUDITORIAMANT(:idDoc,:usExec,:accExec,:fecha_audi)");
+        $stmt->bindParam(":idDoc", $datos["idDoc"], PDO::PARAM_INT);
+        $stmt->bindParam(":usExec", $datos["usExec"], PDO::PARAM_INT);
+        $stmt->bindParam(":accExec", $datos["accExec"], PDO::PARAM_STR);
+        $stmt->bindParam(":fecha_audi", $datos["fecha_audi"], PDO::PARAM_STR);
+        if ($stmt->execute()) {
+            return "ok";
+        } else {
+            return "error";
+        }
+        $stmt->close();
+        $stmt = null;
+    }
 }

@@ -44,7 +44,12 @@
             </tr>
           </thead>
         </table>
+        <input type="hidden" value="<?php echo $_SESSION['id']; ?>" id="idOculto">
       </div>
     </div>
   </section>
 </div>
+<?php
+$anulMante = new ControladorMantenimientos();
+$anulMante->ctrAnularMantenimiento();
+?>

@@ -906,3 +906,55 @@ $(".tablaMantenimientos").on("click", ".btnEditarMant", function () {
     window.location = "index.php?ruta=editar-mantenimiento&idMantenimiento=" + idMantenimiento;
 })
 // Editar Mantenimiento
+$(".tablaMantenimientos").on("click", ".btnAnularMantenimiento", function () {
+    var idMantenimiento = $(this).attr("idMantenimiento");
+    var idUsuario = $("#idOculto").val();
+
+    Swal.fire({
+        title: '¿Está seguro de anular la ficha?',
+        text: "¡Si no lo está, puede cancelar la acción!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#343a40',
+        cancelButtonText: 'Cancelar',
+        cancelButtonColor: '#d33',
+        confirmButtonText: '¡Sí, anular ficha!'
+    }).then(function (result) {
+        if (result.value) {
+            let timerInterval;
+            Swal.fire({
+                title: "Anulación en proceso!",
+                html:
+                    "Su solicitud culminará en unos segundos.Espere ...",
+                timer: 10000,
+                timerProgressBar: true,
+                onBeforeOpen: () => {
+                    Swal.showLoading();
+                    timerInterval = setInterval(() => {
+                        const content = Swal.getContent();
+                        if (content) {
+                            const b = content.querySelector("b");
+                            if (b) {
+                                b.textContent = Swal.getTimerLeft();
+                            }
+                        }
+                    }, 10000);
+                },
+                onClose: () => {
+                    clearInterval(timerInterval);
+                },
+            }).then((result) => {
+                /* Read more about handling dismissals below */
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    //   console.log("I was closed by the timer");
+                }
+            });
+            window.location = "index.php?ruta=mantenimientos&idMantenimiento=" + idMantenimiento + "&idUsuario=" + idUsuario;
+        }
+    });
+});
+$(".tablaMantenimientos").on("click", ".btnImprimirFichaMant", function () {
+    var idMantenimiento = $(this).attr("idMantenimiento");
+    var idTipo = $(this).attr("tipoEquipo");
+    window.open("reports/ficha-mantenimiento.php?idMantenimiento=" + idMantenimiento + "&idTipo=" + idTipo, "_blank");
+ });

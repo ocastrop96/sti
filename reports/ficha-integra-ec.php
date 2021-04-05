@@ -10,9 +10,7 @@ class ImprimirFichaIntegracionEC
         require_once "../util/tcpdf/headFichaTecnica.php";
         $idInt = $this->idIntegracion;
         $idTip = $this->idTipo;
-
         // Condicionales acorde al tipo de resultado
-
         if ($idTip == 1) {
             $item = "idIntegracion";
             $fichIntEC = ControladorIntegracion::ctrListarIntegracionesC($item, $idInt);

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 03-04-2021 a las 06:02:09
+-- Tiempo de generación: 05-04-2021 a las 11:48:57
 -- Versión del servidor: 5.7.24
 -- Versión de PHP: 7.4.13
 
@@ -27,6 +27,22 @@ DELIMITER $$
 --
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ACTUALIZAR_CONTRASEÑA` (IN `_id_usuario` INT(11), IN `_nclave` TEXT)  BEGIN
 UPDATE ws_usuarios set clave = _nclave where id_usuario = _id_usuario;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ACTUALIZAR_CONT_ACCI1` (IN `_idAccion` INT(11))  BEGIN
+UPDATE ws_acciones set contador_acc = contador_acc + 1 where idAccion = _idAccion;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ACTUALIZAR_CONT_ACCI2` (IN `_idAccion` INT(11))  BEGIN
+UPDATE ws_acciones set contador_acc = contador_acc - 1 where idAccion = _idAccion;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ACTUALIZAR_CONT_DIAG1` (IN `_idDiagnostico` INT(11))  BEGIN
+UPDATE ws_diagnosticos set contador_diag = contador_diag + 1 where idDiagnostico = _idDiagnostico;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ACTUALIZAR_CONT_DIAG2` (IN `_idDiagnostico` INT(11))  BEGIN
+UPDATE ws_diagnosticos set contador_diag = contador_diag - 1 where idDiagnostico = _idDiagnostico;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ACTUALIZAR_EQUIPOC` (IN `_idEquipo` INT(11), IN `_idTipo` INT(11), IN `_uResponsable` INT(11), IN `_office` INT(11), IN `_service` INT(11), IN `_serie` TEXT, IN `_sbn` TEXT, IN `_marca` TEXT, IN `_modelo` TEXT, IN `_descripcion` TEXT, IN `_fechaCompra` DATE, IN `_ordenCompra` TEXT, IN `_garantia` TEXT, IN `_placa` TEXT, IN `_procesador` TEXT, IN `_vprocesador` TEXT, IN `_ram` TEXT, IN `_discoDuro` TEXT, IN `_condicion` INT(11), IN `_estadoEQ` INT(11))  BEGIN
@@ -53,6 +69,10 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `ANULAR_INTEGRACION` (IN `_idIntegra
 UPDATE ws_integraciones SET nro_eq = "ANULADO", ip = null,serie_pc = null, serie_monitor = null, serie_teclado = null,serie_EstAcu = null,serie_eqred = null,serie_imp = null, tipo_equipo = 0,responsable = 0, oficina_in = 0,servicio_in = 0, estado = 0, condicion = 0, estadoAnu = 1 WHERE idIntegracion = _idIntegracion;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ANULAR_MANTENIMIENTO` (IN `_idMantenimiento` INT(11))  BEGIN
+UPDATE ws_mantenimientos SET diagnosticos = "",acciones = "", estAnulado = 2 where idMantenimiento = _idMantenimiento;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `DESBLOQUEAR_USUARIO` (IN `_id_usuario` INT(11))  BEGIN
 UPDATE ws_usuarios set nintentos = 0 where id_usuario = _id_usuario;
 END$$
@@ -75,6 +95,11 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `EDITAR_INTEGRACIONR` (IN `_idIntegracion` INT(11), IN `_nro_eq` TEXT, IN `_ip` TEXT, IN `_serie_eqred` INT(11), IN `_tipo_equipo` INT(11), IN `_responsable` INT(11), IN `_oficina_in` INT(11), IN `_servicio_in` INT(11), IN `_estado` INT(11), IN `_condicion` INT(11))  BEGIN
 UPDATE ws_integraciones SET nro_eq = _nro_eq,ip = _ip,serie_eqred = _serie_eqred,tipo_equipo = _tipo_equipo,responsable = _responsable, oficina_in = _oficina_in,servicio_in = _servicio_in,estado = _estado,condicion = _condicion WHERE idIntegracion = _idIntegracion;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `EDITAR_MANTENIMIENTO` (IN `_correlativo_Mant` TEXT, IN `_descInc` TEXT, IN `_tipEquipo` INT(11), IN `_condInicial` INT(11), IN `_idEquip` INT(11), IN `_oficEquip` INT(11), IN `_areaEquip` INT(11), IN `_respoEquip` INT(11), IN `_tecEvalua` INT(11), IN `_tipTrabajo` INT(11), IN `_fEvalua` DATE, IN `_primera_eval` TEXT, IN `_fInicio` DATE, IN `_fFin` DATE, IN `_recomendaciones` TEXT, IN `_estAtencion` INT(11), IN `_condFinal` INT(11), IN `_servTerce` TEXT, IN `_otros` TEXT, IN `_obsOtros` TEXT, IN `_sgmtoManto` INT(11), IN `_logdeta` TEXT, IN `_diagnosticos` TEXT, IN `_acciones` TEXT)  BEGIN
+
+UPDATE ws_mantenimientos SET descInc = _descInc,tipEquipo = _tipEquipo,condInicial = _condInicial,idEquip = _idEquip,oficEquip = _oficEquip,areaEquip = _areaEquip,respoEquip = _respoEquip,tecEvalua = _tecEvalua,tipTrabajo = _tipTrabajo,fEvalua = _fEvalua,primera_eval = _primera_eval,fInicio = _fInicio,fFin = _fFin,recomendaciones = _recomendaciones,estAtencion = _estAtencion,condFinal = _condFinal,servTerce = _servTerce,otros = _otros,obsOtros = _obsOtros,sgmtoManto = _sgmtoManto,logdeta = _logdeta,diagnosticos = _diagnosticos,acciones = _acciones where correlativo_Mant = _correlativo_Mant;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `EDITAR_OFICINA_DPTO` (IN `_id_area` INT(11), IN `_area` TEXT)  BEGIN
@@ -444,6 +469,10 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `REGISTRAR_INTEGRACIONCI` (IN `_nro_
 INSERT INTO ws_integraciones(nro_eq,ip,serie_imp,fecha_registro,tipo_equipo,responsable,oficina_in,servicio_in,estado,condicion) VALUES (_nro_eq,_ip ,_serie_imp,_fecha_registro,_tipo_equipo,_responsable,_oficina_in,_servicio_in,_estado,_condicion);
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `REGISTRAR_MANTENIMIENTO` (IN `_fRegistroMant` DATE, IN `_descInc` TEXT, IN `_tipEquipo` INT(11), IN `_condInicial` INT(11), IN `_idEquip` INT(11), IN `_oficEquip` INT(11), IN `_areaEquip` INT(11), IN `_respoEquip` INT(11), IN `_tecEvalua` INT(11), IN `_tipTrabajo` INT(11), IN `_fEvalua` DATE, IN `_primera_eval` TEXT, IN `_fInicio` DATE, IN `_fFin` DATE, IN `_recomendaciones` TEXT, IN `_estAtencion` INT(11), IN `_condFinal` INT(11), IN `_servTerce` TEXT, IN `_otros` TEXT, IN `_obsOtros` TEXT, IN `_usRegistra` INT(11), IN `_sgmtoManto` INT(11), IN `_logdeta` TEXT, IN `_diagnosticos` TEXT, IN `_acciones` TEXT)  BEGIN
+INSERT INTO ws_mantenimientos(fRegistroMant,descInc,tipEquipo,condInicial,idEquip,oficEquip,areaEquip,respoEquip,tecEvalua,tipTrabajo,fEvalua,primera_eval,fInicio,fFin,recomendaciones,estAtencion,condFinal,servTerce,otros,obsOtros,usRegistra,sgmtoManto,logdeta,diagnosticos,acciones) VALUES(_fRegistroMant,_descInc,_tipEquipo,_condInicial,_idEquip,_oficEquip,_areaEquip,_respoEquip,_tecEvalua,_tipTrabajo,_fEvalua,_primera_eval,_fInicio,_fFin,_recomendaciones,_estAtencion,_condFinal,_servTerce,_otros,_obsOtros,_usRegistra,_sgmtoManto,_logdeta,_diagnosticos,_acciones);
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `REGISTRAR_OFICINA_DPTO` (IN `_area` TEXT)  BEGIN
 INSERT INTO ws_departamentos(area) VALUES(_area);
 END$$
@@ -458,6 +487,10 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `REGISTRO_USUARIO` (IN `_perfil` INT(11), IN `_dni` VARCHAR(8), IN `_nombres` TEXT, IN `_apellidoPat` TEXT, IN `_apellidoMat` TEXT, IN `_cuenta` TEXT, IN `_clave` TEXT)  BEGIN
 INSERT INTO ws_usuarios(id_perfil, dni, nombres, apellido_paterno,apellido_materno, cuenta, clave) VALUES(_perfil,_dni,_nombres,_apellidoPat,_apellidoMat,_cuenta,_clave);
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Z_REG_AUDITORIAMANT` (IN `_idDoc` INT(11), IN `_usExec` INT(11), IN `_accExec` TEXT, IN `_fecha_audi` DATE)  BEGIN
+INSERT INTO ws_z_auditoria_mantenimientos(idDoc,usExec,accExec,fecha_audi) VALUES(_idDoc,_usExec,_accExec,_fecha_audi);
 END$$
 
 DELIMITER ;
@@ -480,9 +513,9 @@ CREATE TABLE `ws_acciones` (
 --
 
 INSERT INTO `ws_acciones` (`idAccion`, `segment`, `accionrealizada`, `contador_acc`) VALUES
-(1, 1, 'Copia de Seguridad', 0),
-(2, 1, 'Formateo de disco duro', 0),
-(3, 3, 'Desmontaje de impresora', 0),
+(1, 1, 'Copia de Seguridad', 3),
+(2, 1, 'Formateo de disco duro', 2),
+(3, 3, 'Desmontaje de impresora', 1),
 (4, 1, 'Mantenimiento físico', 0),
 (5, 1, 'Mantenimiento lógico', 0),
 (6, 1, 'Instalación de sistema operativo', 0),
@@ -491,15 +524,15 @@ INSERT INTO `ws_acciones` (`idAccion`, `segment`, `accionrealizada`, `contador_a
 (9, 3, 'Configuración de impresora', 0),
 (10, 1, 'Revisión de disco duro', 0),
 (11, 1, 'Revisión de tarjeta de vídeo', 0),
-(12, 1, 'Eliminación de temporales', 0),
+(12, 1, 'Eliminación de temporales', 2),
 (13, 1, 'Instalación de programas', 0),
 (14, 1, 'Instalación de drivers o controladores', 0),
-(15, 1, 'Eliminación de virus', 0),
-(17, 1, 'Instalación de antivirus', 0),
+(15, 1, 'Eliminación de virus', 3),
+(17, 1, 'Instalación de antivirus', 1),
 (18, 1, 'Mantenimiento general', 0),
-(19, 2, 'Mantenimiento general', 0),
-(20, 3, 'Mantenimiento general', 0),
-(21, 3, 'Desmontaje y limpieza', 0),
+(19, 2, 'Mantenimiento general', 1),
+(20, 3, 'Mantenimiento general', 3),
+(21, 3, 'Desmontaje y limpieza', 1),
 (22, 1, 'Se recomienda baja por obsolescencia técnica', 0),
 (23, 2, 'Se recomienda baja por obsolescencia técnica', 0),
 (24, 3, 'Se recomienda baja por obsolescencia técnica', 0),
@@ -620,19 +653,19 @@ CREATE TABLE `ws_diagnosticos` (
 --
 
 INSERT INTO `ws_diagnosticos` (`idDiagnostico`, `sgmto`, `diagnostico`, `contador_diag`) VALUES
-(4, 1, 'Equipo Averiado', 0),
+(4, 1, 'Equipo Averiado', 3),
 (5, 2, 'Equipo Averiado', 0),
 (6, 3, 'Equipo Averiado', 0),
-(7, 1, 'Falla de disco duro', 0),
+(7, 1, 'Falla de disco duro', 2),
 (8, 1, 'Sistema Operativo dañado', 0),
 (9, 1, 'Memoria  RAM malograda', 0),
 (10, 1, 'Placa madre malograda', 0),
 (11, 1, 'Falta de mantenimiento', 0),
 (12, 2, 'Falta de mantenimiento', 0),
 (13, 3, 'Falta de mantenimiento', 0),
-(14, 1, 'Falla de Equipo', 0),
-(15, 2, 'Falla de Equipo', 0),
-(16, 3, 'Falla de Equipo', 0),
+(14, 1, 'Falla de Equipo', 1),
+(15, 2, 'Falla de Equipo', 1),
+(16, 3, 'Falla de Equipo', 3),
 (17, 3, 'Falla de Estabilizador', 0),
 (18, 3, 'Falla de Teclado', 0),
 (19, 3, 'Falla de UPS', 0),
@@ -640,13 +673,14 @@ INSERT INTO `ws_diagnosticos` (`idDiagnostico`, `sgmto`, `diagnostico`, `contado
 (21, 2, 'Falla de Fuente de Energía', 0),
 (22, 3, 'Falla de Fuente de Energía', 0),
 (23, 1, 'Falla de tarjeta de vídeo', 0),
-(24, 1, 'Detección de virus', 0),
+(24, 1, 'Detección de virus', 3),
 (25, 1, 'Equipo Obsoleto', 0),
 (26, 2, 'Equipo Obsoleto', 0),
 (27, 3, 'Equipo Obsoleto', 0),
 (28, 2, 'Puertos RJ45 averiados', 0),
 (29, 2, 'Puertos RJ11 averiados', 0),
-(30, 3, 'Falla de teflón de impresora', 0);
+(30, 3, 'Falla de teflón de impresora', 0),
+(31, 3, 'Falla de impresora', 1);
 
 -- --------------------------------------------------------
 
@@ -899,30 +933,30 @@ DELIMITER ;
 CREATE TABLE `ws_mantenimientos` (
   `idMantenimiento` int(11) NOT NULL,
   `correlativo_Mant` text COLLATE utf8_spanish_ci NOT NULL,
-  `fRegistroMant` date DEFAULT NULL,
-  `tipEquipo` int(11) DEFAULT NULL,
-  `condInicial` int(11) DEFAULT NULL,
-  `idEquip` int(11) DEFAULT NULL,
-  `oficEquip` int(11) DEFAULT NULL,
-  `areaEquip` int(11) DEFAULT NULL,
-  `respoEquip` int(11) DEFAULT NULL,
-  `logdeta` text COLLATE utf8_spanish_ci,
-  `descInc` text COLLATE utf8_spanish_ci,
-  `diagnosticos` text COLLATE utf8_spanish_ci,
-  `tecEvalua` int(11) DEFAULT NULL,
-  `fEvalua` date DEFAULT NULL,
-  `primera_eval` text COLLATE utf8_spanish_ci,
-  `fInicio` date DEFAULT NULL,
-  `fFin` date DEFAULT NULL,
-  `tipTrabajo` int(11) DEFAULT NULL,
-  `acciones` text COLLATE utf8_spanish_ci,
-  `recomendaciones` text COLLATE utf8_spanish_ci,
-  `estAtencion` int(11) DEFAULT NULL,
-  `condFinal` int(11) DEFAULT NULL,
-  `servTerce` text COLLATE utf8_spanish_ci,
-  `otros` text COLLATE utf8_spanish_ci,
+  `fRegistroMant` date NOT NULL,
+  `tipEquipo` int(11) NOT NULL,
+  `condInicial` int(11) NOT NULL,
+  `idEquip` int(11) NOT NULL,
+  `oficEquip` int(11) NOT NULL,
+  `areaEquip` int(11) NOT NULL,
+  `respoEquip` int(11) NOT NULL,
+  `logdeta` text COLLATE utf8_spanish_ci NOT NULL,
+  `descInc` text COLLATE utf8_spanish_ci NOT NULL,
+  `diagnosticos` text COLLATE utf8_spanish_ci NOT NULL,
+  `tecEvalua` int(11) NOT NULL,
+  `fEvalua` date NOT NULL,
+  `primera_eval` text COLLATE utf8_spanish_ci NOT NULL,
+  `fInicio` date NOT NULL,
+  `fFin` date NOT NULL,
+  `tipTrabajo` int(11) NOT NULL,
+  `acciones` text COLLATE utf8_spanish_ci NOT NULL,
+  `recomendaciones` text COLLATE utf8_spanish_ci NOT NULL,
+  `estAtencion` int(11) NOT NULL,
+  `condFinal` int(11) NOT NULL,
+  `servTerce` text COLLATE utf8_spanish_ci NOT NULL,
+  `otros` text COLLATE utf8_spanish_ci NOT NULL,
   `obsOtros` text COLLATE utf8_spanish_ci,
-  `usRegistra` int(11) DEFAULT NULL,
+  `usRegistra` int(11) NOT NULL,
   `sgmtoManto` int(11) NOT NULL DEFAULT '0',
   `estAnulado` int(11) NOT NULL DEFAULT '1',
   `fecha_creacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -933,14 +967,17 @@ CREATE TABLE `ws_mantenimientos` (
 --
 
 INSERT INTO `ws_mantenimientos` (`idMantenimiento`, `correlativo_Mant`, `fRegistroMant`, `tipEquipo`, `condInicial`, `idEquip`, `oficEquip`, `areaEquip`, `respoEquip`, `logdeta`, `descInc`, `diagnosticos`, `tecEvalua`, `fEvalua`, `primera_eval`, `fInicio`, `fFin`, `tipTrabajo`, `acciones`, `recomendaciones`, `estAtencion`, `condFinal`, `servTerce`, `otros`, `obsOtros`, `usRegistra`, `sgmtoManto`, `estAnulado`, `fecha_creacion`) VALUES
-(1, 'FM-2021-00001', '2021-03-31', 4, 1, 76, 13, 18, 9, 'N° Equipo: LAP_0004 || Serie N°: LAPTO1 || Cod.Patr: 155 || Marca: ACER || Modelo: AC-151 || Descripción: LAPTOP DE TRABAJO || IP: 172.16.5.125 || Procesador: CORE I7-3.40 GHZ || RAM: 8GB || Disco Duro: 1TB', 'aa', '[{\"id\":\"25\",\"diagnostico\":\"Equipo Obsoleto\",\"segmento\":\"Equipo de Cómputo\"},{\"id\":\"4\",\"diagnostico\":\"Equipo Averiado\",\"segmento\":\"Equipo de Cómputo\"},{\"id\":\"24\",\"diagnostico\":\"Detección de virus\",\"segmento\":\"Equipo de Cómputo\"},{\"id\":\"7\",\"diagnostico\":\"Falla de disco duro\",\"segmento\":\"Equipo de Cómputo\"}]', 4, '2021-03-22', 'aa', '2021-03-31', '2021-03-31', 1, '[{\"id\":\"1\",\"accion\":\"Copia de Seguridad\",\"segmento\":\"Equipo de Cómputo\"},{\"id\":\"12\",\"accion\":\"Eliminación de temporales\",\"segmento\":\"Equipo de Cómputo\"},{\"id\":\"15\",\"accion\":\"Eliminación de virus\",\"segmento\":\"Equipo de Cómputo\"}]', 'aaa', 1, 1, 'NO', 'NO', '', 1, 1, 2, '2021-03-31 17:41:56'),
-(2, 'FM-2021-00002', '2021-03-31', 1, 1, 54, 13, 18, 9, 'N° Equipo: PC_OCP || Serie N°: MXL2500TDK || Cod.Patr: 740899500413 || Marca: HP || Modelo: ELITE 8300 || Descripción: PC DE ESCRITORIO || IP: 172.16.5.100 || Procesador: CORE I7-3.40 GHZ || RAM: 12GB || Disco Duro: 1TB', 'prueba', '[{\"id\":\"4\",\"diagnostico\":\"Equipo Averiado\",\"segmento\":\"Equipo de Cómputo\"},{\"id\":\"25\",\"diagnostico\":\"Equipo Obsoleto\",\"segmento\":\"Equipo de Cómputo\"},{\"id\":\"24\",\"diagnostico\":\"Detección de virus\",\"segmento\":\"Equipo de Cómputo\"}]', 4, '2021-03-30', 'PRUEBA', '2021-03-30', '2021-03-31', 2, '[{\"id\":\"1\",\"accion\":\"Copia de Seguridad\",\"segmento\":\"Equipo de Cómputo\"},{\"id\":\"12\",\"accion\":\"Eliminación de temporales\",\"segmento\":\"Equipo de Cómputo\"},{\"id\":\"15\",\"accion\":\"Eliminación de virus\",\"segmento\":\"Equipo de Cómputo\"}]', 'PRUEBA', 1, 1, 'NO', 'SI', 'OKAS VA TODO', 1, 1, 1, '2021-03-31 17:44:16'),
-(3, 'FM-2021-00003', '2021-03-31', 15, 1, 85, 13, 18, 9, 'N° Equipo: ESC_001 || Serie N°: ESCANOR || Cod.Patr: 1237 || Marca: ESCANER || Modelo: ESCANER || Descripción: ESNCAER || IP: ', 'PRUEBA', '[{\"id\":\"4\",\"diagnostico\":\"Equipo Averiado\",\"segmento\":\"Equipo de Cómputo\"},{\"id\":\"24\",\"diagnostico\":\"Detección de virus\",\"segmento\":\"Equipo de Cómputo\"},{\"id\":\"25\",\"diagnostico\":\"Equipo Obsoleto\",\"segmento\":\"Equipo de Cómputo\"}]', 6, '2021-03-29', 'PRUEBA', '2021-03-29', '2021-03-30', 1, '[{\"id\":\"1\",\"accion\":\"Copia de Seguridad\",\"segmento\":\"Equipo de Cómputo\"},{\"id\":\"12\",\"accion\":\"Eliminación de temporales\",\"segmento\":\"Equipo de Cómputo\"},{\"id\":\"15\",\"accion\":\"Eliminación de virus\",\"segmento\":\"Equipo de Cómputo\"}]', 'PRUEBA', 1, 1, 'NO', 'NO', '', 1, 3, 1, '2021-03-31 17:46:02'),
-(4, 'FM-2021-00004', '2021-03-31', 2, 1, 58, 13, 18, 9, 'N° Equipo: SW_00001 || Serie N°: SWITCH123 || Cod.Patr: 151518484546 || Marca: HP || Modelo: ARUBA || Descripción: SWITCH ADMINISTRABLE || IP: ', 'PRUEBA RED', '[{\"id\":\"4\",\"diagnostico\":\"Equipo Averiado\",\"segmento\":\"Equipo de Cómputo\"},{\"id\":\"25\",\"diagnostico\":\"Equipo Obsoleto\",\"segmento\":\"Equipo de Cómputo\"},{\"id\":\"24\",\"diagnostico\":\"Detección de virus\",\"segmento\":\"Equipo de Cómputo\"}]', 5, '2021-03-19', 'PRUEBA RED', '2021-03-24', '2021-03-24', 3, '[{\"id\":\"12\",\"accion\":\"Eliminación de temporales\",\"segmento\":\"Equipo de Cómputo\"},{\"id\":\"15\",\"accion\":\"Eliminación de virus\",\"segmento\":\"Equipo de Cómputo\"},{\"id\":\"1\",\"accion\":\"Copia de Seguridad\",\"segmento\":\"Equipo de Cómputo\"}]', 'PRUEBA RED', 1, 1, 'NO', 'NO', '', 1, 2, 1, '2021-03-31 17:47:43'),
-(5, 'FM-2021-00005', '2021-03-31', 10, 1, 56, 13, 18, 9, 'Serie N°: 6CM2480JSF || Cod.Patr: 740880370017 || Marca: HP || Modelo: LV2311 || Descripción: MONITOR 24 PLGDAS', 'PRUEBA PERIFERIA', '[{\"id\":\"24\",\"diagnostico\":\"Detección de virus\",\"segmento\":\"Equipo de Cómputo\"},{\"id\":\"4\",\"diagnostico\":\"Equipo Averiado\",\"segmento\":\"Equipo de Cómputo\"},{\"id\":\"25\",\"diagnostico\":\"Equipo Obsoleto\",\"segmento\":\"Equipo de Cómputo\"}]', 4, '2021-03-23', 'PRUEBA PERIFERIA', '2021-03-24', '2021-03-25', 1, '[{\"id\":\"1\",\"accion\":\"Copia de Seguridad\",\"segmento\":\"Equipo de Cómputo\"},{\"id\":\"12\",\"accion\":\"Eliminación de temporales\",\"segmento\":\"Equipo de Cómputo\"},{\"id\":\"15\",\"accion\":\"Eliminación de virus\",\"segmento\":\"Equipo de Cómputo\"}]', 'PRUEBA PERIFERIA', 2, 2, 'SI', 'SI', 'PRUEBA PERIFERIA', 1, 3, 1, '2021-03-31 17:49:14'),
-(6, 'FM-2021-00006', '2021-03-31', 11, 1, 55, 13, 18, 9, 'Serie N°: BDMEP0C5Y7N1FM || Cod.Patr: 009038 || Marca: HP || Modelo: KB-1156 || Descripción: TECLADO PERFI', 'prueba valida', '[{\"id\":\"25\",\"diagnostico\":\"Equipo Obsoleto\",\"segmento\":\"Equipo de Cómputo\"},{\"id\":\"4\",\"diagnostico\":\"Equipo Averiado\",\"segmento\":\"Equipo de Cómputo\"},{\"id\":\"7\",\"diagnostico\":\"Falla de disco duro\",\"segmento\":\"Equipo de Cómputo\"}]', 4, '2021-03-29', 'prueba valida', '2021-03-31', '2021-03-31', 1, '[{\"id\":\"1\",\"accion\":\"Copia de Seguridad\",\"segmento\":\"Equipo de Cómputo\"},{\"id\":\"12\",\"accion\":\"Eliminación de temporales\",\"segmento\":\"Equipo de Cómputo\"},{\"id\":\"15\",\"accion\":\"Eliminación de virus\",\"segmento\":\"Equipo de Cómputo\"}]', 'prueba', 1, 1, 'NO', 'NO', '', 1, 3, 1, '2021-03-31 19:27:51'),
-(7, 'FM-2021-00007', '2021-03-31', 12, 2, 91, 13, 16, 13, 'Serie N°: ACUM1 || Cod.Patr: 151515 || Marca: ACUMU || Modelo: ACUMLA || Descripción: ACUMA', 'prueba estable', '[{\"id\":\"21\",\"diagnostico\":\"Falla de Fuente de Energía\",\"segmento\":\"Redes y Telecomunicaciones\"}]', 4, '2021-03-22', 'prueba estable', '2021-03-22', '2021-03-24', 1, '[{\"id\":\"20\",\"accion\":\"Mantenimiento general\",\"segmento\":\"Periféricos y otros\"}]', 'prueba estable', 1, 2, 'NO', 'NO', '', 1, 3, 1, '2021-03-31 19:58:09'),
-(8, 'FM-2021-00008', '2021-04-01', 2, 2, 58, 13, 18, 9, 'N° Equipo: SW_00001 || Serie N°: SWITCH123 || Cod.Patr: 151518484546 || Marca: HP || Modelo: ARUBA || Descripción: SWITCH ADMINISTRABLE || IP: ', 'ajam', '[{\"id\":\"25\",\"diagnostico\":\"Equipo Obsoleto\",\"segmento\":\"Equipo de Cómputo\"},{\"id\":\"7\",\"diagnostico\":\"Falla de disco duro\",\"segmento\":\"Equipo de Cómputo\"}]', 5, '2021-03-31', 'ajam', '2021-04-01', '2021-04-01', 2, '[{\"id\":\"1\",\"accion\":\"Copia de Seguridad\",\"segmento\":\"Equipo de Cómputo\"},{\"id\":\"12\",\"accion\":\"Eliminación de temporales\",\"segmento\":\"Equipo de Cómputo\"},{\"id\":\"15\",\"accion\":\"Eliminación de virus\",\"segmento\":\"Equipo de Cómputo\"}]', 'ajam', 1, 2, 'NO', 'NO', '', 1, 2, 1, '2021-04-01 13:50:09');
+(1, 'FM-2021-00001', '2021-04-04', 1, 1, 54, 13, 18, 9, 'N° Equipo: PC_OCP || Serie N°: MXL2500TDK || Cod.Patr: 740899500413 || Marca: HP || Modelo: ELITE 8300 || Descripción: PC DE ESCRITORIO || IP: 172.16.5.100 || Procesador: CORE I7-3.40 GHZ || RAM: 12GB || Disco Duro: 1TB', 'prueba 1', '[{\"id\":\"4\",\"diagnostico\":\"Equipo Averiado\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"},{\"id\":\"24\",\"diagnostico\":\"Detección de virus\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"}]', 4, '2021-04-01', 'prueba 1', '2021-04-01', '2021-04-01', 1, '[{\"id\":\"1\",\"accion\":\"Copia de Seguridad\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"},{\"id\":\"15\",\"accion\":\"Eliminación de virus\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"}]', 'prueba 1', 1, 1, 'NO', 'NO', '', 1, 1, 1, '2021-04-04 23:58:03'),
+(2, 'FM-2021-00002', '2021-04-04', 5, 1, 83, 13, 16, 13, 'N° Equipo: SERV_0001 || Serie N°: SERV1 || Cod.Patr: 1177212 || Marca: SAERV || Modelo: SERV || Descripción: SERV || IP: 172.16.0.4 || Procesador: XEON-3.20 GHZ || RAM: 32GB || Disco Duro: 4TB', 'ajam', '[{\"id\":\"24\",\"diagnostico\":\"Detección de virus\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"},{\"id\":\"4\",\"diagnostico\":\"Equipo Averiado\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"},{\"id\":\"7\",\"diagnostico\":\"Falla de disco duro\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"}]', 5, '2021-04-01', 'ajam', '2021-04-01', '2021-04-01', 2, '[{\"id\":\"1\",\"accion\":\"Copia de Seguridad\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"},{\"id\":\"12\",\"accion\":\"Eliminación de temporales\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"},{\"id\":\"15\",\"accion\":\"Eliminación de virus\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"},{\"id\":\"2\",\"accion\":\"Formateo de disco duro\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"}]', 'ajam', 2, 1, 'NO', 'SI', 'ajam', 1, 1, 1, '2021-04-05 02:23:19'),
+(3, 'FM-2021-00003', '2021-04-04', 15, 2, 85, 13, 18, 9, 'N° Equipo: ESC_001 || Serie N°: ESCANOR || Cod.Patr: 1237 || Marca: ESCANER || Modelo: ESCANER || Descripción: ESNCAER || IP: ', 'ajam', '[{\"id\":\"16\",\"diagnostico\":\"Falla de Equipo\",\"segmento\":\"Periféricos y otros\",\"conteo\":\"1\"}]', 6, '2021-04-01', 'ajam', '2021-04-01', '2021-04-02', 1, '[{\"id\":\"20\",\"accion\":\"Mantenimiento general\",\"segmento\":\"Periféricos y otros\",\"conteo\":\"1\"}]', 'ajam', 1, 1, 'NO', 'NO', '', 1, 3, 1, '2021-04-05 02:24:53'),
+(4, 'FM-2021-00004', '2021-04-04', 2, 2, 58, 13, 18, 9, 'N° Equipo: SW_00001 || Serie N°: SWITCH123 || Cod.Patr: 151518484546 || Marca: HP || Modelo: ARUBA || Descripción: SWITCH ADMINISTRABLE || IP: ', 'AJAM', '[{\"id\":\"15\",\"diagnostico\":\"Falla de Equipo\",\"segmento\":\"Redes y Telecomunicaciones\",\"conteo\":\"1\"}]', 5, '2021-04-01', 'ajam', '2021-04-01', '2021-04-02', 3, '[{\"id\":\"19\",\"accion\":\"Mantenimiento general\",\"segmento\":\"Redes y Telecomunicaciones\",\"conteo\":\"1\"}]', 'ajam', 2, 1, 'NO', 'SI', 'SE RECOMIENDA COMPRAR NUEVO EQUIPO', 1, 2, 1, '2021-04-05 02:26:22'),
+(5, 'FM-2021-00005', '2021-04-04', 3, 2, 59, 13, 18, 9, 'N° Equipo: IMP_0001 || Serie N°: BRBSXBT8XZ || Cod.Patr: 740841000067 || Marca: HP || Modelo: M426FDW || Descripción: HP LASERJET LASERJET PRO || IP: 172.16.5.210', 'revision', '[{\"id\":\"31\",\"diagnostico\":\"Falla de impresora\",\"segmento\":\"Periféricos y otros\",\"conteo\":\"1\"}]', 6, '2021-04-01', 'revision', '2021-04-02', '2021-04-02', 2, '[{\"id\":\"3\",\"accion\":\"Desmontaje de impresora\",\"segmento\":\"Periféricos y otros\",\"conteo\":\"1\"}]', 'prueba', 1, 1, 'NO', 'NO', '', 1, 3, 1, '2021-04-05 02:30:34'),
+(6, 'FM-2021-00006', '2021-04-04', 4, 2, 90, 13, 18, 9, 'N° Equipo: LAP_0555 || Serie N°: LENOVO12 || Cod.Patr: 17171828 || Marca: LENOVO || Modelo: LEVONO || Descripción: LENOVO || IP: 172.16.8.100 || Procesador: CORE I3-3.20GHZ || RAM: 8GB || Disco Duro: 1TB', 'AÑO NUEVO', '[{\"id\":\"4\",\"diagnostico\":\"Equipo Averiado\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"},{\"id\":\"24\",\"diagnostico\":\"Detección de virus\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"},{\"id\":\"7\",\"diagnostico\":\"Falla de disco duro\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"},{\"id\":\"14\",\"diagnostico\":\"Falla de Equipo\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"}]', 4, '2021-04-02', 'AÑO NUEVO °', '2021-04-02', '2021-04-02', 2, '[{\"id\":\"15\",\"accion\":\"Eliminación de virus\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"},{\"id\":\"2\",\"accion\":\"Formateo de disco duro\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"},{\"id\":\"12\",\"accion\":\"Eliminación de temporales\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"},{\"id\":\"1\",\"accion\":\"Copia de Seguridad\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"},{\"id\":\"17\",\"accion\":\"Instalación de antivirus\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"}]', 'AÑO NUEVO', 1, 1, 'NO', 'NO', '', 1, 1, 1, '2021-04-05 03:10:07'),
+(7, 'FM-2021-00007', '2021-04-05', 10, 2, 56, 13, 18, 9, 'Serie N°: 6CM2480JSF || Cod.Patr: 740880370017 || Marca: HP || Modelo: LV2311 || Descripción: MONITOR 24 PLGDAS', 'AJAM', '[{\"id\":\"16\",\"diagnostico\":\"Falla de Equipo\",\"segmento\":\"Periféricos y otros\",\"conteo\":\"1\"}]', 4, '2021-04-05', 'AJAM', '2021-04-05', '2021-04-05', 2, '[{\"id\":\"20\",\"accion\":\"Mantenimiento general\",\"segmento\":\"Periféricos y otros\",\"conteo\":\"1\"}]', 'AJAM', 1, 1, 'NO', 'NO', '', 1, 3, 1, '2021-04-05 10:39:08'),
+(8, 'FM-2021-00008', '2021-04-05', 6, 1, 75, 10, 24, 12, 'N° Equipo: RT_001 || Serie N°: ARUBA1 || Cod.Patr: 1122 || Marca: ARUBA || Modelo: ARUBA2323 || Descripción: ASAS || IP: ', 'AJAM', '[{\"id\":\"16\",\"diagnostico\":\"Falla de Equipo\",\"segmento\":\"Periféricos y otros\",\"conteo\":\"1\"}]', 4, '2021-04-05', 'AJAM', '2021-04-05', '2021-04-05', 1, '[{\"id\":\"20\",\"accion\":\"Mantenimiento general\",\"segmento\":\"Periféricos y otros\",\"conteo\":\"1\"}]', 'AJAM', 2, 1, 'NO', 'SI', 'AJAM', 1, 2, 1, '2021-04-05 10:40:16'),
+(9, 'FM-2021-00009', '2021-04-05', 14, 1, 87, 13, 16, 13, 'N° Equipo: TIC_0001 || Serie N°: TICKET || Cod.Patr: 1712128 || Marca: TICKET || Modelo: TICKET || Descripción: TICKET || IP: ', 'TICKETERA SE TRABA', '', 6, '2021-04-05', 'TICKETERA SE TRABA', '2021-04-05', '2021-04-05', 3, '', 'AJAM', 1, 1, 'NO', 'NO', '', 1, 3, 2, '2021-04-05 10:42:37'),
+(10, 'FM-2021-00010', '2021-04-05', 14, 2, 87, 13, 16, 13, 'N° Equipo: TIC_0001 || Serie N°: TICKET || Cod.Patr: 1712128 || Marca: TICKET || Modelo: TICKET || Descripción: TICKET || IP: ', 'AJAM', '', 6, '2021-04-05', 'AJAM', '2021-04-05', '2021-04-05', 1, '', 'AJAM', 1, 1, 'NO', 'NO', '', 1, 3, 2, '2021-04-05 11:00:19'),
+(11, 'FM-2021-00011', '2021-04-05', 14, 1, 87, 13, 16, 13, 'N° Equipo: TIC_0001 || Serie N°: TICKET || Cod.Patr: 1712128 || Marca: TICKET || Modelo: TICKET || Descripción: TICKET || IP: ', 'AJAM', '[{\"id\":\"16\",\"diagnostico\":\"Falla de Equipo\",\"segmento\":\"Periféricos y otros\",\"conteo\":\"1\"}]', 4, '2021-04-05', 'AJAM', '2021-04-05', '2021-04-05', 1, '[{\"id\":\"20\",\"accion\":\"Mantenimiento general\",\"segmento\":\"Periféricos y otros\",\"conteo\":\"1\"},{\"id\":\"21\",\"accion\":\"Desmontaje y limpieza\",\"segmento\":\"Periféricos y otros\",\"conteo\":\"1\"}]', 'AJAM', 1, 1, 'NO', 'NO', '', 1, 3, 1, '2021-04-05 11:14:14');
 
 --
 -- Disparadores `ws_mantenimientos`
@@ -1132,6 +1169,36 @@ INSERT INTO `ws_usuarios` (`id_usuario`, `id_perfil`, `dni`, `nombres`, `apellid
 (5, 4, '09401769', 'Segundo Andres', 'Cruzado', 'Cotrina', 'acruzadoc', '$2a$07$usesomesillystringfore9OBdlwIyha0dt84yf389aUSqD287miS', '2021-03-11 16:02:14', 1, 0),
 (6, 4, '09965283', 'Ivan Victor', 'Chuquicaña', 'Fernandez', 'vchuquicañaf', '$2a$07$usesomesillystringforetG4v5XsxFT5vjiUpPsTv0VEdAMT4jmW', '2021-03-11 16:02:59', 1, 0);
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ws_z_auditoria_mantenimientos`
+--
+
+CREATE TABLE `ws_z_auditoria_mantenimientos` (
+  `idAudMant` int(11) NOT NULL,
+  `idDoc` int(11) NOT NULL,
+  `usExec` int(11) NOT NULL,
+  `accExec` text NOT NULL,
+  `fecha_audi` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `ws_z_auditoria_mantenimientos`
+--
+
+INSERT INTO `ws_z_auditoria_mantenimientos` (`idAudMant`, `idDoc`, `usExec`, `accExec`, `fecha_audi`) VALUES
+(1, 1, 1, 'Modificación', '2021-04-04'),
+(2, 5, 1, 'Modificación', '2021-04-04'),
+(3, 5, 1, 'Modificación', '2021-04-04'),
+(4, 4, 1, 'Modificación', '2021-04-04'),
+(5, 5, 1, 'Modificación', '2021-04-05'),
+(6, 6, 1, 'Modificación', '2021-04-05'),
+(7, 5, 1, 'Modificación', '2021-04-05'),
+(8, 10, 1, 'Anulación', '2021-04-05'),
+(9, 10, 1, 'Anulación', '2021-04-05'),
+(10, 9, 1, 'Anulación', '2021-04-05');
+
 --
 -- Índices para tablas volcadas
 --
@@ -1245,6 +1312,12 @@ ALTER TABLE `ws_usuarios`
   ADD PRIMARY KEY (`id_usuario`);
 
 --
+-- Indices de la tabla `ws_z_auditoria_mantenimientos`
+--
+ALTER TABLE `ws_z_auditoria_mantenimientos`
+  ADD PRIMARY KEY (`idAudMant`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -1276,7 +1349,7 @@ ALTER TABLE `ws_departamentos`
 -- AUTO_INCREMENT de la tabla `ws_diagnosticos`
 --
 ALTER TABLE `ws_diagnosticos`
-  MODIFY `idDiagnostico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `idDiagnostico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_equipos`
@@ -1312,7 +1385,7 @@ ALTER TABLE `ws_integraciones`
 -- AUTO_INCREMENT de la tabla `ws_mantenimientos`
 --
 ALTER TABLE `ws_mantenimientos`
-  MODIFY `idMantenimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idMantenimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_perfiles`
@@ -1355,6 +1428,12 @@ ALTER TABLE `ws_tipotrabajo`
 --
 ALTER TABLE `ws_usuarios`
   MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de la tabla `ws_z_auditoria_mantenimientos`
+--
+ALTER TABLE `ws_z_auditoria_mantenimientos`
+  MODIFY `idAudMant` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

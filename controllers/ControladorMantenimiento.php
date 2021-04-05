@@ -255,7 +255,6 @@ class ControladorMantenimientos
                 $datos = array(
                     "correlativo_Mant" => $_POST["ncorrelativo"],
                     "logdeta" => $_POST["detaEQ"],
-                    "fRegistroMant" => $fRegistroMant,
                     "primera_eval" => $_POST["priEvaEQ"],
                     "fEvalua" => $fe1f,
                     "fInicio" => $fe2f,
@@ -280,7 +279,15 @@ class ControladorMantenimientos
                     "sgmtoManto" => $_POST["segmentado"]
                 );
 
-                $datosAudi = array();
+                $accExc = "Modificación";
+                $datosAudi = array(
+                    "accExec" => $accExc,
+                    "fecha_audi" => $fRegistroMant,
+                    "idDoc" => $traerFichaMant["idMantenimiento"],
+                    "usExec" => $_POST["uedtMant"]
+                );
+                $regAudito = ModeloMantenimientos::mdlRegistroAuditoria($datosAudi);
+
                 $rptRegDManto = ModeloMantenimientos::mdlEditarMantenimiento($datos);
                 if ($rptRegDManto == "ok") {
                     echo '<script>
@@ -315,5 +322,56 @@ class ControladorMantenimientos
 
     static public function ctrAnularMantenimiento()
     {
+        if (isset($_GET["idMantenimiento"])) {
+
+            $datos = $_GET["idMantenimiento"];
+            $usuarioAnu = $_GET["idUsuario"];
+
+            date_default_timezone_set('America/Lima');
+            $fAnulaMant = date("Y-m-d");
+
+            $item = "idMantenimiento";
+            $valor = $datos;
+            $traerFichaMant2 = ModeloMantenimientos::mdlListarFichasMant($item, $valor);
+
+            // Reduccion de conteo de diagnosticos y acciones
+            $diagnosticos = json_decode($traerFichaMant2["diagnosticos"], true);
+            foreach ($diagnosticos as $key => $value) {
+                $datos3 = $value["id"];
+                $nuevoConteoDiag3 = ModeloMantenimientos::mdlActualizarDiagnostico2($datos3);
+            }
+            $acciones = json_decode($traerFichaMant2["acciones"], true);
+            foreach ($acciones as $key => $value) {
+                $datos3 = $value["id"];
+                $nuevoConteoAcc3 = ModeloMantenimientos::mdlActualizarAccion2($datos3);
+            }
+
+            // Registro auditoría
+            $accExc = "Anulación";
+            $datosAudi = array(
+                "accExec" => $accExc,
+                "fecha_audi" => $fAnulaMant,
+                "idDoc" => $traerFichaMant2["idMantenimiento"],
+                "usExec" => $usuarioAnu
+            );
+            $regAudito = ModeloMantenimientos::mdlRegistroAuditoria($datosAudi);
+            // Registro auditoría
+            $respuesta = ModeloMantenimientos::mdlAnularMantenimiento($datos);
+
+            if ($respuesta == "ok") {
+                echo '<script>
+                        Swal.fire({
+                        icon: "success",
+                        title: "¡La Ficha de Integración ha sido anulada con éxito!",
+                        showConfirmButton: false,
+                        timer: 1300
+                          });
+                          function redirect() {
+                              window.location = "mantenimientos";
+                          }
+                          setTimeout(redirect, 1300);
+                    </script>';
+            }
+        }
     }
 }

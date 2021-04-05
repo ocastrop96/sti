@@ -382,7 +382,7 @@ class ModeloIntegracion
 
     static public function mdlAnularIntegracion($datos)
     {
-        $stmt = Conexion::conectar()->prepare("CALL ANULAR_INTEGRACION(:id)");
+        $stmt = Conexion::conectar()->prepare("CALL ANULAR_MANTENIMIENTO(:id)");
         $stmt->bindParam(":id", $datos, PDO::PARAM_INT);
         if ($stmt->execute()) {
             return "ok";
