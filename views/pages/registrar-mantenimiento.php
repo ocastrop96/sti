@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h4><strong> Registro de Mantenimientos</strong></h4>
+                    <h4><strong> Help Desk:. Registro de Mantenimientos</strong></h4>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -15,9 +15,9 @@
         </div>
     </section>
     <section class="content">
-        <div class="row">
-            <div class="col-lg-7 col-xs-12">
-                <div class="card card-secondary">
+        <div class="row justify-content-center">
+            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                <div class="card card-info">
                     <div class="card-header with-border">
                         <h3 class="card-title">
                             <i class="far fa-edit"></i>
@@ -322,7 +322,7 @@
                     </form>
                 </div>
             </div>
-            <div class="col-lg-5 col-xs-12">
+            <!-- <div class="col-lg-5 col-xs-12">
                 <div class="row">
                     <div class="col-12">
                         <div class="card card-info">
@@ -369,7 +369,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </section>
 </div>
