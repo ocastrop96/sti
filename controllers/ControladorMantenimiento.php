@@ -374,4 +374,32 @@ class ControladorMantenimientos
             }
         }
     }
+    // bloque de reporte de mantenimientos PC
+    static public function ctrListarMantoPC($dato)
+    {
+        $repuesta = ModeloMantenimientos::mdlListarMantoComputo($dato);
+        return $repuesta;
+    }
+    // bloque de reporte de mantenimientos PC
+    // bloque de reporte de mantenimientos Redes
+    static public function ctrListarMantoRedes($dato)
+    {
+        $repuesta = ModeloMantenimientos::mdlListarMantoRedes($dato);
+        return $repuesta;
+    }
+    // bloque de reporte de mantenimientos Redes
+    // bloque de reporte de mantenimientos Impresoras y perifericos
+    static public function ctrListarMantoImpresoras($dato)
+    {
+        $repuesta = ModeloMantenimientos::mdlListarMantoImpre($dato);
+        return $repuesta;
+    }
+    // bloque de reporte de mantenimientos Impresoras y perifericos
+    // bloque de reporte de mantenimientos Restantes
+    static public function ctrListarMantoOtros($dato)
+    {
+        $repuesta = ModeloMantenimientos::mdlListarMantoOtros($dato);
+        return $repuesta;
+    }
+    // bloque de reporte de mantenimientos Restantes
 }

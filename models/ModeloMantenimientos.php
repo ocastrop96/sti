@@ -209,4 +209,45 @@ class ModeloMantenimientos
         $stmt->close();
         $stmt = null;
     }
+    // Bloque de mantenimientos
+    static public function mdlListarMantoComputo($dato)
+    {
+        $stmt = Conexion::conectar()->prepare("CALL LISTAR_MANTO_COMPUS(:idMantenimiento)");
+        $stmt->bindParam(":idMantenimiento", $dato, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetch();
+        $stmt->close();
+        $stmt = null;
+        //Cerramos la conexion por seguridad
+    }
+    static public function mdlListarMantoRedes($dato)
+    {
+        $stmt = Conexion::conectar()->prepare("CALL LISTAR_MANTO_REDES(:idMantenimiento)");
+        $stmt->bindParam(":idMantenimiento", $dato, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetch();
+        $stmt->close();
+        $stmt = null;
+        //Cerramos la conexion por seguridad
+    }
+    static public function mdlListarMantoImpre($dato)
+    {
+        $stmt = Conexion::conectar()->prepare("CALL LISTAR_MANTO_IMPRE_PERI(:idMantenimiento)");
+        $stmt->bindParam(":idMantenimiento", $dato, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetch();
+        $stmt->close();
+        $stmt = null;
+        //Cerramos la conexion por seguridad
+    }
+    static public function mdlListarMantoOtros($dato)
+    {
+        $stmt = Conexion::conectar()->prepare("CALL LISTAR_MANTO_OTROS(:idMantenimiento)");
+        $stmt->bindParam(":idMantenimiento", $dato, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetch();
+        $stmt->close();
+        $stmt = null;
+        //Cerramos la conexion por seguridad
+    }
 }
