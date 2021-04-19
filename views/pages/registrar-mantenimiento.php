@@ -160,15 +160,25 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-12 col-md-12">
+                                <div class="col-8 col-md-8">
                                     <div class="form-group">
                                         <label for="">Diagnósticos Realizados &nbsp;</label>
                                         <i class="fas fa-laptop-medical"></i> *
                                     </div>
-                                    <div class="col-12 col-md-12">
-                                        <div class="form-group row nuevoDiagnostico"></div>
-                                        <input type="hidden" id="listaDiagnosticos" name="listaDiagnosticos">
+                                    <div class="col-4 col-md-4" id="">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <button type="button" class="btn btn-info" id="" data-toggle="modal" data-target="#modal-agregar-diagnosticos"><i class="fas fa-search"></i>&nbsp;Agregar</button>
+                                            </div>
+                                        </div>
                                     </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 col-md-12">
+                                    <div class="form-group row nuevoDiagnostico"></div>
+                                    <input type="hidden" id="listaDiagnosticos" name="listaDiagnosticos">
                                 </div>
                             </div>
                             <!-- Bloque de diagnosticos -->
@@ -372,4 +382,22 @@
             </div> -->
         </div>
     </section>
+</div>
+<div id="modal-agregar-diagnosticos" class="modal fade" role="dialog" aria-modal="true" style="padding-right: 17px;">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="mt-3 mb-3 ml-3 mr-3">
+                <table id="tablaMDiagnosticoFrm" class="table table-bordered table-hover dt-responsive tablaMDiagnosticoFrm">
+                    <thead>
+                        <tr>
+                            <th style="width: 10px">#</th>
+                            <th>Diagnóstico</th>
+                            <th>Segmento</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
