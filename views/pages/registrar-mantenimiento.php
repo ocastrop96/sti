@@ -386,18 +386,6 @@
 <div id="modal-agregar-diagnosticos" class="modal fade" role="dialog" aria-modal="true" style="padding-right: 17px;">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
-            <div class="mt-3 mb-3 ml-3 mr-3">
-                <table id="tablaMDiagnosticoFrm" class="table table-bordered table-hover dt-responsive tablaMDiagnosticoFrm">
-                    <thead>
-                        <tr>
-                            <th style="width: 10px">#</th>
-                            <th>Diagnóstico</th>
-                            <th>Segmento</th>
-                            <th>Opciones</th>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
         </div>
     </div>
 </div>
