@@ -227,45 +227,45 @@ $anulMante->ctrAnularMantenimiento();
           <div class="row">
             <div class="col-12 col-md-6">
               <div class="form-group">
-                <select class="form-control" style="width: 100%;" name="" id="">
-                  <option>Selecciona Diagnostico 1</option>
+                <select class="form-control" style="width: 100%;" name="d1" id="d1">
+                  <option value="0">Selecciona Diagnostico 1</option>
                 </select>
               </div>
               <div class="form-group">
                 <select class="form-control" style="width: 100%;" name="" id="" disabled>
-                  <option>Selecciona Diagnostico 2</option>
+                  <option value="0">Selecciona Diagnostico 2</option>
                 </select>
               </div>
               <div class="form-group">
                 <select class="form-control" style="width: 100%;" name="" id="" disabled>
-                  <option>Selecciona Diagnostico 3</option>
+                  <option value="0">Selecciona Diagnostico 3</option>
                 </select>
               </div>
               <div class="form-group">
                 <select class="form-control" style="width: 100%;" name="" id="" disabled>
-                  <option>Selecciona Diagnostico 4</option>
+                  <option value="0">Selecciona Diagnostico 4</option>
                 </select>
               </div>
             </div>
             <div class="col-12 col-md-6">
               <div class="form-group">
                 <select class="form-control" style="width: 100%;" name="" id="" disabled>
-                  <option>Selecciona Diagnostico 5</option>
+                  <option value="0">Selecciona Diagnostico 5</option>
                 </select>
               </div>
               <div class="form-group">
                 <select class="form-control" style="width: 100%;" name="" id="" disabled>
-                  <option>Selecciona Diagnostico 6</option>
+                  <option value="0">Selecciona Diagnostico 6</option>
                 </select>
               </div>
               <div class="form-group">
                 <select class="form-control" style="width: 100%;" name="" id="" disabled>
-                  <option>Selecciona Diagnostico 7</option>
+                  <option value="0">Selecciona Diagnostico 7</option>
                 </select>
               </div>
               <div class="form-group">
                 <select class="form-control" style="width: 100%;" name="" id="" disabled>
-                  <option>Selecciona Diagnostico 8</option>
+                  <option value="0">Selecciona Diagnostico 8</option>
                 </select>
               </div>
             </div>
@@ -326,45 +326,45 @@ $anulMante->ctrAnularMantenimiento();
           <div class="row">
             <div class="col-12 col-md-6">
               <div class="form-group">
-                <select class="form-control" style="width: 100%;" name="" id="">
-                  <option>Selecciona Accion Realizada 1</option>
+                <select class="form-control" style="width: 100%;" name="a1" id="a1">
+                  <option value="0">Selecciona Accion Realizada 1</option>
                 </select>
               </div>
               <div class="form-group">
-                <select class="form-control" style="width: 100%;" name="" id="" disabled>
-                  <option>Selecciona Accion Realizada 2</option>
+                <select class="form-control" style="width: 100%;" name="a2" id="a2" disabled>
+                  <option value="0">Selecciona Accion Realizada 2</option>
                 </select>
               </div>
               <div class="form-group">
-                <select class="form-control" style="width: 100%;" name="" id="" disabled>
-                  <option>Selecciona Accion Realizada 3</option>
+                <select class="form-control" style="width: 100%;" name="a3" id="a3" disabled>
+                  <option value="0">Selecciona Accion Realizada 3</option>
                 </select>
               </div>
               <div class="form-group">
-                <select class="form-control" style="width: 100%;" name="" id="" disabled>
-                  <option>Selecciona Accion Realizada 4</option>
+                <select class="form-control" style="width: 100%;" name="a4" id="a4" disabled>
+                  <option value="0">Selecciona Accion Realizada 4</option>
                 </select>
               </div>
             </div>
             <div class="col-12 col-md-6">
               <div class="form-group">
-                <select class="form-control" style="width: 100%;" name="" id="" disabled>
-                  <option>Selecciona Accion Realizada 5</option>
+                <select class="form-control" style="width: 100%;" name="a5" id="a5" disabled>
+                  <option value="0">Selecciona Accion Realizada 5</option>
                 </select>
               </div>
               <div class="form-group">
-                <select class="form-control" style="width: 100%;" name="" id="" disabled>
-                  <option>Selecciona Accion Realizada 6</option>
+                <select class="form-control" style="width: 100%;" name="a6" id="a6" disabled>
+                  <option value="0">Selecciona Accion Realizada 6</option>
                 </select>
               </div>
               <div class="form-group">
-                <select class="form-control" style="width: 100%;" name="" id="" disabled>
-                  <option>Selecciona Accion Realizada 7</option>
+                <select class="form-control" style="width: 100%;" name="a7" id="a7" disabled>
+                  <option value="0">Selecciona Accion Realizada 7</option>
                 </select>
               </div>
               <div class="form-group">
-                <select class="form-control" style="width: 100%;" name="" id="" disabled>
-                  <option>Selecciona Accion Realizada 8</option>
+                <select class="form-control" style="width: 100%;" name="a8" id="a8" disabled>
+                  <option value="0">Selecciona Accion Realizada 8</option>
                 </select>
               </div>
             </div>

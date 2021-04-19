@@ -214,6 +214,30 @@ $("#serieEQ").on("change", function () {
                         $("#segmentado").val(respuesta["tipSegmento"]);
                         $("#tsegmento").val(respuesta["tipSegmento"]);
                         $("#tsegmento").html(respuesta["descSegmento"]);
+                        // Llamar lista inicial de diagnosticos
+                        let idSegmento = respuesta["tipSegmento"];
+                        $.ajax({
+                            type: "POST",
+                            url: "lib/comboListaDiagnostico.php",
+                            data: "idSegmento=" + idSegmento,
+                            success: function (html) {
+                                $("#d1").prop("disabled", false);
+                                $("#d1").html(html);
+                            },
+                        });
+                        // Llamar lista inicial de diagnosticos
+                        // Llamar lista inicial de acciones
+                        let idAcciona = respuesta["tipSegmento"];
+                        $.ajax({
+                            type: "POST",
+                            url: "lib/comboListaAcciones.php",
+                            data: "idAcciona=" + idAcciona,
+                            success: function (html) {
+                                $("#a1").prop("disabled", false);
+                                $("#a1").html(html);
+                            },
+                        });
+                        // Llamar lista inicial de acciones
                     }
                     else if (idTip1 == 2 || idTip1 == 6 || idTip1 == 7 || idTip1 == 8) {
                         $("#ofiEq").val(respuesta["office"]);
@@ -227,7 +251,26 @@ $("#serieEQ").on("change", function () {
                         $("#segmentado").val(respuesta["tipSegmento"]);
                         $("#tsegmento").val(respuesta["tipSegmento"]);
                         $("#tsegmento").html(respuesta["descSegmento"]);
-
+                        let idSegmento = respuesta["tipSegmento"];
+                        $.ajax({
+                            type: "POST",
+                            url: "lib/comboListaDiagnostico.php",
+                            data: "idSegmento=" + idSegmento,
+                            success: function (html) {
+                                $("#d1").prop("disabled", false);
+                                $("#d1").html(html);
+                            },
+                        });
+                        let idAcciona = respuesta["tipSegmento"];
+                        $.ajax({
+                            type: "POST",
+                            url: "lib/comboListaAcciones.php",
+                            data: "idAcciona=" + idAcciona,
+                            success: function (html) {
+                                $("#a1").prop("disabled", false);
+                                $("#a1").html(html);
+                            },
+                        });
                     }
                     else if (idTip1 == 3 || idTip1 == 9 || idTip1 == 14 || idTip1 == 15 || idTip1 == 16 || idTip1 == 17) {
                         $("#ofiEq").val(respuesta["office"]);
@@ -241,6 +284,26 @@ $("#serieEQ").on("change", function () {
                         $("#segmentado").val(respuesta["tipSegmento"]);
                         $("#tsegmento").val(respuesta["tipSegmento"]);
                         $("#tsegmento").html(respuesta["descSegmento"]);
+                        let idSegmento = respuesta["tipSegmento"];
+                        $.ajax({
+                            type: "POST",
+                            url: "lib/comboListaDiagnostico.php",
+                            data: "idSegmento=" + idSegmento,
+                            success: function (html) {
+                                $("#d1").prop("disabled", false);
+                                $("#d1").html(html);
+                            },
+                        });
+                        let idAcciona = respuesta["tipSegmento"];
+                        $.ajax({
+                            type: "POST",
+                            url: "lib/comboListaAcciones.php",
+                            data: "idAcciona=" + idAcciona,
+                            success: function (html) {
+                                $("#a1").prop("disabled", false);
+                                $("#a1").html(html);
+                            },
+                        });
                     }
                     else {
                         $("#ofiEq").val(respuesta["office"]);
@@ -253,6 +316,26 @@ $("#serieEQ").on("change", function () {
                         $("#segmentado").val(respuesta["tipSegmento"]);
                         $("#tsegmento").val(respuesta["tipSegmento"]);
                         $("#tsegmento").html(respuesta["descSegmento"]);
+                        let idSegmento = respuesta["tipSegmento"];
+                        $.ajax({
+                            type: "POST",
+                            url: "lib/comboListaDiagnostico.php",
+                            data: "idSegmento=" + idSegmento,
+                            success: function (html) {
+                                $("#d1").prop("disabled", false);
+                                $("#d1").html(html);
+                            },
+                        });
+                        let idAcciona = respuesta["tipSegmento"];
+                        $.ajax({
+                            type: "POST",
+                            url: "lib/comboListaAcciones.php",
+                            data: "idAcciona=" + idAcciona,
+                            success: function (html) {
+                                $("#a1").prop("disabled", false);
+                                $("#a1").html(html);
+                            },
+                        });
                     }
                 }
             }
@@ -276,6 +359,7 @@ $("#serieEQ").on("change", function () {
 
 });
 // Cargar información de equipo en base a serie y tipo seleccionado
+// Cargar combos de diagnosticos y acciones
 // Listar datos del diagnostico vía ajax
 $(".tablaMDiagnosticoFrm  tbody").on("click", "button.agregarDiagnostico", function () {
     var idDiagnostico = $(this).attr("idDiagnostico");
