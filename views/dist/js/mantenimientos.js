@@ -18,62 +18,6 @@ $(".tablaMantenimientos").DataTable({
     }
 });
 // Tabla general
-// Tabla de Diagnosticos
-$(".tablaMDiagnosticoFrm").DataTable({
-    "ajax": "util/datatable-diagnosticosMant.php",
-    "deferRender": true,
-    "retrieve": true,
-    "processing": true,
-    "paging": true,
-    "lengthChange": false,
-    "pageLength": 5,
-    "searching": true,
-    "ordering": true,
-    "order": [
-        [2, "asc"]
-    ],
-    "info": false,
-    "autoWidth": false,
-    "dom": '<lf<t>ip>',
-    "oLanguage": {
-        "sSearch": "Buscar diagnóstico :",
-        "oPaginate": {
-            "sFirst": "Primero",
-            "sLast": "Último",
-            "sNext": "Siguiente",
-            "sPrevious": "Anterior"
-        },
-    },
-});
-// Tabla de Diagnosticos
-// Tabla de Acciones
-$(".tablaAccionesFrm").DataTable({
-    "ajax": "util/datatable-accionesMant.php",
-    "deferRender": true,
-    "retrieve": true,
-    "processing": true,
-    "paging": true,
-    "lengthChange": false,
-    "pageLength": 5,
-    "searching": true,
-    "ordering": true,
-    "order": [
-        [2, "asc"]
-    ],
-    "info": false,
-    "autoWidth": false,
-    "dom": '<lf<t>ip>',
-    "oLanguage": {
-        "sSearch": "Buscar acción realizada :",
-        "oPaginate": {
-            "sFirst": "Primero",
-            "sLast": "Último",
-            "sNext": "Siguiente",
-            "sPrevious": "Anterior"
-        },
-    },
-});
-// Tabla de Acciones
 $(".select2").select2();
 $("#fEva").inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
 $('#fEva').datepicker({
@@ -100,43 +44,18 @@ $('#fFin').datepicker({
 $("#descIniEQ").keyup(function () {
     this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, "");
 });
-// $("#descIniEQ").keyup(function () {
-//     var st = $(this).val();
-//     var mayust = st.toUpperCase();
-//     $("#descIniEQ").val(mayust);
-// });
 $("#descIniEQ").keyup(function () {
     this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, "");
 });
-// $("#descIniEQ").keyup(function () {
-//     var st = $(this).val();
-//     var mayust = st.toUpperCase();
-//     $("#descIniEQ").val(mayust);
-// });
 $("#priEvaEQ").keyup(function () {
     this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, "");
 });
-// $("#priEvaEQ").keyup(function () {
-//     var st = $(this).val();
-//     var mayust = st.toUpperCase();
-//     $("#priEvaEQ").val(mayust);
-// });
 $("#recoFEQ").keyup(function () {
     this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, "");
 });
-// $("#recoFEQ").keyup(function () {
-//     var st = $(this).val();
-//     var mayust = st.toUpperCase();
-//     $("#recoFEQ").val(mayust);
-// });
 $("#detalleOtros").keyup(function () {
     this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, "");
 });
-// $("#detalleOtros").keyup(function () {
-//     var st = $(this).val();
-//     var mayust = st.toUpperCase();
-//     $("#detalleOtros").val(mayust);
-// });
 // Setting parameters
 // Cargar lista de series en base al tipo
 $("#tipEquipo").on("change", function () {
@@ -170,6 +89,23 @@ $("#tipEquipo").on("change", function () {
         $("#d7").prop("disabled", true);
         $("#d8")[0].selectedIndex = 0;
         $("#d8").prop("disabled", true);
+
+        $("#a1")[0].selectedIndex = 0;
+        $("#a1").prop("disabled", true);
+        $("#a2")[0].selectedIndex = 0;
+        $("#a2").prop("disabled", true);
+        $("#a3")[0].selectedIndex = 0;
+        $("#a3").prop("disabled", true);
+        $("#a4")[0].selectedIndex = 0;
+        $("#a4").prop("disabled", true);
+        $("#a5")[0].selectedIndex = 0;
+        $("#a5").prop("disabled", true);
+        $("#a6")[0].selectedIndex = 0;
+        $("#a6").prop("disabled", true);
+        $("#a7")[0].selectedIndex = 0;
+        $("#a7").prop("disabled", true);
+        $("#a8")[0].selectedIndex = 0;
+        $("#a8").prop("disabled", true);
         $.ajax({
             type: "POST",
             url: "lib/comboSeriesManto.php",
@@ -212,6 +148,23 @@ $("#tipEquipo").on("change", function () {
         $("#d7").prop("disabled", true);
         $("#d8")[0].selectedIndex = 0;
         $("#d8").prop("disabled", true);
+
+        $("#a1")[0].selectedIndex = 0;
+        $("#a1").prop("disabled", true);
+        $("#a2")[0].selectedIndex = 0;
+        $("#a2").prop("disabled", true);
+        $("#a3")[0].selectedIndex = 0;
+        $("#a3").prop("disabled", true);
+        $("#a4")[0].selectedIndex = 0;
+        $("#a4").prop("disabled", true);
+        $("#a5")[0].selectedIndex = 0;
+        $("#a5").prop("disabled", true);
+        $("#a6")[0].selectedIndex = 0;
+        $("#a6").prop("disabled", true);
+        $("#a7")[0].selectedIndex = 0;
+        $("#a7").prop("disabled", true);
+        $("#a8")[0].selectedIndex = 0;
+        $("#a8").prop("disabled", true);
     }
 });
 // Cargar lista de series en base al tipo
@@ -238,6 +191,23 @@ $("#serieEQ").on("change", function () {
         $("#d7").prop("disabled", true);
         $("#d8")[0].selectedIndex = 0;
         $("#d8").prop("disabled", true);
+
+        $("#a1")[0].selectedIndex = 0;
+        $("#a1").prop("disabled", true);
+        $("#a2")[0].selectedIndex = 0;
+        $("#a2").prop("disabled", true);
+        $("#a3")[0].selectedIndex = 0;
+        $("#a3").prop("disabled", true);
+        $("#a4")[0].selectedIndex = 0;
+        $("#a4").prop("disabled", true);
+        $("#a5")[0].selectedIndex = 0;
+        $("#a5").prop("disabled", true);
+        $("#a6")[0].selectedIndex = 0;
+        $("#a6").prop("disabled", true);
+        $("#a7")[0].selectedIndex = 0;
+        $("#a7").prop("disabled", true);
+        $("#a8")[0].selectedIndex = 0;
+        $("#a8").prop("disabled", true);
         $.ajax({
             url: "lib/ajaxMantenimientos.php",
             method: "POST",
@@ -302,13 +272,13 @@ $("#serieEQ").on("change", function () {
                             success: function (html) {
                                 $("#a1").prop("disabled", false);
                                 $("#a1").html(html);
-                                $("#a2").prop("disabled", false);
-                                $("#a3").prop("disabled", false);
-                                $("#a4").prop("disabled", false);
-                                $("#a5").prop("disabled", false);
-                                $("#a6").prop("disabled", false);
-                                $("#a7").prop("disabled", false);
-                                $("#a8").prop("disabled", false);
+                                // $("#a2").prop("disabled", false);
+                                // $("#a3").prop("disabled", false);
+                                // $("#a4").prop("disabled", false);
+                                // $("#a5").prop("disabled", false);
+                                // $("#a6").prop("disabled", false);
+                                // $("#a7").prop("disabled", false);
+                                // $("#a8").prop("disabled", false);
                             },
                         });
                         // Llamar lista inicial de acciones
@@ -364,13 +334,13 @@ $("#serieEQ").on("change", function () {
                             success: function (html) {
                                 $("#a1").prop("disabled", false);
                                 $("#a1").html(html);
-                                $("#a2").prop("disabled", false);
-                                $("#a3").prop("disabled", false);
-                                $("#a4").prop("disabled", false);
-                                $("#a5").prop("disabled", false);
-                                $("#a6").prop("disabled", false);
-                                $("#a7").prop("disabled", false);
-                                $("#a8").prop("disabled", false);
+                                // $("#a2").prop("disabled", false);
+                                // $("#a3").prop("disabled", false);
+                                // $("#a4").prop("disabled", false);
+                                // $("#a5").prop("disabled", false);
+                                // $("#a6").prop("disabled", false);
+                                // $("#a7").prop("disabled", false);
+                                // $("#a8").prop("disabled", false);
                             },
                         });
                     }
@@ -425,13 +395,13 @@ $("#serieEQ").on("change", function () {
                             success: function (html) {
                                 $("#a1").prop("disabled", false);
                                 $("#a1").html(html);
-                                $("#a2").prop("disabled", false);
-                                $("#a3").prop("disabled", false);
-                                $("#a4").prop("disabled", false);
-                                $("#a5").prop("disabled", false);
-                                $("#a6").prop("disabled", false);
-                                $("#a7").prop("disabled", false);
-                                $("#a8").prop("disabled", false);
+                                // $("#a2").prop("disabled", false);
+                                // $("#a3").prop("disabled", false);
+                                // $("#a4").prop("disabled", false);
+                                // $("#a5").prop("disabled", false);
+                                // $("#a6").prop("disabled", false);
+                                // $("#a7").prop("disabled", false);
+                                // $("#a8").prop("disabled", false);
                             },
                         });
                     }
@@ -485,13 +455,13 @@ $("#serieEQ").on("change", function () {
                             success: function (html) {
                                 $("#a1").prop("disabled", false);
                                 $("#a1").html(html);
-                                $("#a2").prop("disabled", false);
-                                $("#a3").prop("disabled", false);
-                                $("#a4").prop("disabled", false);
-                                $("#a5").prop("disabled", false);
-                                $("#a6").prop("disabled", false);
-                                $("#a7").prop("disabled", false);
-                                $("#a8").prop("disabled", false);
+                                // $("#a2").prop("disabled", false);
+                                // $("#a3").prop("disabled", false);
+                                // $("#a4").prop("disabled", false);
+                                // $("#a5").prop("disabled", false);
+                                // $("#a6").prop("disabled", false);
+                                // $("#a7").prop("disabled", false);
+                                // $("#a8").prop("disabled", false);
                             },
                         });
                     }
@@ -514,8 +484,6 @@ $("#serieEQ").on("change", function () {
         $("#tsegmento").val("0");
         $("#tsegmento").html('Seleccione Serie EQ primero');
 
-        // $("#d2").val("0");
-        // $("#d2").html('Seleccione Diagnóstico 2');
         $("#d2")[0].selectedIndex = 0;
         $("#d2").prop("disabled", true);
         $("#d3")[0].selectedIndex = 0;
@@ -530,10 +498,28 @@ $("#serieEQ").on("change", function () {
         $("#d7").prop("disabled", true);
         $("#d8")[0].selectedIndex = 0;
         $("#d8").prop("disabled", true);
+
+        $("#a1")[0].selectedIndex = 0;
+        $("#a1").prop("disabled", true);
+        $("#a2")[0].selectedIndex = 0;
+        $("#a2").prop("disabled", true);
+        $("#a3")[0].selectedIndex = 0;
+        $("#a3").prop("disabled", true);
+        $("#a4")[0].selectedIndex = 0;
+        $("#a4").prop("disabled", true);
+        $("#a5")[0].selectedIndex = 0;
+        $("#a5").prop("disabled", true);
+        $("#a6")[0].selectedIndex = 0;
+        $("#a6").prop("disabled", true);
+        $("#a7")[0].selectedIndex = 0;
+        $("#a7").prop("disabled", true);
+        $("#a8")[0].selectedIndex = 0;
+        $("#a8").prop("disabled", true);
     }
 
 });
 
+// Bloque de selects diagnosticos
 $("#d1").on("change", function () {
     var existe = $(this).val();
     var sgmt = $("#segmentado").val();
@@ -776,22 +762,282 @@ $("#d7").on("change", function () {
     $("#d8")[0].selectedIndex = 0;
     $("#d8").prop("disabled", true);
     if (existe7 > 0) {
-
+        $.ajax({
+            type: "POST",
+            url: "lib/comboDiagnosticos7.php",
+            data: "sgmt=" + sgmt + "&existe=" + existe + "&existe2=" + existe2 + "&existe3=" + existe3 + "&existe4=" + existe4 + "&existe5=" + existe5 + "&existe6=" + existe6 + "&existe7=" + existe7,
+            success: function (html) {
+                $("#d8").html(html);
+                $("#d8").prop("disabled", false);
+            },
+        });
     }
     else {
         $("#d8")[0].selectedIndex = 0;
         $("#d8").prop("disabled", true);
     }
-    $.ajax({
-        type: "POST",
-        url: "lib/comboDiagnosticos7.php",
-        data: "sgmt=" + sgmt + "&existe=" + existe + "&existe2=" + existe2 + "&existe3=" + existe3 + "&existe4=" + existe4 + "&existe5=" + existe5 + "&existe6=" + existe6 + "&existe7=" + existe7,
-        success: function (html) {
-            $("#d8").html(html);
-            $("#d8").prop("disabled", false);
-        },
-    });
 });
+// Bloque de selects diagnosticos
+
+// Bloque de selects acciones
+$("#a1").on("change", function () {
+    var existe = $(this).val();
+    var sgmt = $("#segmentado").val();
+    $("#a2")[0].selectedIndex = 0;
+    $("#a2").prop("disabled", true);
+    $("#a3")[0].selectedIndex = 0;
+    $("#a3").prop("disabled", true);
+    $("#a4")[0].selectedIndex = 0;
+    $("#a4").prop("disabled", true);
+    $("#a5")[0].selectedIndex = 0;
+    $("#a5").prop("disabled", true);
+    $("#a6")[0].selectedIndex = 0;
+    $("#a6").prop("disabled", true);
+    $("#a7")[0].selectedIndex = 0;
+    $("#a7").prop("disabled", true);
+    $("#a8")[0].selectedIndex = 0;
+    $("#a8").prop("disabled", true);
+    if (existe > 0) {
+        $.ajax({
+            type: "POST",
+            url: "lib/comboAcciones.php",
+            data: "sgmt=" + sgmt + "&existe=" + existe,
+            success: function (html) {
+                $("#a2").html(html);
+                $("#a2").prop("disabled", false);
+            },
+        });
+    }
+    else {
+        $("#a2")[0].selectedIndex = 0;
+        $("#a2").prop("disabled", true);
+        $("#a3")[0].selectedIndex = 0;
+        $("#a3").prop("disabled", true);
+        $("#a4")[0].selectedIndex = 0;
+        $("#a4").prop("disabled", true);
+        $("#a5")[0].selectedIndex = 0;
+        $("#a5").prop("disabled", true);
+        $("#a6")[0].selectedIndex = 0;
+        $("#a6").prop("disabled", true);
+        $("#a7")[0].selectedIndex = 0;
+        $("#a7").prop("disabled", true);
+        $("#a8")[0].selectedIndex = 0;
+        $("#a8").prop("disabled", true);
+    }
+});
+
+$("#a2").on("change", function () {
+    var existe = $("#a1").val();
+    var existe2 = $(this).val();
+    var sgmt = $("#segmentado").val();
+    $("#a3")[0].selectedIndex = 0;
+    $("#a3").prop("disabled", true);
+    $("#a4")[0].selectedIndex = 0;
+    $("#a4").prop("disabled", true);
+    $("#a5")[0].selectedIndex = 0;
+    $("#a5").prop("disabled", true);
+    $("#a6")[0].selectedIndex = 0;
+    $("#a6").prop("disabled", true);
+    $("#a7")[0].selectedIndex = 0;
+    $("#a7").prop("disabled", true);
+    $("#a8")[0].selectedIndex = 0;
+    $("#a8").prop("disabled", true);
+    if (existe2 > 0) {
+        $.ajax({
+            type: "POST",
+            url: "lib/comboAcciones2.php",
+            data: "sgmt=" + sgmt + "&existe=" + existe + "&existe2=" + existe2,
+            success: function (html) {
+                $("#a3").html(html);
+                $("#a3").prop("disabled", false);
+            },
+        });
+    }
+    else {
+        $("#a3")[0].selectedIndex = 0;
+        $("#a3").prop("disabled", true);
+        $("#a4")[0].selectedIndex = 0;
+        $("#a4").prop("disabled", true);
+        $("#a5")[0].selectedIndex = 0;
+        $("#a5").prop("disabled", true);
+        $("#a6")[0].selectedIndex = 0;
+        $("#a6").prop("disabled", true);
+        $("#a7")[0].selectedIndex = 0;
+        $("#a7").prop("disabled", true);
+        $("#a8")[0].selectedIndex = 0;
+        $("#a8").prop("disabled", true);
+    }
+});
+$("#a3").on("change", function () {
+    var existe = $("#a1").val();
+    var existe2 = $("#a2").val();
+    var existe3 = $(this).val();
+    var sgmt = $("#segmentado").val();
+    $("#a4")[0].selectedIndex = 0;
+    $("#a4").prop("disabled", true);
+    $("#a5")[0].selectedIndex = 0;
+    $("#a5").prop("disabled", true);
+    $("#a6")[0].selectedIndex = 0;
+    $("#a6").prop("disabled", true);
+    $("#a7")[0].selectedIndex = 0;
+    $("#a7").prop("disabled", true);
+    $("#a8")[0].selectedIndex = 0;
+    $("#a8").prop("disabled", true);
+    if (existe3 > 0) {
+        $.ajax({
+            type: "POST",
+            url: "lib/comboAcciones3.php",
+            data: "sgmt=" + sgmt + "&existe=" + existe + "&existe2=" + existe2 + "&existe3=" + existe3,
+            success: function (html) {
+                $("#a4").html(html);
+                $("#a4").prop("disabled", false);
+            },
+        });
+    }
+    else {
+        $("#a4")[0].selectedIndex = 0;
+        $("#a4").prop("disabled", true);
+        $("#a5")[0].selectedIndex = 0;
+        $("#a5").prop("disabled", true);
+        $("#a6")[0].selectedIndex = 0;
+        $("#a6").prop("disabled", true);
+        $("#a7")[0].selectedIndex = 0;
+        $("#a7").prop("disabled", true);
+        $("#a8")[0].selectedIndex = 0;
+        $("#a8").prop("disabled", true);
+    }
+});
+$("#a4").on("change", function () {
+    var existe = $("#a1").val();
+    var existe2 = $("#a2").val();
+    var existe3 = $("#a3").val();
+    var existe4 = $(this).val();
+    var sgmt = $("#segmentado").val();
+
+    $("#a5")[0].selectedIndex = 0;
+    $("#a5").prop("disabled", true);
+    $("#a6")[0].selectedIndex = 0;
+    $("#a6").prop("disabled", true);
+    $("#a7")[0].selectedIndex = 0;
+    $("#a7").prop("disabled", true);
+    $("#a8")[0].selectedIndex = 0;
+    $("#a8").prop("disabled", true);
+    if (existe4 > 0) {
+        $.ajax({
+            type: "POST",
+            url: "lib/comboAcciones4.php",
+            data: "sgmt=" + sgmt + "&existe=" + existe + "&existe2=" + existe2 + "&existe3=" + existe3 + "&existe4=" + existe4,
+            success: function (html) {
+                $("#a5").html(html);
+                $("#a5").prop("disabled", false);
+            },
+        });
+    }
+    else {
+        $("#a5")[0].selectedIndex = 0;
+        $("#a5").prop("disabled", true);
+        $("#a6")[0].selectedIndex = 0;
+        $("#a6").prop("disabled", true);
+        $("#a7")[0].selectedIndex = 0;
+        $("#a7").prop("disabled", true);
+        $("#a8")[0].selectedIndex = 0;
+        $("#a8").prop("disabled", true);
+    }
+});
+$("#a5").on("change", function () {
+    var existe = $("#a1").val();
+    var existe2 = $("#a2").val();
+    var existe3 = $("#a3").val();
+    var existe4 = $("#a4").val();
+    var existe5 = $(this).val();
+    var sgmt = $("#segmentado").val();
+
+    $("#a6")[0].selectedIndex = 0;
+    $("#a6").prop("disabled", true);
+    $("#a7")[0].selectedIndex = 0;
+    $("#a7").prop("disabled", true);
+    $("#a8")[0].selectedIndex = 0;
+    $("#a8").prop("disabled", true);
+    if (existe5 > 0) {
+        $.ajax({
+            type: "POST",
+            url: "lib/comboAcciones5.php",
+            data: "sgmt=" + sgmt + "&existe=" + existe + "&existe2=" + existe2 + "&existe3=" + existe3 + "&existe4=" + existe4 + "&existe5=" + existe5,
+            success: function (html) {
+                $("#a6").html(html);
+                $("#a6").prop("disabled", false);
+            },
+        });
+    }
+    else {
+        $("#a6")[0].selectedIndex = 0;
+        $("#a6").prop("disabled", true);
+        $("#a7")[0].selectedIndex = 0;
+        $("#a7").prop("disabled", true);
+        $("#a8")[0].selectedIndex = 0;
+        $("#a8").prop("disabled", true);
+    }
+});
+$("#a6").on("change", function () {
+    var existe = $("#a1").val();
+    var existe2 = $("#a2").val();
+    var existe3 = $("#a3").val();
+    var existe4 = $("#a4").val();
+    var existe5 = $("#a5").val();
+    var existe6 = $(this).val();
+    var sgmt = $("#segmentado").val();
+
+    $("#a7")[0].selectedIndex = 0;
+    $("#a7").prop("disabled", true);
+    $("#a8")[0].selectedIndex = 0;
+    $("#a8").prop("disabled", true);
+    if (existe6 > 0) {
+        $.ajax({
+            type: "POST",
+            url: "lib/comboAcciones6.php",
+            data: "sgmt=" + sgmt + "&existe=" + existe + "&existe2=" + existe2 + "&existe3=" + existe3 + "&existe4=" + existe4 + "&existe5=" + existe5 + "&existe6=" + existe6,
+            success: function (html) {
+                $("#a7").html(html);
+                $("#a7").prop("disabled", false);
+            },
+        });
+    }
+    else {
+        $("#a7")[0].selectedIndex = 0;
+        $("#a7").prop("disabled", true);
+        $("#a8")[0].selectedIndex = 0;
+        $("#a8").prop("disabled", true);
+    }
+});
+$("#a7").on("change", function () {
+    var existe = $("#a1").val();
+    var existe2 = $("#a2").val();
+    var existe3 = $("#a3").val();
+    var existe4 = $("#a4").val();
+    var existe5 = $("#a5").val();
+    var existe6 = $("#a6").val();
+    var existe7 = $(this).val();
+    var sgmt = $("#segmentado").val();
+
+    $("#a8")[0].selectedIndex = 0;
+    $("#a8").prop("disabled", true);
+    if (existe7 > 0) {
+        $.ajax({
+            type: "POST",
+            url: "lib/comboAcciones7.php",
+            data: "sgmt=" + sgmt + "&existe=" + existe + "&existe2=" + existe2 + "&existe3=" + existe3 + "&existe4=" + existe4 + "&existe5=" + existe5 + "&existe6=" + existe6 + "&existe7=" + existe7,
+            success: function (html) {
+                $("#a8").html(html);
+                $("#a8").prop("disabled", false);
+            },
+        });
+    }
+    else {
+        $("#a8")[0].selectedIndex = 0;
+        $("#a8").prop("disabled", true);
+    }
+});
+// Bloque de selects acciones
 // Cargar información de equipo en base a serie y tipo seleccionado
 // Cargar combos de diagnosticos y acciones
 // Cargar combos de diagnosticos y acciones
