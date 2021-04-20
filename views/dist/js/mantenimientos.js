@@ -154,6 +154,22 @@ $("#tipEquipo").on("change", function () {
     $("#tsegmento").html('Seleccione Serie EQ primero');
     var idCatego = $(this).val();
     if (idCatego > 0) {
+        $("#d1")[0].selectedIndex = 0;
+        $("#d1").prop("disabled", true);
+        $("#d2")[0].selectedIndex = 0;
+        $("#d2").prop("disabled", true);
+        $("#d3")[0].selectedIndex = 0;
+        $("#d3").prop("disabled", true);
+        $("#d4")[0].selectedIndex = 0;
+        $("#d4").prop("disabled", true);
+        $("#d5")[0].selectedIndex = 0;
+        $("#d5").prop("disabled", true);
+        $("#d6")[0].selectedIndex = 0;
+        $("#d6").prop("disabled", true);
+        $("#d7")[0].selectedIndex = 0;
+        $("#d7").prop("disabled", true);
+        $("#d8")[0].selectedIndex = 0;
+        $("#d8").prop("disabled", true);
         $.ajax({
             type: "POST",
             url: "lib/comboSeriesManto.php",
@@ -180,6 +196,22 @@ $("#tipEquipo").on("change", function () {
         $("#segmentado").val("0");
         $("#tsegmento").val("0");
         $("#tsegmento").html('Seleccione Serie EQ primero');
+        $("#d1")[0].selectedIndex = 0;
+        $("#d1").prop("disabled", true);
+        $("#d2")[0].selectedIndex = 0;
+        $("#d2").prop("disabled", true);
+        $("#d3")[0].selectedIndex = 0;
+        $("#d3").prop("disabled", true);
+        $("#d4")[0].selectedIndex = 0;
+        $("#d4").prop("disabled", true);
+        $("#d5")[0].selectedIndex = 0;
+        $("#d5").prop("disabled", true);
+        $("#d6")[0].selectedIndex = 0;
+        $("#d6").prop("disabled", true);
+        $("#d7")[0].selectedIndex = 0;
+        $("#d7").prop("disabled", true);
+        $("#d8")[0].selectedIndex = 0;
+        $("#d8").prop("disabled", true);
     }
 });
 // Cargar lista de series en base al tipo
@@ -192,6 +224,20 @@ $("#serieEQ").on("change", function () {
         var datosEQ = new FormData();
         datosEQ.append("idEq1", idEq1);
         datosEQ.append("idTip1", idTip1);
+        $("#d2")[0].selectedIndex = 0;
+        $("#d2").prop("disabled", true);
+        $("#d3")[0].selectedIndex = 0;
+        $("#d3").prop("disabled", true);
+        $("#d4")[0].selectedIndex = 0;
+        $("#d4").prop("disabled", true);
+        $("#d5")[0].selectedIndex = 0;
+        $("#d5").prop("disabled", true);
+        $("#d6")[0].selectedIndex = 0;
+        $("#d6").prop("disabled", true);
+        $("#d7")[0].selectedIndex = 0;
+        $("#d7").prop("disabled", true);
+        $("#d8")[0].selectedIndex = 0;
+        $("#d8").prop("disabled", true);
         $.ajax({
             url: "lib/ajaxMantenimientos.php",
             method: "POST",
@@ -223,6 +269,27 @@ $("#serieEQ").on("change", function () {
                             success: function (html) {
                                 $("#d1").prop("disabled", false);
                                 $("#d1").html(html);
+                                // $("#d2").prop("disabled", false);
+                                // $("#d3").prop("disabled", false);
+                                // $("#d4").prop("disabled", false);
+                                // $("#d5").prop("disabled", false);
+                                // $("#d6").prop("disabled", false);
+                                // $("#d7").prop("disabled", false);
+                                // $("#d8").prop("disabled", false);
+                                $("#d2")[0].selectedIndex = 0;
+                                $("#d2").prop("disabled", true);
+                                $("#d3")[0].selectedIndex = 0;
+                                $("#d3").prop("disabled", true);
+                                $("#d4")[0].selectedIndex = 0;
+                                $("#d4").prop("disabled", true);
+                                $("#d5")[0].selectedIndex = 0;
+                                $("#d5").prop("disabled", true);
+                                $("#d6")[0].selectedIndex = 0;
+                                $("#d6").prop("disabled", true);
+                                $("#d7")[0].selectedIndex = 0;
+                                $("#d7").prop("disabled", true);
+                                $("#d8")[0].selectedIndex = 0;
+                                $("#d8").prop("disabled", true);
                             },
                         });
                         // Llamar lista inicial de diagnosticos
@@ -235,6 +302,13 @@ $("#serieEQ").on("change", function () {
                             success: function (html) {
                                 $("#a1").prop("disabled", false);
                                 $("#a1").html(html);
+                                $("#a2").prop("disabled", false);
+                                $("#a3").prop("disabled", false);
+                                $("#a4").prop("disabled", false);
+                                $("#a5").prop("disabled", false);
+                                $("#a6").prop("disabled", false);
+                                $("#a7").prop("disabled", false);
+                                $("#a8").prop("disabled", false);
                             },
                         });
                         // Llamar lista inicial de acciones
@@ -259,6 +333,27 @@ $("#serieEQ").on("change", function () {
                             success: function (html) {
                                 $("#d1").prop("disabled", false);
                                 $("#d1").html(html);
+                                // $("#d2").prop("disabled", false);
+                                // $("#d3").prop("disabled", false);
+                                // $("#d4").prop("disabled", false);
+                                // $("#d5").prop("disabled", false);
+                                // $("#d6").prop("disabled", false);
+                                // $("#d7").prop("disabled", false);
+                                // $("#d8").prop("disabled", false);
+                                $("#d2")[0].selectedIndex = 0;
+                                $("#d2").prop("disabled", true);
+                                $("#d3")[0].selectedIndex = 0;
+                                $("#d3").prop("disabled", true);
+                                $("#d4")[0].selectedIndex = 0;
+                                $("#d4").prop("disabled", true);
+                                $("#d5")[0].selectedIndex = 0;
+                                $("#d5").prop("disabled", true);
+                                $("#d6")[0].selectedIndex = 0;
+                                $("#d6").prop("disabled", true);
+                                $("#d7")[0].selectedIndex = 0;
+                                $("#d7").prop("disabled", true);
+                                $("#d8")[0].selectedIndex = 0;
+                                $("#d8").prop("disabled", true);
                             },
                         });
                         let idAcciona = respuesta["tipSegmento"];
@@ -269,6 +364,13 @@ $("#serieEQ").on("change", function () {
                             success: function (html) {
                                 $("#a1").prop("disabled", false);
                                 $("#a1").html(html);
+                                $("#a2").prop("disabled", false);
+                                $("#a3").prop("disabled", false);
+                                $("#a4").prop("disabled", false);
+                                $("#a5").prop("disabled", false);
+                                $("#a6").prop("disabled", false);
+                                $("#a7").prop("disabled", false);
+                                $("#a8").prop("disabled", false);
                             },
                         });
                     }
@@ -292,6 +394,27 @@ $("#serieEQ").on("change", function () {
                             success: function (html) {
                                 $("#d1").prop("disabled", false);
                                 $("#d1").html(html);
+                                // $("#d2").prop("disabled", false);
+                                // $("#d3").prop("disabled", false);
+                                // $("#d4").prop("disabled", false);
+                                // $("#d5").prop("disabled", false);
+                                // $("#d6").prop("disabled", false);
+                                // $("#d7").prop("disabled", false);
+                                // $("#d8").prop("disabled", false);
+                                $("#d2")[0].selectedIndex = 0;
+                                $("#d2").prop("disabled", true);
+                                $("#d3")[0].selectedIndex = 0;
+                                $("#d3").prop("disabled", true);
+                                $("#d4")[0].selectedIndex = 0;
+                                $("#d4").prop("disabled", true);
+                                $("#d5")[0].selectedIndex = 0;
+                                $("#d5").prop("disabled", true);
+                                $("#d6")[0].selectedIndex = 0;
+                                $("#d6").prop("disabled", true);
+                                $("#d7")[0].selectedIndex = 0;
+                                $("#d7").prop("disabled", true);
+                                $("#d8")[0].selectedIndex = 0;
+                                $("#d8").prop("disabled", true);
                             },
                         });
                         let idAcciona = respuesta["tipSegmento"];
@@ -302,6 +425,13 @@ $("#serieEQ").on("change", function () {
                             success: function (html) {
                                 $("#a1").prop("disabled", false);
                                 $("#a1").html(html);
+                                $("#a2").prop("disabled", false);
+                                $("#a3").prop("disabled", false);
+                                $("#a4").prop("disabled", false);
+                                $("#a5").prop("disabled", false);
+                                $("#a6").prop("disabled", false);
+                                $("#a7").prop("disabled", false);
+                                $("#a8").prop("disabled", false);
                             },
                         });
                     }
@@ -324,6 +454,27 @@ $("#serieEQ").on("change", function () {
                             success: function (html) {
                                 $("#d1").prop("disabled", false);
                                 $("#d1").html(html);
+                                // $("#d2").prop("disabled", false);
+                                // $("#d3").prop("disabled", false);
+                                // $("#d4").prop("disabled", false);
+                                // $("#d5").prop("disabled", false);
+                                // $("#d6").prop("disabled", false);
+                                // $("#d7").prop("disabled", false);
+                                // $("#d8").prop("disabled", false);
+                                $("#d2")[0].selectedIndex = 0;
+                                $("#d2").prop("disabled", true);
+                                $("#d3")[0].selectedIndex = 0;
+                                $("#d3").prop("disabled", true);
+                                $("#d4")[0].selectedIndex = 0;
+                                $("#d4").prop("disabled", true);
+                                $("#d5")[0].selectedIndex = 0;
+                                $("#d5").prop("disabled", true);
+                                $("#d6")[0].selectedIndex = 0;
+                                $("#d6").prop("disabled", true);
+                                $("#d7")[0].selectedIndex = 0;
+                                $("#d7").prop("disabled", true);
+                                $("#d8")[0].selectedIndex = 0;
+                                $("#d8").prop("disabled", true);
                             },
                         });
                         let idAcciona = respuesta["tipSegmento"];
@@ -334,6 +485,13 @@ $("#serieEQ").on("change", function () {
                             success: function (html) {
                                 $("#a1").prop("disabled", false);
                                 $("#a1").html(html);
+                                $("#a2").prop("disabled", false);
+                                $("#a3").prop("disabled", false);
+                                $("#a4").prop("disabled", false);
+                                $("#a5").prop("disabled", false);
+                                $("#a6").prop("disabled", false);
+                                $("#a7").prop("disabled", false);
+                                $("#a8").prop("disabled", false);
                             },
                         });
                     }
@@ -355,226 +513,288 @@ $("#serieEQ").on("change", function () {
         $("#segmentado").val("0");
         $("#tsegmento").val("0");
         $("#tsegmento").html('Seleccione Serie EQ primero');
+
+        // $("#d2").val("0");
+        // $("#d2").html('Seleccione Diagnóstico 2');
+        $("#d2")[0].selectedIndex = 0;
+        $("#d2").prop("disabled", true);
+        $("#d3")[0].selectedIndex = 0;
+        $("#d3").prop("disabled", true);
+        $("#d4")[0].selectedIndex = 0;
+        $("#d4").prop("disabled", true);
+        $("#d5")[0].selectedIndex = 0;
+        $("#d5").prop("disabled", true);
+        $("#d6")[0].selectedIndex = 0;
+        $("#d6").prop("disabled", true);
+        $("#d7")[0].selectedIndex = 0;
+        $("#d7").prop("disabled", true);
+        $("#d8")[0].selectedIndex = 0;
+        $("#d8").prop("disabled", true);
     }
 
+});
+
+$("#d1").on("change", function () {
+    var existe = $(this).val();
+    var sgmt = $("#segmentado").val();
+    $("#d2")[0].selectedIndex = 0;
+    $("#d2").prop("disabled", true);
+    $("#d3")[0].selectedIndex = 0;
+    $("#d3").prop("disabled", true);
+    $("#d4")[0].selectedIndex = 0;
+    $("#d4").prop("disabled", true);
+    $("#d5")[0].selectedIndex = 0;
+    $("#d5").prop("disabled", true);
+    $("#d6")[0].selectedIndex = 0;
+    $("#d6").prop("disabled", true);
+    $("#d7")[0].selectedIndex = 0;
+    $("#d7").prop("disabled", true);
+    $("#d8")[0].selectedIndex = 0;
+    $("#d8").prop("disabled", true);
+    if (existe > 0) {
+        $.ajax({
+            type: "POST",
+            url: "lib/comboDiagnosticos.php",
+            data: "sgmt=" + sgmt + "&existe=" + existe,
+            success: function (html) {
+                $("#d2").html(html);
+                $("#d2").prop("disabled", false);
+            },
+        });
+    }
+    else {
+        $("#d2")[0].selectedIndex = 0;
+        $("#d2").prop("disabled", true);
+        $("#d3")[0].selectedIndex = 0;
+        $("#d3").prop("disabled", true);
+        $("#d4")[0].selectedIndex = 0;
+        $("#d4").prop("disabled", true);
+        $("#d5")[0].selectedIndex = 0;
+        $("#d5").prop("disabled", true);
+        $("#d6")[0].selectedIndex = 0;
+        $("#d6").prop("disabled", true);
+        $("#d7")[0].selectedIndex = 0;
+        $("#d7").prop("disabled", true);
+        $("#d8")[0].selectedIndex = 0;
+        $("#d8").prop("disabled", true);
+    }
+});
+
+$("#d2").on("change", function () {
+    var existe = $("#d1").val();
+    var existe2 = $(this).val();
+    var sgmt = $("#segmentado").val();
+    $("#d3")[0].selectedIndex = 0;
+    $("#d3").prop("disabled", true);
+    $("#d4")[0].selectedIndex = 0;
+    $("#d4").prop("disabled", true);
+    $("#d5")[0].selectedIndex = 0;
+    $("#d5").prop("disabled", true);
+    $("#d6")[0].selectedIndex = 0;
+    $("#d6").prop("disabled", true);
+    $("#d7")[0].selectedIndex = 0;
+    $("#d7").prop("disabled", true);
+    $("#d8")[0].selectedIndex = 0;
+    $("#d8").prop("disabled", true);
+    if (existe2 > 0) {
+        $.ajax({
+            type: "POST",
+            url: "lib/comboDiagnosticos2.php",
+            data: "sgmt=" + sgmt + "&existe=" + existe + "&existe2=" + existe2,
+            success: function (html) {
+                $("#d3").html(html);
+                $("#d3").prop("disabled", false);
+            },
+        });
+    }
+    else {
+        $("#d3")[0].selectedIndex = 0;
+        $("#d3").prop("disabled", true);
+        $("#d4")[0].selectedIndex = 0;
+        $("#d4").prop("disabled", true);
+        $("#d5")[0].selectedIndex = 0;
+        $("#d5").prop("disabled", true);
+        $("#d6")[0].selectedIndex = 0;
+        $("#d6").prop("disabled", true);
+        $("#d7")[0].selectedIndex = 0;
+        $("#d7").prop("disabled", true);
+        $("#d8")[0].selectedIndex = 0;
+        $("#d8").prop("disabled", true);
+    }
+});
+$("#d3").on("change", function () {
+    var existe = $("#d1").val();
+    var existe2 = $("#d2").val();
+    var existe3 = $(this).val();
+    var sgmt = $("#segmentado").val();
+    $("#d4")[0].selectedIndex = 0;
+    $("#d4").prop("disabled", true);
+    $("#d5")[0].selectedIndex = 0;
+    $("#d5").prop("disabled", true);
+    $("#d6")[0].selectedIndex = 0;
+    $("#d6").prop("disabled", true);
+    $("#d7")[0].selectedIndex = 0;
+    $("#d7").prop("disabled", true);
+    $("#d8")[0].selectedIndex = 0;
+    $("#d8").prop("disabled", true);
+    if (existe3 > 0) {
+        $.ajax({
+            type: "POST",
+            url: "lib/comboDiagnosticos3.php",
+            data: "sgmt=" + sgmt + "&existe=" + existe + "&existe2=" + existe2 + "&existe3=" + existe3,
+            success: function (html) {
+                $("#d4").html(html);
+                $("#d4").prop("disabled", false);
+            },
+        });
+    }
+    else {
+        $("#d4")[0].selectedIndex = 0;
+        $("#d4").prop("disabled", true);
+        $("#d5")[0].selectedIndex = 0;
+        $("#d5").prop("disabled", true);
+        $("#d6")[0].selectedIndex = 0;
+        $("#d6").prop("disabled", true);
+        $("#d7")[0].selectedIndex = 0;
+        $("#d7").prop("disabled", true);
+        $("#d8")[0].selectedIndex = 0;
+        $("#d8").prop("disabled", true);
+    }
+});
+$("#d4").on("change", function () {
+    var existe = $("#d1").val();
+    var existe2 = $("#d2").val();
+    var existe3 = $("#d3").val();
+    var existe4 = $(this).val();
+    var sgmt = $("#segmentado").val();
+
+    $("#d5")[0].selectedIndex = 0;
+    $("#d5").prop("disabled", true);
+    $("#d6")[0].selectedIndex = 0;
+    $("#d6").prop("disabled", true);
+    $("#d7")[0].selectedIndex = 0;
+    $("#d7").prop("disabled", true);
+    $("#d8")[0].selectedIndex = 0;
+    $("#d8").prop("disabled", true);
+    if (existe4 > 0) {
+        $.ajax({
+            type: "POST",
+            url: "lib/comboDiagnosticos4.php",
+            data: "sgmt=" + sgmt + "&existe=" + existe + "&existe2=" + existe2 + "&existe3=" + existe3 + "&existe4=" + existe4,
+            success: function (html) {
+                $("#d5").html(html);
+                $("#d5").prop("disabled", false);
+            },
+        });
+    }
+    else {
+        $("#d5")[0].selectedIndex = 0;
+        $("#d5").prop("disabled", true);
+        $("#d6")[0].selectedIndex = 0;
+        $("#d6").prop("disabled", true);
+        $("#d7")[0].selectedIndex = 0;
+        $("#d7").prop("disabled", true);
+        $("#d8")[0].selectedIndex = 0;
+        $("#d8").prop("disabled", true);
+    }
+});
+$("#d5").on("change", function () {
+    var existe = $("#d1").val();
+    var existe2 = $("#d2").val();
+    var existe3 = $("#d3").val();
+    var existe4 = $("#d4").val();
+    var existe5 = $(this).val();
+    var sgmt = $("#segmentado").val();
+
+    $("#d6")[0].selectedIndex = 0;
+    $("#d6").prop("disabled", true);
+    $("#d7")[0].selectedIndex = 0;
+    $("#d7").prop("disabled", true);
+    $("#d8")[0].selectedIndex = 0;
+    $("#d8").prop("disabled", true);
+    if (existe5 > 0) {
+        $.ajax({
+            type: "POST",
+            url: "lib/comboDiagnosticos5.php",
+            data: "sgmt=" + sgmt + "&existe=" + existe + "&existe2=" + existe2 + "&existe3=" + existe3 + "&existe4=" + existe4 + "&existe5=" + existe5,
+            success: function (html) {
+                $("#d6").html(html);
+                $("#d6").prop("disabled", false);
+            },
+        });
+    }
+    else {
+        $("#d6")[0].selectedIndex = 0;
+        $("#d6").prop("disabled", true);
+        $("#d7")[0].selectedIndex = 0;
+        $("#d7").prop("disabled", true);
+        $("#d8")[0].selectedIndex = 0;
+        $("#d8").prop("disabled", true);
+    }
+});
+$("#d6").on("change", function () {
+    var existe = $("#d1").val();
+    var existe2 = $("#d2").val();
+    var existe3 = $("#d3").val();
+    var existe4 = $("#d4").val();
+    var existe5 = $("#d5").val();
+    var existe6 = $(this).val();
+    var sgmt = $("#segmentado").val();
+
+    $("#d7")[0].selectedIndex = 0;
+    $("#d7").prop("disabled", true);
+    $("#d8")[0].selectedIndex = 0;
+    $("#d8").prop("disabled", true);
+    if (existe6 > 0) {
+        $.ajax({
+            type: "POST",
+            url: "lib/comboDiagnosticos6.php",
+            data: "sgmt=" + sgmt + "&existe=" + existe + "&existe2=" + existe2 + "&existe3=" + existe3 + "&existe4=" + existe4 + "&existe5=" + existe5 + "&existe6=" + existe6,
+            success: function (html) {
+                $("#d7").html(html);
+                $("#d7").prop("disabled", false);
+            },
+        });
+    }
+    else {
+        $("#d7")[0].selectedIndex = 0;
+        $("#d7").prop("disabled", true);
+        $("#d8")[0].selectedIndex = 0;
+        $("#d8").prop("disabled", true);
+    }
+});
+$("#d7").on("change", function () {
+    var existe = $("#d1").val();
+    var existe2 = $("#d2").val();
+    var existe3 = $("#d3").val();
+    var existe4 = $("#d4").val();
+    var existe5 = $("#d5").val();
+    var existe6 = $("#d6").val();
+    var existe7 = $(this).val();
+    var sgmt = $("#segmentado").val();
+
+    $("#d8")[0].selectedIndex = 0;
+    $("#d8").prop("disabled", true);
+    if (existe7 > 0) {
+
+    }
+    else {
+        $("#d8")[0].selectedIndex = 0;
+        $("#d8").prop("disabled", true);
+    }
+    $.ajax({
+        type: "POST",
+        url: "lib/comboDiagnosticos7.php",
+        data: "sgmt=" + sgmt + "&existe=" + existe + "&existe2=" + existe2 + "&existe3=" + existe3 + "&existe4=" + existe4 + "&existe5=" + existe5 + "&existe6=" + existe6 + "&existe7=" + existe7,
+        success: function (html) {
+            $("#d8").html(html);
+            $("#d8").prop("disabled", false);
+        },
+    });
 });
 // Cargar información de equipo en base a serie y tipo seleccionado
 // Cargar combos de diagnosticos y acciones
-// Listar datos del diagnostico vía ajax
-$(".tablaMDiagnosticoFrm  tbody").on("click", "button.agregarDiagnostico", function () {
-    var idDiagnostico = $(this).attr("idDiagnostico");
-    // alert(idDiagnostico);
-    $(this).removeClass("btn-success agregarDiagnostico");
-    $(this).addClass("btn-default");
-    // Listar datos del diagnostico vía ajax
-    var datos = new FormData();
-    datos.append("idDiagnostico", idDiagnostico);
-    $.ajax({
-        url: "lib/ajaxDiagnosticos.php",
-        method: "POST",
-        data: datos,
-        cache: false,
-        contentType: false,
-        processData: false,
-        dataType: "json",
-        success: function (respuesta) {
-            // console.log(respuesta);
-            var descripcionDiag = respuesta["diagnostico"];
-            var segmentoDiag = respuesta["descSegmento"];
-            // alert(descripcionDiag);
-            // Pintado de los diagnosticos en el bloque
-            $(".nuevoDiagnostico").append(
-                '<div class="col-md-12" style="padding-right:0px">' +
-                '<div class= "input-group mt-1" >' +
-                '<span class="input-group-addon"><button type="button" class="btn btn-danger btn-md quitarDiagnostico" idDiagnostico="' + idDiagnostico + '"><i class="fas fa-trash-restore"></i></button></span> &nbsp;' +
-                '<input type="text" class="form-control nuevaDescripcionDiagnostico" name="agregarDiagnostico" placeholder="Descripción del diagnóstico" idDiagnostico="' + idDiagnostico + '" value="' + descripcionDiag + '" segmento="' + segmentoDiag + '" contable2="1" required readonly>' +
-                '<span class="input-group-addon ml-1"><button type="button" class="btn btn-warning btn-md"><i class="fas fa-border-style"></i></button></span> &nbsp;' +
-                '<input type="text" class="form-control" name="" value="' + segmentoDiag + '"required readonly>' +
-                '</div>' +
-                '</div >'
-            );
-            // Pintado de los diagnosticos en el bloque
-            // Metodo de insertar los valor en el array
-            listarDiagnosticos()
-            // Metodo de insertar los valor en el array
-            localStorage.removeItem("quitarDiagnostico");
-
-        }
-    });
-});
-// Listar datos del diagnostico vía ajax
-$(".tablaMDiagnosticoFrm").on("draw.dt", function () {
-    if (localStorage.getItem("quitarDiagnostico") != null) {
-        var listaIdDiagnosticos = JSON.parse(localStorage.getItem("quitarDiagnostico"));
-        for (var i = 0; i < listaIdDiagnosticos.length; i++) {
-            $("button.recuperarDiagnostico[idDiagnostico='" + listaIdDiagnosticos[i]["idDiagnostico"] + "']").removeClass('btn-default');
-            $("button.recuperarDiagnostico[idDiagnostico='" + listaIdDiagnosticos[i]["idDiagnostico"] + "']").addClass('btn-success agregarDiagnostico');
-        }
-    }
-});
-// Quitar diagnosticos y recuperar botón
-var idQuitarDiagnostico = [];
-localStorage.removeItem("quitarDiagnostico");
-$(".frmManto1").on("click", "button.quitarDiagnostico", function () {
-    $(this).parent().parent().parent().remove();
-    var idDiagnostico = $(this).attr("idDiagnostico");
-    /*=============================================
-    ALMACENAR EN EL LOCALSTORAGE EL ID DEL PRODUCTO A QUITAR
-    =============================================*/
-    if (localStorage.getItem("quitarDiagnostico") == null) {
-        idQuitarDiagnostico = [];
-    } else {
-        idQuitarDiagnostico.concat(localStorage.getItem("quitarDiagnostico"))
-    }
-    idQuitarDiagnostico.push({ "idDiagnostico": idDiagnostico });
-    localStorage.setItem("quitarDiagnostico", JSON.stringify(idQuitarDiagnostico));
-    $("button.recuperarDiagnostico[idDiagnostico='" + idDiagnostico + "']").removeClass('btn-default');
-    $("button.recuperarDiagnostico[idDiagnostico='" + idDiagnostico + "']").addClass('btn-success agregarDiagnostico');
-    listarDiagnosticos();
-
-});
-
-// Quitar diagnosticos y recuperar botón
-// Listar Diagnosticos
-function listarDiagnosticos() {
-    var listaDiagnosticos = [];
-
-    var diagnosticoDesc = $(".nuevaDescripcionDiagnostico");
-    for (var i = 0; i < diagnosticoDesc.length; i++) {
-        listaDiagnosticos.push({
-            "id": $(diagnosticoDesc[i]).attr("idDiagnostico"),
-            "diagnostico": $(diagnosticoDesc[i]).val(),
-            "segmento": $(diagnosticoDesc[i]).attr("segmento"),
-            "conteo": $(diagnosticoDesc[i]).attr("contable2"),
-        });
-    }
-    $("#listaDiagnosticos").val(JSON.stringify(listaDiagnosticos));
-}
-function quitaragregarDiagnostico() {
-    //Capturamos todos los id de productos que fueron elegidos en la venta
-    var idDiagnostico = $(".quitarDiagnostico");
-    //Capturamos todos los botones de agregar que aparecen en la tabla
-    var botonesTabla = $(".tablaMDiagnosticoFrm tbody button.agregarDiagnostico");
-    //Recorremos en un ciclo para obtener los diferentes idProductos que fueron agregados a la venta
-    for (var i = 0; i < idDiagnostico.length; i++) {
-        //Capturamos los Id de los productos agregados a la venta
-        var boton = $(idDiagnostico[i]).attr("idDiagnostico");
-        //Hacemos un recorrido por la tabla que aparece para desactivar los botones de agregar
-        for (var j = 0; j < botonesTabla.length; j++) {
-            if ($(botonesTabla[j]).attr("idDiagnostico") == boton) {
-                $(botonesTabla[j]).removeClass("btn-success agregarDiagnostico");
-                $(botonesTabla[j]).addClass("btn-default");
-            }
-        }
-    }
-}
-$('.tablaMDiagnosticoFrm').on('draw.dt', function () {
-    quitaragregarDiagnostico();
-});
-
-// Listar Diagnosticos
-// Listar Acciones Realizadas
-$(".tablaAccionesFrm  tbody").on("click", "button.agregarAccion", function () {
-    var idAccionR = $(this).attr("idAccion");
-    $(this).removeClass("btn-success agregarAccion");
-    $(this).addClass("btn-default");
-    var datos2 = new FormData();
-    datos2.append("idAccion", idAccionR);
-    $.ajax({
-        url: "lib/ajaxAcciones.php",
-        method: "POST",
-        data: datos2,
-        cache: false,
-        contentType: false,
-        processData: false,
-        dataType: "json",
-        success: function (respuesta) {
-            // console.log(respuesta);
-            var descripcionAccion = respuesta["accionrealizada"];
-            var segmentoAccion = respuesta["descSegmento"];
-            $(".nuevoAcciones").append(
-                '<div class="col-md-12" style="padding-right:0px">' +
-                '<div class= "input-group mt-1" >' +
-                '<span class="input-group-addon"><button type="button" class="btn btn-danger btn-md quitarAccion" idAccion="' + idAccionR + '"><i class="fas fa-trash-restore"></i></button></span> &nbsp;' +
-                '<input type="text" class="form-control nuevaDescripcionAccion" name="agregarAccion" placeholder="Descripción de acción realizada" idAccion="' + idAccionR + '" value="' + descripcionAccion + '" segmento="' + segmentoAccion + '" contable="1" required readonly>' +
-                '<span class="input-group-addon ml-1"><button type="button" class="btn btn-warning btn-md"><i class="fas fa-border-style"></i></button></span> &nbsp;' +
-                '<input type="text" class="form-control" name="" value="' + segmentoAccion + '"required readonly>' +
-                '</div>' +
-                '</div >'
-            );
-            localStorage.removeItem("quitarAccion");
-            listarAcciones()
-        }
-    });
-});
-
-$(".tablaAccionesFrm").on("draw.dt", function () {
-    if (localStorage.getItem("quitarAccion") != null) {
-        var listaIdAcciones = JSON.parse(localStorage.getItem("quitarAccion"));
-        for (var i = 0; i < listaIdAcciones.length; i++) {
-            $("button.recuperarAccion[idAccion='" + listaIdAcciones[i]["idAccion"] + "']").removeClass('btn-default');
-            $("button.recuperarAccion[idAccion='" + listaIdAcciones[i]["idAccion"] + "']").addClass('btn-success agregarAccion');
-        }
-    }
-});
-
-var idQuitarAccion = [];
-localStorage.removeItem("quitarAccion");
-$(".frmManto1").on("click", "button.quitarAccion", function () {
-    $(this).parent().parent().parent().remove();
-    var idAccion = $(this).attr("idAccion");
-    /*=============================================
-    ALMACENAR EN EL LOCALSTORAGE EL ID DEL PRODUCTO A QUITAR
-    =============================================*/
-    if (localStorage.getItem("quitarAccion") == null) {
-        idQuitarAccion = [];
-    } else {
-        idQuitarAccion.concat(localStorage.getItem("quitarAccion"))
-    }
-    idQuitarAccion.push({ "idAccion": idAccion });
-    localStorage.setItem("quitarAccion", JSON.stringify(idQuitarAccion));
-    $("button.recuperarAccion[idAccion='" + idAccion + "']").removeClass('btn-default');
-    $("button.recuperarAccion[idAccion='" + idAccion + "']").addClass('btn-success agregarAccion');
-    listarAcciones();
-
-});
-function listarAcciones() {
-    var listaAcciones = [];
-
-    var accionDesc = $(".nuevaDescripcionAccion");
-    for (var i = 0; i < accionDesc.length; i++) {
-        listaAcciones.push({
-            "id": $(accionDesc[i]).attr("idAccion"),
-            "accion": $(accionDesc[i]).val(),
-            "segmento": $(accionDesc[i]).attr("segmento"),
-            "conteo": $(accionDesc[i]).attr("contable")
-        });
-    }
-    $("#listaAcciones").val(JSON.stringify(listaAcciones));
-}
-function quitaragregarAcciones() {
-    //Capturamos todos los id de productos que fueron elegidos en la venta
-    var idAccion = $(".quitarAccion");
-    //Capturamos todos los botones de agregar que aparecen en la tabla
-    var botonesTabla2 = $(".tablaAccionesFrm tbody button.agregarAccion");
-    //Recorremos en un ciclo para obtener los diferentes idProductos que fueron agregados a la venta
-    for (var i = 0; i < idAccion.length; i++) {
-        //Capturamos los Id de los productos agregados a la venta
-        var boton = $(idAccion[i]).attr("idAccion");
-        //Hacemos un recorrido por la tabla que aparece para desactivar los botones de agregar
-        for (var j = 0; j < botonesTabla2.length; j++) {
-            if ($(botonesTabla2[j]).attr("idAccion") == boton) {
-                $(botonesTabla2[j]).removeClass("btn-success agregarAccion");
-                $(botonesTabla2[j]).addClass("btn-default");
-            }
-        }
-    }
-}
-$('.tablaAccionesFrm').on('draw.dt', function () {
-    quitaragregarAcciones();
-});
-// Listar Acciones Realizadas
-
+// Cargar combos de diagnosticos y acciones
 // Radio otros
 $('input[type=radio][name=obsOtros]').change(function () {
     if (this.value == 'NO') {
