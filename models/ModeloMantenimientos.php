@@ -73,7 +73,8 @@ class ModeloMantenimientos
 
     static public function mdlRegistrarMantenimiento($datos)
     {
-        $stmt = Conexion::conectar()->prepare("CALL REGISTRAR_MANTENIMIENTO(:fRegistroMant,:descInc,:tipEquipo,:condInicial,:idEquip,:oficEquip,:areaEquip,:respoEquip,:tecEvalua,:tipTrabajo,:fEvalua,:primera_eval,:fInicio,:fFin,:recomendaciones,:estAtencion,:condFinal,:servTerce,:otros,:obsOtros,:usRegistra,:sgmtoManto,:logdeta,:diagnosticos,:acciones)");
+        $stmt = Conexion::conectar()->prepare("INSERT INTO ws_mantenimientos(fRegistroMant,descInc,tipEquipo,condInicial,idEquip,oficEquip,areaEquip,respoEquip,tecEvalua,tipTrabajo,fEvalua,primera_eval,fInicio,fFin,recomendaciones,estAtencion,condFinal,servTerce,otros,obsOtros,usRegistra,sgmtoManto,logdeta,diagnostico1,accion1) VALUES('2021-04-21','okas',1,2,54,13,18,9,4,1,'2021-04-20','okis','2021-04-20','2021-04-20','OKIS',1,1,'NO','SI','AJA',1,1,'AA',4,1");
+
         $stmt->bindParam(":tipEquipo", $datos["tipEquipo"], PDO::PARAM_INT);
         $stmt->bindParam(":condInicial", $datos["condInicial"], PDO::PARAM_INT);
         $stmt->bindParam(":idEquip", $datos["idEquip"], PDO::PARAM_INT);
@@ -86,10 +87,28 @@ class ModeloMantenimientos
         $stmt->bindParam(":condFinal", $datos["condFinal"], PDO::PARAM_INT);
         $stmt->bindParam(":usRegistra", $datos["usRegistra"], PDO::PARAM_INT);
         $stmt->bindParam(":sgmtoManto", $datos["sgmtoManto"], PDO::PARAM_INT);
+
+        // $stmt->bindParam(":diagnostico1", $datos["diagnostico1"], PDO::PARAM_INT);
+        // $stmt->bindParam(":diagnostico2", $datos["diagnostico2"], PDO::PARAM_INT);
+        // $stmt->bindParam(":diagnostico3", $datos["diagnostico3"], PDO::PARAM_INT);
+        // $stmt->bindParam(":diagnostico4", $datos["diagnostico4"], PDO::PARAM_INT);
+        // $stmt->bindParam(":diagnostico5", $datos["diagnostico5"], PDO::PARAM_INT);
+        // $stmt->bindParam(":diagnostico6", $datos["diagnostico6"], PDO::PARAM_INT);
+        // $stmt->bindParam(":diagnostico7", $datos["diagnostico7"], PDO::PARAM_INT);
+        // $stmt->bindParam(":diagnostico8", $datos["diagnostico8"], PDO::PARAM_INT);
+
+        // $stmt->bindParam(":accion1", $datos["accion1"], PDO::PARAM_INT);
+        // $stmt->bindParam(":accion2", $datos["accion2"], PDO::PARAM_INT);
+        // $stmt->bindParam(":accion3", $datos["accion3"], PDO::PARAM_INT);
+        // $stmt->bindParam(":accion4", $datos["accion4"], PDO::PARAM_INT);
+        // $stmt->bindParam(":accion5", $datos["accion5"], PDO::PARAM_INT);
+        // $stmt->bindParam(":accion6", $datos["accion6"], PDO::PARAM_INT);
+        // $stmt->bindParam(":accion7", $datos["accion7"], PDO::PARAM_INT);
+        // $stmt->bindParam(":accion8", $datos["accion8"], PDO::PARAM_INT);
+
         $stmt->bindParam(":fRegistroMant", $datos["fRegistroMant"], PDO::PARAM_STR);
         $stmt->bindParam(":descInc", $datos["descInc"], PDO::PARAM_STR);
         $stmt->bindParam(":logdeta", $datos["logdeta"], PDO::PARAM_STR);
-        $stmt->bindParam(":diagnosticos", $datos["diagnosticos"], PDO::PARAM_STR);
         $stmt->bindParam(":fEvalua", $datos["fEvalua"], PDO::PARAM_STR);
         $stmt->bindParam(":primera_eval", $datos["primera_eval"], PDO::PARAM_STR);
         $stmt->bindParam(":fInicio", $datos["fInicio"], PDO::PARAM_STR);
@@ -98,8 +117,6 @@ class ModeloMantenimientos
         $stmt->bindParam(":servTerce", $datos["servTerce"], PDO::PARAM_STR);
         $stmt->bindParam(":otros", $datos["otros"], PDO::PARAM_STR);
         $stmt->bindParam(":obsOtros", $datos["obsOtros"], PDO::PARAM_STR);
-        $stmt->bindParam(":acciones", $datos["acciones"], PDO::PARAM_STR);
-
         if ($stmt->execute()) {
             return "ok";
         } else {

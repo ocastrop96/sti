@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 19-04-2021 a las 20:06:46
+-- Tiempo de generación: 20-04-2021 a las 20:02:21
 -- Versión del servidor: 5.7.24
 -- Versión de PHP: 7.4.15
 
@@ -496,6 +496,62 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_UTECNICOS` ()  BEGIN
 select id_usuario,nombres,apellido_paterno,apellido_materno from ws_usuarios where id_perfil between 3 and 4;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTA_SACCI1` (IN `_sgmt` INT(11), IN `_existe` INT(11))  BEGIN
+SELECT idAccion,accionrealizada FROM ws_acciones where segment = _sgmt and  idAccion != _existe;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTA_SACCI2` (IN `_sgmt` INT(11), IN `_existe` INT(11), IN `_existe2` INT(11))  BEGIN
+SELECT idAccion,accionrealizada FROM ws_acciones where segment = _sgmt and  idAccion != _existe and  idAccion != _existe2;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTA_SACCI3` (IN `_sgmt` INT(11), IN `_existe` INT(11), IN `_existe2` INT(11), IN `_existe3` INT(11))  BEGIN
+SELECT idAccion,accionrealizada FROM ws_acciones where segment = _sgmt and  idAccion != _existe and  idAccion != _existe2 and  idAccion != _existe3;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTA_SACCI4` (IN `_sgmt` INT(11), IN `_existe` INT(11), IN `_existe2` INT(11), IN `_existe3` INT(11), IN `_existe4` INT(11))  BEGIN
+SELECT idAccion,accionrealizada FROM ws_acciones where segment = _sgmt and  idAccion != _existe and  idAccion != _existe2 and  idAccion != _existe3 and  idAccion != _existe4;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTA_SACCI5` (IN `_sgmt` INT(11), IN `_existe` INT(11), IN `_existe2` INT(11), IN `_existe3` INT(11), IN `_existe4` INT(11), IN `_existe5` INT(11))  BEGIN
+SELECT idAccion,accionrealizada FROM ws_acciones where segment = _sgmt and  idAccion != _existe and  idAccion != _existe2 and  idAccion != _existe3 and  idAccion != _existe4 and  idAccion != _existe5;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTA_SACCI6` (IN `_sgmt` INT(11), IN `_existe` INT(11), IN `_existe2` INT(11), IN `_existe3` INT(11), IN `_existe4` INT(11), IN `_existe5` INT(11), IN `_existe6` INT(11))  BEGIN
+SELECT idAccion,accionrealizada FROM ws_acciones where segment = _sgmt and  idAccion != _existe and  idAccion != _existe2 and  idAccion != _existe3 and  idAccion != _existe4 and  idAccion != _existe5 and  idAccion != _existe6;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTA_SACCI7` (IN `_sgmt` INT(11), IN `_existe` INT(11), IN `_existe2` INT(11), IN `_existe3` INT(11), IN `_existe4` INT(11), IN `_existe5` INT(11), IN `_existe6` INT(11), IN `_existe7` INT(11))  BEGIN
+SELECT idAccion,accionrealizada FROM ws_acciones where segment = _sgmt and  idAccion != _existe and  idAccion != _existe2 and  idAccion != _existe3 and  idAccion != _existe4 and  idAccion != _existe5 and  idAccion != _existe6 and  idAccion != _existe7;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTA_SDIAG` (IN `_sgmt` INT(11), IN `_existe` INT(11))  BEGIN
+SELECT idDiagnostico,diagnostico FROM ws_diagnosticos where sgmto = _sgmt and  idDiagnostico != _existe;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTA_SDIAG2` (IN `_sgmt` INT(11), IN `_existe` INT(11), IN `_existe2` INT(11))  BEGIN
+SELECT idDiagnostico,diagnostico FROM ws_diagnosticos where sgmto = _sgmt and  idDiagnostico != _existe and  idDiagnostico != _existe2;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTA_SDIAG3` (IN `_sgmt` INT(11), IN `_existe` INT(11), IN `_existe2` INT(11), IN `_existe3` INT(11))  BEGIN
+SELECT idDiagnostico,diagnostico FROM ws_diagnosticos where sgmto = _sgmt and  idDiagnostico != _existe and  idDiagnostico != _existe2 and  idDiagnostico != _existe3;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTA_SDIAG4` (IN `_sgmt` INT(11), IN `_existe` INT(11), IN `_existe2` INT(11), IN `_existe3` INT(11), IN `_existe4` INT(11))  BEGIN
+SELECT idDiagnostico,diagnostico FROM ws_diagnosticos where sgmto = _sgmt and  idDiagnostico != _existe and  idDiagnostico != _existe2 and  idDiagnostico != _existe3 and  idDiagnostico != _existe4;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTA_SDIAG5` (IN `_sgmt` INT(11), IN `_existe` INT(11), IN `_existe2` INT(11), IN `_existe3` INT(11), IN `_existe4` INT(11), IN `_existe5` INT(11))  BEGIN
+SELECT idDiagnostico,diagnostico FROM ws_diagnosticos where sgmto = _sgmt and  idDiagnostico != _existe and  idDiagnostico != _existe2 and  idDiagnostico != _existe3 and  idDiagnostico != _existe4 and  idDiagnostico != _existe5;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTA_SDIAG6` (IN `_sgmt` INT(11), IN `_existe` INT(11), IN `_existe2` INT(11), IN `_existe3` INT(11), IN `_existe4` INT(11), IN `_existe5` INT(11), IN `_existe6` INT(11))  BEGIN
+SELECT idDiagnostico,diagnostico FROM ws_diagnosticos where sgmto = _sgmt and  idDiagnostico != _existe and  idDiagnostico != _existe2 and  idDiagnostico != _existe3 and  idDiagnostico != _existe4 and  idDiagnostico != _existe5 and  idDiagnostico != _existe6;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTA_SDIAG7` (IN `_sgmt` INT(11), IN `_existe` INT(11), IN `_existe2` INT(11), IN `_existe3` INT(11), IN `_existe4` INT(11), IN `_existe5` INT(11), IN `_existe6` INT(11), IN `_existe7` INT(11))  BEGIN
+SELECT idDiagnostico,diagnostico FROM ws_diagnosticos where sgmto = _sgmt and  idDiagnostico != _existe and  idDiagnostico != _existe2 and  idDiagnostico != _existe3 and  idDiagnostico != _existe4 and  idDiagnostico != _existe5 and  idDiagnostico != _existe6 and  idDiagnostico != _existe7;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LOGIN_USUARIO` (IN `_cuenta` TEXT)  BEGIN
 select * from ws_usuarios where cuenta= _cuenta;
 END$$
@@ -532,8 +588,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `REGISTRAR_INTEGRACIONCI` (IN `_nro_
 INSERT INTO ws_integraciones(nro_eq,ip,serie_imp,fecha_registro,tipo_equipo,responsable,oficina_in,servicio_in,estado,condicion) VALUES (_nro_eq,_ip ,_serie_imp,_fecha_registro,_tipo_equipo,_responsable,_oficina_in,_servicio_in,_estado,_condicion);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `REGISTRAR_MANTENIMIENTO` (IN `_fRegistroMant` DATE, IN `_descInc` TEXT, IN `_tipEquipo` INT(11), IN `_condInicial` INT(11), IN `_idEquip` INT(11), IN `_oficEquip` INT(11), IN `_areaEquip` INT(11), IN `_respoEquip` INT(11), IN `_tecEvalua` INT(11), IN `_tipTrabajo` INT(11), IN `_fEvalua` DATE, IN `_primera_eval` TEXT, IN `_fInicio` DATE, IN `_fFin` DATE, IN `_recomendaciones` TEXT, IN `_estAtencion` INT(11), IN `_condFinal` INT(11), IN `_servTerce` TEXT, IN `_otros` TEXT, IN `_obsOtros` TEXT, IN `_usRegistra` INT(11), IN `_sgmtoManto` INT(11), IN `_logdeta` TEXT, IN `_diagnosticos` TEXT, IN `_acciones` TEXT)  BEGIN
-INSERT INTO ws_mantenimientos(fRegistroMant,descInc,tipEquipo,condInicial,idEquip,oficEquip,areaEquip,respoEquip,tecEvalua,tipTrabajo,fEvalua,primera_eval,fInicio,fFin,recomendaciones,estAtencion,condFinal,servTerce,otros,obsOtros,usRegistra,sgmtoManto,logdeta,diagnosticos,acciones) VALUES(_fRegistroMant,_descInc,_tipEquipo,_condInicial,_idEquip,_oficEquip,_areaEquip,_respoEquip,_tecEvalua,_tipTrabajo,_fEvalua,_primera_eval,_fInicio,_fFin,_recomendaciones,_estAtencion,_condFinal,_servTerce,_otros,_obsOtros,_usRegistra,_sgmtoManto,_logdeta,_diagnosticos,_acciones);
+CREATE DEFINER=`root`@`localhost` PROCEDURE `REGISTRAR_MANTENIMIENTO` (IN `_fRegistroMant` DATE, IN `_descInc` TEXT, IN `_tipEquipo` INT(11), IN `_condInicial` INT(11), IN `_idEquip` INT(11), IN `_oficEquip` INT(11), IN `_areaEquip` INT(11), IN `_respoEquip` INT(11), IN `_tecEvalua` INT(11), IN `_tipTrabajo` INT(11), IN `_fEvalua` DATE, IN `_primera_eval` TEXT, IN `_fInicio` DATE, IN `_fFin` DATE, IN `_recomendaciones` TEXT, IN `_estAtencion` INT(11), IN `_condFinal` INT(11), IN `_servTerce` TEXT, IN `_otros` TEXT, IN `_obsOtros` TEXT, IN `_usRegistra` INT(11), IN `_sgmtoManto` INT(11), IN `_logdeta` TEXT, IN `_diagnostico1` INT(11), IN `_diagnostico2` INT(11), IN `_diagnostico3` INT(11), IN `_diagnostico4` INT(11), IN `_diagnostico5` INT(11), IN `_diagnostico6` INT(11), IN `_diagnostico7` INT(11), IN `_diagnostico8` INT(11), IN `_accion1` INT(11), IN `_accion2` INT(11), IN `_accion3` INT(11), IN `_accion4` INT(11), IN `_accion5` INT(11), IN `_accion6` INT(11), IN `_accion7` INT(11), IN `_accion8` INT(11))  BEGIN
+INSERT INTO ws_mantenimientos(fRegistroMant,descInc,tipEquipo,condInicial,idEquip,oficEquip,areaEquip,respoEquip,tecEvalua,tipTrabajo,fEvalua,primera_eval,fInicio,fFin,recomendaciones,estAtencion,condFinal,servTerce,otros,obsOtros,usRegistra,sgmtoManto,logdeta,diagnostico1,diagnostico2,diagnostico3,diagnostico4,diagnostico5,diagnostico6,diagnostico7,diagnostico8,accion1,accion2,accion3,accion4,accion5,accion6,accion7,accion8) VALUES(_fRegistroMant,_descInc,_tipEquipo,_condInicial,_idEquip,_oficEquip,_areaEquip,_respoEquip,_tecEvalua,_tipTrabajo,_fEvalua,_primera_eval,_fInicio,_fFin,_recomendaciones,_estAtencion,_condFinal,_servTerce,_otros,_obsOtros,_usRegistra,_sgmtoManto,_logdeta,_diagnostico1,_diagnostico2,_diagnostico3,_diagnostico4,_diagnostico5,_diagnostico6,_diagnostico7,_diagnostico8,_accion1,_accion2,_accion3,_accion4,_accion5,_accion6,_accion7,_accion8);
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `REGISTRAR_OFICINA_DPTO` (IN `_area` TEXT)  BEGIN
@@ -1058,7 +1114,13 @@ INSERT INTO `ws_mantenimientos` (`idMantenimiento`, `correlativo_Mant`, `fRegist
 (9, 'FM-2021-00009', '2021-04-05', 14, 1, 87, 13, 16, 13, 'N° Equipo: TIC_0001 || Serie N°: TICKET || Cod.Patr: 1712128 || Marca: TICKET || Modelo: TICKET || Descripción: TICKET || IP: ', 'TICKETERA SE TRABA', 0, 0, 0, 0, 0, 0, 0, 0, 6, '2021-04-05', 'TICKETERA SE TRABA', '2021-04-05', '2021-04-05', 3, 0, 0, 0, 0, 0, 0, 0, 0, 'AJAM', 1, 1, 'NO', 'NO', '', 1, 3, 2, '2021-04-05 10:42:37'),
 (10, 'FM-2021-00010', '2021-04-05', 14, 2, 87, 13, 16, 13, 'N° Equipo: TIC_0001 || Serie N°: TICKET || Cod.Patr: 1712128 || Marca: TICKET || Modelo: TICKET || Descripción: TICKET || IP: ', 'AJAM', 0, 0, 0, 0, 0, 0, 0, 0, 6, '2021-04-05', 'AJAM', '2021-04-05', '2021-04-05', 1, 0, 0, 0, 0, 0, 0, 0, 0, 'AJAM', 1, 1, 'NO', 'NO', '', 1, 3, 2, '2021-04-05 11:00:19'),
 (11, 'FM-2021-00011', '2021-04-05', 14, 1, 87, 13, 16, 13, 'N° Equipo: TIC_0001 || Serie N°: TICKET || Cod.Patr: 1712128 || Marca: TICKET || Modelo: TICKET || Descripción: TICKET || IP: ', 'AJAM', 16, 0, 0, 0, 0, 0, 0, 0, 4, '2021-04-05', 'AJAM', '2021-04-05', '2021-04-05', 1, 20, 21, 0, 0, 0, 0, 0, 0, 'AJAM', 1, 1, 'NO', 'NO', '', 1, 3, 1, '2021-04-05 11:14:14'),
-(12, 'FM-2021-00012', '2021-04-06', 1, 2, 54, 13, 18, 9, 'N° Equipo: PC_OCP || Serie N°: MXL2500TDK || Cod.Patr: 740899500413 || Marca: HP || Modelo: ELITE 8300 || Descripción: PC DE ESCRITORIO || IP: 172.16.5.100 || Procesador: CORE I7-3.40 GHZ || RAM: 12GB || Disco Duro: 1TB', 'Se encuentra el equipo no enciende', 14, 9, 11, 8, 7, 24, 0, 0, 4, '2021-04-06', 'Se verifica que el equipo requiere de limpieza lógica y física', '2021-04-06', '2021-04-06', 2, 1, 12, 15, 2, 17, 18, 0, 0, 'Se recomienda mantenimiento preventivo periódico para evitar fallas a futuro', 1, 1, 'NO', 'NO', '', 1, 1, 1, '2021-04-06 17:12:00');
+(12, 'FM-2021-00012', '2021-04-06', 1, 2, 54, 13, 18, 9, 'N° Equipo: PC_OCP || Serie N°: MXL2500TDK || Cod.Patr: 740899500413 || Marca: HP || Modelo: ELITE 8300 || Descripción: PC DE ESCRITORIO || IP: 172.16.5.100 || Procesador: CORE I7-3.40 GHZ || RAM: 12GB || Disco Duro: 1TB', 'Se encuentra el equipo no enciende', 14, 9, 11, 8, 7, 24, 0, 0, 4, '2021-04-06', 'Se verifica que el equipo requiere de limpieza lógica y física', '2021-04-06', '2021-04-06', 2, 1, 12, 15, 2, 17, 18, 0, 0, 'Se recomienda mantenimiento preventivo periódico para evitar fallas a futuro', 1, 1, 'NO', 'NO', '', 1, 1, 1, '2021-04-06 17:12:00'),
+(13, 'FM-2021-00013', '2021-04-21', 1, 2, 54, 13, 18, 9, 'AA', 'okas', 4, 24, 0, 0, 0, 0, 0, 0, 4, '2021-04-20', 'okis', '2021-04-20', '2021-04-20', 1, 1, 15, 0, 0, 0, 0, 0, 0, 'OKIS', 1, 1, 'NO', 'SI', 'AJA', 1, 1, 1, '2021-04-20 19:18:33'),
+(14, 'FM-2021-00014', '2021-04-21', 1, 2, 54, 13, 18, 9, 'AA', 'okas', 4, 24, 0, 0, 0, 0, 0, 0, 4, '2021-04-20', 'okis', '2021-04-20', '2021-04-20', 1, 1, 15, 0, 0, 0, 0, 0, 0, 'OKIS', 1, 1, 'NO', 'SI', 'AJA', 1, 1, 1, '2021-04-20 19:22:17'),
+(15, 'FM-2021-00015', '2021-04-21', 1, 2, 54, 13, 18, 9, 'AA', 'okas', 4, 24, 0, 0, 0, 0, 0, 0, 4, '2021-04-20', 'okis', '2021-04-20', '2021-04-20', 1, 1, 15, 0, 0, 0, 0, 0, 0, 'OKIS', 1, 1, 'NO', 'SI', 'AJA', 1, 1, 1, '2021-04-20 19:22:20'),
+(16, 'FM-2021-00016', '2021-04-21', 1, 2, 54, 13, 18, 9, 'AA', 'okas', 4, 24, 0, 0, 0, 0, 0, 0, 4, '2021-04-20', 'okis', '2021-04-20', '2021-04-20', 1, 1, 15, 0, 0, 0, 0, 0, 0, 'OKIS', 1, 1, 'NO', 'SI', 'AJA', 1, 1, 1, '2021-04-20 19:22:22'),
+(17, 'FM-2021-00017', '2021-04-21', 1, 2, 54, 13, 18, 9, 'AA', 'okas', 4, 24, 0, 0, 0, 0, 0, 0, 4, '2021-04-20', 'okis', '2021-04-20', '2021-04-20', 1, 1, 15, 0, 0, 0, 0, 0, 0, 'OKIS', 1, 1, 'NO', 'SI', 'AJA', 1, 1, 1, '2021-04-20 19:22:24'),
+(18, 'FM-2021-00018', '2021-04-21', 1, 2, 54, 13, 18, 9, 'AA', 'okas', 4, 24, 0, 0, 0, 0, 0, 0, 4, '2021-04-20', 'okis', '2021-04-20', '2021-04-20', 1, 1, 15, 0, 0, 0, 0, 0, 0, 'OKIS', 1, 1, 'NO', 'SI', 'AJA', 1, 1, 1, '2021-04-20 19:30:08');
 
 --
 -- Disparadores `ws_mantenimientos`
@@ -1561,7 +1623,7 @@ ALTER TABLE `ws_integraciones`
 -- AUTO_INCREMENT de la tabla `ws_mantenimientos`
 --
 ALTER TABLE `ws_mantenimientos`
-  MODIFY `idMantenimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `idMantenimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_mantenimientos_2`

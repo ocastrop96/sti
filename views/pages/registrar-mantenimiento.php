@@ -325,10 +325,7 @@
                         <div class="card-footer">
                             <center><button type="submit" class="btn btn-secondary" id="btnRegMant"><i class="fas fa-save"></i> Registrar Ficha</button></center>
                         </div>
-                        <?php
-                        $registraMante = new ControladorMantenimientos();
-                        $registraMante->ctrRegistrarMantenimiento();
-                        ?>
+                        
                     </form>
                 </div>
             </div>

@@ -1037,10 +1037,25 @@ $("#a7").on("change", function () {
         $("#a8").prop("disabled", true);
     }
 });
+
+$("#condFEQ").on("change", function () {
+    $("#d2").prop("disabled", false);
+    $("#d3").prop("disabled", false);
+    $("#d4").prop("disabled", false);
+    $("#d5").prop("disabled", false);
+    $("#d6").prop("disabled", false);
+    $("#d7").prop("disabled", false);
+    $("#d8").prop("disabled", false);
+    $("#a2").prop("disabled", false);
+    $("#a3").prop("disabled", false);
+    $("#a4").prop("disabled", false);
+    $("#a5").prop("disabled", false);
+    $("#a6").prop("disabled", false);
+    $("#a7").prop("disabled", false);
+    $("#a8").prop("disabled", false);
+});
 // Bloque de selects acciones
 // Cargar información de equipo en base a serie y tipo seleccionado
-// Cargar combos de diagnosticos y acciones
-// Cargar combos de diagnosticos y acciones
 // Radio otros
 $('input[type=radio][name=obsOtros]').change(function () {
     if (this.value == 'NO') {
@@ -1466,8 +1481,6 @@ $("#btnEdtMant").click(function (e) {
 // Validacion de campos
 // Editar Mantenimiento
 $(".tablaMantenimientos").on("click", ".btnEditarMant", function () {
-    var idMantenimiento = $(this).attr("idMantenimiento");
-    window.location = "index.php?ruta=editar-mantenimiento&idMantenimiento=" + idMantenimiento;
 })
 // Editar Mantenimiento
 $(".tablaMantenimientos").on("click", ".btnAnularMantenimiento", function () {

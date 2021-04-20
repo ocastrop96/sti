@@ -30,7 +30,7 @@ class TablaMantenimiento
             if ($mantenimiento[$i]["estAnulado"] != 1) {
                 $botones = "<div class='btn-group'><button class='btn btn-warning disabled'><i class='fas fa-edit'></i></button><button class='btn btn-info disabled'><i class='fas fa-print'></i></button><button class='btn btn-secondary disabled'><i class='fas fa-window-close'></i></button></div>";
             } else {
-                $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarMant' idMantenimiento='" . $mantenimiento[$i]["idMantenimiento"] . "'><i class='fas fa-edit'></i></button><button class='btn btn-info btnImprimirFichaMant' idMantenimiento='" . $mantenimiento[$i]["idMantenimiento"] . "' tipoEquipo='" . $mantenimiento[$i]["tipEquipo"] . "'><i class='fas fa-print'></i></button><button class='btn btn-secondary btnAnularMantenimiento' idMantenimiento='" . $mantenimiento[$i]["idMantenimiento"] . "'><i class='fas fa-window-close'></i></button></div>";
+                $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarMant' idMantenimiento='" . $mantenimiento[$i]["idMantenimiento"] . "' data-toggle='modal' data-target='#modal-editar-mantenimiento'><i class='fas fa-edit'></i></button><button class='btn btn-info btnImprimirFichaMant' idMantenimiento='" . $mantenimiento[$i]["idMantenimiento"] . "' tipoEquipo='" . $mantenimiento[$i]["tipEquipo"] . "'><i class='fas fa-print'></i></button><button class='btn btn-secondary btnAnularMantenimiento' idMantenimiento='" . $mantenimiento[$i]["idMantenimiento"] . "'><i class='fas fa-window-close'></i></button></div>";
             }
             $datos_json .= '[
                 "' . ($i + 1) . '",
