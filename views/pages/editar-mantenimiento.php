@@ -37,7 +37,7 @@
                                 <div class="col-12 col-md-3">
                                     <div class="form-group">
                                         <label for="fechita">N° de Ficha &nbsp; <i class="fas fa-file-invoice"></i> *</label>
-                                        <input type="text" class="form-control" readonly value="<?php echo $fichaManto["correlativo_Mant"]; ?>" name="ncorrelativo">
+                                        <input type="text" class="form-control" readonly name="ncorrelativo">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-3">
@@ -368,8 +368,8 @@
                             <center><button type="submit" class="btn btn-secondary" id="btnEdtMant"><i class="fas fa-save"></i> Guardar cambios</button></center>
                         </div>
                         <?php
-                        $editaMante = new ControladorMantenimientos();
-                        $editaMante->ctrEditarMantenimiento();
+                        // $editaMante = new ControladorMantenimientos();
+                        // $editaMante->ctrEditarMantenimiento();
                         ?>
                     </form>
                 </div>

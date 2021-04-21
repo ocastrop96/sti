@@ -128,6 +128,8 @@ session_start();
   <script type="text/javascript" src="views/dist/js/integra-ep.js"></script>
   <script type="text/javascript" src="views/dist/js/integra-er.js"></script>
   <script type="text/javascript" src="views/dist/js/mantenimientos.js"></script>
+  <!-- <script type="text/javascript" src="views/dist/js/code.min.js"></script> -->
+
   <script type="text/javascript" src="views/dist/js/bajas.js"></script>
   <script type="text/javascript" src="views/dist/js/cableados.js"></script>
 </body>

@@ -34,6 +34,22 @@ class AjaxMantenimientos
         }
         // Listar Datos Resto de Equipos
     }
+
+    public $idMantenimiento;
+    public function ajaxListarMantenimiento()
+    {
+        $item = "idMantenimiento";
+        $valor = $this->idMantenimiento;
+        $respuesta = ControladorMantenimientos::ctrListarFichasManto($item, $valor);
+
+        echo json_encode($respuesta);
+    }
+}
+
+if (isset($_POST["idMantenimiento"])) {
+    $list1 = new AjaxMantenimientos();
+    $list1->idMantenimiento = $_POST["idMantenimiento"];
+    $list1->ajaxListarMantenimiento();
 }
 
 if (isset($_POST["idEq1"])) {
