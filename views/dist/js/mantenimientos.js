@@ -2571,3 +2571,262 @@ $("#edserieEQ").on("change", function () {
     }
 
 });
+// Bloque de selects diagnosticos
+$("#edd1").on("change", function () {
+    var existe = $(this).val();
+    var sgmt = $("#edsegmentado").val();
+    $("#edd2")[0].selectedIndex = 0;
+    $("#edd2").prop("disabled", true);
+    $("#edd3")[0].selectedIndex = 0;
+    $("#edd3").prop("disabled", true);
+    $("#edd4")[0].selectedIndex = 0;
+    $("#edd4").prop("disabled", true);
+    $("#edd5")[0].selectedIndex = 0;
+    $("#edd5").prop("disabled", true);
+    $("#edd6")[0].selectedIndex = 0;
+    $("#edd6").prop("disabled", true);
+    $("#edd7")[0].selectedIndex = 0;
+    $("#edd7").prop("disabled", true);
+    $("#edd8")[0].selectedIndex = 0;
+    $("#edd8").prop("disabled", true);
+    if (existe > 0) {
+        $.ajax({
+            type: "POST",
+            url: "lib/comboDiagnosticos.php",
+            data: "sgmt=" + sgmt + "&existe=" + existe,
+            success: function (html) {
+                $("#edd2").html(html);
+                $("#edd2").prop("disabled", false);
+            },
+        });
+    }
+    else {
+        $("#edd2")[0].selectedIndex = 0;
+        $("#edd2").prop("disabled", true);
+        $("#edd3")[0].selectedIndex = 0;
+        $("#edd3").prop("disabled", true);
+        $("#edd4")[0].selectedIndex = 0;
+        $("#edd4").prop("disabled", true);
+        $("#edd5")[0].selectedIndex = 0;
+        $("#edd5").prop("disabled", true);
+        $("#edd6")[0].selectedIndex = 0;
+        $("#edd6").prop("disabled", true);
+        $("#edd7")[0].selectedIndex = 0;
+        $("#edd7").prop("disabled", true);
+        $("#edd8")[0].selectedIndex = 0;
+        $("#edd8").prop("disabled", true);
+    }
+});
+
+$("#edd2").on("change", function () {
+    var existe = $("#edd1").val();
+    var existe2 = $(this).val();
+    var sgmt = $("#edsegmentado").val();
+    $("#d3")[0].selectedIndex = 0;
+    $("#d3").prop("disabled", true);
+    $("#d4")[0].selectedIndex = 0;
+    $("#d4").prop("disabled", true);
+    $("#d5")[0].selectedIndex = 0;
+    $("#d5").prop("disabled", true);
+    $("#d6")[0].selectedIndex = 0;
+    $("#d6").prop("disabled", true);
+    $("#d7")[0].selectedIndex = 0;
+    $("#d7").prop("disabled", true);
+    $("#d8")[0].selectedIndex = 0;
+    $("#d8").prop("disabled", true);
+    if (existe2 > 0) {
+        $.ajax({
+            type: "POST",
+            url: "lib/comboDiagnosticos2.php",
+            data: "sgmt=" + sgmt + "&existe=" + existe + "&existe2=" + existe2,
+            success: function (html) {
+                $("#edd3").html(html);
+                $("#edd3").prop("disabled", false);
+            },
+        });
+    }
+    else {
+        $("#d3")[0].selectedIndex = 0;
+        $("#d3").prop("disabled", true);
+        $("#d4")[0].selectedIndex = 0;
+        $("#d4").prop("disabled", true);
+        $("#d5")[0].selectedIndex = 0;
+        $("#d5").prop("disabled", true);
+        $("#d6")[0].selectedIndex = 0;
+        $("#d6").prop("disabled", true);
+        $("#d7")[0].selectedIndex = 0;
+        $("#d7").prop("disabled", true);
+        $("#d8")[0].selectedIndex = 0;
+        $("#d8").prop("disabled", true);
+    }
+});
+$("#edd3").on("change", function () {
+    var existe = $("#d1").val();
+    var existe2 = $("#d2").val();
+    var existe3 = $(this).val();
+    var sgmt = $("#segmentado").val();
+    $("#d4")[0].selectedIndex = 0;
+    $("#d4").prop("disabled", true);
+    $("#d5")[0].selectedIndex = 0;
+    $("#d5").prop("disabled", true);
+    $("#d6")[0].selectedIndex = 0;
+    $("#d6").prop("disabled", true);
+    $("#d7")[0].selectedIndex = 0;
+    $("#d7").prop("disabled", true);
+    $("#d8")[0].selectedIndex = 0;
+    $("#d8").prop("disabled", true);
+    if (existe3 > 0) {
+        $.ajax({
+            type: "POST",
+            url: "lib/comboDiagnosticos3.php",
+            data: "sgmt=" + sgmt + "&existe=" + existe + "&existe2=" + existe2 + "&existe3=" + existe3,
+            success: function (html) {
+                $("#d4").html(html);
+                $("#d4").prop("disabled", false);
+            },
+        });
+    }
+    else {
+        $("#d4")[0].selectedIndex = 0;
+        $("#d4").prop("disabled", true);
+        $("#d5")[0].selectedIndex = 0;
+        $("#d5").prop("disabled", true);
+        $("#d6")[0].selectedIndex = 0;
+        $("#d6").prop("disabled", true);
+        $("#d7")[0].selectedIndex = 0;
+        $("#d7").prop("disabled", true);
+        $("#d8")[0].selectedIndex = 0;
+        $("#d8").prop("disabled", true);
+    }
+});
+$("#edd4").on("change", function () {
+    var existe = $("#d1").val();
+    var existe2 = $("#d2").val();
+    var existe3 = $("#d3").val();
+    var existe4 = $(this).val();
+    var sgmt = $("#segmentado").val();
+
+    $("#d5")[0].selectedIndex = 0;
+    $("#d5").prop("disabled", true);
+    $("#d6")[0].selectedIndex = 0;
+    $("#d6").prop("disabled", true);
+    $("#d7")[0].selectedIndex = 0;
+    $("#d7").prop("disabled", true);
+    $("#d8")[0].selectedIndex = 0;
+    $("#d8").prop("disabled", true);
+    if (existe4 > 0) {
+        $.ajax({
+            type: "POST",
+            url: "lib/comboDiagnosticos4.php",
+            data: "sgmt=" + sgmt + "&existe=" + existe + "&existe2=" + existe2 + "&existe3=" + existe3 + "&existe4=" + existe4,
+            success: function (html) {
+                $("#d5").html(html);
+                $("#d5").prop("disabled", false);
+            },
+        });
+    }
+    else {
+        $("#d5")[0].selectedIndex = 0;
+        $("#d5").prop("disabled", true);
+        $("#d6")[0].selectedIndex = 0;
+        $("#d6").prop("disabled", true);
+        $("#d7")[0].selectedIndex = 0;
+        $("#d7").prop("disabled", true);
+        $("#d8")[0].selectedIndex = 0;
+        $("#d8").prop("disabled", true);
+    }
+});
+$("#edd5").on("change", function () {
+    var existe = $("#d1").val();
+    var existe2 = $("#d2").val();
+    var existe3 = $("#d3").val();
+    var existe4 = $("#d4").val();
+    var existe5 = $(this).val();
+    var sgmt = $("#segmentado").val();
+
+    $("#d6")[0].selectedIndex = 0;
+    $("#d6").prop("disabled", true);
+    $("#d7")[0].selectedIndex = 0;
+    $("#d7").prop("disabled", true);
+    $("#d8")[0].selectedIndex = 0;
+    $("#d8").prop("disabled", true);
+    if (existe5 > 0) {
+        $.ajax({
+            type: "POST",
+            url: "lib/comboDiagnosticos5.php",
+            data: "sgmt=" + sgmt + "&existe=" + existe + "&existe2=" + existe2 + "&existe3=" + existe3 + "&existe4=" + existe4 + "&existe5=" + existe5,
+            success: function (html) {
+                $("#d6").html(html);
+                $("#d6").prop("disabled", false);
+            },
+        });
+    }
+    else {
+        $("#d6")[0].selectedIndex = 0;
+        $("#d6").prop("disabled", true);
+        $("#d7")[0].selectedIndex = 0;
+        $("#d7").prop("disabled", true);
+        $("#d8")[0].selectedIndex = 0;
+        $("#d8").prop("disabled", true);
+    }
+});
+$("#edd6").on("change", function () {
+    var existe = $("#d1").val();
+    var existe2 = $("#d2").val();
+    var existe3 = $("#d3").val();
+    var existe4 = $("#d4").val();
+    var existe5 = $("#d5").val();
+    var existe6 = $(this).val();
+    var sgmt = $("#segmentado").val();
+
+    $("#d7")[0].selectedIndex = 0;
+    $("#d7").prop("disabled", true);
+    $("#d8")[0].selectedIndex = 0;
+    $("#d8").prop("disabled", true);
+    if (existe6 > 0) {
+        $.ajax({
+            type: "POST",
+            url: "lib/comboDiagnosticos6.php",
+            data: "sgmt=" + sgmt + "&existe=" + existe + "&existe2=" + existe2 + "&existe3=" + existe3 + "&existe4=" + existe4 + "&existe5=" + existe5 + "&existe6=" + existe6,
+            success: function (html) {
+                $("#d7").html(html);
+                $("#d7").prop("disabled", false);
+            },
+        });
+    }
+    else {
+        $("#d7")[0].selectedIndex = 0;
+        $("#d7").prop("disabled", true);
+        $("#d8")[0].selectedIndex = 0;
+        $("#d8").prop("disabled", true);
+    }
+});
+$("#edd7").on("change", function () {
+    var existe = $("#d1").val();
+    var existe2 = $("#d2").val();
+    var existe3 = $("#d3").val();
+    var existe4 = $("#d4").val();
+    var existe5 = $("#d5").val();
+    var existe6 = $("#d6").val();
+    var existe7 = $(this).val();
+    var sgmt = $("#segmentado").val();
+
+    $("#d8")[0].selectedIndex = 0;
+    $("#d8").prop("disabled", true);
+    if (existe7 > 0) {
+        $.ajax({
+            type: "POST",
+            url: "lib/comboDiagnosticos7.php",
+            data: "sgmt=" + sgmt + "&existe=" + existe + "&existe2=" + existe2 + "&existe3=" + existe3 + "&existe4=" + existe4 + "&existe5=" + existe5 + "&existe6=" + existe6 + "&existe7=" + existe7,
+            success: function (html) {
+                $("#d8").html(html);
+                $("#d8").prop("disabled", false);
+            },
+        });
+    }
+    else {
+        $("#d8")[0].selectedIndex = 0;
+        $("#d8").prop("disabled", true);
+    }
+});
+// Bloque de selects diagnosticos
