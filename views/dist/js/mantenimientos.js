@@ -1896,3 +1896,678 @@ $(".tablaMantenimientos").on("click", ".btnImprimirFichaMant", function () {
     var idTipo = $(this).attr("tipoEquipo");
     window.open("reports/ficha-mantenimiento.php?idMantenimiento=" + idMantenimiento + "&idTipo=" + idTipo, "_blank");
 });
+
+$("#edtipEquipo").on("change", function () {
+    $("#edofiEq1").prop("disabled", false);
+    $("#edofiEq").val("0");
+    $("#edofiEq").html('Seleccione Serie EQ primero');
+    $("#edservEq1").prop("disabled", false);
+    $("#edservEq").val("0");
+    $("#edservEq").html('Seleccione Serie EQ primero');
+    $("#edrespEq1").prop("disabled", false);
+    $("#edrespEq").val("0");
+    $("#edrespEq").html('Seleccione Serie EQ primero');
+    $("#eddetaEQ").val("");
+    $("#edtsegmento").val("0");
+    $("#edtsegmento").html('Seleccione Serie EQ primero');
+    var idCatego = $(this).val();
+    if (idCatego > 0) {
+        $("#edd1")[0].selectedIndex = 0;
+        $("#edd1_").val(0);
+        $("#edd1_").html("Selecciona Diagnostico");
+
+        $("#edd2")[0].selectedIndex = 0;
+        $("#edd2_").val(0);
+        $("#edd2_").html("Selecciona Diagnostico");
+
+        $("#edd3")[0].selectedIndex = 0;
+        $("#edd3_").val(0);
+        $("#edd3_").html("Selecciona Diagnostico");
+
+        $("#edd4")[0].selectedIndex = 0;
+        $("#edd4_").val(0);
+        $("#edd4_").html("Selecciona Diagnostico");
+
+        $("#edd5")[0].selectedIndex = 0;
+        $("#edd5_").val(0);
+        $("#edd5_").html("Selecciona Diagnostico");
+
+        $("#edd6")[0].selectedIndex = 0;
+        $("#edd6_").val(0);
+        $("#edd6_").html("Selecciona Diagnostico");
+
+        $("#edd7")[0].selectedIndex = 0;
+        $("#edd7_").val(0);
+        $("#edd7_").html("Selecciona Diagnostico");
+
+        $("#edd8")[0].selectedIndex = 0;
+        $("#edd8_").val(0);
+        $("#edd8_").html("Selecciona Diagnostico");
+
+
+        $("#eda1")[0].selectedIndex = 0;
+        $("#eda1_").val(0);
+        $("#eda1_").html("Selecciona Accion Realizada");
+
+        $("#eda2")[0].selectedIndex = 0;
+        $("#eda2_").val(0);
+        $("#eda2_").html("Selecciona Accion Realizada");
+
+        $("#eda3")[0].selectedIndex = 0;
+        $("#eda3_").val(0);
+        $("#eda3_").html("Selecciona Accion Realizada");
+
+        $("#eda4")[0].selectedIndex = 0;
+        $("#eda4_").val(0);
+        $("#eda4_").html("Selecciona Accion Realizada");
+
+        $("#eda5")[0].selectedIndex = 0;
+        $("#eda5_").val(0);
+        $("#eda5_").html("Selecciona Accion Realizada");
+
+        $("#eda6")[0].selectedIndex = 0;
+        $("#eda6_").val(0);
+        $("#eda6_").html("Selecciona Accion Realizada");
+
+        $("#eda7")[0].selectedIndex = 0;
+        $("#eda7_").val(0);
+        $("#eda7_").html("Selecciona Accion Realizada");
+
+        $("#eda8")[0].selectedIndex = 0;
+        $("#eda8_").val(0);
+        $("#eda8_").html("Selecciona Accion Realizada");
+
+        $.ajax({
+            type: "POST",
+            url: "lib/comboSeriesManto.php",
+            data: "idCatego=" + idCatego,
+            success: function (html) {
+                $("#edserieEQ").prop("disabled", false);
+                $("#edserieEQ").html(html);
+            },
+        });
+    }
+    else {
+        $("#edserieEQ").html('<option value="">Seleccione tipo Equipo primero</option>');
+        $("#edserieEQ").prop("disabled", false);
+        $("#edofiEq1").prop("disabled", false);
+        $("#edofiEq").val("0");
+        $("#edofiEq").html('Seleccione Serie EQ primero');
+        $("#edservEq1").prop("disabled", false);
+        $("#edservEq").val("0");
+        $("#edservEq").html('Seleccione Serie EQ primero');
+        $("#edrespEq1").prop("disabled", false);
+        $("#edrespEq").val("0");
+        $("#edrespEq").html('Seleccione Serie EQ primero');
+        $("#eddetaEQ").val("");
+        $("#edsegmentado").val("0");
+        $("#edtsegmento").val("0");
+        $("#edtsegmento").html('Seleccione Serie EQ primero');
+
+        $("#edd1")[0].selectedIndex = 0;
+        $("#edd1_").val(0);
+        $("#edd1_").html("Selecciona Diagnostico");
+
+        $("#edd2")[0].selectedIndex = 0;
+        $("#edd2_").val(0);
+        $("#edd2_").html("Selecciona Diagnostico");
+
+        $("#edd3")[0].selectedIndex = 0;
+        $("#edd3_").val(0);
+        $("#edd3_").html("Selecciona Diagnostico");
+
+        $("#edd4")[0].selectedIndex = 0;
+        $("#edd4_").val(0);
+        $("#edd4_").html("Selecciona Diagnostico");
+
+        $("#edd5")[0].selectedIndex = 0;
+        $("#edd5_").val(0);
+        $("#edd5_").html("Selecciona Diagnostico");
+
+        $("#edd6")[0].selectedIndex = 0;
+        $("#edd6_").val(0);
+        $("#edd6_").html("Selecciona Diagnostico");
+
+        $("#edd7")[0].selectedIndex = 0;
+        $("#edd7_").val(0);
+        $("#edd7_").html("Selecciona Diagnostico");
+
+        $("#edd8")[0].selectedIndex = 0;
+        $("#edd8_").val(0);
+        $("#edd8_").html("Selecciona Diagnostico");
+
+
+        $("#eda1")[0].selectedIndex = 0;
+        $("#eda1_").val(0);
+        $("#eda1_").html("Selecciona Accion Realizada");
+
+        $("#eda2")[0].selectedIndex = 0;
+        $("#eda2_").val(0);
+        $("#eda2_").html("Selecciona Accion Realizada");
+
+        $("#eda3")[0].selectedIndex = 0;
+        $("#eda3_").val(0);
+        $("#eda3_").html("Selecciona Accion Realizada");
+
+        $("#eda4")[0].selectedIndex = 0;
+        $("#eda4_").val(0);
+        $("#eda4_").html("Selecciona Accion Realizada");
+
+        $("#eda5")[0].selectedIndex = 0;
+        $("#eda5_").val(0);
+        $("#eda5_").html("Selecciona Accion Realizada");
+
+        $("#eda6")[0].selectedIndex = 0;
+        $("#eda6_").val(0);
+        $("#eda6_").html("Selecciona Accion Realizada");
+
+        $("#eda7")[0].selectedIndex = 0;
+        $("#eda7_").val(0);
+        $("#eda7_").html("Selecciona Accion Realizada");
+
+        $("#eda8")[0].selectedIndex = 0;
+        $("#eda8_").val(0);
+        $("#eda8_").html("Selecciona Accion Realizada");
+    }
+});
+$("#edserieEQ").on("change", function () {
+    var idEq1 = $(this).val();
+    var idTip1 = $("#edtipEquipo").val();
+
+    if (idEq1 > 0) {
+        var datosEQ = new FormData();
+        datosEQ.append("idEq1", idEq1);
+        datosEQ.append("idTip1", idTip1);
+        $("#edd2")[0].selectedIndex = 0;
+        $("#edd2_").val(0);
+        $("#edd2_").html("Selecciona Diagnostico");
+
+        $("#edd3")[0].selectedIndex = 0;
+        $("#edd3_").val(0);
+        $("#edd3_").html("Selecciona Diagnostico");
+
+        $("#edd4")[0].selectedIndex = 0;
+        $("#edd4_").val(0);
+        $("#edd4_").html("Selecciona Diagnostico");
+
+        $("#edd5")[0].selectedIndex = 0;
+        $("#edd5_").val(0);
+        $("#edd5_").html("Selecciona Diagnostico");
+
+        $("#edd6")[0].selectedIndex = 0;
+        $("#edd6_").val(0);
+        $("#edd6_").html("Selecciona Diagnostico");
+
+        $("#edd7")[0].selectedIndex = 0;
+        $("#edd7_").val(0);
+        $("#edd7_").html("Selecciona Diagnostico");
+
+        $("#edd8")[0].selectedIndex = 0;
+        $("#edd8_").val(0);
+        $("#edd8_").html("Selecciona Diagnostico");
+
+        $("#eda2")[0].selectedIndex = 0;
+        $("#eda2_").val(0);
+        $("#eda2_").html("Selecciona Accion Realizada");
+
+        $("#eda3")[0].selectedIndex = 0;
+        $("#eda3_").val(0);
+        $("#eda3_").html("Selecciona Accion Realizada");
+
+        $("#eda4")[0].selectedIndex = 0;
+        $("#eda4_").val(0);
+        $("#eda4_").html("Selecciona Accion Realizada");
+
+        $("#eda5")[0].selectedIndex = 0;
+        $("#eda5_").val(0);
+        $("#eda5_").html("Selecciona Accion Realizada");
+
+        $("#eda6")[0].selectedIndex = 0;
+        $("#eda6_").val(0);
+        $("#eda6_").html("Selecciona Accion Realizada");
+
+        $("#eda7")[0].selectedIndex = 0;
+        $("#eda7_").val(0);
+        $("#eda7_").html("Selecciona Accion Realizada");
+
+        $("#eda8")[0].selectedIndex = 0;
+        $("#eda8_").val(0);
+        $("#eda8_").html("Selecciona Accion Realizada");
+        $.ajax({
+            url: "lib/ajaxMantenimientos.php",
+            method: "POST",
+            data: datosEQ,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: "json",
+            success: function (respuesta) {
+                if (idTip1 > 0) {
+                    if (idTip1 == 1 || idTip1 == 4 || idTip1 == 5) {
+                        $("#edofiEq").val(respuesta["office"]);
+                        $("#edofiEq").html(respuesta["area"]);
+                        $("#edservEq").val(respuesta["service"]);
+                        $("#edservEq").html(respuesta["subarea"]);
+                        $("#edrespEq").val(respuesta["uResponsable"]);
+                        $("#edrespEq").html(respuesta["nombresResp"] + " " + respuesta["apellidosResp"]);
+                        $("#eddetaEQ").val("N° Equipo: " + respuesta["nro_eq"] +
+                            " || Serie N°: " + respuesta["serie"] + " || Cod.Patr: " + respuesta["sbn"] + " || Marca: " + respuesta["marca"] + " || Modelo: " + respuesta["modelo"] + " || Descripción: " + respuesta["descripcion"] + " || IP: " + respuesta["ip"] + " || Procesador: " + respuesta["procesador"] + "-" + respuesta["vprocesador"] + " || RAM: " + respuesta["ram"] + " || Disco Duro: " + respuesta["discoDuro"]);
+                        $("#edsegmentado").val(respuesta["tipSegmento"]);
+                        $("#edtsegmento").val(respuesta["tipSegmento"]);
+                        $("#edtsegmento").html(respuesta["descSegmento"]);
+                        // Llamar lista inicial de diagnosticos
+                        let idSegmento = respuesta["tipSegmento"];
+                        $.ajax({
+                            type: "POST",
+                            url: "lib/comboListaDiagnostico.php",
+                            data: "idSegmento=" + idSegmento,
+                            success: function (html) {
+                                $("#edd1").prop("disabled", false);
+                                $("#edd1").html(html);
+                                $("#edd2")[0].selectedIndex = 0;
+                                $("#edd2_").val(0);
+                                $("#edd2_").html("Selecciona Diagnostico");
+
+                                $("#edd3")[0].selectedIndex = 0;
+                                $("#edd3_").val(0);
+                                $("#edd3_").html("Selecciona Diagnostico");
+
+                                $("#edd4")[0].selectedIndex = 0;
+                                $("#edd4_").val(0);
+                                $("#edd4_").html("Selecciona Diagnostico");
+
+                                $("#edd5")[0].selectedIndex = 0;
+                                $("#edd5_").val(0);
+                                $("#edd5_").html("Selecciona Diagnostico");
+
+                                $("#edd6")[0].selectedIndex = 0;
+                                $("#edd6_").val(0);
+                                $("#edd6_").html("Selecciona Diagnostico");
+
+                                $("#edd7")[0].selectedIndex = 0;
+                                $("#edd7_").val(0);
+                                $("#edd7_").html("Selecciona Diagnostico");
+
+                                $("#edd8")[0].selectedIndex = 0;
+                                $("#edd8_").val(0);
+                                $("#edd8_").html("Selecciona Diagnostico");
+                            },
+                        });
+                        // Llamar lista inicial de diagnosticos
+                        // Llamar lista inicial de acciones
+                        let idAcciona = respuesta["tipSegmento"];
+                        $.ajax({
+                            type: "POST",
+                            url: "lib/comboListaAcciones.php",
+                            data: "idAcciona=" + idAcciona,
+                            success: function (html) {
+                                $("#eda1").prop("disabled", false);
+                                $("#eda1").html(html);
+                                $("#eda2")[0].selectedIndex = 0;
+                                $("#eda2_").val(0);
+                                $("#eda2_").html("Selecciona Accion Realizada");
+
+                                $("#eda3")[0].selectedIndex = 0;
+                                $("#eda3_").val(0);
+                                $("#eda3_").html("Selecciona Accion Realizada");
+
+                                $("#eda4")[0].selectedIndex = 0;
+                                $("#eda4_").val(0);
+                                $("#eda4_").html("Selecciona Accion Realizada");
+
+                                $("#eda5")[0].selectedIndex = 0;
+                                $("#eda5_").val(0);
+                                $("#eda5_").html("Selecciona Accion Realizada");
+
+                                $("#eda6")[0].selectedIndex = 0;
+                                $("#eda6_").val(0);
+                                $("#eda6_").html("Selecciona Accion Realizada");
+
+                                $("#eda7")[0].selectedIndex = 0;
+                                $("#eda7_").val(0);
+                                $("#eda7_").html("Selecciona Accion Realizada");
+
+                                $("#eda8")[0].selectedIndex = 0;
+                                $("#eda8_").val(0);
+                                $("#eda8_").html("Selecciona Accion Realizada");
+                            },
+                        });
+                        // Llamar lista inicial de acciones
+                    }
+                    else if (idTip1 == 2 || idTip1 == 6 || idTip1 == 7 || idTip1 == 8) {
+                        $("#edofiEq").val(respuesta["office"]);
+                        $("#edofiEq").html(respuesta["area"]);
+                        $("#edservEq").val(respuesta["service"]);
+                        $("#edservEq").html(respuesta["subarea"]);
+                        $("#edrespEq").val(respuesta["uResponsable"]);
+                        $("#edrespEq").html(respuesta["nombresResp"] + " " + respuesta["apellidosResp"]);
+                        $("#eddetaEQ").val("N° Equipo: " + respuesta["nro_eq"] +
+                            " || Serie N°: " + respuesta["serie"] + " || Cod.Patr: " + respuesta["sbn"] + " || Marca: " + respuesta["marca"] + " || Modelo: " + respuesta["modelo"] + " || Descripción: " + respuesta["descripcion"] + " || IP: " + respuesta["ip"]);
+                        $("#edsegmentado").val(respuesta["tipSegmento"]);
+                        $("#edtsegmento").val(respuesta["tipSegmento"]);
+                        $("#edtsegmento").html(respuesta["descSegmento"]);
+                        let idSegmento = respuesta["tipSegmento"];
+                        $.ajax({
+                            type: "POST",
+                            url: "lib/comboListaDiagnostico.php",
+                            data: "idSegmento=" + idSegmento,
+                            success: function (html) {
+                                $("#edd1").prop("disabled", false);
+                                $("#edd1").html(html);
+                                $("#edd2")[0].selectedIndex = 0;
+                                $("#edd2_").val(0);
+                                $("#edd2_").html("Selecciona Diagnostico");
+
+                                $("#edd3")[0].selectedIndex = 0;
+                                $("#edd3_").val(0);
+                                $("#edd3_").html("Selecciona Diagnostico");
+
+                                $("#edd4")[0].selectedIndex = 0;
+                                $("#edd4_").val(0);
+                                $("#edd4_").html("Selecciona Diagnostico");
+
+                                $("#edd5")[0].selectedIndex = 0;
+                                $("#edd5_").val(0);
+                                $("#edd5_").html("Selecciona Diagnostico");
+
+                                $("#edd6")[0].selectedIndex = 0;
+                                $("#edd6_").val(0);
+                                $("#edd6_").html("Selecciona Diagnostico");
+
+                                $("#edd7")[0].selectedIndex = 0;
+                                $("#edd7_").val(0);
+                                $("#edd7_").html("Selecciona Diagnostico");
+
+                                $("#edd8")[0].selectedIndex = 0;
+                                $("#edd8_").val(0);
+                                $("#edd8_").html("Selecciona Diagnostico");
+                            },
+                        });
+                        let idAcciona = respuesta["tipSegmento"];
+                        $.ajax({
+                            type: "POST",
+                            url: "lib/comboListaAcciones.php",
+                            data: "idAcciona=" + idAcciona,
+                            success: function (html) {
+                                $("#eda1").prop("disabled", false);
+                                $("#eda1").html(html);
+                                $("#eda2")[0].selectedIndex = 0;
+                                $("#eda2_").val(0);
+                                $("#eda2_").html("Selecciona Accion Realizada");
+
+                                $("#eda3")[0].selectedIndex = 0;
+                                $("#eda3_").val(0);
+                                $("#eda3_").html("Selecciona Accion Realizada");
+
+                                $("#eda4")[0].selectedIndex = 0;
+                                $("#eda4_").val(0);
+                                $("#eda4_").html("Selecciona Accion Realizada");
+
+                                $("#eda5")[0].selectedIndex = 0;
+                                $("#eda5_").val(0);
+                                $("#eda5_").html("Selecciona Accion Realizada");
+
+                                $("#eda6")[0].selectedIndex = 0;
+                                $("#eda6_").val(0);
+                                $("#eda6_").html("Selecciona Accion Realizada");
+
+                                $("#eda7")[0].selectedIndex = 0;
+                                $("#eda7_").val(0);
+                                $("#eda7_").html("Selecciona Accion Realizada");
+
+                                $("#eda8")[0].selectedIndex = 0;
+                                $("#eda8_").val(0);
+                                $("#eda8_").html("Selecciona Accion Realizada");
+                            },
+                        });
+                    }
+                    else if (idTip1 == 3 || idTip1 == 9 || idTip1 == 14 || idTip1 == 15 || idTip1 == 16 || idTip1 == 17) {
+                        $("#edofiEq").val(respuesta["office"]);
+                        $("#edofiEq").html(respuesta["area"]);
+                        $("#edservEq").val(respuesta["service"]);
+                        $("#edservEq").html(respuesta["subarea"]);
+                        $("#edrespEq").val(respuesta["uResponsable"]);
+                        $("#edrespEq").html(respuesta["nombresResp"] + " " + respuesta["apellidosResp"]);
+                        $("#eddetaEQ").val("N° Equipo: " + respuesta["nro_eq"] +
+                            " || Serie N°: " + respuesta["serie"] + " || Cod.Patr: " + respuesta["sbn"] + " || Marca: " + respuesta["marca"] + " || Modelo: " + respuesta["modelo"] + " || Descripción: " + respuesta["descripcion"] + " || IP: " + respuesta["ip"]);
+                        $("#edsegmentado").val(respuesta["tipSegmento"]);
+                        $("#edtsegmento").val(respuesta["tipSegmento"]);
+                        $("#edtsegmento").html(respuesta["descSegmento"]);
+                        let idSegmento = respuesta["tipSegmento"];
+                        $.ajax({
+                            type: "POST",
+                            url: "lib/comboListaDiagnostico.php",
+                            data: "idSegmento=" + idSegmento,
+                            success: function (html) {
+                                $("#edd1").prop("disabled", false);
+                                $("#edd1").html(html);
+                                $("#edd2")[0].selectedIndex = 0;
+                                $("#edd2_").val(0);
+                                $("#edd2_").html("Selecciona Diagnostico");
+
+                                $("#edd3")[0].selectedIndex = 0;
+                                $("#edd3_").val(0);
+                                $("#edd3_").html("Selecciona Diagnostico");
+
+                                $("#edd4")[0].selectedIndex = 0;
+                                $("#edd4_").val(0);
+                                $("#edd4_").html("Selecciona Diagnostico");
+
+                                $("#edd5")[0].selectedIndex = 0;
+                                $("#edd5_").val(0);
+                                $("#edd5_").html("Selecciona Diagnostico");
+
+                                $("#edd6")[0].selectedIndex = 0;
+                                $("#edd6_").val(0);
+                                $("#edd6_").html("Selecciona Diagnostico");
+
+                                $("#edd7")[0].selectedIndex = 0;
+                                $("#edd7_").val(0);
+                                $("#edd7_").html("Selecciona Diagnostico");
+
+                                $("#edd8")[0].selectedIndex = 0;
+                                $("#edd8_").val(0);
+                                $("#edd8_").html("Selecciona Diagnostico");
+                            },
+                        });
+                        let idAcciona = respuesta["tipSegmento"];
+                        $.ajax({
+                            type: "POST",
+                            url: "lib/comboListaAcciones.php",
+                            data: "idAcciona=" + idAcciona,
+                            success: function (html) {
+                                $("#eda1").prop("disabled", false);
+                                $("#eda1").html(html);
+                                $("#eda2")[0].selectedIndex = 0;
+                                $("#eda2_").val(0);
+                                $("#eda2_").html("Selecciona Accion Realizada");
+
+                                $("#eda3")[0].selectedIndex = 0;
+                                $("#eda3_").val(0);
+                                $("#eda3_").html("Selecciona Accion Realizada");
+
+                                $("#eda4")[0].selectedIndex = 0;
+                                $("#eda4_").val(0);
+                                $("#eda4_").html("Selecciona Accion Realizada");
+
+                                $("#eda5")[0].selectedIndex = 0;
+                                $("#eda5_").val(0);
+                                $("#eda5_").html("Selecciona Accion Realizada");
+
+                                $("#eda6")[0].selectedIndex = 0;
+                                $("#eda6_").val(0);
+                                $("#eda6_").html("Selecciona Accion Realizada");
+
+                                $("#eda7")[0].selectedIndex = 0;
+                                $("#eda7_").val(0);
+                                $("#eda7_").html("Selecciona Accion Realizada");
+
+                                $("#eda8")[0].selectedIndex = 0;
+                                $("#eda8_").val(0);
+                                $("#eda8_").html("Selecciona Accion Realizada");
+                            },
+                        });
+                    }
+                    else {
+                        $("#edofiEq").val(respuesta["office"]);
+                        $("#edofiEq").html(respuesta["area"]);
+                        $("#edservEq").val(respuesta["service"]);
+                        $("#edservEq").html(respuesta["subarea"]);
+                        $("#edrespEq").val(respuesta["uResponsable"]);
+                        $("#edrespEq").html(respuesta["nombresResp"] + " " + respuesta["apellidosResp"]);
+                        $("#eddetaEQ").val("Serie N°: " + respuesta["serie"] + " || Cod.Patr: " + respuesta["sbn"] + " || Marca: " + respuesta["marca"] + " || Modelo: " + respuesta["modelo"] + " || Descripción: " + respuesta["descripcion"]);
+                        $("#edsegmentado").val(respuesta["tipSegmento"]);
+                        $("#edtsegmento").val(respuesta["tipSegmento"]);
+                        $("#edtsegmento").html(respuesta["descSegmento"]);
+                        let idSegmento = respuesta["tipSegmento"];
+                        $.ajax({
+                            type: "POST",
+                            url: "lib/comboListaDiagnostico.php",
+                            data: "idSegmento=" + idSegmento,
+                            success: function (html) {
+                                $("#edd1").prop("disabled", false);
+                                $("#edd1").html(html);
+                                $("#edd2")[0].selectedIndex = 0;
+                                $("#edd2_").val(0);
+                                $("#edd2_").html("Selecciona Diagnostico");
+
+                                $("#edd3")[0].selectedIndex = 0;
+                                $("#edd3_").val(0);
+                                $("#edd3_").html("Selecciona Diagnostico");
+
+                                $("#edd4")[0].selectedIndex = 0;
+                                $("#edd4_").val(0);
+                                $("#edd4_").html("Selecciona Diagnostico");
+
+                                $("#edd5")[0].selectedIndex = 0;
+                                $("#edd5_").val(0);
+                                $("#edd5_").html("Selecciona Diagnostico");
+
+                                $("#edd6")[0].selectedIndex = 0;
+                                $("#edd6_").val(0);
+                                $("#edd6_").html("Selecciona Diagnostico");
+
+                                $("#edd7")[0].selectedIndex = 0;
+                                $("#edd7_").val(0);
+                                $("#edd7_").html("Selecciona Diagnostico");
+
+                                $("#edd8")[0].selectedIndex = 0;
+                                $("#edd8_").val(0);
+                                $("#edd8_").html("Selecciona Diagnostico");
+                            },
+                        });
+                        let idAcciona = respuesta["tipSegmento"];
+                        $.ajax({
+                            type: "POST",
+                            url: "lib/comboListaAcciones.php",
+                            data: "idAcciona=" + idAcciona,
+                            success: function (html) {
+                                $("#eda1").prop("disabled", false);
+                                $("#eda1").html(html);
+                                $("#eda2")[0].selectedIndex = 0;
+                                $("#eda2_").val(0);
+                                $("#eda2_").html("Selecciona Accion Realizada");
+
+                                $("#eda3")[0].selectedIndex = 0;
+                                $("#eda3_").val(0);
+                                $("#eda3_").html("Selecciona Accion Realizada");
+
+                                $("#eda4")[0].selectedIndex = 0;
+                                $("#eda4_").val(0);
+                                $("#eda4_").html("Selecciona Accion Realizada");
+
+                                $("#eda5")[0].selectedIndex = 0;
+                                $("#eda5_").val(0);
+                                $("#eda5_").html("Selecciona Accion Realizada");
+
+                                $("#eda6")[0].selectedIndex = 0;
+                                $("#eda6_").val(0);
+                                $("#eda6_").html("Selecciona Accion Realizada");
+
+                                $("#eda7")[0].selectedIndex = 0;
+                                $("#eda7_").val(0);
+                                $("#eda7_").html("Selecciona Accion Realizada");
+
+                                $("#eda8")[0].selectedIndex = 0;
+                                $("#eda8_").val(0);
+                                $("#eda8_").html("Selecciona Accion Realizada");
+                            },
+                        });
+                    }
+                }
+            }
+        });
+    }
+    else {
+        $("#edofiEq1").prop("disabled", false);
+        $("#edofiEq").val("0");
+        $("#edofiEq").html('Seleccione Serie EQ primero');
+        $("#edservEq1").prop("disabled", false);
+        $("#edservEq").val("0");
+        $("#edservEq").html('Seleccione Serie EQ primero');
+        $("#edrespEq1").prop("disabled", false);
+        $("#edrespEq").val("0");
+        $("#edrespEq").html('Seleccione Serie EQ primero');
+        $("#eddetaEQ").val("");
+        $("#edsegmentado").val("0");
+        $("#edtsegmento").val("0");
+        $("#edtsegmento").html('Seleccione Serie EQ primero');
+
+        $("#edd2")[0].selectedIndex = 0;
+        $("#edd2_").val(0);
+        $("#edd2_").html("Selecciona Diagnostico");
+
+        $("#edd3")[0].selectedIndex = 0;
+        $("#edd3_").val(0);
+        $("#edd3_").html("Selecciona Diagnostico");
+
+        $("#edd4")[0].selectedIndex = 0;
+        $("#edd4_").val(0);
+        $("#edd4_").html("Selecciona Diagnostico");
+
+        $("#edd5")[0].selectedIndex = 0;
+        $("#edd5_").val(0);
+        $("#edd5_").html("Selecciona Diagnostico");
+
+        $("#edd6")[0].selectedIndex = 0;
+        $("#edd6_").val(0);
+        $("#edd6_").html("Selecciona Diagnostico");
+
+        $("#edd7")[0].selectedIndex = 0;
+        $("#edd7_").val(0);
+        $("#edd7_").html("Selecciona Diagnostico");
+
+        $("#edd8")[0].selectedIndex = 0;
+        $("#edd8_").val(0);
+        $("#edd8_").html("Selecciona Diagnostico");
+
+        $("#eda2")[0].selectedIndex = 0;
+        $("#eda2_").val(0);
+        $("#eda2_").html("Selecciona Accion Realizada");
+
+        $("#eda3")[0].selectedIndex = 0;
+        $("#eda3_").val(0);
+        $("#eda3_").html("Selecciona Accion Realizada");
+
+        $("#eda4")[0].selectedIndex = 0;
+        $("#eda4_").val(0);
+        $("#eda4_").html("Selecciona Accion Realizada");
+
+        $("#eda5")[0].selectedIndex = 0;
+        $("#eda5_").val(0);
+        $("#eda5_").html("Selecciona Accion Realizada");
+
+        $("#eda6")[0].selectedIndex = 0;
+        $("#eda6_").val(0);
+        $("#eda6_").html("Selecciona Accion Realizada");
+
+        $("#eda7")[0].selectedIndex = 0;
+        $("#eda7_").val(0);
+        $("#eda7_").html("Selecciona Accion Realizada");
+
+        $("#eda8")[0].selectedIndex = 0;
+        $("#eda8_").val(0);
+        $("#eda8_").html("Selecciona Accion Realizada");
+    }
+
+});
