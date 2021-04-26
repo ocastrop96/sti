@@ -19,9 +19,84 @@ class ImprimirFichaMantenimiento
                         $dato = $idMant;
                         $fichMantEq = ControladorMantenimientos::ctrListarMantoPC($dato);
                         // Test de lista de diagnosticos
-                        $diagnosis = json_decode($fichMantEq["diagnosticos"], true);
-                        $diagnosis1 = json_decode($fichMantEq["acciones"], true);
-                        // Test de lista de diagnosticos
+                        // Bloque diagnosticos
+                        if ($fichMantEq["diagnostico2"] != 0) {
+                                $d2 = "• " . $fichMantEq["d2"];
+                        } else {
+                                $d2 = $fichMantEq["d2"];
+                        }
+
+                        if ($fichMantEq["diagnostico3"] != 0) {
+                                $d3 = "• " . $fichMantEq["d3"];
+                        } else {
+                                $d3 = $fichMantEq["d3"];
+                        }
+
+                        if ($fichMantEq["diagnostico4"] != 0) {
+                                $d4 = "• " . $fichMantEq["d4"];
+                        } else {
+                                $d4 = $fichMantEq["d4"];
+                        }
+                        if ($fichMantEq["diagnostico5"] != 0) {
+                                $d5 = "• " . $fichMantEq["d5"];
+                        } else {
+                                $d5 = $fichMantEq["d5"];
+                        }
+                        if ($fichMantEq["diagnostico6"] != 0) {
+                                $d6 = "• " . $fichMantEq["d6"];
+                        } else {
+                                $d6 = $fichMantEq["d6"];
+                        }
+                        if ($fichMantEq["diagnostico7"] != 0) {
+                                $d7 = "• " . $fichMantEq["d7"];
+                        } else {
+                                $d7 = $fichMantEq["d7"];
+                        }
+                        if ($fichMantEq["diagnostico8"] != 0) {
+                                $d8 = "• " . $fichMantEq["d8"];
+                        } else {
+                                $d8 = $fichMantEq["d8"];
+                        }
+                        // Bloque diagnosticos
+                        // Bloque acciones
+                        if ($fichMantEq["accion2"] != 0) {
+                                $a2 = "• " . $fichMantEq["a2"];
+                        } else {
+                                $a2 = $fichMantEq["a2"];
+                        }
+
+                        if ($fichMantEq["accion3"] != 0) {
+                                $a3 = "• " . $fichMantEq["a3"];
+                        } else {
+                                $a3 = $fichMantEq["a3"];
+                        }
+
+                        if ($fichMantEq["accion4"] != 0) {
+                                $a4 = "• " . $fichMantEq["a4"];
+                        } else {
+                                $a4 = $fichMantEq["a4"];
+                        }
+                        if ($fichMantEq["accion5"] != 0) {
+                                $a5 = "• " . $fichMantEq["a5"];
+                        } else {
+                                $a5 = $fichMantEq["a5"];
+                        }
+                        if ($fichMantEq["accion6"] != 0) {
+                                $a6 = "• " . $fichMantEq["a6"];
+                        } else {
+                                $a6 = $fichMantEq["a6"];
+                        }
+                        if ($fichMantEq["accion7"] != 0) {
+                                $a7 = "• " . $fichMantEq["a7"];
+                        } else {
+                                $a7 = $fichMantEq["a7"];
+                        }
+                        if ($fichMantEq["accion8"] != 0) {
+                                $a8 = "• " . $fichMantEq["a8"];
+                        } else {
+                                $a8 = $fichMantEq["a8"];
+                        }
+                        // Bloque acciones
 
                         $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
                         $pdf->SetCreator(PDF_CREATOR);
@@ -100,6 +175,9 @@ class ImprimirFichaMantenimiento
                                 </tr>
                                 </table>
                                 <table cellpadding="2" cellspacing="1.5" style="text-align:left; padding:5px 10px;">
+                                <tr>
+                                <td style="text-align:center; width:667px;background-color:white;"></td>
+                                </tr>
                                 <tr>
                                         <td style="width:667.5px;background-color:white;background-color: white;"><p style="text-align: left;"><b>Datos del Equipo Afectado :.</b> <i>(Información del equipo afectado: tipo,modelo,marca,serie,cod.Patrimonio,N° ID, etc.)</i></p></td>
                                 </tr>
@@ -241,23 +319,41 @@ class ImprimirFichaMantenimiento
                                         "> $fichMantEq[descInc]</td>
                                 </tr>
                                 <tr>
+                                <td style="text-align:center; width:667px;background-color:white;"></td>
+                                </tr>
+                                <tr>
                                         <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>Diágnosticos Realizados :.</b> <i>(Lista de Diagnosticos realizados)</i></p></td>
+                                </tr>
+                                <tr>
+                                        <td style="text-align:left; width:334px;background-color:white;
+                                        background-color: #ffffff;"> • $fichMantEq[d1]</td>
+                                        <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
+                                        background-color: #ffffff;"> $d5</td>
+                                </tr>
+                                <tr>
+                                        <td style="text-align:left; width:334px;background-color:white;
+                                        background-color: #ffffff;"> $d2</td>
+                                        <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
+                                        background-color: #ffffff;"> $d6</td>
+                                </tr>
+                                <tr>
+                                        <td style="text-align:left; width:334px;background-color:white;
+                                        background-color: #ffffff;"> $d3</td>
+                                        <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
+                                        background-color: #ffffff;"> $d7</td>
+                                </tr>
+                                <tr>
+                                        <td style="text-align:left; width:334px;background-color:white;
+                                        background-color: #ffffff;"> $d4</td>
+                                        <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
+                                        background-color: #ffffff;"> $d8</td>
+                                </tr>
+                                <tr>
+                                <td style="text-align:center; width:667px;background-color:white;"></td>
                                 </tr>
                                 </table> 
                                 EOF;
                         $pdf->writeHTML($html, false, false, false, false, '');
-                        foreach ($diagnosis as $key => $item) {
-                                $bloqueDiagnosticos = <<<EOF
-                                        <table style="text-align:left; padding:1.5px 0px;" border=>
-                                        <tr>
-                                        <td style="color:#000; background-color:white; width:671px; text-align:left">
-                                                • $item[diagnostico]
-                                        </td>
-                                        </tr>
-                                        </table>
-                                        EOF;
-                                $pdf->writeHTML($bloqueDiagnosticos, false, false, false, false, '');
-                        }
                         $html2 = <<<EOF
                                 <table cellpadding="2" cellspacing="1.5" style="text-align:left;" border="">
                                 <tr>
@@ -311,24 +407,38 @@ class ImprimirFichaMantenimiento
                                         "> $fichMantEq[primera_eval]</td>
                                 </tr>
                                 <tr>
-                                
+                                <tr>
+                                <td style="text-align:center; width:667px;background-color:white;"></td>
+                                </tr>
                                 <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>Acciones Realizadas :.</b> <i>(Lista de acciones o trabajos realizados)</i></p></td>
+                                </tr>
+                                <tr>
+                                        <td style="text-align:left; width:334px;background-color:white;
+                                        background-color: #ffffff;"> • $fichMantEq[a1]</td>
+                                        <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
+                                        background-color: #ffffff;"> $a5</td>
+                                </tr>
+                                <tr>
+                                        <td style="text-align:left; width:334px;background-color:white;
+                                        background-color: #ffffff;"> $a2</td>
+                                        <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
+                                        background-color: #ffffff;"> $a6</td>
+                                </tr>
+                                <tr>
+                                        <td style="text-align:left; width:334px;background-color:white;
+                                        background-color: #ffffff;"> $a3</td>
+                                        <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
+                                        background-color: #ffffff;"> $a7</td>
+                                </tr>
+                                <tr>
+                                        <td style="text-align:left; width:334px;background-color:white;
+                                        background-color: #ffffff;"> $a4</td>
+                                        <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
+                                        background-color: #ffffff;"> $a8</td>
                                 </tr>
                                 </table> 
                                 EOF;
                         $pdf->writeHTML($html2, false, false, false, false, '');
-                        foreach ($diagnosis1 as $key => $item) {
-                                $bloqueAcciones = <<<EOF
-                                        <table style="text-align:left; padding:1.5px 0px;" border=>
-                                        <tr>
-                                        <td style=";color:#000; background-color:white; width:671px; text-align:left">
-                                                • $item[accion]
-                                        </td>
-                                        </tr>
-                                        </table>
-                                        EOF;
-                                $pdf->writeHTML($bloqueAcciones, false, false, false, false, '');
-                        }
                         $html3 = <<<EOF
                                 <table cellpadding="2" cellspacing="1.5" style="text-align:left;" border="">
                                 <tr>
@@ -343,6 +453,9 @@ class ImprimirFichaMantenimiento
                                         border-top:0.7px solid #000000;
                                         border-right:  0.7px solid  #000000;
                                         "> $fichMantEq[recomendaciones]</td>
+                                </tr>
+                                <tr>
+                                <td style="text-align:center; width:667px;background-color:white;"></td>
                                 </tr>
                                 <tr>
                                 <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>4. OBSERVACIONES Y ESTADO FINAL DEL EQUIPO</b> <i>(Información de situación final del equipo)</i></p></td>
@@ -399,7 +512,9 @@ class ImprimirFichaMantenimiento
                                         border-right:  0.7px solid  #000000;
                                         "> $fichMantEq[obsOtros]</td>
                                 </tr>
-                                <br>
+                                <tr>
+                                <td style="text-align:center; width:667px;background-color:white;"></td>
+                                </tr>
                                 <tr>
                                 <tr>
                                 <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>5. SUSCRIPCION DEL ACTA</b> <i>(Firmas y sellos de usuario responsable,técnico evaluador y Oficina de Estadística e Informática)</i></p></td>
@@ -522,10 +637,84 @@ class ImprimirFichaMantenimiento
                 elseif ($idTip == 2 || $idTip == 6 || $idTip == 7 || $idTip == 8) {
                         $dato = $idMant;
                         $fichMantEq = ControladorMantenimientos::ctrListarMantoRedes($dato);
-                        // Test de lista de diagnosticos
-                        $diagnosis = json_decode($fichMantEq["diagnosticos"], true);
-                        $diagnosis1 = json_decode($fichMantEq["acciones"], true);
-                        // Test de lista de diagnosticos
+                        // Bloque diagnosticos
+                        if ($fichMantEq["diagnostico2"] != 0) {
+                                $d2 = "• " . $fichMantEq["d2"];
+                        } else {
+                                $d2 = $fichMantEq["d2"];
+                        }
+
+                        if ($fichMantEq["diagnostico3"] != 0) {
+                                $d3 = "• " . $fichMantEq["d3"];
+                        } else {
+                                $d3 = $fichMantEq["d3"];
+                        }
+
+                        if ($fichMantEq["diagnostico4"] != 0) {
+                                $d4 = "• " . $fichMantEq["d4"];
+                        } else {
+                                $d4 = $fichMantEq["d4"];
+                        }
+                        if ($fichMantEq["diagnostico5"] != 0) {
+                                $d5 = "• " . $fichMantEq["d5"];
+                        } else {
+                                $d5 = $fichMantEq["d5"];
+                        }
+                        if ($fichMantEq["diagnostico6"] != 0) {
+                                $d6 = "• " . $fichMantEq["d6"];
+                        } else {
+                                $d6 = $fichMantEq["d6"];
+                        }
+                        if ($fichMantEq["diagnostico7"] != 0) {
+                                $d7 = "• " . $fichMantEq["d7"];
+                        } else {
+                                $d7 = $fichMantEq["d7"];
+                        }
+                        if ($fichMantEq["diagnostico8"] != 0) {
+                                $d8 = "• " . $fichMantEq["d8"];
+                        } else {
+                                $d8 = $fichMantEq["d8"];
+                        }
+                        // Bloque diagnosticos
+                        // Bloque acciones
+                        if ($fichMantEq["accion2"] != 0) {
+                                $a2 = "• " . $fichMantEq["a2"];
+                        } else {
+                                $a2 = $fichMantEq["a2"];
+                        }
+
+                        if ($fichMantEq["accion3"] != 0) {
+                                $a3 = "• " . $fichMantEq["a3"];
+                        } else {
+                                $a3 = $fichMantEq["a3"];
+                        }
+
+                        if ($fichMantEq["accion4"] != 0) {
+                                $a4 = "• " . $fichMantEq["a4"];
+                        } else {
+                                $a4 = $fichMantEq["a4"];
+                        }
+                        if ($fichMantEq["accion5"] != 0) {
+                                $a5 = "• " . $fichMantEq["a5"];
+                        } else {
+                                $a5 = $fichMantEq["a5"];
+                        }
+                        if ($fichMantEq["accion6"] != 0) {
+                                $a6 = "• " . $fichMantEq["a6"];
+                        } else {
+                                $a6 = $fichMantEq["a6"];
+                        }
+                        if ($fichMantEq["accion7"] != 0) {
+                                $a7 = "• " . $fichMantEq["a7"];
+                        } else {
+                                $a7 = $fichMantEq["a7"];
+                        }
+                        if ($fichMantEq["accion8"] != 0) {
+                                $a8 = "• " . $fichMantEq["a8"];
+                        } else {
+                                $a8 = $fichMantEq["a8"];
+                        }
+                        // Bloque acciones
 
                         $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
                         $pdf->SetCreator(PDF_CREATOR);
@@ -604,6 +793,9 @@ class ImprimirFichaMantenimiento
                         </tr>
                         </table>
                         <table cellpadding="2" cellspacing="1.5" style="text-align:left; padding:5px 10px;">
+                        <tr>
+                        <td style="text-align:center; width:667px;background-color:white;"></td>
+                        </tr>
                         <tr>
                                 <td style="width:667.5px;background-color:white;background-color: white;"><p style="text-align: left;"><b>Datos del Equipo Afectado :.</b> <i>(Información del equipo afectado: tipo,modelo,marca,serie,cod.Patrimonio,N° ID, etc.)</i></p></td>
                         </tr>
@@ -718,25 +910,43 @@ class ImprimirFichaMantenimiento
                                 "> $fichMantEq[descInc]</td>
                         </tr>
                         <tr>
+                        <td style="text-align:center; width:667px;background-color:white;"></td>
+                        </tr>
+                        <tr>
                                 <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>Diágnosticos Realizados :.</b> <i>(Lista de Diagnosticos realizados)</i></p></td>
+                        </tr>
+                        <tr>
+                        <td style="text-align:left; width:334px;background-color:white;
+                        background-color: #ffffff;"> • $fichMantEq[d1]</td>
+                        <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
+                        background-color: #ffffff;"> $d5</td>
+                        </tr>
+                        <tr>
+                                <td style="text-align:left; width:334px;background-color:white;
+                                background-color: #ffffff;"> $d2</td>
+                                <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
+                                background-color: #ffffff;"> $d6</td>
+                        </tr>
+                        <tr>
+                                <td style="text-align:left; width:334px;background-color:white;
+                                background-color: #ffffff;"> $d3</td>
+                                <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
+                                background-color: #ffffff;"> $d7</td>
+                        </tr>
+                        <tr>
+                                <td style="text-align:left; width:334px;background-color:white;
+                                background-color: #ffffff;"> $d4</td>
+                                <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
+                                background-color: #ffffff;"> $d8</td>
                         </tr>
                         </table> 
                         EOF;
                         $pdf->writeHTML($html, false, false, false, false, '');
-                        foreach ($diagnosis as $key => $item) {
-                                $bloqueDiagnosticos = <<<EOF
-                                <table style="text-align:left; padding:1.5px 0px;" border=>
-                                <tr>
-                                <td style="color:#000; background-color:white; width:671px; text-align:left">
-                                        • $item[diagnostico]
-                                </td>
-                                </tr>
-                                </table>
-                                EOF;
-                                $pdf->writeHTML($bloqueDiagnosticos, false, false, false, false, '');
-                        }
                         $html2 = <<<EOF
                         <table cellpadding="2" cellspacing="1.5" style="text-align:left;" border="">
+                        <tr>
+                        <td style="text-align:center; width:667px;background-color:white;"></td>
+                        </tr>
                         <tr>
                         <td style="width:669px;background-color:white;background-color: white;"><p style="text-align: left;"><b>3. DETALLES EVALUACIÓN DE EQUIPOS Y ACCIONES REALIZADAS</b> <i>(Descripción de trabajos realizados)</i></p></td>
                         </tr>
@@ -788,24 +998,38 @@ class ImprimirFichaMantenimiento
                                 "> $fichMantEq[primera_eval]</td>
                         </tr>
                         <tr>
-                        
+                        <tr>
+                        <td style="text-align:center; width:667px;background-color:white;"></td>
+                        </tr>
                         <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>Acciones Realizadas :.</b> <i>(Lista de acciones o trabajos realizados)</i></p></td>
+                        </tr>
+                        <tr>
+                        <td style="text-align:left; width:334px;background-color:white;
+                        background-color: #ffffff;"> • $fichMantEq[a1]</td>
+                        <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
+                        background-color: #ffffff;"> $a5</td>
+                        </tr>
+                        <tr>
+                                <td style="text-align:left; width:334px;background-color:white;
+                                background-color: #ffffff;"> $a2</td>
+                                <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
+                                background-color: #ffffff;"> $a6</td>
+                        </tr>
+                        <tr>
+                                <td style="text-align:left; width:334px;background-color:white;
+                                background-color: #ffffff;"> $a3</td>
+                                <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
+                                background-color: #ffffff;"> $a7</td>
+                        </tr>
+                        <tr>
+                                <td style="text-align:left; width:334px;background-color:white;
+                                background-color: #ffffff;"> $a4</td>
+                                <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
+                                background-color: #ffffff;"> $a8</td>
                         </tr>
                         </table> 
                         EOF;
                         $pdf->writeHTML($html2, false, false, false, false, '');
-                        foreach ($diagnosis1 as $key => $item) {
-                                $bloqueAcciones = <<<EOF
-                                <table style="text-align:left; padding:1.5px 0px;" border=>
-                                <tr>
-                                <td style=";color:#000; background-color:white; width:671px; text-align:left">
-                                        • $item[accion]
-                                </td>
-                                </tr>
-                                </table>
-                                EOF;
-                                $pdf->writeHTML($bloqueAcciones, false, false, false, false, '');
-                        }
                         $html3 = <<<EOF
                         <table cellpadding="2" cellspacing="1.5" style="text-align:left;" border="">
                         <tr>
@@ -822,6 +1046,9 @@ class ImprimirFichaMantenimiento
                                 "> $fichMantEq[recomendaciones]</td>
                         </tr>
                         <tr>
+                        <tr>
+                        <td style="text-align:center; width:667px;background-color:white;"></td>
+                        </tr>
                         <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>4. OBSERVACIONES Y ESTADO FINAL DEL EQUIPO</b> <i>(Información de situación final del equipo)</i></p></td>
                         </tr>
                         <tr>
@@ -1000,10 +1227,84 @@ class ImprimirFichaMantenimiento
                 elseif ($idTip == 3 || $idTip == 9 || $idTip == 14 || $idTip == 15 || $idTip == 16 || $idTip == 17) {
                         $dato = $idMant;
                         $fichMantEq = ControladorMantenimientos::ctrListarMantoImpresoras($dato);
-                        // Test de lista de diagnosticos
-                        $diagnosis = json_decode($fichMantEq["diagnosticos"], true);
-                        $diagnosis1 = json_decode($fichMantEq["acciones"], true);
-                        // Test de lista de diagnosticos
+                        // Bloque diagnosticos
+                        if ($fichMantEq["diagnostico2"] != 0) {
+                                $d2 = "• " . $fichMantEq["d2"];
+                        } else {
+                                $d2 = $fichMantEq["d2"];
+                        }
+
+                        if ($fichMantEq["diagnostico3"] != 0) {
+                                $d3 = "• " . $fichMantEq["d3"];
+                        } else {
+                                $d3 = $fichMantEq["d3"];
+                        }
+
+                        if ($fichMantEq["diagnostico4"] != 0) {
+                                $d4 = "• " . $fichMantEq["d4"];
+                        } else {
+                                $d4 = $fichMantEq["d4"];
+                        }
+                        if ($fichMantEq["diagnostico5"] != 0) {
+                                $d5 = "• " . $fichMantEq["d5"];
+                        } else {
+                                $d5 = $fichMantEq["d5"];
+                        }
+                        if ($fichMantEq["diagnostico6"] != 0) {
+                                $d6 = "• " . $fichMantEq["d6"];
+                        } else {
+                                $d6 = $fichMantEq["d6"];
+                        }
+                        if ($fichMantEq["diagnostico7"] != 0) {
+                                $d7 = "• " . $fichMantEq["d7"];
+                        } else {
+                                $d7 = $fichMantEq["d7"];
+                        }
+                        if ($fichMantEq["diagnostico8"] != 0) {
+                                $d8 = "• " . $fichMantEq["d8"];
+                        } else {
+                                $d8 = $fichMantEq["d8"];
+                        }
+                        // Bloque diagnosticos
+                        // Bloque acciones
+                        if ($fichMantEq["accion2"] != 0) {
+                                $a2 = "• " . $fichMantEq["a2"];
+                        } else {
+                                $a2 = $fichMantEq["a2"];
+                        }
+
+                        if ($fichMantEq["accion3"] != 0) {
+                                $a3 = "• " . $fichMantEq["a3"];
+                        } else {
+                                $a3 = $fichMantEq["a3"];
+                        }
+
+                        if ($fichMantEq["accion4"] != 0) {
+                                $a4 = "• " . $fichMantEq["a4"];
+                        } else {
+                                $a4 = $fichMantEq["a4"];
+                        }
+                        if ($fichMantEq["accion5"] != 0) {
+                                $a5 = "• " . $fichMantEq["a5"];
+                        } else {
+                                $a5 = $fichMantEq["a5"];
+                        }
+                        if ($fichMantEq["accion6"] != 0) {
+                                $a6 = "• " . $fichMantEq["a6"];
+                        } else {
+                                $a6 = $fichMantEq["a6"];
+                        }
+                        if ($fichMantEq["accion7"] != 0) {
+                                $a7 = "• " . $fichMantEq["a7"];
+                        } else {
+                                $a7 = $fichMantEq["a7"];
+                        }
+                        if ($fichMantEq["accion8"] != 0) {
+                                $a8 = "• " . $fichMantEq["a8"];
+                        } else {
+                                $a8 = $fichMantEq["a8"];
+                        }
+                        // Bloque acciones
 
                         $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
                         $pdf->SetCreator(PDF_CREATOR);
@@ -1082,6 +1383,9 @@ class ImprimirFichaMantenimiento
                         </tr>
                         </table>
                         <table cellpadding="2" cellspacing="1.5" style="text-align:left; padding:5px 10px;">
+                        <tr>
+                        <td style="text-align:center; width:667px;background-color:white;"></td>
+                        </tr>
                         <tr>
                                 <td style="width:667.5px;background-color:white;background-color: white;"><p style="text-align: left;"><b>Datos del Equipo Afectado :.</b> <i>(Información del equipo afectado: tipo,modelo,marca,serie,cod.Patrimonio,N° ID, etc.)</i></p></td>
                         </tr>
@@ -1196,25 +1500,44 @@ class ImprimirFichaMantenimiento
                                 "> $fichMantEq[descInc]</td>
                         </tr>
                         <tr>
+                        <td style="text-align:center; width:667px;background-color:white;"></td>
+                        </tr>
+                        <tr>
                                 <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>Diágnosticos Realizados :.</b> <i>(Lista de Diagnosticos realizados)</i></p></td>
                         </tr>
+                        <tr>
+                                        <td style="text-align:left; width:334px;background-color:white;
+                                        background-color: #ffffff;"> • $fichMantEq[d1]</td>
+                                        <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
+                                        background-color: #ffffff;"> $d5</td>
+                                </tr>
+                                <tr>
+                                        <td style="text-align:left; width:334px;background-color:white;
+                                        background-color: #ffffff;"> $d2</td>
+                                        <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
+                                        background-color: #ffffff;"> $d6</td>
+                                </tr>
+                                <tr>
+                                        <td style="text-align:left; width:334px;background-color:white;
+                                        background-color: #ffffff;"> $d3</td>
+                                        <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
+                                        background-color: #ffffff;"> $d7</td>
+                                </tr>
+                                <tr>
+                                        <td style="text-align:left; width:334px;background-color:white;
+                                        background-color: #ffffff;"> $d4</td>
+                                        <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
+                                        background-color: #ffffff;"> $d8</td>
+                                </tr>
                         </table> 
                         EOF;
                         $pdf->writeHTML($html, false, false, false, false, '');
-                        foreach ($diagnosis as $key => $item) {
-                                $bloqueDiagnosticos = <<<EOF
-                                <table style="text-align:left; padding:1.5px 0px;" border=>
-                                <tr>
-                                <td style="color:#000; background-color:white; width:671px; text-align:left">
-                                        • $item[diagnostico]
-                                </td>
-                                </tr>
-                                </table>
-                                EOF;
-                                $pdf->writeHTML($bloqueDiagnosticos, false, false, false, false, '');
-                        }
+
                         $html2 = <<<EOF
                         <table cellpadding="2" cellspacing="1.5" style="text-align:left;" border="">
+                        <tr>
+                        <td style="text-align:center; width:667px;background-color:white;"></td>
+                        </tr>
                         <tr>
                         <td style="width:669px;background-color:white;background-color: white;"><p style="text-align: left;"><b>3. DETALLES EVALUACIÓN DE EQUIPOS Y ACCIONES REALIZADAS</b> <i>(Descripción de trabajos realizados)</i></p></td>
                         </tr>
@@ -1266,24 +1589,38 @@ class ImprimirFichaMantenimiento
                                 "> $fichMantEq[primera_eval]</td>
                         </tr>
                         <tr>
-                        
+                        <tr>
+                        <td style="text-align:center; width:667px;background-color:white;"></td>
+                        </tr>
                         <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>Acciones Realizadas :.</b> <i>(Lista de acciones o trabajos realizados)</i></p></td>
                         </tr>
+                        <tr>
+                                        <td style="text-align:left; width:334px;background-color:white;
+                                        background-color: #ffffff;"> • $fichMantEq[a1]</td>
+                                        <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
+                                        background-color: #ffffff;"> $a5</td>
+                                </tr>
+                                <tr>
+                                        <td style="text-align:left; width:334px;background-color:white;
+                                        background-color: #ffffff;"> $a2</td>
+                                        <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
+                                        background-color: #ffffff;"> $a6</td>
+                                </tr>
+                                <tr>
+                                        <td style="text-align:left; width:334px;background-color:white;
+                                        background-color: #ffffff;"> $a3</td>
+                                        <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
+                                        background-color: #ffffff;"> $a7</td>
+                                </tr>
+                                <tr>
+                                        <td style="text-align:left; width:334px;background-color:white;
+                                        background-color: #ffffff;"> $a4</td>
+                                        <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
+                                        background-color: #ffffff;"> $a8</td>
+                                </tr>
                         </table> 
                         EOF;
                         $pdf->writeHTML($html2, false, false, false, false, '');
-                        foreach ($diagnosis1 as $key => $item) {
-                                $bloqueAcciones = <<<EOF
-                                <table style="text-align:left; padding:1.5px 0px;" border=>
-                                <tr>
-                                <td style=";color:#000; background-color:white; width:671px; text-align:left">
-                                        • $item[accion]
-                                </td>
-                                </tr>
-                                </table>
-                                EOF;
-                                $pdf->writeHTML($bloqueAcciones, false, false, false, false, '');
-                        }
                         $html3 = <<<EOF
                         <table cellpadding="2" cellspacing="1.5" style="text-align:left;" border="">
                         <tr>
@@ -1300,6 +1637,9 @@ class ImprimirFichaMantenimiento
                                 "> $fichMantEq[recomendaciones]</td>
                         </tr>
                         <tr>
+                        <tr>
+                        <td style="text-align:center; width:667px;background-color:white;"></td>
+                        </tr>
                         <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>4. OBSERVACIONES Y ESTADO FINAL DEL EQUIPO</b> <i>(Información de situación final del equipo)</i></p></td>
                         </tr>
                         <tr>
@@ -1478,10 +1818,84 @@ class ImprimirFichaMantenimiento
                 else {
                         $dato = $idMant;
                         $fichMantEq = ControladorMantenimientos::ctrListarMantoOtros($dato);
-                        // Test de lista de diagnosticos
-                        $diagnosis = json_decode($fichMantEq["diagnosticos"], true);
-                        $diagnosis1 = json_decode($fichMantEq["acciones"], true);
-                        // Test de lista de diagnosticos
+                        // Bloque diagnosticos
+                        if ($fichMantEq["diagnostico2"] != 0) {
+                                $d2 = "• " . $fichMantEq["d2"];
+                        } else {
+                                $d2 = $fichMantEq["d2"];
+                        }
+
+                        if ($fichMantEq["diagnostico3"] != 0) {
+                                $d3 = "• " . $fichMantEq["d3"];
+                        } else {
+                                $d3 = $fichMantEq["d3"];
+                        }
+
+                        if ($fichMantEq["diagnostico4"] != 0) {
+                                $d4 = "• " . $fichMantEq["d4"];
+                        } else {
+                                $d4 = $fichMantEq["d4"];
+                        }
+                        if ($fichMantEq["diagnostico5"] != 0) {
+                                $d5 = "• " . $fichMantEq["d5"];
+                        } else {
+                                $d5 = $fichMantEq["d5"];
+                        }
+                        if ($fichMantEq["diagnostico6"] != 0) {
+                                $d6 = "• " . $fichMantEq["d6"];
+                        } else {
+                                $d6 = $fichMantEq["d6"];
+                        }
+                        if ($fichMantEq["diagnostico7"] != 0) {
+                                $d7 = "• " . $fichMantEq["d7"];
+                        } else {
+                                $d7 = $fichMantEq["d7"];
+                        }
+                        if ($fichMantEq["diagnostico8"] != 0) {
+                                $d8 = "• " . $fichMantEq["d8"];
+                        } else {
+                                $d8 = $fichMantEq["d8"];
+                        }
+                        // Bloque diagnosticos
+                        // Bloque acciones
+                        if ($fichMantEq["accion2"] != 0) {
+                                $a2 = "• " . $fichMantEq["a2"];
+                        } else {
+                                $a2 = $fichMantEq["a2"];
+                        }
+
+                        if ($fichMantEq["accion3"] != 0) {
+                                $a3 = "• " . $fichMantEq["a3"];
+                        } else {
+                                $a3 = $fichMantEq["a3"];
+                        }
+
+                        if ($fichMantEq["accion4"] != 0) {
+                                $a4 = "• " . $fichMantEq["a4"];
+                        } else {
+                                $a4 = $fichMantEq["a4"];
+                        }
+                        if ($fichMantEq["accion5"] != 0) {
+                                $a5 = "• " . $fichMantEq["a5"];
+                        } else {
+                                $a5 = $fichMantEq["a5"];
+                        }
+                        if ($fichMantEq["accion6"] != 0) {
+                                $a6 = "• " . $fichMantEq["a6"];
+                        } else {
+                                $a6 = $fichMantEq["a6"];
+                        }
+                        if ($fichMantEq["accion7"] != 0) {
+                                $a7 = "• " . $fichMantEq["a7"];
+                        } else {
+                                $a7 = $fichMantEq["a7"];
+                        }
+                        if ($fichMantEq["accion8"] != 0) {
+                                $a8 = "• " . $fichMantEq["a8"];
+                        } else {
+                                $a8 = $fichMantEq["a8"];
+                        }
+                        // Bloque acciones
 
                         $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
                         $pdf->SetCreator(PDF_CREATOR);
@@ -1560,6 +1974,9 @@ class ImprimirFichaMantenimiento
                         </tr>
                         </table>
                         <table cellpadding="2" cellspacing="1.5" style="text-align:left; padding:5px 10px;">
+                        <tr>
+                        <td style="text-align:center; width:667px;background-color:white;"></td>
+                        </tr>
                         <tr>
                                 <td style="width:667.5px;background-color:white;background-color: white;"><p style="text-align: left;"><b>Datos del Equipo Afectado :.</b> <i>(Información del equipo afectado: tipo,modelo,marca,serie,cod.Patrimonio,N° ID, etc.)</i></p></td>
                         </tr>
@@ -1664,25 +2081,44 @@ class ImprimirFichaMantenimiento
                                 "> $fichMantEq[descInc]</td>
                         </tr>
                         <tr>
+                        <td style="text-align:center; width:667px;background-color:white;"></td>
+                        </tr>
+                        <tr>
                                 <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>Diágnosticos Realizados :.</b> <i>(Lista de Diagnosticos realizados)</i></p></td>
+                        </tr>
+                        <tr>
+                        <td style="text-align:left; width:334px;background-color:white;
+                        background-color: #ffffff;"> • $fichMantEq[d1]</td>
+                        <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
+                        background-color: #ffffff;"> $d5</td>
+                        </tr>
+                        <tr>
+                                <td style="text-align:left; width:334px;background-color:white;
+                                background-color: #ffffff;"> $d2</td>
+                                <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
+                                background-color: #ffffff;"> $d6</td>
+                        </tr>
+                        <tr>
+                                <td style="text-align:left; width:334px;background-color:white;
+                                background-color: #ffffff;"> $d3</td>
+                                <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
+                                background-color: #ffffff;"> $d7</td>
+                        </tr>
+                        <tr>
+                                <td style="text-align:left; width:334px;background-color:white;
+                                background-color: #ffffff;"> $d4</td>
+                                <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
+                                background-color: #ffffff;"> $d8</td>
                         </tr>
                         </table> 
                         EOF;
                         $pdf->writeHTML($html, false, false, false, false, '');
-                        foreach ($diagnosis as $key => $item) {
-                                $bloqueDiagnosticos = <<<EOF
-                                <table style="text-align:left; padding:1.5px 0px;" border=>
-                                <tr>
-                                <td style="color:#000; background-color:white; width:671px; text-align:left">
-                                        • $item[diagnostico]
-                                </td>
-                                </tr>
-                                </table>
-                                EOF;
-                                $pdf->writeHTML($bloqueDiagnosticos, false, false, false, false, '');
-                        }
+
                         $html2 = <<<EOF
                         <table cellpadding="2" cellspacing="1.5" style="text-align:left;" border="">
+                        <tr>
+                        <td style="text-align:center; width:667px;background-color:white;"></td>
+                        </tr>
                         <tr>
                         <td style="width:669px;background-color:white;background-color: white;"><p style="text-align: left;"><b>3. DETALLES EVALUACIÓN DE EQUIPOS Y ACCIONES REALIZADAS</b> <i>(Descripción de trabajos realizados)</i></p></td>
                         </tr>
@@ -1734,24 +2170,38 @@ class ImprimirFichaMantenimiento
                                 "> $fichMantEq[primera_eval]</td>
                         </tr>
                         <tr>
-                        
+                        <tr>
+                        <td style="text-align:center; width:667px;background-color:white;"></td>
+                        </tr>
                         <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>Acciones Realizadas :.</b> <i>(Lista de acciones o trabajos realizados)</i></p></td>
+                        </tr>
+                        <tr>
+                        <td style="text-align:left; width:334px;background-color:white;
+                        background-color: #ffffff;"> • $fichMantEq[a1]</td>
+                        <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
+                        background-color: #ffffff;"> $a5</td>
+                        </tr>
+                        <tr>
+                                <td style="text-align:left; width:334px;background-color:white;
+                                background-color: #ffffff;"> $a2</td>
+                                <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
+                                background-color: #ffffff;"> $a6</td>
+                        </tr>
+                        <tr>
+                                <td style="text-align:left; width:334px;background-color:white;
+                                background-color: #ffffff;"> $a3</td>
+                                <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
+                                background-color: #ffffff;"> $a7</td>
+                        </tr>
+                        <tr>
+                                <td style="text-align:left; width:334px;background-color:white;
+                                background-color: #ffffff;"> $a4</td>
+                                <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
+                                background-color: #ffffff;"> $a8</td>
                         </tr>
                         </table> 
                         EOF;
                         $pdf->writeHTML($html2, false, false, false, false, '');
-                        foreach ($diagnosis1 as $key => $item) {
-                                $bloqueAcciones = <<<EOF
-                                <table style="text-align:left; padding:1.5px 0px;" border=>
-                                <tr>
-                                <td style=";color:#000; background-color:white; width:671px; text-align:left">
-                                        • $item[accion]
-                                </td>
-                                </tr>
-                                </table>
-                                EOF;
-                                $pdf->writeHTML($bloqueAcciones, false, false, false, false, '');
-                        }
                         $html3 = <<<EOF
                         <table cellpadding="2" cellspacing="1.5" style="text-align:left;" border="">
                         <tr>
@@ -1768,6 +2218,9 @@ class ImprimirFichaMantenimiento
                                 "> $fichMantEq[recomendaciones]</td>
                         </tr>
                         <tr>
+                        <tr>
+                        <td style="text-align:center; width:667px;background-color:white;"></td>
+                        </tr>
                         <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>4. OBSERVACIONES Y ESTADO FINAL DEL EQUIPO</b> <i>(Información de situación final del equipo)</i></p></td>
                         </tr>
                         <tr>

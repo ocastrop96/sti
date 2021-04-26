@@ -142,7 +142,9 @@ class ModeloMantenimientos
     }
     static public function mdlEditarMantenimiento($datos)
     {
-        $stmt = Conexion::conectar()->prepare("CALL EDITAR_MANTENIMIENTO(:correlativo_Mant,:descInc,:tipEquipo,:condInicial,:idEquip,:oficEquip,:areaEquip,:respoEquip,:tecEvalua,:tipTrabajo,:fEvalua,:primera_eval,:fInicio,:fFin,:recomendaciones,:estAtencion,:condFinal,:servTerce,:otros,:obsOtros,:sgmtoManto,:logdeta,:diagnosticos,:acciones)");
+        $stmt = Conexion::conectar()->prepare("CALL EDITAR_MANTENIMIENTO(:idMantenimiento, :tipEquipo, :condInicial, :idEquip, :oficEquip, :areaEquip, :respoEquip, :logdeta, :descInc, :tecEvalua, :diagnostico1, :diagnostico2, :diagnostico3, :diagnostico4, :diagnostico5, :diagnostico6, :diagnostico7, :diagnostico8, :fEvalua, :primera_eval, :fInicio, :fFin, :tipTrabajo, :accion1, :accion2, :accion3, :accion4, :accion5, :accion6, :accion7, :accion8, :recomendaciones, :estAtencion, :condFinal, :servTerce, :otros, :obsOtros, :sgmtoManto)");
+
+        $stmt->bindParam(":idMantenimiento", $datos["idMantenimiento"], PDO::PARAM_INT);
         $stmt->bindParam(":tipEquipo", $datos["tipEquipo"], PDO::PARAM_INT);
         $stmt->bindParam(":condInicial", $datos["condInicial"], PDO::PARAM_INT);
         $stmt->bindParam(":idEquip", $datos["idEquip"], PDO::PARAM_INT);
@@ -150,14 +152,29 @@ class ModeloMantenimientos
         $stmt->bindParam(":areaEquip", $datos["areaEquip"], PDO::PARAM_INT);
         $stmt->bindParam(":respoEquip", $datos["respoEquip"], PDO::PARAM_INT);
         $stmt->bindParam(":tecEvalua", $datos["tecEvalua"], PDO::PARAM_INT);
+        $stmt->bindParam(":diagnostico1", $datos["diagnostico1"], PDO::PARAM_INT);
+        $stmt->bindParam(":diagnostico2", $datos["diagnostico2"], PDO::PARAM_INT);
+        $stmt->bindParam(":diagnostico3", $datos["diagnostico3"], PDO::PARAM_INT);
+        $stmt->bindParam(":diagnostico4", $datos["diagnostico4"], PDO::PARAM_INT);
+        $stmt->bindParam(":diagnostico5", $datos["diagnostico5"], PDO::PARAM_INT);
+        $stmt->bindParam(":diagnostico6", $datos["diagnostico6"], PDO::PARAM_INT);
+        $stmt->bindParam(":diagnostico7", $datos["diagnostico7"], PDO::PARAM_INT);
+        $stmt->bindParam(":diagnostico8", $datos["diagnostico8"], PDO::PARAM_INT);
         $stmt->bindParam(":tipTrabajo", $datos["tipTrabajo"], PDO::PARAM_INT);
+        $stmt->bindParam(":accion1", $datos["accion1"], PDO::PARAM_INT);
+        $stmt->bindParam(":accion2", $datos["accion2"], PDO::PARAM_INT);
+        $stmt->bindParam(":accion3", $datos["accion3"], PDO::PARAM_INT);
+        $stmt->bindParam(":accion4", $datos["accion4"], PDO::PARAM_INT);
+        $stmt->bindParam(":accion5", $datos["accion5"], PDO::PARAM_INT);
+        $stmt->bindParam(":accion6", $datos["accion6"], PDO::PARAM_INT);
+        $stmt->bindParam(":accion7", $datos["accion7"], PDO::PARAM_INT);
+        $stmt->bindParam(":accion8", $datos["accion8"], PDO::PARAM_INT);
         $stmt->bindParam(":estAtencion", $datos["estAtencion"], PDO::PARAM_INT);
         $stmt->bindParam(":condFinal", $datos["condFinal"], PDO::PARAM_INT);
         $stmt->bindParam(":sgmtoManto", $datos["sgmtoManto"], PDO::PARAM_INT);
-        $stmt->bindParam(":descInc", $datos["descInc"], PDO::PARAM_STR);
+
         $stmt->bindParam(":logdeta", $datos["logdeta"], PDO::PARAM_STR);
-        $stmt->bindParam(":correlativo_Mant", $datos["correlativo_Mant"], PDO::PARAM_STR);
-        $stmt->bindParam(":diagnosticos", $datos["diagnosticos"], PDO::PARAM_STR);
+        $stmt->bindParam(":descInc", $datos["descInc"], PDO::PARAM_STR);
         $stmt->bindParam(":fEvalua", $datos["fEvalua"], PDO::PARAM_STR);
         $stmt->bindParam(":primera_eval", $datos["primera_eval"], PDO::PARAM_STR);
         $stmt->bindParam(":fInicio", $datos["fInicio"], PDO::PARAM_STR);
@@ -166,7 +183,6 @@ class ModeloMantenimientos
         $stmt->bindParam(":servTerce", $datos["servTerce"], PDO::PARAM_STR);
         $stmt->bindParam(":otros", $datos["otros"], PDO::PARAM_STR);
         $stmt->bindParam(":obsOtros", $datos["obsOtros"], PDO::PARAM_STR);
-        $stmt->bindParam(":acciones", $datos["acciones"], PDO::PARAM_STR);
 
         if ($stmt->execute()) {
             return "ok";

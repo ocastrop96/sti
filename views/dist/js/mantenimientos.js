@@ -1700,6 +1700,7 @@ $(".tablaMantenimientos").on("click", ".btnEditarMant", function () {
         dataType: "json",
         success: function (respuesta) {
             // console.log(respuesta)
+            $("#idMantenimiento").val(respuesta["idMantenimiento"]);
             $("#ncorrelativo").val(respuesta["correlativo_Mant"]);
             $("#edsegmentado").val(respuesta["sgmtoManto"]);
 

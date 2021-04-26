@@ -475,6 +475,7 @@ $anulMante->ctrAnularMantenimiento();
               <div class="form-group">
                 <label for="fechita">N° de Ficha &nbsp; <i class="fas fa-file-invoice"></i> *</label>
                 <input type="text" class="form-control" readonly name="ncorrelativo" id="ncorrelativo">
+                <input type="hidden" name="idMantenimiento" id="idMantenimiento">
                 <input type="hidden" name="uedtMant" id="uedtMant" value="<?php echo $_SESSION["id"]; ?>">
                 <input type="hidden" name="edsegmentado" id="edsegmentado">
               </div>
@@ -849,6 +850,10 @@ $anulMante->ctrAnularMantenimiento();
           <button type="submit" class="btn btn-secondary" id="btnEdtMant"><i class="fas fa-save"></i> Guardar Cambios</button>
           <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fas fa-times-circle"></i> Salir</button>
         </div>
+        <?php
+        $editarMantenimiento = new ControladorMantenimientos();
+        $editarMantenimiento->ctrEditarMantenimiento();
+        ?>
       </form>
     </div>
   </div>
