@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 23-04-2021 a las 20:06:42
+-- Tiempo de generación: 26-04-2021 a las 19:33:51
 -- Versión del servidor: 5.7.24
 -- Versión de PHP: 7.4.15
 
@@ -54,7 +54,11 @@ UPDATE ws_integraciones SET nro_eq = "ANULADO", ip = null,serie_pc = null, serie
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ANULAR_MANTENIMIENTO` (IN `_idMantenimiento` INT(11))  BEGIN
-UPDATE ws_mantenimientos SET diagnosticos = "",acciones = "", estAnulado = 2 where idMantenimiento = _idMantenimiento;
+UPDATE ws_mantenimientos SET diagnostico1 = 0, diagnostico2 = 0, diagnostico3 = 0, diagnostico4 = 0, diagnostico5 = 0, diagnostico6 = 0, diagnostico7 = 0, diagnostico8 = 0, accion1 = 0, accion2 = 0, accion3 = 0, accion4 = 0, accion5 = 0, accion6 = 0, accion7 = 0, accion8 = 0, estAnulado = 2 where idMantenimiento = _idMantenimiento;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ANULAR_REPOSICION` (IN `_idReposicion` INT(11))  BEGIN
+UPDATE ws_reposiciones SET diagnostico1 = 0, diagnostico2 = 0, diagnostico3 = 0, diagnostico4 = 0, diagnostico5 = 0, diagnostico6 = 0, diagnostico7 = 0, diagnostico8 = 0, accion1 = 0, accion2 = 0, accion3 = 0, accion4 = 0, accion5 = 0, accion6 = 0, accion7 = 0, accion8 = 0, estAnulado = 2 where idReposicion = _idReposicion;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `DESBLOQUEAR_USUARIO` (IN `_id_usuario` INT(11))  BEGIN
@@ -81,13 +85,16 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `EDITAR_INTEGRACIONR` (IN `_idIntegr
 UPDATE ws_integraciones SET nro_eq = _nro_eq,ip = _ip,serie_eqred = _serie_eqred,tipo_equipo = _tipo_equipo,responsable = _responsable, oficina_in = _oficina_in,servicio_in = _servicio_in,estado = _estado,condicion = _condicion WHERE idIntegracion = _idIntegracion;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `EDITAR_MANTENIMIENTO` (IN `_correlativo_Mant` TEXT, IN `_descInc` TEXT, IN `_tipEquipo` INT(11), IN `_condInicial` INT(11), IN `_idEquip` INT(11), IN `_oficEquip` INT(11), IN `_areaEquip` INT(11), IN `_respoEquip` INT(11), IN `_tecEvalua` INT(11), IN `_tipTrabajo` INT(11), IN `_fEvalua` DATE, IN `_primera_eval` TEXT, IN `_fInicio` DATE, IN `_fFin` DATE, IN `_recomendaciones` TEXT, IN `_estAtencion` INT(11), IN `_condFinal` INT(11), IN `_servTerce` TEXT, IN `_otros` TEXT, IN `_obsOtros` TEXT, IN `_sgmtoManto` INT(11), IN `_logdeta` TEXT, IN `_diagnosticos` TEXT, IN `_acciones` TEXT)  BEGIN
-
-UPDATE ws_mantenimientos SET descInc = _descInc,tipEquipo = _tipEquipo,condInicial = _condInicial,idEquip = _idEquip,oficEquip = _oficEquip,areaEquip = _areaEquip,respoEquip = _respoEquip,tecEvalua = _tecEvalua,tipTrabajo = _tipTrabajo,fEvalua = _fEvalua,primera_eval = _primera_eval,fInicio = _fInicio,fFin = _fFin,recomendaciones = _recomendaciones,estAtencion = _estAtencion,condFinal = _condFinal,servTerce = _servTerce,otros = _otros,obsOtros = _obsOtros,sgmtoManto = _sgmtoManto,logdeta = _logdeta,diagnosticos = _diagnosticos,acciones = _acciones where correlativo_Mant = _correlativo_Mant;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `EDITAR_MANTENIMIENTO` (IN `_idMantenimiento` INT(11), IN `_tipEquipo` INT(11), IN `_condInicial` INT(11), IN `_idEquip` INT(11), IN `_oficEquip` INT(11), IN `_areaEquip` INT(11), IN `_respoEquip` INT(11), IN `_logdeta` TEXT, IN `_descInc` TEXT, IN `_tecEvalua` INT(11), IN `_diagnostico1` INT(11), IN `_diagnostico2` INT(11), IN `_diagnostico3` INT(11), IN `_diagnostico4` INT(11), IN `_diagnostico5` INT(11), IN `_diagnostico6` INT(11), IN `_diagnostico7` INT(11), IN `_diagnostico8` INT(11), IN `_fEvalua` DATE, IN `_primera_eval` TEXT, IN `_fInicio` DATE, IN `_fFin` DATE, IN `_tipTrabajo` INT(11), IN `_accion1` INT(11), IN `_accion2` INT(11), IN `_accion3` INT(11), IN `_accion4` INT(11), IN `_accion5` INT(11), IN `_accion6` INT(11), IN `_accion7` INT(11), IN `_accion8` INT(11), IN `_recomendaciones` TEXT, IN `_estAtencion` INT(11), IN `_condFinal` INT(11), IN `_servTerce` TEXT, IN `_otros` TEXT, IN `_obsOtros` TEXT, IN `_sgmtoManto` INT(11))  BEGIN
+UPDATE ws_mantenimientos SET tipEquipo = _tipEquipo, condInicial = _condInicial, idEquip = _idEquip, oficEquip = _oficEquip, areaEquip = _areaEquip, respoEquip = _respoEquip, logdeta = _logdeta, descInc = _descInc, tecEvalua = _tecEvalua, diagnostico1 = _diagnostico1, diagnostico2 = _diagnostico2, diagnostico3 = _diagnostico3, diagnostico4 = _diagnostico4, diagnostico5 = _diagnostico5, diagnostico6 = _diagnostico6, diagnostico7 = _diagnostico7, diagnostico8 = _diagnostico8, fEvalua = _fEvalua, primera_eval = _primera_eval, fInicio = _fInicio, fFin = _fFin, tipTrabajo = _tipTrabajo, accion1 = _accion1, accion2 = _accion2, accion3 = _accion3, accion4 = _accion4, accion5 = _accion5, accion6 = _accion6, accion7 = _accion7, accion8 = _accion8, recomendaciones = _recomendaciones, estAtencion = _estAtencion, condFinal = _condFinal, servTerce = _servTerce, otros = _otros, obsOtros = _obsOtros, sgmtoManto = _sgmtoManto where idMantenimiento = _idMantenimiento;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `EDITAR_OFICINA_DPTO` (IN `_id_area` INT(11), IN `_area` TEXT)  BEGIN
 UPDATE ws_departamentos SET area = _area WHERE id_area = _id_area;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `EDITAR_REPOSICION` (IN `_idReposicion` INT(11), IN `_tipEquipo` INT(11), IN `_condInicial` INT(11), IN `_idEquip` INT(11), IN `_oficEquip` INT(11), IN `_areaEquip` INT(11), IN `_respoEquip` INT(11), IN `_logdeta` TEXT, IN `_descInc` TEXT, IN `_tecEvalua` INT(11), IN `_diagnostico1` INT(11), IN `_diagnostico2` INT(11), IN `_diagnostico3` INT(11), IN `_diagnostico4` INT(11), IN `_diagnostico5` INT(11), IN `_diagnostico6` INT(11), IN `_diagnostico7` INT(11), IN `_diagnostico8` INT(11), IN `_fEvalua` DATE, IN `_primera_eval` TEXT, IN `_fInicio` DATE, IN `_fFin` DATE, IN `_tipTrabajo` INT(11), IN `_accion1` INT(11), IN `_accion2` INT(11), IN `_accion3` INT(11), IN `_accion4` INT(11), IN `_accion5` INT(11), IN `_accion6` INT(11), IN `_accion7` INT(11), IN `_accion8` INT(11), IN `_recomendaciones` TEXT, IN `_estAtencion` INT(11), IN `_condFinal` INT(11), IN `_servTerce` TEXT, IN `_otros` TEXT, IN `_obsOtros` TEXT, IN `_sgmtoManto` INT(11))  BEGIN
+UPDATE ws_reposiciones SET tipEquipo = _tipEquipo, condInicial = _condInicial, idEquip = _idEquip, oficEquip = _oficEquip, areaEquip = _areaEquip, respoEquip = _respoEquip, logdeta = _logdeta, descInc = _descInc, tecEvalua = _tecEvalua, diagnostico1 = _diagnostico1, diagnostico2 = _diagnostico2, diagnostico3 = _diagnostico3, diagnostico4 = _diagnostico4, diagnostico5 = _diagnostico5, diagnostico6 = _diagnostico6, diagnostico7 = _diagnostico7, diagnostico8 = _diagnostico8, fEvalua = _fEvalua, primera_eval = _primera_eval, fInicio = _fInicio, fFin = _fFin, tipTrabajo = _tipTrabajo, accion1 = _accion1, accion2 = _accion2, accion3 = _accion3, accion4 = _accion4, accion5 = _accion5, accion6 = _accion6, accion7 = _accion7, accion8 = _accion8, recomendaciones = _recomendaciones, estAtencion = _estAtencion, condFinal = _condFinal, servTerce = _servTerce, otros = _otros, obsOtros = _obsOtros, sgmtoManto = _sgmtoManto where idReposicion = _idReposicion;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `EDITAR_SERVICIO_OD` (IN `_id_area` INT(11), IN `_id_subarea` INT(11), IN `_subarea` TEXT)  BEGIN
@@ -189,7 +196,7 @@ SELECT idAccion,accionrealizada,segment,descSegmento FROM ws_acciones AS a INNER
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_ACCI_SEGMENTO` (IN `_idSegmento` INT(11))  BEGIN
-select idAccion,accionrealizada,segment from ws_acciones where segment = _idSegmento;
+select idAccion,accionrealizada,segment from ws_acciones where segment = _idSegmento order by accionrealizada;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_CATEGORIAS` ()  BEGIN
@@ -264,7 +271,7 @@ select idDiagnostico,diagnostico,sgmto,descSegmento from ws_diagnosticos as d in
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_DIAG_SEGMENTO` (IN `_idSegmento` INT(11))  BEGIN
-select idDiagnostico,diagnostico,sgmto from ws_diagnosticos where sgmto = _idSegmento;
+select idDiagnostico,diagnostico,sgmto from ws_diagnosticos where sgmto = _idSegmento order by diagnostico;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_EQUIPOSC` ()  BEGIN
@@ -325,6 +332,23 @@ inner join ws_tipotrabajo as ftiptrab on fmant.tipTrabajo = ftiptrab.idTipoTraba
 order by correlativo_Mant desc;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_FICHAS_REPO` ()  BEGIN
+SELECT idReposicion,descSegmento,correlativo_Repo,date_format(fRegistroRepo,'%d/%m/%Y') as fRegRepo,tipEquipo,categoria,idEquip,serie,oficEquip,area,areaEquip,subarea,uResponsable,concat(nombresResp,' ',apellidosResp) as responsable,logdeta,date_format(fEvalua,'%d/%m/%Y') as fEval,condInicial,fsitu.situacion as cinicial,tecEvalua,concat(nombres,' ',apellido_paterno,' ',apellido_materno) as tecnico,descInc,primera_eval,date_format(fInicio,'%d/%m/%Y') as fInic,date_format(fFin,'%d/%m/%Y') as fFinE,tipTrabajo,tipoTrabajo,recomendaciones,estAtencion,estAte,condFinal,fsitu2.situacion as cfinal,servTerce,otros,obsOtros,sgmtoManto,estAnulado,estadoDoc from ws_reposiciones as fmant
+inner join ws_categorias as fcat on fmant.tipEquipo = fcat.idCategoria
+inner join ws_segmento as eseg on fmant.sgmtoManto = eseg.idSegmento
+inner join ws_situacion as fsitu on fmant.condInicial = fsitu.idSituacion
+inner join ws_equipos as fequip on fmant.idEquip = fequip.idEquipo
+inner join ws_departamentos as fdept on fmant.oficEquip = fdept.id_area
+inner join ws_servicios as fserv on fmant.areaEquip = fserv.id_subarea
+inner join ws_responsables as fresp on fmant.respoEquip = fresp.idResponsable
+inner join ws_usuarios as ftec on fmant.tecEvalua = ftec.id_usuario
+inner join ws_estadoatencion as festat on fmant.estAtencion = festat.idEstAte
+inner join ws_situacion as fsitu2 on fmant.condFinal = fsitu2.idSituacion
+inner join ws_estadosdoc as festdoc on fmant.estAnulado = festdoc.idEstaDoc
+inner join ws_tipotrabajo as ftiptrab on fmant.tipTrabajo = ftiptrab.idTipoTrabajo
+order by correlativo_Repo desc;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_INTEGRACIONC` ()  BEGIN
 SELECT idIntegracion,correlativo_integracion,date_format(fecha_registro,'%d-%m-%Y') as fReg,nro_eq,ip,tipo_equipo,categoria,segmento,responsable,respon.nombresResp as nombRes,respon.apellidosResp as apellRes,oficina_in,dept.area as departamento,servicio_in,serv.subarea as servicio,pc.idEquipo as idPc,pc.serie as seriepc,pc.sbn as sbnpc,pc.marca as marcapc,pc.modelo as modelopc,pc.descripcion as descripcionpc,pc.ordenCompra as Ordenpc,date_format(pc.fechaCompra,'%d-%m-%Y') as fcomprapc,pc.garantia as garantiapc,pc.placa as placapc,pc.procesador as procesadorpc,pc.vprocesador as vprocesadorpc,pc.ram as rampc,pc.discoDuro as ddpc,estado,descEstado,siteq.idSituacion as condicionPC,situacion FROM ws_integraciones as integra 
 inner join ws_categorias as cat on integra.tipo_equipo = cat.idCategoria
@@ -362,7 +386,7 @@ WHERE segmento = 2 and estadoAnu = 0 order by correlativo_integracion desc;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_MANTO_COMPUS` (IN `_idMantenimiento` INT(11))  BEGIN
-select idMantenimiento,correlativo_Mant,date_format(fRegistroMant,'%d/%m/%Y') as fRegManto,tipEquipo,categoria,idEquip,serie,nro_eq,ip,sbn,marca,modelo,placa,procesador,vprocesador,ram,discoDuro,oficEquip,area,oficEquip,subarea,uResponsable,concat(nombresResp," ",apellidosResp) as responsable,logdeta,date_format(fEvalua,'%d/%m/%Y') as fEval,condInicial,fsitu.situacion as cinicial,tecEvalua,concat(nombres," ",apellido_paterno," ",apellido_materno) as tecnico,descInc,diagnosticos,primera_eval,date_format(fInicio,'%d/%m/%Y') as finic,date_format(fFin,'%d/%m/%Y') as ffin,tipTrabajo,tipoTrabajo,acciones,recomendaciones,estAtencion,estAte,condFinal,fsitu2.situacion as cfinal,servTerce,otros,obsOtros,sgmtoManto,estAnulado,estadoDoc from ws_mantenimientos as fmant
+select idMantenimiento,correlativo_Mant,date_format(fRegistroMant,'%d/%m/%Y') as fRegManto,tipEquipo,categoria,idEquip,serie,nro_eq,ip,sbn,marca,modelo,placa,procesador,vprocesador,ram,discoDuro,oficEquip,area,oficEquip,subarea,uResponsable,concat(nombresResp," ",apellidosResp) as responsable,logdeta,date_format(fEvalua,'%d/%m/%Y') as fEval,condInicial,fsitu.situacion as cinicial,tecEvalua,concat(nombres," ",apellido_paterno," ",apellido_materno) as tecnico,descInc,diagnostico1,fdiag1.diagnostico as d1,diagnostico2,fdiag2.diagnostico as d2,diagnostico3,fdiag3.diagnostico as d3,diagnostico4,fdiag4.diagnostico as d4,diagnostico5,fdiag5.diagnostico as d5,diagnostico6,fdiag6.diagnostico as d6,diagnostico7,fdiag7.diagnostico as d7,diagnostico8,fdiag8.diagnostico as d8,primera_eval,date_format(fInicio,'%d/%m/%Y') as finic,date_format(fFin,'%d/%m/%Y') as ffin,tipTrabajo,tipoTrabajo,accion1,facc1.accionrealizada as a1,accion2,facc2.accionrealizada as a2,accion3,facc3.accionrealizada as a3,accion4,facc4.accionrealizada as a4,accion5,facc5.accionrealizada as a5,accion6,facc6.accionrealizada as a6,accion7,facc7.accionrealizada as a7,accion8,facc8.accionrealizada as a8,recomendaciones,estAtencion,estAte,condFinal,fsitu2.situacion as cfinal,servTerce,otros,obsOtros,sgmtoManto,estAnulado,estadoDoc from ws_mantenimientos as fmant
 inner join ws_categorias as fcat on fmant.tipEquipo = fcat.idCategoria
 inner join ws_situacion as fsitu on fmant.condInicial = fsitu.idSituacion
 inner join ws_equipos as fequip on fmant.idEquip = fequip.idEquipo
@@ -375,11 +399,60 @@ inner join ws_situacion as fsitu2 on fmant.condFinal = fsitu2.idSituacion
 inner join ws_estadosdoc as festdoc on fmant.estAnulado = festdoc.idEstaDoc
 inner join ws_tipotrabajo as ftiptrab on fmant.tipTrabajo = ftiptrab.idTipoTrabajo
 inner join ws_integraciones as fintMant on fmant.idEquip = fintMant.serie_pc
+inner join ws_diagnosticos as fdiag1 on fmant.diagnostico1 = fdiag1.idDiagnostico
+left join ws_diagnosticos as fdiag2 on fmant.diagnostico2 = fdiag2.idDiagnostico
+left join ws_diagnosticos as fdiag3 on fmant.diagnostico3 = fdiag3.idDiagnostico
+left join ws_diagnosticos as fdiag4 on fmant.diagnostico4 = fdiag4.idDiagnostico
+left join ws_diagnosticos as fdiag5 on fmant.diagnostico5 = fdiag5.idDiagnostico
+left join ws_diagnosticos as fdiag6 on fmant.diagnostico6 = fdiag6.idDiagnostico
+left join ws_diagnosticos as fdiag7 on fmant.diagnostico7 = fdiag7.idDiagnostico
+left join ws_diagnosticos as fdiag8 on fmant.diagnostico8 = fdiag8.idDiagnostico
+inner join ws_acciones as facc1 on fmant.accion1 = facc1.idAccion
+left join ws_acciones as facc2 on fmant.accion2 = facc2.idAccion
+left join ws_acciones as facc3 on fmant.accion3 = facc3.idAccion
+left join ws_acciones as facc4 on fmant.accion4 = facc4.idAccion
+left join ws_acciones as facc5 on fmant.accion5 = facc5.idAccion
+left join ws_acciones as facc6 on fmant.accion6 = facc6.idAccion
+left join ws_acciones as facc7 on fmant.accion7 = facc7.idAccion
+left join ws_acciones as facc8 on fmant.accion8 = facc8.idAccion
 where idMantenimiento = _idMantenimiento;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_MANTO_COMPUS_REPO` (IN `_idReposicion` INT(11))  BEGIN
+select idReposicion,correlativo_Repo,date_format(fRegistroRepo,'%d/%m/%Y') as fRegRepo,tipEquipo,categoria,idEquip,serie,nro_eq,ip,sbn,marca,modelo,placa,procesador,vprocesador,ram,discoDuro,oficEquip,area,oficEquip,subarea,uResponsable,concat(nombresResp," ",apellidosResp) as responsable,logdeta,date_format(fEvalua,'%d/%m/%Y') as fEval,condInicial,fsitu.situacion as cinicial,tecEvalua,concat(nombres," ",apellido_paterno," ",apellido_materno) as tecnico,descInc,diagnostico1,fdiag1.diagnostico as d1,diagnostico2,fdiag2.diagnostico as d2,diagnostico3,fdiag3.diagnostico as d3,diagnostico4,fdiag4.diagnostico as d4,diagnostico5,fdiag5.diagnostico as d5,diagnostico6,fdiag6.diagnostico as d6,diagnostico7,fdiag7.diagnostico as d7,diagnostico8,fdiag8.diagnostico as d8,primera_eval,date_format(fInicio,'%d/%m/%Y') as finic,date_format(fFin,'%d/%m/%Y') as ffin,tipTrabajo,tipoTrabajo,accion1,facc1.accionrealizada as a1,accion2,facc2.accionrealizada as a2,accion3,facc3.accionrealizada as a3,accion4,facc4.accionrealizada as a4,accion5,facc5.accionrealizada as a5,accion6,facc6.accionrealizada as a6,accion7,facc7.accionrealizada as a7,accion8,facc8.accionrealizada as a8,recomendaciones,estAtencion,estAte,condFinal,fsitu2.situacion as cfinal,servTerce,otros,obsOtros,sgmtoManto,estAnulado,estadoDoc from ws_reposiciones as fmant
+inner join ws_categorias as fcat on fmant.tipEquipo = fcat.idCategoria
+inner join ws_situacion as fsitu on fmant.condInicial = fsitu.idSituacion
+inner join ws_equipos as fequip on fmant.idEquip = fequip.idEquipo
+inner join ws_departamentos as fdept on fmant.oficEquip = fdept.id_area
+inner join ws_servicios as fserv on fmant.areaEquip = fserv.id_subarea
+inner join ws_responsables as fresp on fmant.respoEquip = fresp.idResponsable
+inner join ws_usuarios as ftec on fmant.tecEvalua = ftec.id_usuario
+inner join ws_estadoatencion as festat on fmant.estAtencion = festat.idEstAte
+inner join ws_situacion as fsitu2 on fmant.condFinal = fsitu2.idSituacion
+inner join ws_estadosdoc as festdoc on fmant.estAnulado = festdoc.idEstaDoc
+inner join ws_tipotrabajo as ftiptrab on fmant.tipTrabajo = ftiptrab.idTipoTrabajo
+inner join ws_integraciones as fintMant on fmant.idEquip = fintMant.serie_pc
+inner join ws_diagnosticos as fdiag1 on fmant.diagnostico1 = fdiag1.idDiagnostico
+left join ws_diagnosticos as fdiag2 on fmant.diagnostico2 = fdiag2.idDiagnostico
+left join ws_diagnosticos as fdiag3 on fmant.diagnostico3 = fdiag3.idDiagnostico
+left join ws_diagnosticos as fdiag4 on fmant.diagnostico4 = fdiag4.idDiagnostico
+left join ws_diagnosticos as fdiag5 on fmant.diagnostico5 = fdiag5.idDiagnostico
+left join ws_diagnosticos as fdiag6 on fmant.diagnostico6 = fdiag6.idDiagnostico
+left join ws_diagnosticos as fdiag7 on fmant.diagnostico7 = fdiag7.idDiagnostico
+left join ws_diagnosticos as fdiag8 on fmant.diagnostico8 = fdiag8.idDiagnostico
+inner join ws_acciones as facc1 on fmant.accion1 = facc1.idAccion
+left join ws_acciones as facc2 on fmant.accion2 = facc2.idAccion
+left join ws_acciones as facc3 on fmant.accion3 = facc3.idAccion
+left join ws_acciones as facc4 on fmant.accion4 = facc4.idAccion
+left join ws_acciones as facc5 on fmant.accion5 = facc5.idAccion
+left join ws_acciones as facc6 on fmant.accion6 = facc6.idAccion
+left join ws_acciones as facc7 on fmant.accion7 = facc7.idAccion
+left join ws_acciones as facc8 on fmant.accion8 = facc8.idAccion
+where idReposicion = _idReposicion;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_MANTO_IMPRE_PERI` (IN `_idMantenimiento` INT(11))  BEGIN
-select idMantenimiento,correlativo_Mant,date_format(fRegistroMant,'%d/%m/%Y') as fRegManto,tipEquipo,categoria,idEquip,serie,nro_eq,ip,sbn,marca,modelo,oficEquip,area,oficEquip,subarea,uResponsable,concat(nombresResp," ",apellidosResp) as responsable,logdeta,date_format(fEvalua,'%d/%m/%Y') as fEval,condInicial,fsitu.situacion as cinicial,tecEvalua,concat(nombres," ",apellido_paterno," ",apellido_materno) as tecnico,descInc,diagnosticos,primera_eval,date_format(fInicio,'%d/%m/%Y') as finic,date_format(fFin,'%d/%m/%Y') as ffin,tipoTrabajo,acciones,recomendaciones,estAtencion,estAte,condFinal,fsitu2.situacion as cfinal,servTerce,otros,obsOtros,sgmtoManto,estAnulado,estadoDoc from ws_mantenimientos as fmant
+select idMantenimiento,correlativo_Mant,date_format(fRegistroMant,'%d/%m/%Y') as fRegManto,tipEquipo,categoria,idEquip,serie,nro_eq,ip,sbn,marca,modelo,oficEquip,area,oficEquip,subarea,uResponsable,concat(nombresResp," ",apellidosResp) as responsable,logdeta,date_format(fEvalua,'%d/%m/%Y') as fEval,condInicial,fsitu.situacion as cinicial,tecEvalua,concat(nombres," ",apellido_paterno," ",apellido_materno) as tecnico,descInc,diagnostico1,fdiag1.diagnostico as d1,diagnostico2,fdiag2.diagnostico as d2,diagnostico3,fdiag3.diagnostico as d3,diagnostico4,fdiag4.diagnostico as d4,diagnostico5,fdiag5.diagnostico as d5,diagnostico6,fdiag6.diagnostico as d6,diagnostico7,fdiag7.diagnostico as d7,diagnostico8,fdiag8.diagnostico as d8,primera_eval,date_format(fInicio,'%d/%m/%Y') as finic,date_format(fFin,'%d/%m/%Y') as ffin,tipoTrabajo,accion1,facc1.accionrealizada as a1,accion2,facc2.accionrealizada as a2,accion3,facc3.accionrealizada as a3,accion4,facc4.accionrealizada as a4,accion5,facc5.accionrealizada as a5,accion6,facc6.accionrealizada as a6,accion7,facc7.accionrealizada as a7,accion8,facc8.accionrealizada as a8,recomendaciones,estAtencion,estAte,condFinal,fsitu2.situacion as cfinal,servTerce,otros,obsOtros,sgmtoManto,estAnulado,estadoDoc from ws_mantenimientos as fmant
 inner join ws_categorias as fcat on fmant.tipEquipo = fcat.idCategoria
 inner join ws_situacion as fsitu on fmant.condInicial = fsitu.idSituacion
 inner join ws_equipos as fequip on fmant.idEquip = fequip.idEquipo
@@ -392,11 +465,27 @@ inner join ws_situacion as fsitu2 on fmant.condFinal = fsitu2.idSituacion
 inner join ws_estadosdoc as festdoc on fmant.estAnulado = festdoc.idEstaDoc
 inner join ws_tipotrabajo as ftiptrab on fmant.tipTrabajo = ftiptrab.idTipoTrabajo
 inner join ws_integraciones as fintMant on fmant.idEquip = fintMant.serie_imp
+inner join ws_diagnosticos as fdiag1 on fmant.diagnostico1 = fdiag1.idDiagnostico
+left join ws_diagnosticos as fdiag2 on fmant.diagnostico2 = fdiag2.idDiagnostico
+left join ws_diagnosticos as fdiag3 on fmant.diagnostico3 = fdiag3.idDiagnostico
+left join ws_diagnosticos as fdiag4 on fmant.diagnostico4 = fdiag4.idDiagnostico
+left join ws_diagnosticos as fdiag5 on fmant.diagnostico5 = fdiag5.idDiagnostico
+left join ws_diagnosticos as fdiag6 on fmant.diagnostico6 = fdiag6.idDiagnostico
+left join ws_diagnosticos as fdiag7 on fmant.diagnostico7 = fdiag7.idDiagnostico
+left join ws_diagnosticos as fdiag8 on fmant.diagnostico8 = fdiag8.idDiagnostico
+inner join ws_acciones as facc1 on fmant.accion1 = facc1.idAccion
+left join ws_acciones as facc2 on fmant.accion2 = facc2.idAccion
+left join ws_acciones as facc3 on fmant.accion3 = facc3.idAccion
+left join ws_acciones as facc4 on fmant.accion4 = facc4.idAccion
+left join ws_acciones as facc5 on fmant.accion5 = facc5.idAccion
+left join ws_acciones as facc6 on fmant.accion6 = facc6.idAccion
+left join ws_acciones as facc7 on fmant.accion7 = facc7.idAccion
+left join ws_acciones as facc8 on fmant.accion8 = facc8.idAccion
 where idMantenimiento = _idMantenimiento;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_MANTO_OTROS` (IN `_idMantenimiento` INT(11))  BEGIN
-select idMantenimiento,correlativo_Mant,date_format(fRegistroMant,'%d/%m/%Y') as fRegManto,tipEquipo,categoria,idEquip,serie,sbn,marca,modelo,oficEquip,area,oficEquip,subarea,uResponsable,concat(nombresResp," ",apellidosResp) as responsable,logdeta,date_format(fEvalua,'%d/%m/%Y') as fEval,condInicial,fsitu.situacion as cinicial,tecEvalua,concat(nombres," ",apellido_paterno," ",apellido_materno) as tecnico,descInc,diagnosticos,primera_eval,date_format(fInicio,'%d/%m/%Y') as finic,date_format(fFin,'%d/%m/%Y') as ffin,tipTrabajo,tipoTrabajo,acciones,recomendaciones,estAtencion,estAte,condFinal,fsitu2.situacion as cfinal,servTerce,otros,obsOtros,sgmtoManto,estAnulado,estadoDoc from ws_mantenimientos as fmant
+CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_MANTO_IMPRE_PERI_REPO` (IN `_idReposicion` INT(11))  BEGIN
+select idReposicion,correlativo_Repo,date_format(fRegistroRepo,'%d/%m/%Y') as fRegRepo,tipEquipo,categoria,idEquip,serie,nro_eq,ip,sbn,marca,modelo,oficEquip,area,oficEquip,subarea,uResponsable,concat(nombresResp," ",apellidosResp) as responsable,logdeta,date_format(fEvalua,'%d/%m/%Y') as fEval,condInicial,fsitu.situacion as cinicial,tecEvalua,concat(nombres," ",apellido_paterno," ",apellido_materno) as tecnico,descInc,diagnostico1,fdiag1.diagnostico as d1,diagnostico2,fdiag2.diagnostico as d2,diagnostico3,fdiag3.diagnostico as d3,diagnostico4,fdiag4.diagnostico as d4,diagnostico5,fdiag5.diagnostico as d5,diagnostico6,fdiag6.diagnostico as d6,diagnostico7,fdiag7.diagnostico as d7,diagnostico8,fdiag8.diagnostico as d8,primera_eval,date_format(fInicio,'%d/%m/%Y') as finic,date_format(fFin,'%d/%m/%Y') as ffin,tipoTrabajo,accion1,facc1.accionrealizada as a1,accion2,facc2.accionrealizada as a2,accion3,facc3.accionrealizada as a3,accion4,facc4.accionrealizada as a4,accion5,facc5.accionrealizada as a5,accion6,facc6.accionrealizada as a6,accion7,facc7.accionrealizada as a7,accion8,facc8.accionrealizada as a8,recomendaciones,estAtencion,estAte,condFinal,fsitu2.situacion as cfinal,servTerce,otros,obsOtros,sgmtoManto,estAnulado,estadoDoc from ws_reposiciones as fmant
 inner join ws_categorias as fcat on fmant.tipEquipo = fcat.idCategoria
 inner join ws_situacion as fsitu on fmant.condInicial = fsitu.idSituacion
 inner join ws_equipos as fequip on fmant.idEquip = fequip.idEquipo
@@ -408,11 +497,92 @@ inner join ws_estadoatencion as festat on fmant.estAtencion = festat.idEstAte
 inner join ws_situacion as fsitu2 on fmant.condFinal = fsitu2.idSituacion
 inner join ws_estadosdoc as festdoc on fmant.estAnulado = festdoc.idEstaDoc
 inner join ws_tipotrabajo as ftiptrab on fmant.tipTrabajo = ftiptrab.idTipoTrabajo
+inner join ws_integraciones as fintMant on fmant.idEquip = fintMant.serie_imp
+inner join ws_diagnosticos as fdiag1 on fmant.diagnostico1 = fdiag1.idDiagnostico
+left join ws_diagnosticos as fdiag2 on fmant.diagnostico2 = fdiag2.idDiagnostico
+left join ws_diagnosticos as fdiag3 on fmant.diagnostico3 = fdiag3.idDiagnostico
+left join ws_diagnosticos as fdiag4 on fmant.diagnostico4 = fdiag4.idDiagnostico
+left join ws_diagnosticos as fdiag5 on fmant.diagnostico5 = fdiag5.idDiagnostico
+left join ws_diagnosticos as fdiag6 on fmant.diagnostico6 = fdiag6.idDiagnostico
+left join ws_diagnosticos as fdiag7 on fmant.diagnostico7 = fdiag7.idDiagnostico
+left join ws_diagnosticos as fdiag8 on fmant.diagnostico8 = fdiag8.idDiagnostico
+inner join ws_acciones as facc1 on fmant.accion1 = facc1.idAccion
+left join ws_acciones as facc2 on fmant.accion2 = facc2.idAccion
+left join ws_acciones as facc3 on fmant.accion3 = facc3.idAccion
+left join ws_acciones as facc4 on fmant.accion4 = facc4.idAccion
+left join ws_acciones as facc5 on fmant.accion5 = facc5.idAccion
+left join ws_acciones as facc6 on fmant.accion6 = facc6.idAccion
+left join ws_acciones as facc7 on fmant.accion7 = facc7.idAccion
+left join ws_acciones as facc8 on fmant.accion8 = facc8.idAccion
+where idReposicion = _idReposicion;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_MANTO_OTROS` (IN `_idMantenimiento` INT(11))  BEGIN
+select idMantenimiento,correlativo_Mant,date_format(fRegistroMant,'%d/%m/%Y') as fRegManto,tipEquipo,categoria,idEquip,serie,sbn,marca,modelo,oficEquip,area,oficEquip,subarea,uResponsable,concat(nombresResp," ",apellidosResp) as responsable,logdeta,date_format(fEvalua,'%d/%m/%Y') as fEval,condInicial,fsitu.situacion as cinicial,tecEvalua,concat(nombres," ",apellido_paterno," ",apellido_materno) as tecnico,descInc,diagnostico1,fdiag1.diagnostico as d1,diagnostico2,fdiag2.diagnostico as d2,diagnostico3,fdiag3.diagnostico as d3,diagnostico4,fdiag4.diagnostico as d4,diagnostico5,fdiag5.diagnostico as d5,diagnostico6,fdiag6.diagnostico as d6,diagnostico7,fdiag7.diagnostico as d7,diagnostico8,fdiag8.diagnostico as d8,primera_eval,date_format(fInicio,'%d/%m/%Y') as finic,date_format(fFin,'%d/%m/%Y') as ffin,tipTrabajo,tipoTrabajo,accion1,facc1.accionrealizada as a1,accion2,facc2.accionrealizada as a2,accion3,facc3.accionrealizada as a3,accion4,facc4.accionrealizada as a4,accion5,facc5.accionrealizada as a5,accion6,facc6.accionrealizada as a6,accion7,facc7.accionrealizada as a7,accion8,facc8.accionrealizada as a8,recomendaciones,estAtencion,estAte,condFinal,fsitu2.situacion as cfinal,servTerce,otros,obsOtros,sgmtoManto,estAnulado,estadoDoc from ws_mantenimientos as fmant
+inner join ws_categorias as fcat on fmant.tipEquipo = fcat.idCategoria
+inner join ws_situacion as fsitu on fmant.condInicial = fsitu.idSituacion
+inner join ws_equipos as fequip on fmant.idEquip = fequip.idEquipo
+inner join ws_departamentos as fdept on fmant.oficEquip = fdept.id_area
+inner join ws_servicios as fserv on fmant.areaEquip = fserv.id_subarea
+inner join ws_responsables as fresp on fmant.respoEquip = fresp.idResponsable
+inner join ws_usuarios as ftec on fmant.tecEvalua = ftec.id_usuario
+inner join ws_estadoatencion as festat on fmant.estAtencion = festat.idEstAte
+inner join ws_situacion as fsitu2 on fmant.condFinal = fsitu2.idSituacion
+inner join ws_estadosdoc as festdoc on fmant.estAnulado = festdoc.idEstaDoc
+inner join ws_tipotrabajo as ftiptrab on fmant.tipTrabajo = ftiptrab.idTipoTrabajo
+inner join ws_diagnosticos as fdiag1 on fmant.diagnostico1 = fdiag1.idDiagnostico
+left join ws_diagnosticos as fdiag2 on fmant.diagnostico2 = fdiag2.idDiagnostico
+left join ws_diagnosticos as fdiag3 on fmant.diagnostico3 = fdiag3.idDiagnostico
+left join ws_diagnosticos as fdiag4 on fmant.diagnostico4 = fdiag4.idDiagnostico
+left join ws_diagnosticos as fdiag5 on fmant.diagnostico5 = fdiag5.idDiagnostico
+left join ws_diagnosticos as fdiag6 on fmant.diagnostico6 = fdiag6.idDiagnostico
+left join ws_diagnosticos as fdiag7 on fmant.diagnostico7 = fdiag7.idDiagnostico
+left join ws_diagnosticos as fdiag8 on fmant.diagnostico8 = fdiag8.idDiagnostico
+inner join ws_acciones as facc1 on fmant.accion1 = facc1.idAccion
+left join ws_acciones as facc2 on fmant.accion2 = facc2.idAccion
+left join ws_acciones as facc3 on fmant.accion3 = facc3.idAccion
+left join ws_acciones as facc4 on fmant.accion4 = facc4.idAccion
+left join ws_acciones as facc5 on fmant.accion5 = facc5.idAccion
+left join ws_acciones as facc6 on fmant.accion6 = facc6.idAccion
+left join ws_acciones as facc7 on fmant.accion7 = facc7.idAccion
+left join ws_acciones as facc8 on fmant.accion8 = facc8.idAccion
 where idMantenimiento = _idMantenimiento;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_MANTO_OTROS_REPO` (IN `_idReposicion` INT(11))  BEGIN
+select idReposicion,correlativo_Repo,date_format(fRegistroRepo,'%d/%m/%Y') as fRegRepo,tipEquipo,categoria,idEquip,serie,sbn,marca,modelo,oficEquip,area,oficEquip,subarea,uResponsable,concat(nombresResp," ",apellidosResp) as responsable,logdeta,date_format(fEvalua,'%d/%m/%Y') as fEval,condInicial,fsitu.situacion as cinicial,tecEvalua,concat(nombres," ",apellido_paterno," ",apellido_materno) as tecnico,descInc,diagnostico1,fdiag1.diagnostico as d1,diagnostico2,fdiag2.diagnostico as d2,diagnostico3,fdiag3.diagnostico as d3,diagnostico4,fdiag4.diagnostico as d4,diagnostico5,fdiag5.diagnostico as d5,diagnostico6,fdiag6.diagnostico as d6,diagnostico7,fdiag7.diagnostico as d7,diagnostico8,fdiag8.diagnostico as d8,primera_eval,date_format(fInicio,'%d/%m/%Y') as finic,date_format(fFin,'%d/%m/%Y') as ffin,tipTrabajo,tipoTrabajo,accion1,facc1.accionrealizada as a1,accion2,facc2.accionrealizada as a2,accion3,facc3.accionrealizada as a3,accion4,facc4.accionrealizada as a4,accion5,facc5.accionrealizada as a5,accion6,facc6.accionrealizada as a6,accion7,facc7.accionrealizada as a7,accion8,facc8.accionrealizada as a8,recomendaciones,estAtencion,estAte,condFinal,fsitu2.situacion as cfinal,servTerce,otros,obsOtros,sgmtoManto,estAnulado,estadoDoc from ws_reposiciones as fmant
+inner join ws_categorias as fcat on fmant.tipEquipo = fcat.idCategoria
+inner join ws_situacion as fsitu on fmant.condInicial = fsitu.idSituacion
+inner join ws_equipos as fequip on fmant.idEquip = fequip.idEquipo
+inner join ws_departamentos as fdept on fmant.oficEquip = fdept.id_area
+inner join ws_servicios as fserv on fmant.areaEquip = fserv.id_subarea
+inner join ws_responsables as fresp on fmant.respoEquip = fresp.idResponsable
+inner join ws_usuarios as ftec on fmant.tecEvalua = ftec.id_usuario
+inner join ws_estadoatencion as festat on fmant.estAtencion = festat.idEstAte
+inner join ws_situacion as fsitu2 on fmant.condFinal = fsitu2.idSituacion
+inner join ws_estadosdoc as festdoc on fmant.estAnulado = festdoc.idEstaDoc
+inner join ws_tipotrabajo as ftiptrab on fmant.tipTrabajo = ftiptrab.idTipoTrabajo
+inner join ws_diagnosticos as fdiag1 on fmant.diagnostico1 = fdiag1.idDiagnostico
+left join ws_diagnosticos as fdiag2 on fmant.diagnostico2 = fdiag2.idDiagnostico
+left join ws_diagnosticos as fdiag3 on fmant.diagnostico3 = fdiag3.idDiagnostico
+left join ws_diagnosticos as fdiag4 on fmant.diagnostico4 = fdiag4.idDiagnostico
+left join ws_diagnosticos as fdiag5 on fmant.diagnostico5 = fdiag5.idDiagnostico
+left join ws_diagnosticos as fdiag6 on fmant.diagnostico6 = fdiag6.idDiagnostico
+left join ws_diagnosticos as fdiag7 on fmant.diagnostico7 = fdiag7.idDiagnostico
+left join ws_diagnosticos as fdiag8 on fmant.diagnostico8 = fdiag8.idDiagnostico
+inner join ws_acciones as facc1 on fmant.accion1 = facc1.idAccion
+left join ws_acciones as facc2 on fmant.accion2 = facc2.idAccion
+left join ws_acciones as facc3 on fmant.accion3 = facc3.idAccion
+left join ws_acciones as facc4 on fmant.accion4 = facc4.idAccion
+left join ws_acciones as facc5 on fmant.accion5 = facc5.idAccion
+left join ws_acciones as facc6 on fmant.accion6 = facc6.idAccion
+left join ws_acciones as facc7 on fmant.accion7 = facc7.idAccion
+left join ws_acciones as facc8 on fmant.accion8 = facc8.idAccion
+where idReposicion = _idReposicion;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_MANTO_REDES` (IN `_idMantenimiento` INT(11))  BEGIN
-select idMantenimiento,correlativo_Mant,date_format(fRegistroMant,'%d/%m/%Y') as fRegManto,tipEquipo,categoria,idEquip,serie,nro_eq,ip,sbn,marca,modelo,puertos,capa,oficEquip,area,oficEquip,subarea,uResponsable,concat(nombresResp," ",apellidosResp) as responsable,logdeta,date_format(fEvalua,'%d/%m/%Y') as fEval,condInicial,fsitu.situacion as cinicial,tecEvalua,concat(nombres," ",apellido_paterno," ",apellido_materno) as tecnico,descInc,diagnosticos,primera_eval,date_format(fInicio,'%d/%m/%Y') as finic,date_format(fFin,'%d/%m/%Y') as ffin,tipTrabajo,tipoTrabajo,acciones,recomendaciones,estAtencion,estAte,condFinal,fsitu2.situacion as cfinal,servTerce,otros,obsOtros,sgmtoManto,estAnulado,estadoDoc from ws_mantenimientos as fmant
+select idMantenimiento,correlativo_Mant,date_format(fRegistroMant,'%d/%m/%Y') as fRegManto,tipEquipo,categoria,idEquip,serie,nro_eq,ip,sbn,marca,modelo,puertos,capa,oficEquip,area,oficEquip,subarea,uResponsable,concat(nombresResp," ",apellidosResp) as responsable,logdeta,date_format(fEvalua,'%d/%m/%Y') as fEval,condInicial,fsitu.situacion as cinicial,tecEvalua,concat(nombres," ",apellido_paterno," ",apellido_materno) as tecnico,diagnostico1,fdiag1.diagnostico as d1,diagnostico2,fdiag2.diagnostico as d2,diagnostico3,fdiag3.diagnostico as d3,diagnostico4,fdiag4.diagnostico as d4,diagnostico5,fdiag5.diagnostico as d5,diagnostico6,fdiag6.diagnostico as d6,diagnostico7,fdiag7.diagnostico as d7,diagnostico8,fdiag8.diagnostico as d8,primera_eval,date_format(fInicio,'%d/%m/%Y') as finic,date_format(fFin,'%d/%m/%Y') as ffin,tipTrabajo,tipoTrabajo,accion1,facc1.accionrealizada as a1,accion2,facc2.accionrealizada as a2,accion3,facc3.accionrealizada as a3,accion4,facc4.accionrealizada as a4,accion5,facc5.accionrealizada as a5,accion6,facc6.accionrealizada as a6,accion7,facc7.accionrealizada as a7,accion8,facc8.accionrealizada as a8,recomendaciones,estAtencion,estAte,condFinal,fsitu2.situacion as cfinal,servTerce,otros,obsOtros,sgmtoManto,estAnulado,estadoDoc from ws_mantenimientos as fmant
 inner join ws_categorias as fcat on fmant.tipEquipo = fcat.idCategoria
 inner join ws_situacion as fsitu on fmant.condInicial = fsitu.idSituacion
 inner join ws_equipos as fequip on fmant.idEquip = fequip.idEquipo
@@ -425,7 +595,56 @@ inner join ws_situacion as fsitu2 on fmant.condFinal = fsitu2.idSituacion
 inner join ws_estadosdoc as festdoc on fmant.estAnulado = festdoc.idEstaDoc
 inner join ws_tipotrabajo as ftiptrab on fmant.tipTrabajo = ftiptrab.idTipoTrabajo
 inner join ws_integraciones as fintMant on fmant.idEquip = fintMant.serie_eqred
+inner join ws_diagnosticos as fdiag1 on fmant.diagnostico1 = fdiag1.idDiagnostico
+left join ws_diagnosticos as fdiag2 on fmant.diagnostico2 = fdiag2.idDiagnostico
+left join ws_diagnosticos as fdiag3 on fmant.diagnostico3 = fdiag3.idDiagnostico
+left join ws_diagnosticos as fdiag4 on fmant.diagnostico4 = fdiag4.idDiagnostico
+left join ws_diagnosticos as fdiag5 on fmant.diagnostico5 = fdiag5.idDiagnostico
+left join ws_diagnosticos as fdiag6 on fmant.diagnostico6 = fdiag6.idDiagnostico
+left join ws_diagnosticos as fdiag7 on fmant.diagnostico7 = fdiag7.idDiagnostico
+left join ws_diagnosticos as fdiag8 on fmant.diagnostico8 = fdiag8.idDiagnostico
+inner join ws_acciones as facc1 on fmant.accion1 = facc1.idAccion
+left join ws_acciones as facc2 on fmant.accion2 = facc2.idAccion
+left join ws_acciones as facc3 on fmant.accion3 = facc3.idAccion
+left join ws_acciones as facc4 on fmant.accion4 = facc4.idAccion
+left join ws_acciones as facc5 on fmant.accion5 = facc5.idAccion
+left join ws_acciones as facc6 on fmant.accion6 = facc6.idAccion
+left join ws_acciones as facc7 on fmant.accion7 = facc7.idAccion
+left join ws_acciones as facc8 on fmant.accion8 = facc8.idAccion
 where idMantenimiento = _idMantenimiento;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_MANTO_REDES_REPO` (IN `_idReposicion` INT(11))  BEGIN
+select idReposicion,correlativo_Repo,date_format(fRegistroRepo,'%d/%m/%Y') as fRegRepo,tipEquipo,categoria,idEquip,serie,nro_eq,ip,sbn,marca,modelo,puertos,capa,oficEquip,area,oficEquip,subarea,uResponsable,concat(nombresResp," ",apellidosResp) as responsable,logdeta,date_format(fEvalua,'%d/%m/%Y') as fEval,condInicial,fsitu.situacion as cinicial,tecEvalua,concat(nombres," ",apellido_paterno," ",apellido_materno) as tecnico,diagnostico1,fdiag1.diagnostico as d1,diagnostico2,fdiag2.diagnostico as d2,diagnostico3,fdiag3.diagnostico as d3,diagnostico4,fdiag4.diagnostico as d4,diagnostico5,fdiag5.diagnostico as d5,diagnostico6,fdiag6.diagnostico as d6,diagnostico7,fdiag7.diagnostico as d7,diagnostico8,fdiag8.diagnostico as d8,primera_eval,date_format(fInicio,'%d/%m/%Y') as finic,date_format(fFin,'%d/%m/%Y') as ffin,tipTrabajo,tipoTrabajo,accion1,facc1.accionrealizada as a1,accion2,facc2.accionrealizada as a2,accion3,facc3.accionrealizada as a3,accion4,facc4.accionrealizada as a4,accion5,facc5.accionrealizada as a5,accion6,facc6.accionrealizada as a6,accion7,facc7.accionrealizada as a7,accion8,facc8.accionrealizada as a8,recomendaciones,estAtencion,estAte,condFinal,fsitu2.situacion as cfinal,servTerce,otros,obsOtros,sgmtoManto,estAnulado,estadoDoc from ws_reposiciones as fmant
+inner join ws_categorias as fcat on fmant.tipEquipo = fcat.idCategoria
+inner join ws_situacion as fsitu on fmant.condInicial = fsitu.idSituacion
+inner join ws_equipos as fequip on fmant.idEquip = fequip.idEquipo
+inner join ws_departamentos as fdept on fmant.oficEquip = fdept.id_area
+inner join ws_servicios as fserv on fmant.areaEquip = fserv.id_subarea
+inner join ws_responsables as fresp on fmant.respoEquip = fresp.idResponsable
+inner join ws_usuarios as ftec on fmant.tecEvalua = ftec.id_usuario
+inner join ws_estadoatencion as festat on fmant.estAtencion = festat.idEstAte
+inner join ws_situacion as fsitu2 on fmant.condFinal = fsitu2.idSituacion
+inner join ws_estadosdoc as festdoc on fmant.estAnulado = festdoc.idEstaDoc
+inner join ws_tipotrabajo as ftiptrab on fmant.tipTrabajo = ftiptrab.idTipoTrabajo
+inner join ws_integraciones as fintMant on fmant.idEquip = fintMant.serie_eqred
+inner join ws_diagnosticos as fdiag1 on fmant.diagnostico1 = fdiag1.idDiagnostico
+left join ws_diagnosticos as fdiag2 on fmant.diagnostico2 = fdiag2.idDiagnostico
+left join ws_diagnosticos as fdiag3 on fmant.diagnostico3 = fdiag3.idDiagnostico
+left join ws_diagnosticos as fdiag4 on fmant.diagnostico4 = fdiag4.idDiagnostico
+left join ws_diagnosticos as fdiag5 on fmant.diagnostico5 = fdiag5.idDiagnostico
+left join ws_diagnosticos as fdiag6 on fmant.diagnostico6 = fdiag6.idDiagnostico
+left join ws_diagnosticos as fdiag7 on fmant.diagnostico7 = fdiag7.idDiagnostico
+left join ws_diagnosticos as fdiag8 on fmant.diagnostico8 = fdiag8.idDiagnostico
+inner join ws_acciones as facc1 on fmant.accion1 = facc1.idAccion
+left join ws_acciones as facc2 on fmant.accion2 = facc2.idAccion
+left join ws_acciones as facc3 on fmant.accion3 = facc3.idAccion
+left join ws_acciones as facc4 on fmant.accion4 = facc4.idAccion
+left join ws_acciones as facc5 on fmant.accion5 = facc5.idAccion
+left join ws_acciones as facc6 on fmant.accion6 = facc6.idAccion
+left join ws_acciones as facc7 on fmant.accion7 = facc7.idAccion
+left join ws_acciones as facc8 on fmant.accion8 = facc8.idAccion
+where idReposicion = _idReposicion;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_RESPONSABLES` ()  BEGIN
@@ -498,59 +717,59 @@ select id_usuario,nombres,apellido_paterno,apellido_materno from ws_usuarios whe
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTA_SACCI1` (IN `_sgmt` INT(11), IN `_existe` INT(11))  BEGIN
-SELECT idAccion,accionrealizada FROM ws_acciones where segment = _sgmt and  idAccion != _existe;
+SELECT idAccion,accionrealizada FROM ws_acciones where segment = _sgmt and  idAccion != _existe order by accionrealizada;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTA_SACCI2` (IN `_sgmt` INT(11), IN `_existe` INT(11), IN `_existe2` INT(11))  BEGIN
-SELECT idAccion,accionrealizada FROM ws_acciones where segment = _sgmt and  idAccion != _existe and  idAccion != _existe2;
+SELECT idAccion,accionrealizada FROM ws_acciones where segment = _sgmt and  idAccion != _existe and  idAccion != _existe2 order by accionrealizada;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTA_SACCI3` (IN `_sgmt` INT(11), IN `_existe` INT(11), IN `_existe2` INT(11), IN `_existe3` INT(11))  BEGIN
-SELECT idAccion,accionrealizada FROM ws_acciones where segment = _sgmt and  idAccion != _existe and  idAccion != _existe2 and  idAccion != _existe3;
+SELECT idAccion,accionrealizada FROM ws_acciones where segment = _sgmt and  idAccion != _existe and  idAccion != _existe2 and  idAccion != _existe3 order by accionrealizada;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTA_SACCI4` (IN `_sgmt` INT(11), IN `_existe` INT(11), IN `_existe2` INT(11), IN `_existe3` INT(11), IN `_existe4` INT(11))  BEGIN
-SELECT idAccion,accionrealizada FROM ws_acciones where segment = _sgmt and  idAccion != _existe and  idAccion != _existe2 and  idAccion != _existe3 and  idAccion != _existe4;
+SELECT idAccion,accionrealizada FROM ws_acciones where segment = _sgmt and  idAccion != _existe and  idAccion != _existe2 and  idAccion != _existe3 and  idAccion != _existe4 order by accionrealizada;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTA_SACCI5` (IN `_sgmt` INT(11), IN `_existe` INT(11), IN `_existe2` INT(11), IN `_existe3` INT(11), IN `_existe4` INT(11), IN `_existe5` INT(11))  BEGIN
-SELECT idAccion,accionrealizada FROM ws_acciones where segment = _sgmt and  idAccion != _existe and  idAccion != _existe2 and  idAccion != _existe3 and  idAccion != _existe4 and  idAccion != _existe5;
+SELECT idAccion,accionrealizada FROM ws_acciones where segment = _sgmt and  idAccion != _existe and  idAccion != _existe2 and  idAccion != _existe3 and  idAccion != _existe4 and  idAccion != _existe5 order by accionrealizada;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTA_SACCI6` (IN `_sgmt` INT(11), IN `_existe` INT(11), IN `_existe2` INT(11), IN `_existe3` INT(11), IN `_existe4` INT(11), IN `_existe5` INT(11), IN `_existe6` INT(11))  BEGIN
-SELECT idAccion,accionrealizada FROM ws_acciones where segment = _sgmt and  idAccion != _existe and  idAccion != _existe2 and  idAccion != _existe3 and  idAccion != _existe4 and  idAccion != _existe5 and  idAccion != _existe6;
+SELECT idAccion,accionrealizada FROM ws_acciones where segment = _sgmt and  idAccion != _existe and  idAccion != _existe2 and  idAccion != _existe3 and  idAccion != _existe4 and  idAccion != _existe5 and  idAccion != _existe6 order by accionrealizada;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTA_SACCI7` (IN `_sgmt` INT(11), IN `_existe` INT(11), IN `_existe2` INT(11), IN `_existe3` INT(11), IN `_existe4` INT(11), IN `_existe5` INT(11), IN `_existe6` INT(11), IN `_existe7` INT(11))  BEGIN
-SELECT idAccion,accionrealizada FROM ws_acciones where segment = _sgmt and  idAccion != _existe and  idAccion != _existe2 and  idAccion != _existe3 and  idAccion != _existe4 and  idAccion != _existe5 and  idAccion != _existe6 and  idAccion != _existe7;
+SELECT idAccion,accionrealizada FROM ws_acciones where segment = _sgmt and  idAccion != _existe and  idAccion != _existe2 and  idAccion != _existe3 and  idAccion != _existe4 and  idAccion != _existe5 and  idAccion != _existe6 and  idAccion != _existe7 order by accionrealizada;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTA_SDIAG` (IN `_sgmt` INT(11), IN `_existe` INT(11))  BEGIN
-SELECT idDiagnostico,diagnostico FROM ws_diagnosticos where sgmto = _sgmt and  idDiagnostico != _existe;
+SELECT idDiagnostico,diagnostico FROM ws_diagnosticos where sgmto = _sgmt and  idDiagnostico != _existe order by diagnostico;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTA_SDIAG2` (IN `_sgmt` INT(11), IN `_existe` INT(11), IN `_existe2` INT(11))  BEGIN
-SELECT idDiagnostico,diagnostico FROM ws_diagnosticos where sgmto = _sgmt and  idDiagnostico != _existe and  idDiagnostico != _existe2;
+SELECT idDiagnostico,diagnostico FROM ws_diagnosticos where sgmto = _sgmt and  idDiagnostico != _existe and  idDiagnostico != _existe2 order by diagnostico;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTA_SDIAG3` (IN `_sgmt` INT(11), IN `_existe` INT(11), IN `_existe2` INT(11), IN `_existe3` INT(11))  BEGIN
-SELECT idDiagnostico,diagnostico FROM ws_diagnosticos where sgmto = _sgmt and  idDiagnostico != _existe and  idDiagnostico != _existe2 and  idDiagnostico != _existe3;
+SELECT idDiagnostico,diagnostico FROM ws_diagnosticos where sgmto = _sgmt and  idDiagnostico != _existe and  idDiagnostico != _existe2 and  idDiagnostico != _existe3 order by diagnostico;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTA_SDIAG4` (IN `_sgmt` INT(11), IN `_existe` INT(11), IN `_existe2` INT(11), IN `_existe3` INT(11), IN `_existe4` INT(11))  BEGIN
-SELECT idDiagnostico,diagnostico FROM ws_diagnosticos where sgmto = _sgmt and  idDiagnostico != _existe and  idDiagnostico != _existe2 and  idDiagnostico != _existe3 and  idDiagnostico != _existe4;
+SELECT idDiagnostico,diagnostico FROM ws_diagnosticos where sgmto = _sgmt and  idDiagnostico != _existe and  idDiagnostico != _existe2 and  idDiagnostico != _existe3 and  idDiagnostico != _existe4 order by diagnostico;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTA_SDIAG5` (IN `_sgmt` INT(11), IN `_existe` INT(11), IN `_existe2` INT(11), IN `_existe3` INT(11), IN `_existe4` INT(11), IN `_existe5` INT(11))  BEGIN
-SELECT idDiagnostico,diagnostico FROM ws_diagnosticos where sgmto = _sgmt and  idDiagnostico != _existe and  idDiagnostico != _existe2 and  idDiagnostico != _existe3 and  idDiagnostico != _existe4 and  idDiagnostico != _existe5;
+SELECT idDiagnostico,diagnostico FROM ws_diagnosticos where sgmto = _sgmt and  idDiagnostico != _existe and  idDiagnostico != _existe2 and  idDiagnostico != _existe3 and  idDiagnostico != _existe4 and  idDiagnostico != _existe5 order by diagnostico;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTA_SDIAG6` (IN `_sgmt` INT(11), IN `_existe` INT(11), IN `_existe2` INT(11), IN `_existe3` INT(11), IN `_existe4` INT(11), IN `_existe5` INT(11), IN `_existe6` INT(11))  BEGIN
-SELECT idDiagnostico,diagnostico FROM ws_diagnosticos where sgmto = _sgmt and  idDiagnostico != _existe and  idDiagnostico != _existe2 and  idDiagnostico != _existe3 and  idDiagnostico != _existe4 and  idDiagnostico != _existe5 and  idDiagnostico != _existe6;
+SELECT idDiagnostico,diagnostico FROM ws_diagnosticos where sgmto = _sgmt and  idDiagnostico != _existe and  idDiagnostico != _existe2 and  idDiagnostico != _existe3 and  idDiagnostico != _existe4 and  idDiagnostico != _existe5 and  idDiagnostico != _existe6 order by diagnostico;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTA_SDIAG7` (IN `_sgmt` INT(11), IN `_existe` INT(11), IN `_existe2` INT(11), IN `_existe3` INT(11), IN `_existe4` INT(11), IN `_existe5` INT(11), IN `_existe6` INT(11), IN `_existe7` INT(11))  BEGIN
-SELECT idDiagnostico,diagnostico FROM ws_diagnosticos where sgmto = _sgmt and  idDiagnostico != _existe and  idDiagnostico != _existe2 and  idDiagnostico != _existe3 and  idDiagnostico != _existe4 and  idDiagnostico != _existe5 and  idDiagnostico != _existe6 and  idDiagnostico != _existe7;
+SELECT idDiagnostico,diagnostico FROM ws_diagnosticos where sgmto = _sgmt and  idDiagnostico != _existe and  idDiagnostico != _existe2 and  idDiagnostico != _existe3 and  idDiagnostico != _existe4 and  idDiagnostico != _existe5 and  idDiagnostico != _existe6 and  idDiagnostico != _existe7 order by diagnostico;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LOGIN_USUARIO` (IN `_cuenta` TEXT)  BEGIN
@@ -597,6 +816,10 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `REGISTRAR_OFICINA_DPTO` (IN `_area`
 INSERT INTO ws_departamentos(area) VALUES(_area);
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `REGISTRAR_REPOSICION` (IN `_fRegistroRepo` DATE, IN `_tipEquipo` INT(11), IN `_condInicial` INT(11), IN `_idEquip` INT(11), IN `_oficEquip` INT(11), IN `_areaEquip` INT(11), IN `_respoEquip` INT(11), IN `_logdeta` TEXT, IN `_descInc` TEXT, IN `_diagnostico1` INT(11), IN `_diagnostico2` INT(11), IN `_diagnostico3` INT(11), IN `_diagnostico4` INT(11), IN `_diagnostico5` INT(11), IN `_diagnostico6` INT(11), IN `_diagnostico7` INT(11), IN `_diagnostico8` INT(11), IN `_tecEvalua` INT(11), IN `_fEvalua` DATE, IN `_primera_eval` TEXT, IN `_fInicio` DATE, IN `_fFin` DATE, IN `_tipTrabajo` INT(11), IN `_accion1` INT(11), IN `_accion2` INT(11), IN `_accion3` INT(11), IN `_accion4` INT(11), IN `_accion5` INT(11), IN `_accion6` INT(11), IN `_accion7` INT(11), IN `_accion8` INT(11), IN `_recomendaciones` TEXT, IN `_estAtencion` INT(11), IN `_condFinal` INT(11), IN `_servTerce` TEXT, IN `_otros` TEXT, IN `_obsOtros` TEXT, IN `_usRegistra` INT(11), IN `_sgmtoManto` INT(11))  BEGIN
+INSERT INTO ws_reposiciones(fRegistroRepo,tipEquipo,condInicial,idEquip,oficEquip,areaEquip,respoEquip,logdeta,descInc,diagnostico1,diagnostico2,diagnostico3,diagnostico4,diagnostico5,diagnostico6,diagnostico7,diagnostico8,tecEvalua,fEvalua,primera_eval,fInicio,fFin,tipTrabajo,accion1,accion2,accion3,accion4,accion5,accion6,accion7,accion8,recomendaciones,estAtencion,condFinal,servTerce,otros,obsOtros,usRegistra,sgmtoManto) VALUES(_fRegistroRepo,_tipEquipo,_condInicial,_idEquip,_oficEquip,_areaEquip,_respoEquip,_logdeta,_descInc,_diagnostico1,_diagnostico2,_diagnostico3,_diagnostico4,_diagnostico5,_diagnostico6,_diagnostico7,_diagnostico8,_tecEvalua,_fEvalua,_primera_eval,_fInicio,_fFin,_tipTrabajo,_accion1,_accion2,_accion3,_accion4,_accion5,_accion6,_accion7,_accion8,_recomendaciones,_estAtencion,_condFinal,_servTerce,_otros,_obsOtros,_usRegistra,_sgmtoManto);
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `REGISTRAR_RESPONSABLE` (IN `_dniResp` TEXT, IN `_nombresResp` TEXT, IN `_apellidosResp` TEXT, IN `_idOficina` INT(11), IN `_idServicio` INT(11))  BEGIN
 INSERT INTO ws_responsables(dni,nombresResp,apellidosResp,idOficina,idServicio) VALUES(_dniResp,_nombresResp,_apellidosResp,_idOficina,_idServicio);
 END$$
@@ -611,6 +834,10 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Z_REG_AUDITORIAMANT` (IN `_idDoc` INT(11), IN `_usExec` INT(11), IN `_accExec` TEXT, IN `_fecha_audi` DATE)  BEGIN
 INSERT INTO ws_z_auditoria_mantenimientos(idDoc,usExec,accExec,fecha_audi) VALUES(_idDoc,_usExec,_accExec,_fecha_audi);
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Z_REG_AUDITORIAREPO` (IN `_idDoc` INT(11), IN `_usExec` INT(11), IN `_accExec` TEXT, IN `_fecha_audi` DATE)  BEGIN
+INSERT INTO ws_z_auditoria_reposiciones(idDoc,usExec,accExec,fecha_audi) VALUES(_idDoc,_usExec,_accExec,_fecha_audi);
 END$$
 
 --
@@ -661,18 +888,11 @@ INSERT INTO `ws_acciones` (`idAccion`, `segment`, `accionrealizada`) VALUES
 (23, 2, 'Se recomienda baja por obsolescencia técnica'),
 (24, 3, 'Se recomienda baja por obsolescencia técnica'),
 (25, 2, 'Limpieza de puertos RJ45'),
-(26, 2, 'Limpieza de puertos RJ11');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `ws_bajas`
---
-
-CREATE TABLE `ws_bajas` (
-  `idBaja` int(11) NOT NULL,
-  `fechaRegistro` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+(26, 2, 'Limpieza de puertos RJ11'),
+(27, 2, 'accion 5'),
+(28, 2, 'Accion 6'),
+(29, 2, 'Accion 7'),
+(30, 2, 'Accion 8');
 
 -- --------------------------------------------------------
 
@@ -1104,11 +1324,13 @@ CREATE TABLE `ws_mantenimientos` (
 --
 
 INSERT INTO `ws_mantenimientos` (`idMantenimiento`, `correlativo_Mant`, `fRegistroMant`, `tipEquipo`, `condInicial`, `idEquip`, `oficEquip`, `areaEquip`, `respoEquip`, `logdeta`, `descInc`, `diagnostico1`, `diagnostico2`, `diagnostico3`, `diagnostico4`, `diagnostico5`, `diagnostico6`, `diagnostico7`, `diagnostico8`, `tecEvalua`, `fEvalua`, `primera_eval`, `fInicio`, `fFin`, `tipTrabajo`, `accion1`, `accion2`, `accion3`, `accion4`, `accion5`, `accion6`, `accion7`, `accion8`, `recomendaciones`, `estAtencion`, `condFinal`, `servTerce`, `otros`, `obsOtros`, `usRegistra`, `sgmtoManto`, `estAnulado`, `fecha_creacion`) VALUES
-(1, 'FM-2021-00001', '2021-04-21', 1, 1, 54, 13, 18, 9, 'N° Equipo: PC_OCP || Serie N°: MXL2500TDK || Cod.Patr: 740899500413 || Marca: HP || Modelo: ELITE 8300 || Descripción: PC DE ESCRITORIO || IP: 172.16.5.100 || Procesador: CORE I7-3.40 GHZ || RAM: 12GB || Disco Duro: 1TB', 'prueba inicial de modificado', 4, 0, 0, 0, 0, 0, 0, 0, 4, '2021-04-20', 'prueba inicial de modificado', '2021-04-21', '2021-04-21', 1, 1, 0, 0, 0, 0, 0, 0, 0, 'prueba inicial de modificado', 1, 1, 'NO', 'NO', '', 1, 1, 1, '2021-04-21 16:18:26'),
-(2, 'FM-2021-00002', '2021-04-21', 10, 2, 56, 13, 18, 9, 'Serie N°: 6CM2480JSF || Cod.Patr: 740880370017 || Marca: HP || Modelo: LV2311 || Descripción: MONITOR 24 PLGDAS', 'prueba revisa', 6, 13, 0, 0, 0, 0, 0, 0, 5, '2021-04-21', 'prueba revisa', '2021-04-21', '2021-04-21', 1, 3, 7, 9, 20, 0, 0, 0, 0, 'prueba revisa', 2, 2, 'NO', 'NO', '', 1, 3, 1, '2021-04-21 18:46:03'),
-(3, 'FM-2021-00003', '2021-04-23', 3, 2, 59, 13, 18, 9, 'N° Equipo: IMP_0001 || Serie N°: BRBSXBT8XZ || Cod.Patr: 740841000067 || Marca: HP || Modelo: M426FDW || Descripción: HP LASERJET LASERJET PRO || IP: 172.16.5.210', 'prueba de registro 3', 6, 16, 17, 0, 0, 0, 0, 0, 6, '2021-04-23', 'prueba de registro 3', '2021-04-23', '2021-04-23', 1, 3, 7, 9, 0, 0, 0, 0, 0, 'prueba de registro 3', 1, 1, 'NO', 'NO', '', 1, 3, 1, '2021-04-23 17:14:02'),
-(4, 'FM-2021-00004', '2021-04-23', 8, 2, 84, 13, 18, 9, 'N° Equipo: ACP_0001 || Serie N°: ACP || Cod.Patr: 12232 || Marca: ACO || Modelo: ACP || Descripción: ACP || IP: ', 'prueba de registro 4', 5, 12, 0, 0, 0, 0, 0, 0, 5, '2021-04-22', 'prueba de registro 4', '2021-04-22', '2021-04-23', 2, 19, 25, 23, 26, 0, 0, 0, 0, 'prueba de registro 4', 2, 1, 'NO', 'SI', 'ajam de nada', 1, 2, 1, '2021-04-23 17:15:16'),
-(5, 'FM-2021-00005', '2021-04-23', 14, 1, 87, 13, 16, 13, 'N° Equipo: TIC_0001 || Serie N°: TICKET || Cod.Patr: 1712128 || Marca: TICKET || Modelo: TICKET || Descripción: TICKET || IP: ', 'akakak', 13, 6, 0, 0, 0, 0, 0, 0, 5, '2021-04-15', 'jajaja', '2021-04-16', '2021-04-16', 1, 3, 7, 0, 0, 0, 0, 0, 0, 'ajama', 1, 1, 'NO', 'SI', 'test', 1, 3, 1, '2021-04-23 18:28:51');
+(1, 'FM-2021-00001', '2021-04-25', 1, 1, 54, 13, 18, 9, 'N° Equipo: PC_OCP || Serie N°: MXL2500TDK || Cod.Patr: 740899500413 || Marca: HP || Modelo: ELITE 8300 || Descripción: PC DE ESCRITORIO || IP: 172.16.5.100 || Procesador: CORE I7-3.40 GHZ || RAM: 12GB || Disco Duro: 1TB', 'ajam1', 24, 4, 25, 7, 14, 20, 23, 11, 4, '2021-04-21', 'ssss', '2021-04-22', '2021-04-23', 3, 12, 1, 15, 2, 8, 11, 5, 13, 'asaa', 1, 1, 'NO', 'SI', 'aaaa', 1, 1, 1, '2021-04-26 03:38:29'),
+(2, 'FM-2021-00002', '2021-04-25', 4, 1, 76, 13, 18, 9, 'N° Equipo: LAP_0004 || Serie N°: LAPTO1 || Cod.Patr: 155 || Marca: ACER || Modelo: AC-151 || Descripción: LAPTOP DE TRABAJO || IP: 172.16.5.125 || Procesador: CORE I7-3.40 GHZ || RAM: 8GB || Disco Duro: 1TB', 'asa', 4, 10, 24, 25, 7, 14, 0, 0, 6, '2021-04-22', 'asa', '2021-04-23', '2021-04-24', 1, 6, 1, 15, 12, 2, 13, 17, 0, 'asa', 2, 1, 'NO', 'SI', 'AASS', 1, 1, 1, '2021-04-26 03:43:23'),
+(3, 'FM-2021-00003', '2021-04-26', 3, 1, 78, 10, 24, 11, 'N° Equipo: IMP_0004 || Serie N°: IMPRE12 || Cod.Patr: 112 || Marca: IMP || Modelo: UMO || Descripción: UMo || IP: ', 'imp2', 6, 27, 16, 17, 22, 0, 0, 0, 6, '2021-04-25', 'asas', '2021-04-25', '2021-04-25', 2, 9, 3, 21, 20, 24, 0, 0, 0, 'asas', 2, 1, 'NO', 'NO', '', 1, 3, 1, '2021-04-26 05:08:22'),
+(4, 'FM-2021-00004', '2021-04-26', 12, 2, 91, 13, 16, 13, 'Serie N°: ACUM1 || Cod.Patr: 151515 || Marca: ACUMU || Modelo: ACUMLA || Descripción: ACUMA', 'asas', 13, 30, 27, 17, 0, 0, 0, 0, 5, '2021-04-24', 'asas', '2021-04-24', '2021-04-25', 2, 9, 21, 3, 24, 0, 0, 0, 0, 'asas', 1, 2, 'NO', 'SI', 'asasas', 1, 3, 1, '2021-04-26 05:09:22'),
+(5, 'FM-2021-00005', '2021-04-26', 8, 1, 84, 13, 18, 9, 'N° Equipo: ACP_0001 || Serie N°: ACP || Cod.Patr: 12232 || Marca: ACO || Modelo: ACP || Descripción: ACP || IP: ', 'asas', 21, 5, 26, 15, 0, 0, 0, 0, 5, '2021-04-25', 'asas', '2021-04-25', '2021-04-25', 1, 27, 28, 29, 30, 0, 0, 0, 0, 'asas', 1, 2, 'NO', 'NO', '', 1, 2, 1, '2021-04-26 05:10:26'),
+(6, 'FM-2021-00006', '2021-04-26', 9, 1, 86, 13, 18, 9, 'N° Equipo: FTC_001 || Serie N°: FOCOTOCOPIOA || Cod.Patr: 136172 || Marca: FOTO || Modelo: FOTO || Descripción: FOTO || IP: ', 'aaa', 0, 0, 0, 0, 0, 0, 0, 0, 5, '2021-04-26', 'eee', '2021-04-26', '2021-04-26', 1, 0, 0, 0, 0, 0, 0, 0, 0, 'eeee', 1, 1, 'NO', 'SI', 'aaaaa', 1, 3, 2, '2021-04-26 06:28:05'),
+(7, 'FM-2021-00007', '2021-04-26', 15, 1, 85, 13, 18, 9, 'N° Equipo: ESC_001 || Serie N°: ESCANOR || Cod.Patr: 1237 || Marca: ESCANER || Modelo: ESCANER || Descripción: ESNCAER || IP: ', 'ajam 1', 6, 27, 0, 0, 0, 0, 0, 0, 5, '2021-04-26', 'asas', '2021-04-26', '2021-04-26', 2, 9, 3, 21, 0, 0, 0, 0, 0, 'asasas', 2, 2, 'NO', 'SI', 'asasas', 1, 3, 1, '2021-04-26 18:35:51');
 
 --
 -- Disparadores `ws_mantenimientos`
@@ -1119,88 +1341,6 @@ CREATE TRIGGER `GENERAR_CORRELATIVO_MANTENIMIENTO` BEFORE INSERT ON `ws_mantenim
     DECLARE anio text;
     set anio = (SELECT YEAR(CURDATE()));
     SET cont1= (SELECT count(*) FROM ws_mantenimientos WHERE year(fRegistroMant) = year(now()));
-    IF (cont1 < 1) THEN
-    SET NEW.correlativo_Mant = CONCAT('FM-',anio,'-', LPAD(cont1 + 1, 5, '0'));
-    ELSE
-    SET NEW.correlativo_Mant = CONCAT('FM-',anio,'-', LPAD(cont1 + 1, 5, '0'));
-    END IF;
-END
-$$
-DELIMITER ;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `ws_mantenimientos_2`
---
-
-CREATE TABLE `ws_mantenimientos_2` (
-  `idMantenimiento` int(11) NOT NULL,
-  `correlativo_Mant` text COLLATE utf8_spanish_ci NOT NULL,
-  `fRegistroMant` date NOT NULL,
-  `tipEquipo` int(11) NOT NULL,
-  `condInicial` int(11) NOT NULL,
-  `idEquip` int(11) NOT NULL,
-  `oficEquip` int(11) NOT NULL,
-  `areaEquip` int(11) NOT NULL,
-  `respoEquip` int(11) NOT NULL,
-  `logdeta` text COLLATE utf8_spanish_ci NOT NULL,
-  `descInc` text COLLATE utf8_spanish_ci NOT NULL,
-  `diagnosticos` text COLLATE utf8_spanish_ci NOT NULL,
-  `diag1` int(11) NOT NULL DEFAULT '0',
-  `diag2` int(11) DEFAULT '0',
-  `diag3` int(11) DEFAULT '0',
-  `diag4` int(11) DEFAULT '0',
-  `diag5` int(11) DEFAULT '0',
-  `diag6` int(11) DEFAULT '0',
-  `diag7` int(11) DEFAULT '0',
-  `diag8` int(11) DEFAULT '0',
-  `tecEvalua` int(11) NOT NULL,
-  `fEvalua` date NOT NULL,
-  `primera_eval` text COLLATE utf8_spanish_ci NOT NULL,
-  `fInicio` date NOT NULL,
-  `fFin` date NOT NULL,
-  `tipTrabajo` int(11) NOT NULL,
-  `acciones` text COLLATE utf8_spanish_ci NOT NULL,
-  `recomendaciones` text COLLATE utf8_spanish_ci NOT NULL,
-  `estAtencion` int(11) NOT NULL,
-  `condFinal` int(11) NOT NULL,
-  `servTerce` text COLLATE utf8_spanish_ci NOT NULL,
-  `otros` text COLLATE utf8_spanish_ci NOT NULL,
-  `obsOtros` text COLLATE utf8_spanish_ci,
-  `usRegistra` int(11) NOT NULL,
-  `sgmtoManto` int(11) NOT NULL DEFAULT '0',
-  `estAnulado` int(11) NOT NULL DEFAULT '1',
-  `fecha_creacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `ws_mantenimientos_2`
---
-
-INSERT INTO `ws_mantenimientos_2` (`idMantenimiento`, `correlativo_Mant`, `fRegistroMant`, `tipEquipo`, `condInicial`, `idEquip`, `oficEquip`, `areaEquip`, `respoEquip`, `logdeta`, `descInc`, `diagnosticos`, `diag1`, `diag2`, `diag3`, `diag4`, `diag5`, `diag6`, `diag7`, `diag8`, `tecEvalua`, `fEvalua`, `primera_eval`, `fInicio`, `fFin`, `tipTrabajo`, `acciones`, `recomendaciones`, `estAtencion`, `condFinal`, `servTerce`, `otros`, `obsOtros`, `usRegistra`, `sgmtoManto`, `estAnulado`, `fecha_creacion`) VALUES
-(1, 'FM-2021-00001', '2021-04-04', 1, 1, 54, 13, 18, 9, 'N° Equipo: PC_OCP || Serie N°: MXL2500TDK || Cod.Patr: 740899500413 || Marca: HP || Modelo: ELITE 8300 || Descripción: PC DE ESCRITORIO || IP: 172.16.5.100 || Procesador: CORE I7-3.40 GHZ || RAM: 12GB || Disco Duro: 1TB', 'prueba 1', '[{\"id\":\"4\",\"diagnostico\":\"Equipo Averiado\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"},{\"id\":\"24\",\"diagnostico\":\"Detección de virus\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"}]', 4, 24, 0, 0, 0, 0, 0, 0, 4, '2021-04-01', 'prueba 1', '2021-04-01', '2021-04-01', 1, '[{\"id\":\"1\",\"accion\":\"Copia de Seguridad\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"},{\"id\":\"15\",\"accion\":\"Eliminación de virus\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"}]', 'prueba 1', 1, 1, 'NO', 'NO', '', 1, 1, 1, '2021-04-04 23:58:03'),
-(2, 'FM-2021-00002', '2021-04-04', 5, 1, 83, 13, 16, 13, 'N° Equipo: SERV_0001 || Serie N°: SERV1 || Cod.Patr: 1177212 || Marca: SAERV || Modelo: SERV || Descripción: SERV || IP: 172.16.0.4 || Procesador: XEON-3.20 GHZ || RAM: 32GB || Disco Duro: 4TB', 'ajam', '[{\"id\":\"24\",\"diagnostico\":\"Detección de virus\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"},{\"id\":\"4\",\"diagnostico\":\"Equipo Averiado\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"},{\"id\":\"7\",\"diagnostico\":\"Falla de disco duro\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"}]', 24, 0, 0, 0, 0, 0, 0, 0, 5, '2021-04-01', 'ajam', '2021-04-01', '2021-04-01', 2, '[{\"id\":\"1\",\"accion\":\"Copia de Seguridad\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"},{\"id\":\"12\",\"accion\":\"Eliminación de temporales\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"},{\"id\":\"15\",\"accion\":\"Eliminación de virus\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"},{\"id\":\"2\",\"accion\":\"Formateo de disco duro\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"}]', 'ajam', 2, 1, 'NO', 'SI', 'ajam', 1, 1, 1, '2021-04-05 02:23:19'),
-(3, 'FM-2021-00003', '2021-04-04', 15, 2, 85, 13, 18, 9, 'N° Equipo: ESC_001 || Serie N°: ESCANOR || Cod.Patr: 1237 || Marca: ESCANER || Modelo: ESCANER || Descripción: ESNCAER || IP: ', 'ajam', '[{\"id\":\"16\",\"diagnostico\":\"Falla de Equipo\",\"segmento\":\"Periféricos y otros\",\"conteo\":\"1\"}]', 16, 0, 0, 0, 0, 0, 0, 0, 6, '2021-04-01', 'ajam', '2021-04-01', '2021-04-02', 1, '[{\"id\":\"20\",\"accion\":\"Mantenimiento general\",\"segmento\":\"Periféricos y otros\",\"conteo\":\"1\"}]', 'ajam', 1, 1, 'NO', 'NO', '', 1, 3, 1, '2021-04-05 02:24:53'),
-(4, 'FM-2021-00004', '2021-04-04', 2, 2, 58, 13, 18, 9, 'N° Equipo: SW_00001 || Serie N°: SWITCH123 || Cod.Patr: 151518484546 || Marca: HP || Modelo: ARUBA || Descripción: SWITCH ADMINISTRABLE || IP: ', 'AJAM', '[{\"id\":\"15\",\"diagnostico\":\"Falla de Equipo\",\"segmento\":\"Redes y Telecomunicaciones\",\"conteo\":\"1\"}]', 15, 0, 0, 0, 0, 0, 0, 0, 5, '2021-04-01', 'ajam', '2021-04-01', '2021-04-02', 3, '[{\"id\":\"19\",\"accion\":\"Mantenimiento general\",\"segmento\":\"Redes y Telecomunicaciones\",\"conteo\":\"1\"}]', 'ajam', 2, 1, 'NO', 'SI', 'SE RECOMIENDA COMPRAR NUEVO EQUIPO', 1, 2, 1, '2021-04-05 02:26:22'),
-(5, 'FM-2021-00005', '2021-04-04', 3, 2, 59, 13, 18, 9, 'N° Equipo: IMP_0001 || Serie N°: BRBSXBT8XZ || Cod.Patr: 740841000067 || Marca: HP || Modelo: M426FDW || Descripción: HP LASERJET LASERJET PRO || IP: 172.16.5.210', 'Se verifica que impresora no imprime', '[{\"id\":\"31\",\"diagnostico\":\"Falla de impresora\",\"segmento\":\"Periféricos y otros\",\"conteo\":\"1\"},{\"id\":\"6\",\"diagnostico\":\"Equipo Averiado\",\"segmento\":\"Periféricos y otros\",\"conteo\":\"1\"}]', 31, 0, 0, 0, 0, 0, 0, 0, 6, '2021-04-01', 'Se revisa cableado y entradas de la impresora', '2021-04-02', '2021-04-02', 1, '[{\"id\":\"3\",\"accion\":\"Desmontaje de impresora\",\"segmento\":\"Periféricos y otros\",\"conteo\":\"1\"},{\"id\":\"20\",\"accion\":\"Mantenimiento general\",\"segmento\":\"Periféricos y otros\",\"conteo\":\"1\"}]', 'Se recomienda mantenimientos periódicos y limpieza', 1, 1, 'NO', 'NO', '', 1, 3, 1, '2021-04-05 02:30:34'),
-(6, 'FM-2021-00006', '2021-04-04', 4, 2, 90, 13, 18, 9, 'N° Equipo: LAP_0555 || Serie N°: LENOVO12 || Cod.Patr: 17171828 || Marca: LENOVO || Modelo: LEVONO || Descripción: LENOVO || IP: 172.16.8.100 || Procesador: CORE I3-3.20GHZ || RAM: 8GB || Disco Duro: 1TB', 'AÑO NUEVO', '[{\"id\":\"4\",\"diagnostico\":\"Equipo Averiado\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"},{\"id\":\"24\",\"diagnostico\":\"Detección de virus\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"},{\"id\":\"7\",\"diagnostico\":\"Falla de disco duro\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"},{\"id\":\"14\",\"diagnostico\":\"Falla de Equipo\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"},{\"id\":\"11\",\"diagnostico\":\"Falta de mantenimiento\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"},{\"id\":\"9\",\"diagnostico\":\"Memoria  RAM malograda\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"}]', 4, 0, 0, 0, 0, 0, 0, 0, 4, '2021-04-02', 'AÑO NUEVO °', '2021-04-02', '2021-04-02', 2, '[{\"id\":\"15\",\"accion\":\"Eliminación de virus\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"},{\"id\":\"2\",\"accion\":\"Formateo de disco duro\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"},{\"id\":\"12\",\"accion\":\"Eliminación de temporales\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"},{\"id\":\"1\",\"accion\":\"Copia de Seguridad\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"},{\"id\":\"17\",\"accion\":\"Instalación de antivirus\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"},{\"id\":\"13\",\"accion\":\"Instalación de programas\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"}]', 'AÑO NUEVO', 1, 1, 'NO', 'NO', '', 1, 1, 1, '2021-04-05 03:10:07'),
-(7, 'FM-2021-00007', '2021-04-05', 10, 2, 56, 13, 18, 9, 'Serie N°: 6CM2480JSF || Cod.Patr: 740880370017 || Marca: HP || Modelo: LV2311 || Descripción: MONITOR 24 PLGDAS', 'Se verifica que monitor no muestra señal alguna', '[{\"id\":\"16\",\"diagnostico\":\"Falla de Equipo\",\"segmento\":\"Periféricos y otros\",\"conteo\":\"1\"}]', 16, 0, 0, 0, 0, 0, 0, 0, 4, '2021-04-05', 'Se revisas la entradas del equipo', '2021-04-05', '2021-04-05', 2, '[{\"id\":\"20\",\"accion\":\"Mantenimiento general\",\"segmento\":\"Periféricos y otros\",\"conteo\":\"1\"}]', 'Se recomienda la compra de nuevo monitor', 1, 1, 'NO', 'NO', '', 1, 3, 1, '2021-04-05 10:39:08'),
-(8, 'FM-2021-00008', '2021-04-05', 6, 1, 75, 10, 24, 12, 'N° Equipo: RT_001 || Serie N°: ARUBA1 || Cod.Patr: 1122 || Marca: ARUBA || Modelo: ARUBA2323 || Descripción: ASAS || IP: ', 'El equipo no enciende ni transmite señal', '[{\"id\":\"15\",\"diagnostico\":\"Falla de Equipo\",\"segmento\":\"Redes y Telecomunicaciones\",\"conteo\":\"1\"},{\"id\":\"5\",\"diagnostico\":\"Equipo Averiado\",\"segmento\":\"Redes y Telecomunicaciones\",\"conteo\":\"1\"},{\"id\":\"12\",\"diagnostico\":\"Falta de mantenimiento\",\"segmento\":\"Redes y Telecomunicaciones\",\"conteo\":\"1\"}]', 15, 0, 0, 0, 0, 0, 0, 0, 4, '2021-04-05', 'Se verifica que el equipo presenta problemas al encender', '2021-04-05', '2021-04-05', 1, '[{\"id\":\"19\",\"accion\":\"Mantenimiento general\",\"segmento\":\"Redes y Telecomunicaciones\",\"conteo\":\"1\"},{\"id\":\"25\",\"accion\":\"Limpieza de puertos RJ45\",\"segmento\":\"Redes y Telecomunicaciones\",\"conteo\":\"1\"}]', 'Se recomienda mantenimiento periódico o en su defecto compra de nuevo equipo', 1, 1, 'NO', 'SI', 'Se entrega equipo funcionando correctamente', 1, 2, 1, '2021-04-05 10:40:16'),
-(9, 'FM-2021-00009', '2021-04-05', 14, 1, 87, 13, 16, 13, 'N° Equipo: TIC_0001 || Serie N°: TICKET || Cod.Patr: 1712128 || Marca: TICKET || Modelo: TICKET || Descripción: TICKET || IP: ', 'TICKETERA SE TRABA', '[{\"id\":\"15\",\"diagnostico\":\"Falla de Equipo\",\"segmento\":\"Redes y Telecomunicaciones\",\"conteo\":\"1\"},{\"id\":\"5\",\"diagnostico\":\"Equipo Averiado\",\"segmento\":\"Redes y Telecomunicaciones\",\"conteo\":\"1\"},{\"id\":\"12\",\"diagnostico\":\"Falta de mantenimiento\",\"segmento\":\"Redes y Telecomunicaciones\",\"conteo\":\"1\"}]', 0, 0, 0, 0, 0, 0, 0, 0, 6, '2021-04-05', 'TICKETERA SE TRABA', '2021-04-05', '2021-04-05', 3, '', 'AJAM', 1, 1, 'NO', 'NO', '', 1, 3, 2, '2021-04-05 10:42:37'),
-(10, 'FM-2021-00010', '2021-04-05', 14, 2, 87, 13, 16, 13, 'N° Equipo: TIC_0001 || Serie N°: TICKET || Cod.Patr: 1712128 || Marca: TICKET || Modelo: TICKET || Descripción: TICKET || IP: ', 'AJAM', '[{\"id\":\"15\",\"diagnostico\":\"Falla de Equipo\",\"segmento\":\"Redes y Telecomunicaciones\",\"conteo\":\"1\"},{\"id\":\"5\",\"diagnostico\":\"Equipo Averiado\",\"segmento\":\"Redes y Telecomunicaciones\",\"conteo\":\"1\"},{\"id\":\"12\",\"diagnostico\":\"Falta de mantenimiento\",\"segmento\":\"Redes y Telecomunicaciones\",\"conteo\":\"1\"}]', 0, 0, 0, 0, 0, 0, 0, 0, 6, '2021-04-05', 'AJAM', '2021-04-05', '2021-04-05', 1, '', 'AJAM', 1, 1, 'NO', 'NO', '', 1, 3, 2, '2021-04-05 11:00:19'),
-(11, 'FM-2021-00011', '2021-04-05', 14, 1, 87, 13, 16, 13, 'N° Equipo: TIC_0001 || Serie N°: TICKET || Cod.Patr: 1712128 || Marca: TICKET || Modelo: TICKET || Descripción: TICKET || IP: ', 'AJAM', '[{\"id\":\"16\",\"diagnostico\":\"Falla de Equipo\",\"segmento\":\"Periféricos y otros\",\"conteo\":\"1\"}]', 0, 0, 0, 0, 0, 0, 0, 0, 4, '2021-04-05', 'AJAM', '2021-04-05', '2021-04-05', 1, '[{\"id\":\"20\",\"accion\":\"Mantenimiento general\",\"segmento\":\"Periféricos y otros\",\"conteo\":\"1\"},{\"id\":\"21\",\"accion\":\"Desmontaje y limpieza\",\"segmento\":\"Periféricos y otros\",\"conteo\":\"1\"}]', 'AJAM', 1, 1, 'NO', 'NO', '', 1, 3, 1, '2021-04-05 11:14:14'),
-(12, 'FM-2021-00012', '2021-04-06', 1, 2, 54, 13, 18, 9, 'N° Equipo: PC_OCP || Serie N°: MXL2500TDK || Cod.Patr: 740899500413 || Marca: HP || Modelo: ELITE 8300 || Descripción: PC DE ESCRITORIO || IP: 172.16.5.100 || Procesador: CORE I7-3.40 GHZ || RAM: 12GB || Disco Duro: 1TB', 'Se encuentra el equipo no enciende', '[{\"id\":\"14\",\"diagnostico\":\"Falla de Equipo\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"},{\"id\":\"9\",\"diagnostico\":\"Memoria  RAM malograda\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"},{\"id\":\"11\",\"diagnostico\":\"Falta de mantenimiento\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"},{\"id\":\"8\",\"diagnostico\":\"Sistema Operativo dañado\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"},{\"id\":\"7\",\"diagnostico\":\"Falla de disco duro\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"},{\"id\":\"24\",\"diagnostico\":\"Detección de virus\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"}]', 0, 0, 0, 0, 0, 0, 0, 0, 4, '2021-04-06', 'Se verifica que el equipo requiere de limpieza lógica y física', '2021-04-06', '2021-04-06', 2, '[{\"id\":\"1\",\"accion\":\"Copia de Seguridad\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"},{\"id\":\"12\",\"accion\":\"Eliminación de temporales\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"},{\"id\":\"15\",\"accion\":\"Eliminación de virus\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"},{\"id\":\"2\",\"accion\":\"Formateo de disco duro\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"},{\"id\":\"17\",\"accion\":\"Instalación de antivirus\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"},{\"id\":\"18\",\"accion\":\"Mantenimiento general\",\"segmento\":\"Equipo de Cómputo\",\"conteo\":\"1\"}]', 'Se recomienda mantenimiento preventivo periódico para evitar fallas a futuro', 1, 1, 'NO', 'NO', '', 1, 1, 1, '2021-04-06 17:12:00');
-
---
--- Disparadores `ws_mantenimientos_2`
---
-DELIMITER $$
-CREATE TRIGGER `GENERAR_CORRELATIVO_MANTENIMIENTO_2` BEFORE INSERT ON `ws_mantenimientos_2` FOR EACH ROW BEGIN
-    DECLARE cont1 int default 0;
-    DECLARE anio text;
-    set anio = (SELECT YEAR(CURDATE()));
-    SET cont1= (SELECT count(*) FROM ws_mantenimientos_2 WHERE year(fRegistroMant) = year(now()));
     IF (cont1 < 1) THEN
     SET NEW.correlativo_Mant = CONCAT('FM-',anio,'-', LPAD(cont1 + 1, 5, '0'));
     ELSE
@@ -1231,6 +1371,90 @@ INSERT INTO `ws_perfiles` (`id_perfil`, `perfil`, `fecha_creacion`) VALUES
 (2, 'Jefe', '2020-02-20 16:34:11'),
 (3, 'Coordinador', '2020-09-16 18:34:30'),
 (4, 'Técnico', '2021-03-01 16:33:37');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ws_reposiciones`
+--
+
+CREATE TABLE `ws_reposiciones` (
+  `idReposicion` int(11) NOT NULL,
+  `correlativo_Repo` text COLLATE utf8_spanish_ci NOT NULL,
+  `fRegistroRepo` date NOT NULL,
+  `tipEquipo` int(11) NOT NULL,
+  `condInicial` int(11) NOT NULL,
+  `idEquip` int(11) NOT NULL,
+  `oficEquip` int(11) NOT NULL,
+  `areaEquip` int(11) NOT NULL,
+  `respoEquip` int(11) NOT NULL,
+  `logdeta` text COLLATE utf8_spanish_ci,
+  `descInc` text COLLATE utf8_spanish_ci,
+  `diagnostico1` int(11) NOT NULL,
+  `diagnostico2` int(11) NOT NULL DEFAULT '0',
+  `diagnostico3` int(11) NOT NULL DEFAULT '0',
+  `diagnostico4` int(11) NOT NULL DEFAULT '0',
+  `diagnostico5` int(11) NOT NULL DEFAULT '0',
+  `diagnostico6` int(11) NOT NULL DEFAULT '0',
+  `diagnostico7` int(11) NOT NULL DEFAULT '0',
+  `diagnostico8` int(11) NOT NULL DEFAULT '0',
+  `tecEvalua` int(11) NOT NULL,
+  `fEvalua` date DEFAULT NULL,
+  `primera_eval` text COLLATE utf8_spanish_ci,
+  `fInicio` date DEFAULT NULL,
+  `fFin` date DEFAULT NULL,
+  `tipTrabajo` int(11) NOT NULL,
+  `accion1` int(11) NOT NULL,
+  `accion2` int(11) NOT NULL DEFAULT '0',
+  `accion3` int(11) NOT NULL DEFAULT '0',
+  `accion4` int(11) NOT NULL DEFAULT '0',
+  `accion5` int(11) NOT NULL DEFAULT '0',
+  `accion6` int(11) NOT NULL DEFAULT '0',
+  `accion7` int(11) NOT NULL DEFAULT '0',
+  `accion8` int(11) NOT NULL DEFAULT '0',
+  `recomendaciones` text COLLATE utf8_spanish_ci,
+  `estAtencion` int(11) NOT NULL,
+  `condFinal` int(11) NOT NULL,
+  `servTerce` text COLLATE utf8_spanish_ci,
+  `otros` text COLLATE utf8_spanish_ci,
+  `obsOtros` text COLLATE utf8_spanish_ci,
+  `usRegistra` int(11) NOT NULL,
+  `sgmtoManto` int(11) NOT NULL DEFAULT '0',
+  `estAnulado` int(11) NOT NULL DEFAULT '1',
+  `fecha_creacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `ws_reposiciones`
+--
+
+INSERT INTO `ws_reposiciones` (`idReposicion`, `correlativo_Repo`, `fRegistroRepo`, `tipEquipo`, `condInicial`, `idEquip`, `oficEquip`, `areaEquip`, `respoEquip`, `logdeta`, `descInc`, `diagnostico1`, `diagnostico2`, `diagnostico3`, `diagnostico4`, `diagnostico5`, `diagnostico6`, `diagnostico7`, `diagnostico8`, `tecEvalua`, `fEvalua`, `primera_eval`, `fInicio`, `fFin`, `tipTrabajo`, `accion1`, `accion2`, `accion3`, `accion4`, `accion5`, `accion6`, `accion7`, `accion8`, `recomendaciones`, `estAtencion`, `condFinal`, `servTerce`, `otros`, `obsOtros`, `usRegistra`, `sgmtoManto`, `estAnulado`, `fecha_creacion`) VALUES
+(1, 'FR-2021-00001', '2021-04-25', 1, 1, 54, 13, 18, 9, 'N° Equipo: PC_OCP || Serie N°: MXL2500TDK || Cod.Patr: 740899500413 || Marca: HP || Modelo: ELITE 8300 || Descripción: PC DE ESCRITORIO || IP: 172.16.5.100 || Procesador: CORE I7-3.40 GHZ || RAM: 12GB || Disco Duro: 1TB', 'SE VERIFICA EQUIPO CON FALLAS', 24, 4, 25, 7, 14, 20, 23, 11, 4, '2021-04-21', 'PARA REPOSICIÓN', '2021-04-22', '2021-04-23', 3, 12, 1, 15, 2, 8, 11, 5, 13, 'SE RECOMIENDA SOLICITAR REPOSICIÓN O CAMBIO DE EQUIPO', 1, 1, 'NO', 'NO', '', 1, 1, 1, '2021-04-26 08:38:29'),
+(2, 'FR-2021-00002', '2021-04-25', 4, 1, 76, 13, 18, 9, 'N° Equipo: LAP_0004 || Serie N°: LAPTO1 || Cod.Patr: 155 || Marca: ACER || Modelo: AC-151 || Descripción: LAPTOP DE TRABAJO || IP: 172.16.5.125 || Procesador: CORE I7-3.40 GHZ || RAM: 8GB || Disco Duro: 1TB', 'asa', 0, 0, 0, 0, 0, 0, 0, 0, 5, '2021-04-22', 'asa', '2021-04-23', '2021-04-24', 1, 0, 0, 0, 0, 0, 0, 0, 0, 'asa', 2, 1, 'NO', 'SI', 'AASS', 1, 1, 2, '2021-04-26 08:43:23'),
+(3, 'FR-2021-00003', '2021-04-26', 3, 1, 78, 10, 24, 11, 'N° Equipo: IMP_0004 || Serie N°: IMPRE12 || Cod.Patr: 112 || Marca: IMP || Modelo: UMO || Descripción: UMo || IP: ', 'imp2', 0, 0, 0, 0, 0, 0, 0, 0, 6, '2021-04-25', 'asas', '2021-04-25', '2021-04-25', 2, 0, 0, 0, 0, 0, 0, 0, 0, 'asas', 2, 1, 'NO', 'NO', '', 1, 3, 2, '2021-04-26 10:08:22'),
+(4, 'FR-2021-00004', '2021-04-26', 12, 2, 91, 13, 16, 13, 'Serie N°: ACUM1 || Cod.Patr: 151515 || Marca: ACUMU || Modelo: ACUMLA || Descripción: ACUMA', 'asas', 0, 0, 0, 0, 0, 0, 0, 0, 5, '2021-04-24', 'asas', '2021-04-24', '2021-04-25', 2, 0, 0, 0, 0, 0, 0, 0, 0, 'asas', 1, 2, 'NO', 'SI', 'asasas', 1, 3, 2, '2021-04-26 10:09:22'),
+(5, 'FR-2021-00005', '2021-04-26', 8, 1, 84, 13, 18, 9, 'N° Equipo: ACP_0001 || Serie N°: ACP || Cod.Patr: 12232 || Marca: ACO || Modelo: ACP || Descripción: ACP || IP: ', 'asas', 0, 0, 0, 0, 0, 0, 0, 0, 5, '2021-04-25', 'asas', '2021-04-25', '2021-04-25', 1, 0, 0, 0, 0, 0, 0, 0, 0, 'asas', 1, 2, 'NO', 'NO', '', 1, 2, 2, '2021-04-26 10:10:26'),
+(6, 'FR-2021-00006', '2021-04-26', 9, 1, 86, 13, 18, 9, 'N° Equipo: FTC_001 || Serie N°: FOCOTOCOPIOA || Cod.Patr: 136172 || Marca: FOTO || Modelo: FOTO || Descripción: FOTO || IP: ', 'aaa', 0, 0, 0, 0, 0, 0, 0, 0, 5, '2021-04-26', 'eee', '2021-04-26', '2021-04-26', 1, 0, 0, 0, 0, 0, 0, 0, 0, 'eeee', 1, 1, 'NO', 'SI', 'aaaaa', 1, 3, 2, '2021-04-26 11:28:05'),
+(7, 'FR-2021-00007', '2021-04-26', 4, 1, 81, 13, 18, 9, 'N° Equipo: LAP_054 || Serie N°: AKA || Cod.Patr: 13253 || Marca: AKA || Modelo: AKA || Descripción: AKA || IP: 172.31.6.50 || Procesador: AKA-AK || RAM: AKA || Disco Duro: AKA', 'ASAS', 24, 0, 0, 0, 0, 0, 0, 0, 5, '2021-04-26', 'ASA', '2021-04-26', '2021-04-26', 1, 8, 22, 0, 0, 0, 0, 0, 0, 'ASAS', 1, 1, 'NO', 'SI', 'ASASASASAS', 1, 1, 1, '2021-04-26 19:10:08'),
+(8, 'FR-2021-00008', '2021-04-26', 17, 2, 89, 13, 16, 13, 'N° Equipo: MRK_0001 || Serie N°: MARCADOR1 || Cod.Patr: 11212 || Marca: MARJ || Modelo: MARK211 || Descripción: KK || IP: ', 'ASASasas', 6, 27, 17, 16, 22, 31, 18, 0, 5, '2021-04-26', 'ASASasas', '2021-04-26', '2021-04-26', 2, 9, 3, 20, 21, 24, 7, 0, 0, 'ASASasas', 1, 2, 'NO', 'SI', 'asasas', 1, 3, 1, '2021-04-26 19:11:47');
+
+--
+-- Disparadores `ws_reposiciones`
+--
+DELIMITER $$
+CREATE TRIGGER `GENERAR_CORRELATIVO_REPOSICION` BEFORE INSERT ON `ws_reposiciones` FOR EACH ROW BEGIN
+    DECLARE cont1 int default 0;
+    DECLARE anio text;
+    set anio = (SELECT YEAR(CURDATE()));
+    SET cont1= (SELECT count(*) FROM ws_reposiciones WHERE year(fRegistroRepo) = year(now()));
+    IF (cont1 < 1) THEN
+    SET NEW.correlativo_Repo = CONCAT('FR-',anio,'-', LPAD(cont1 + 1, 5, '0'));
+    ELSE
+    SET NEW.correlativo_Repo = CONCAT('FR-',anio,'-', LPAD(cont1 + 1, 5, '0'));
+    END IF;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -1393,31 +1617,100 @@ CREATE TABLE `ws_z_auditoria_mantenimientos` (
   `idDoc` int(11) NOT NULL,
   `usExec` int(11) NOT NULL,
   `accExec` text NOT NULL,
-  `fecha_audi` date NOT NULL
+  `fecha_audi` date NOT NULL,
+  `dateInstant` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `ws_z_auditoria_mantenimientos`
 --
 
-INSERT INTO `ws_z_auditoria_mantenimientos` (`idAudMant`, `idDoc`, `usExec`, `accExec`, `fecha_audi`) VALUES
-(1, 1, 1, 'Modificación', '2021-04-04'),
-(2, 5, 1, 'Modificación', '2021-04-04'),
-(3, 5, 1, 'Modificación', '2021-04-04'),
-(4, 4, 1, 'Modificación', '2021-04-04'),
-(5, 5, 1, 'Modificación', '2021-04-05'),
-(6, 6, 1, 'Modificación', '2021-04-05'),
-(7, 5, 1, 'Modificación', '2021-04-05'),
-(8, 10, 1, 'Anulación', '2021-04-05'),
-(9, 10, 1, 'Anulación', '2021-04-05'),
-(10, 9, 1, 'Anulación', '2021-04-05'),
-(11, 11, 1, 'Modificación', '2021-04-05'),
-(12, 6, 1, 'Modificación', '2021-04-05'),
-(13, 6, 1, 'Modificación', '2021-04-05'),
-(14, 6, 1, 'Modificación', '2021-04-05'),
-(15, 8, 1, 'Modificación', '2021-04-06'),
-(16, 5, 1, 'Modificación', '2021-04-06'),
-(17, 7, 1, 'Modificación', '2021-04-06');
+INSERT INTO `ws_z_auditoria_mantenimientos` (`idAudMant`, `idDoc`, `usExec`, `accExec`, `fecha_audi`, `dateInstant`) VALUES
+(1, 1, 1, 'Modificación', '2021-04-04', '2021-04-26 19:21:25'),
+(2, 5, 1, 'Modificación', '2021-04-04', '2021-04-26 19:21:25'),
+(3, 5, 1, 'Modificación', '2021-04-04', '2021-04-26 19:21:25'),
+(4, 4, 1, 'Modificación', '2021-04-04', '2021-04-26 19:21:25'),
+(5, 5, 1, 'Modificación', '2021-04-05', '2021-04-26 19:21:25'),
+(6, 6, 1, 'Modificación', '2021-04-05', '2021-04-26 19:21:25'),
+(7, 5, 1, 'Modificación', '2021-04-05', '2021-04-26 19:21:25'),
+(8, 10, 1, 'Anulación', '2021-04-05', '2021-04-26 19:21:25'),
+(9, 10, 1, 'Anulación', '2021-04-05', '2021-04-26 19:21:25'),
+(10, 9, 1, 'Anulación', '2021-04-05', '2021-04-26 19:21:25'),
+(11, 11, 1, 'Modificación', '2021-04-05', '2021-04-26 19:21:25'),
+(12, 6, 1, 'Modificación', '2021-04-05', '2021-04-26 19:21:25'),
+(13, 6, 1, 'Modificación', '2021-04-05', '2021-04-26 19:21:25'),
+(14, 6, 1, 'Modificación', '2021-04-05', '2021-04-26 19:21:25'),
+(15, 8, 1, 'Modificación', '2021-04-06', '2021-04-26 19:21:25'),
+(16, 5, 1, 'Modificación', '2021-04-06', '2021-04-26 19:21:25'),
+(17, 7, 1, 'Modificación', '2021-04-06', '2021-04-26 19:21:25'),
+(18, 2, 1, 'Anulación', '2021-04-25', '2021-04-26 19:21:25'),
+(19, 5, 1, 'Modificación', '2021-04-25', '2021-04-26 19:21:25'),
+(20, 4, 1, 'Modificación', '2021-04-25', '2021-04-26 19:21:25'),
+(21, 3, 1, 'Modificación', '2021-04-25', '2021-04-26 19:21:25'),
+(22, 1, 1, 'Modificación', '2021-04-25', '2021-04-26 19:21:25'),
+(23, 1, 1, 'Modificación', '2021-04-25', '2021-04-26 19:21:25'),
+(24, 1, 1, 'Modificación', '2021-04-25', '2021-04-26 19:21:25'),
+(25, 2, 1, 'Modificación', '2021-04-25', '2021-04-26 19:21:25'),
+(26, 2, 1, 'Modificación', '2021-04-25', '2021-04-26 19:21:25'),
+(27, 2, 1, 'Modificación', '2021-04-25', '2021-04-26 19:21:25'),
+(28, 1, 1, 'Modificación', '2021-04-25', '2021-04-26 19:21:25'),
+(29, 2, 1, 'Modificación', '2021-04-25', '2021-04-26 19:21:25'),
+(30, 2, 1, 'Modificación', '2021-04-25', '2021-04-26 19:21:25'),
+(31, 2, 1, 'Modificación', '2021-04-25', '2021-04-26 19:21:25'),
+(32, 2, 1, 'Modificación', '2021-04-25', '2021-04-26 19:21:25'),
+(33, 2, 1, 'Modificación', '2021-04-25', '2021-04-26 19:21:25'),
+(34, 2, 1, 'Modificación', '2021-04-25', '2021-04-26 19:21:25'),
+(35, 2, 1, 'Modificación', '2021-04-25', '2021-04-26 19:21:25'),
+(36, 2, 1, 'Modificación', '2021-04-25', '2021-04-26 19:21:25'),
+(37, 2, 1, 'Modificación', '2021-04-25', '2021-04-26 19:21:25'),
+(38, 2, 1, 'Modificación', '2021-04-25', '2021-04-26 19:21:25'),
+(39, 1, 1, 'Modificación', '2021-04-25', '2021-04-26 19:21:25'),
+(40, 2, 1, 'Modificación', '2021-04-25', '2021-04-26 19:21:25'),
+(41, 3, 1, 'Modificación', '2021-04-26', '2021-04-26 19:21:25'),
+(42, 4, 1, 'Modificación', '2021-04-26', '2021-04-26 19:21:25'),
+(43, 4, 1, 'Modificación', '2021-04-26', '2021-04-26 19:21:25'),
+(44, 5, 1, 'Modificación', '2021-04-26', '2021-04-26 19:21:25'),
+(45, 1, 1, 'Modificación', '2021-04-26', '2021-04-26 19:21:25'),
+(46, 1, 1, 'Modificación', '2021-04-26', '2021-04-26 19:21:25'),
+(47, 1, 1, 'Modificación', '2021-04-26', '2021-04-26 19:21:25'),
+(48, 1, 1, 'Modificación', '2021-04-26', '2021-04-26 19:21:25'),
+(49, 3, 1, 'Modificación', '2021-04-26', '2021-04-26 19:21:25'),
+(50, 5, 1, 'Modificación', '2021-04-26', '2021-04-26 19:21:25'),
+(51, 5, 1, 'Modificación', '2021-04-26', '2021-04-26 19:21:25'),
+(52, 4, 1, 'Modificación', '2021-04-26', '2021-04-26 19:21:25'),
+(53, 4, 1, 'Modificación', '2021-04-26', '2021-04-26 19:21:25'),
+(54, 6, 1, 'Anulación', '2021-04-26', '2021-04-26 19:21:25'),
+(55, 7, 1, 'Modificación', '2021-04-26', '2021-04-26 19:21:40'),
+(56, 5, 1, 'Modificación', '2021-04-26', '2021-04-26 19:22:05');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ws_z_auditoria_reposiciones`
+--
+
+CREATE TABLE `ws_z_auditoria_reposiciones` (
+  `idAudRepo` int(11) NOT NULL,
+  `idDoc` int(11) NOT NULL,
+  `usExec` int(11) NOT NULL,
+  `accExec` text NOT NULL,
+  `fecha_audi` date NOT NULL,
+  `dateInstant` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `ws_z_auditoria_reposiciones`
+--
+
+INSERT INTO `ws_z_auditoria_reposiciones` (`idAudRepo`, `idDoc`, `usExec`, `accExec`, `fecha_audi`, `dateInstant`) VALUES
+(1, 3, 1, 'Anulación', '2021-04-26', '2021-04-26 19:22:39'),
+(2, 4, 1, 'Anulación', '2021-04-26', '2021-04-26 19:22:39'),
+(3, 8, 1, 'Modificación', '2021-04-26', '2021-04-26 19:22:39'),
+(4, 8, 1, 'Modificación', '2021-04-26', '2021-04-26 19:22:39'),
+(5, 8, 1, 'Modificación', '2021-04-26', '2021-04-26 19:22:39'),
+(6, 2, 1, 'Modificación', '2021-04-26', '2021-04-26 19:23:01'),
+(7, 2, 1, 'Anulación', '2021-04-26', '2021-04-26 19:24:32'),
+(8, 1, 1, 'Modificación', '2021-04-26', '2021-04-26 19:30:05');
 
 --
 -- Índices para tablas volcadas
@@ -1428,12 +1721,6 @@ INSERT INTO `ws_z_auditoria_mantenimientos` (`idAudMant`, `idDoc`, `usExec`, `ac
 --
 ALTER TABLE `ws_acciones`
   ADD PRIMARY KEY (`idAccion`);
-
---
--- Indices de la tabla `ws_bajas`
---
-ALTER TABLE `ws_bajas`
-  ADD PRIMARY KEY (`idBaja`);
 
 --
 -- Indices de la tabla `ws_categorias`
@@ -1490,16 +1777,16 @@ ALTER TABLE `ws_mantenimientos`
   ADD PRIMARY KEY (`idMantenimiento`);
 
 --
--- Indices de la tabla `ws_mantenimientos_2`
---
-ALTER TABLE `ws_mantenimientos_2`
-  ADD PRIMARY KEY (`idMantenimiento`);
-
---
 -- Indices de la tabla `ws_perfiles`
 --
 ALTER TABLE `ws_perfiles`
   ADD PRIMARY KEY (`id_perfil`);
+
+--
+-- Indices de la tabla `ws_reposiciones`
+--
+ALTER TABLE `ws_reposiciones`
+  ADD PRIMARY KEY (`idReposicion`);
 
 --
 -- Indices de la tabla `ws_responsables`
@@ -1544,6 +1831,12 @@ ALTER TABLE `ws_z_auditoria_mantenimientos`
   ADD PRIMARY KEY (`idAudMant`);
 
 --
+-- Indices de la tabla `ws_z_auditoria_reposiciones`
+--
+ALTER TABLE `ws_z_auditoria_reposiciones`
+  ADD PRIMARY KEY (`idAudRepo`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -1551,13 +1844,7 @@ ALTER TABLE `ws_z_auditoria_mantenimientos`
 -- AUTO_INCREMENT de la tabla `ws_acciones`
 --
 ALTER TABLE `ws_acciones`
-  MODIFY `idAccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
-
---
--- AUTO_INCREMENT de la tabla `ws_bajas`
---
-ALTER TABLE `ws_bajas`
-  MODIFY `idBaja` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idAccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_categorias`
@@ -1575,7 +1862,7 @@ ALTER TABLE `ws_departamentos`
 -- AUTO_INCREMENT de la tabla `ws_diagnosticos`
 --
 ALTER TABLE `ws_diagnosticos`
-  MODIFY `idDiagnostico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `idDiagnostico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_equipos`
@@ -1611,19 +1898,19 @@ ALTER TABLE `ws_integraciones`
 -- AUTO_INCREMENT de la tabla `ws_mantenimientos`
 --
 ALTER TABLE `ws_mantenimientos`
-  MODIFY `idMantenimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT de la tabla `ws_mantenimientos_2`
---
-ALTER TABLE `ws_mantenimientos_2`
-  MODIFY `idMantenimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `idMantenimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_perfiles`
 --
 ALTER TABLE `ws_perfiles`
   MODIFY `id_perfil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `ws_reposiciones`
+--
+ALTER TABLE `ws_reposiciones`
+  MODIFY `idReposicion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_responsables`
@@ -1665,7 +1952,13 @@ ALTER TABLE `ws_usuarios`
 -- AUTO_INCREMENT de la tabla `ws_z_auditoria_mantenimientos`
 --
 ALTER TABLE `ws_z_auditoria_mantenimientos`
-  MODIFY `idAudMant` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `idAudMant` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+
+--
+-- AUTO_INCREMENT de la tabla `ws_z_auditoria_reposiciones`
+--
+ALTER TABLE `ws_z_auditoria_reposiciones`
+  MODIFY `idAudRepo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

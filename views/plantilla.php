@@ -90,7 +90,7 @@ session_start();
         $_GET["ruta"] == "mantenimientos" ||
         $_GET["ruta"] == "registrar-mantenimiento" ||
         $_GET["ruta"] == "editar-mantenimiento" ||
-        $_GET["ruta"] == "bajas" ||
+        $_GET["ruta"] == "reposicion" ||
         $_GET["ruta"] == "cableados" ||
         $_GET["ruta"] == "categorias" ||
         $_GET["ruta"] == "acciones" ||
@@ -130,7 +130,7 @@ session_start();
   <script type="text/javascript" src="views/dist/js/mantenimientos.js"></script>
   <!-- <script type="text/javascript" src="views/dist/js/code.min.js"></script> -->
 
-  <script type="text/javascript" src="views/dist/js/bajas.js"></script>
+  <script type="text/javascript" src="views/dist/js/reposicion.js"></script>
   <script type="text/javascript" src="views/dist/js/cableados.js"></script>
 </body>
 

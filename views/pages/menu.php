@@ -174,12 +174,13 @@
                                 <p>Mantenimientos</p>
                             </a>
                         </li>
-                        <!-- <li class="nav-item">
-                            <a href="bajas" class="nav-link">
-                                <i class="nav-icon fas fa-file-contract"></i>
-                                <p>Bajas</p>
+                        <li class="nav-item">
+                            <a href="reposicion" class="nav-link">
+                                <i class="nav-icon fas fa-sync-alt"></i>
+                                <p>Reposición</p>
                             </a>
                         </li>
+                        <!--
                         <li class="nav-item">
                             <a href="cableados" class="nav-link">
                                 <i class="nav-icon fas fa-ethernet"></i>
