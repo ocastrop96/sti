@@ -1856,8 +1856,48 @@ $(".tablaMantenimientos").on("click", ".btnEditarMant", function () {
                 $("#edd4").prop("disabled", false);
             }
             else {
-                $("#edd4_").val("0");
-                $("#edd4_").html("Selecciona Diagnostico");
+
+                if (respuesta["diagnostico1"] != 0 && respuesta["diagnostico2"] != 0 && respuesta["diagnostico3"] != 0) {
+                    var existe = respuesta["diagnostico1"];
+                    var existe2 = respuesta["diagnostico2"];
+                    var existe3 = respuesta["diagnostico3"];
+
+                    var sgmt = $("#edsegmentado").val();
+                    $.ajax({
+                        type: "POST",
+                        url: "lib/comboDiagnosticos3.php",
+                        data: "sgmt=" + sgmt + "&existe=" + existe + "&existe2=" + existe2 + "&existe3=" + existe3,
+                        success: function (html) {
+                            $("#edd4").html(html);
+                            $("#edd4").prop("disabled", false);
+
+                            $("#edd5").prop("disabled", false);
+                            $("#edd5")[0].selectedIndex = 0;
+                            $("#edd5_").val(0);
+                            $("#edd5_").html("Selecciona Diagnostico");
+
+                            $("#edd6").prop("disabled", false);
+                            $("#edd6")[0].selectedIndex = 0;
+                            $("#edd6_").val(0);
+                            $("#edd6_").html("Selecciona Diagnostico");
+
+                            $("#edd7").prop("disabled", false);
+                            $("#edd7")[0].selectedIndex = 0;
+                            $("#edd7_").val(0);
+                            $("#edd7_").html("Selecciona Diagnostico");
+
+                            $("#edd8").prop("disabled", false);
+                            $("#edd8")[0].selectedIndex = 0;
+                            $("#edd8_").val(0);
+                            $("#edd8_").html("Selecciona Diagnostico");
+                        },
+                    });
+                }
+                else {
+                    $("#edd4_").val("0");
+                    $("#edd4_").html("Selecciona Diagnostico");
+
+                }
             }
             if (respuesta["diagnostico5"] != 0) {
                 $("#edd5_").val(respuesta["diagnostico5"]);
@@ -1865,8 +1905,44 @@ $(".tablaMantenimientos").on("click", ".btnEditarMant", function () {
                 $("#edd5").prop("disabled", false);
             }
             else {
-                $("#edd5_").val("0");
-                $("#edd5_").html("Selecciona Diagnostico");
+                if (respuesta["diagnostico1"] != 0 && respuesta["diagnostico2"] != 0 && respuesta["diagnostico3"] != 0 && respuesta["diagnostico4"] != 0) {
+                    var existe = respuesta["diagnostico1"];
+                    var existe2 = respuesta["diagnostico2"];
+                    var existe3 = respuesta["diagnostico3"];
+                    var existe4 = respuesta["diagnostico4"];
+
+                    var sgmt = $("#edsegmentado").val();
+
+                    $.ajax({
+                        type: "POST",
+                        url: "lib/comboDiagnosticos4.php",
+                        data: "sgmt=" + sgmt + "&existe=" + existe + "&existe2=" + existe2 + "&existe3=" + existe3 + "&existe4=" + existe4,
+                        success: function (html) {
+                            console.log(html);
+                            $("#edd5").html(html);
+                            $("#edd5").prop("disabled", false);
+
+                            $("#edd6").prop("disabled", false);
+                            $("#edd6")[0].selectedIndex = 0;
+                            $("#edd6_").val(0);
+                            $("#edd6_").html("Selecciona Diagnostico");
+
+                            $("#edd7").prop("disabled", false);
+                            $("#edd7")[0].selectedIndex = 0;
+                            $("#edd7_").val(0);
+                            $("#edd7_").html("Selecciona Diagnostico");
+
+                            $("#edd8").prop("disabled", false);
+                            $("#edd8")[0].selectedIndex = 0;
+                            $("#edd8_").val(0);
+                            $("#edd8_").html("Selecciona Diagnostico");
+                        },
+                    });
+                }
+                else {
+                    $("#edd5_").val("0");
+                    $("#edd5_").html("Selecciona Diagnostico");
+                }
             }
             if (respuesta["diagnostico6"] != 0) {
                 $("#edd6_").val(respuesta["diagnostico6"]);
@@ -1874,8 +1950,41 @@ $(".tablaMantenimientos").on("click", ".btnEditarMant", function () {
                 $("#edd6").prop("disabled", false);
             }
             else {
-                $("#edd6_").val("0");
-                $("#edd6_").html("Selecciona Diagnostico");
+
+                if (respuesta["diagnostico1"] != 0 && respuesta["diagnostico2"] != 0 && respuesta["diagnostico3"] != 0 && respuesta["diagnostico4"] != 0 && respuesta["diagnostico5"] != 0) {
+
+                    var existe = respuesta["diagnostico1"];
+                    var existe2 = respuesta["diagnostico2"];
+                    var existe3 = respuesta["diagnostico3"];
+                    var existe4 = respuesta["diagnostico4"];
+                    var existe5 = respuesta["diagnostico5"];
+
+                    var sgmt = $("#edsegmentado").val();
+
+                    $.ajax({
+                        type: "POST",
+                        url: "lib/comboDiagnosticos5.php",
+                        data: "sgmt=" + sgmt + "&existe=" + existe + "&existe2=" + existe2 + "&existe3=" + existe3 + "&existe4=" + existe4 + "&existe5=" + existe5,
+                        success: function (html) {
+                            $("#edd6").html(html);
+                            $("#edd6").prop("disabled", false);
+
+                            $("#edd7").prop("disabled", false);
+                            $("#edd7")[0].selectedIndex = 0;
+                            $("#edd7_").val(0);
+                            $("#edd7_").html("Selecciona Diagnostico");
+
+                            $("#edd8").prop("disabled", false);
+                            $("#edd8")[0].selectedIndex = 0;
+                            $("#edd8_").val(0);
+                            $("#edd8_").html("Selecciona Diagnostico");
+                        },
+                    });
+
+                } else {
+                    $("#edd6_").val("0");
+                    $("#edd6_").html("Selecciona Diagnostico");
+                }
             }
             if (respuesta["diagnostico7"] != 0) {
                 $("#edd7_").val(respuesta["diagnostico7"]);
@@ -1883,8 +1992,35 @@ $(".tablaMantenimientos").on("click", ".btnEditarMant", function () {
                 $("#edd7").prop("disabled", false);
             }
             else {
-                $("#edd7_").val("0");
-                $("#edd7_").html("Selecciona Diagnostico");
+
+                if (respuesta["diagnostico1"] != 0 && respuesta["diagnostico2"] != 0 && respuesta["diagnostico3"] != 0 && respuesta["diagnostico4"] != 0 && respuesta["diagnostico5"] != 0 && respuesta["diagnostico6"] != 0) {
+                    var existe = respuesta["diagnostico1"];
+                    var existe2 = respuesta["diagnostico2"];
+                    var existe3 = respuesta["diagnostico3"];
+                    var existe4 = respuesta["diagnostico4"];
+                    var existe5 = respuesta["diagnostico5"];
+                    var existe6 = respuesta["diagnostico6"];
+
+                    var sgmt = $("#edsegmentado").val();
+                    $.ajax({
+                        type: "POST",
+                        url: "lib/comboDiagnosticos6.php",
+                        data: "sgmt=" + sgmt + "&existe=" + existe + "&existe2=" + existe2 + "&existe3=" + existe3 + "&existe4=" + existe4 + "&existe5=" + existe5 + "&existe6=" + existe6,
+                        success: function (html) {
+                            $("#edd7").html(html);
+                            $("#edd7").prop("disabled", false);
+
+                            $("#edd8").prop("disabled", false);
+                            $("#edd8")[0].selectedIndex = 0;
+                            $("#edd8_").val(0);
+                            $("#edd8_").html("Selecciona Diagnostico");
+                        },
+                    });
+
+                } else {
+                    $("#edd7_").val("0");
+                    $("#edd7_").html("Selecciona Diagnostico");
+                }
             }
             if (respuesta["diagnostico8"] != 0) {
                 $("#edd8_").val(respuesta["diagnostico8"]);
@@ -1892,8 +2028,31 @@ $(".tablaMantenimientos").on("click", ".btnEditarMant", function () {
                 $("#edd8").prop("disabled", false);
             }
             else {
-                $("#edd8_").val("0");
-                $("#edd8_").html("Selecciona Diagnostico");
+
+                if (respuesta["diagnostico1"] != 0 && respuesta["diagnostico2"] != 0 && respuesta["diagnostico3"] != 0 && respuesta["diagnostico4"] != 0 && respuesta["diagnostico5"] != 0 && respuesta["diagnostico6"] != 0 && respuesta["diagnostico7"] != 0) {
+                    var existe = respuesta["diagnostico1"];
+                    var existe2 = respuesta["diagnostico2"];
+                    var existe3 = respuesta["diagnostico3"];
+                    var existe4 = respuesta["diagnostico4"];
+                    var existe5 = respuesta["diagnostico5"];
+                    var existe6 = respuesta["diagnostico6"];
+                    var existe7 = respuesta["diagnostico7"];
+
+                    var sgmt = $("#edsegmentado").val();
+                    $.ajax({
+                        type: "POST",
+                        url: "lib/comboDiagnosticos7.php",
+                        data: "sgmt=" + sgmt + "&existe=" + existe + "&existe2=" + existe2 + "&existe3=" + existe3 + "&existe4=" + existe4 + "&existe5=" + existe5 + "&existe6=" + existe6 + "&existe7=" + existe7,
+                        success: function (html) {
+                            $("#edd8").html(html);
+                            $("#edd8").prop("disabled", false);
+                        },
+                    });
+
+                } else {
+                    $("#edd8_").val("0");
+                    $("#edd8_").html("Selecciona Diagnostico");
+                }
             }
             // Crearé una función recursiva
 
@@ -1918,8 +2077,53 @@ $(".tablaMantenimientos").on("click", ".btnEditarMant", function () {
                 $("#eda2").prop("disabled", false);
             }
             else {
-                $("#eda2_").val("0");
-                $("#eda2_").html("Seleccione Accion realizada");
+                if (respuesta["accion1"] != 0) {
+                    var existe = respuesta["accion1"];
+
+                    var sgmt = $("#edsegmentado").val();
+                    $.ajax({
+                        type: "POST",
+                        url: "lib/comboAcciones.php",
+                        data: "sgmt=" + sgmt + "&existe=" + existe,
+                        success: function (html) {
+                            $("#eda2").html(html);
+                            $("#eda2").prop("disabled", false);
+
+                            $("#eda3").prop("disabled", false);
+                            $("#eda3")[0].selectedIndex = 0;
+                            $("#eda3_").val(0);
+                            $("#eda3_").html("Selecciona Accion realizada");
+
+                            $("#eda4").prop("disabled", false);
+                            $("#eda4")[0].selectedIndex = 0;
+                            $("#eda4_").val(0);
+                            $("#eda4_").html("Selecciona Accion realizada");
+
+                            $("#eda5").prop("disabled", false);
+                            $("#eda5")[0].selectedIndex = 0;
+                            $("#eda5_").val(0);
+                            $("#eda5_").html("Selecciona Accion realizada");
+
+                            $("#eda6").prop("disabled", false);
+                            $("#eda6")[0].selectedIndex = 0;
+                            $("#eda6_").val(0);
+                            $("#eda6_").html("Selecciona Accion realizada");
+
+                            $("#eda7").prop("disabled", false);
+                            $("#eda7")[0].selectedIndex = 0;
+                            $("#eda7_").val(0);
+                            $("#eda7_").html("Selecciona Accion realizada");
+
+                            $("#eda8").prop("disabled", false);
+                            $("#eda8")[0].selectedIndex = 0;
+                            $("#eda8_").val(0);
+                            $("#eda8_").html("Selecciona Accion realizada");
+                        },
+                    });
+                } else {
+                    $("#eda2_").val("0");
+                    $("#eda2_").html("Seleccione Accion realizada");
+                }
             }
 
             if (respuesta["accion3"] != 0) {
@@ -1928,8 +2132,50 @@ $(".tablaMantenimientos").on("click", ".btnEditarMant", function () {
                 $("#eda3").prop("disabled", false);
             }
             else {
-                $("#eda3_").val("0");
-                $("#eda3_").html("Selecciona Accion realizada");
+
+                if (respuesta["accion1"] != 0 && respuesta["accion2"] != 0) {
+                    var existe = respuesta["accion1"];
+                    var existe2 = respuesta["accion2"];
+
+                    var sgmt = $("#edsegmentado").val();
+                    $.ajax({
+                        type: "POST",
+                        url: "lib/comboAcciones2.php",
+                        data: "sgmt=" + sgmt + "&existe=" + existe + "&existe2=" + existe2,
+                        success: function (html) {
+                            $("#eda3").html(html);
+                            $("#eda3").prop("disabled", false);
+
+                            $("#eda4").prop("disabled", false);
+                            $("#eda4")[0].selectedIndex = 0;
+                            $("#eda4_").val(0);
+                            $("#eda4_").html("Selecciona Accion realizada");
+
+                            $("#eda5").prop("disabled", false);
+                            $("#eda5")[0].selectedIndex = 0;
+                            $("#eda5_").val(0);
+                            $("#eda5_").html("Selecciona Accion realizada");
+
+                            $("#eda6").prop("disabled", false);
+                            $("#eda6")[0].selectedIndex = 0;
+                            $("#eda6_").val(0);
+                            $("#eda6_").html("Selecciona Accion realizada");
+
+                            $("#eda7").prop("disabled", false);
+                            $("#eda7")[0].selectedIndex = 0;
+                            $("#eda7_").val(0);
+                            $("#eda7_").html("Selecciona Accion realizada");
+
+                            $("#eda8").prop("disabled", false);
+                            $("#eda8")[0].selectedIndex = 0;
+                            $("#eda8_").val(0);
+                            $("#eda8_").html("Selecciona Accion realizada");
+                        },
+                    });
+                } else {
+                    $("#eda3_").val("0");
+                    $("#eda3_").html("Selecciona Accion realizada");
+                }
             }
             if (respuesta["accion4"] != 0) {
                 $("#eda4_").val(respuesta["accion4"]);
@@ -1937,8 +2183,45 @@ $(".tablaMantenimientos").on("click", ".btnEditarMant", function () {
                 $("#eda4").prop("disabled", false);
             }
             else {
-                $("#edda_").val("0");
-                $("#edda_").html("Selecciona Accion realizada");
+                if (respuesta["accion1"] != 0 && respuesta["accion2"] != 0 && respuesta["accion3"] != 0) {
+                    var existe = respuesta["accion1"];
+                    var existe2 = respuesta["accion2"];
+                    var existe3 = respuesta["accion3"];
+
+                    var sgmt = $("#edsegmentado").val();
+                    $.ajax({
+                        type: "POST",
+                        url: "lib/comboAcciones3.php",
+                        data: "sgmt=" + sgmt + "&existe=" + existe + "&existe2=" + existe2 + "&existe3=" + existe3,
+                        success: function (html) {
+                            $("#eda4").html(html);
+                            $("#eda4").prop("disabled", false);
+
+                            $("#eda5").prop("disabled", false);
+                            $("#eda5")[0].selectedIndex = 0;
+                            $("#eda5_").val(0);
+                            $("#eda5_").html("Selecciona Accion realizada");
+
+                            $("#eda6").prop("disabled", false);
+                            $("#eda6")[0].selectedIndex = 0;
+                            $("#eda6_").val(0);
+                            $("#eda6_").html("Selecciona Accion realizada");
+
+                            $("#eda7").prop("disabled", false);
+                            $("#eda7")[0].selectedIndex = 0;
+                            $("#eda7_").val(0);
+                            $("#eda7_").html("Selecciona Accion realizada");
+
+                            $("#eda8").prop("disabled", false);
+                            $("#eda8")[0].selectedIndex = 0;
+                            $("#eda8_").val(0);
+                            $("#eda8_").html("Selecciona Accion realizada");
+                        },
+                    });
+                } else {
+                    $("#eda4_").val("0");
+                    $("#eda4_").html("Selecciona Accion realizada");
+                }
             }
             if (respuesta["accion5"] != 0) {
                 $("#eda5_").val(respuesta["accion5"]);
@@ -1946,8 +2229,41 @@ $(".tablaMantenimientos").on("click", ".btnEditarMant", function () {
                 $("#eda5").prop("disabled", false);
             }
             else {
-                $("#eda5_").val("0");
-                $("#eda5_").html("Selecciona Accion realizada");
+                if (respuesta["accion1"] != 0 && respuesta["accion2"] != 0 && respuesta["accion3"] != 0 && respuesta["accion4"] != 0) {
+                    var existe = respuesta["accion1"];
+                    var existe2 = respuesta["accion2"];
+                    var existe3 = respuesta["accion3"];
+                    var existe4 = respuesta["accion4"];
+
+                    var sgmt = $("#edsegmentado").val();
+                    $.ajax({
+                        type: "POST",
+                        url: "lib/comboAcciones4.php",
+                        data: "sgmt=" + sgmt + "&existe=" + existe + "&existe2=" + existe2 + "&existe3=" + existe3 + "&existe4=" + existe4,
+                        success: function (html) {
+                            $("#eda5").html(html);
+                            $("#eda5").prop("disabled", false);
+
+                            $("#eda6").prop("disabled", false);
+                            $("#eda6")[0].selectedIndex = 0;
+                            $("#eda6_").val(0);
+                            $("#eda6_").html("Selecciona Accion realizada");
+
+                            $("#eda7").prop("disabled", false);
+                            $("#eda7")[0].selectedIndex = 0;
+                            $("#eda7_").val(0);
+                            $("#eda7_").html("Selecciona Accion realizada");
+
+                            $("#eda8").prop("disabled", false);
+                            $("#eda8")[0].selectedIndex = 0;
+                            $("#eda8_").val(0);
+                            $("#eda8_").html("Selecciona Accion realizada");
+                        },
+                    });
+                } else {
+                    $("#eda5_").val("0");
+                    $("#eda5_").html("Selecciona Accion realizada");
+                }
             }
             if (respuesta["accion6"] != 0) {
                 $("#eda6_").val(respuesta["accion6"]);
@@ -1955,8 +2271,38 @@ $(".tablaMantenimientos").on("click", ".btnEditarMant", function () {
                 $("#eda6").prop("disabled", false);
             }
             else {
-                $("#eda6_").val("0");
-                $("#eda6_").html("Selecciona Accion realizada");
+
+                if (respuesta["accion1"] != 0 && respuesta["accion2"] != 0 && respuesta["accion3"] != 0 && respuesta["accion4"] != 0 && respuesta["accion5"] != 0) {
+                    var existe = respuesta["accion1"];
+                    var existe2 = respuesta["accion2"];
+                    var existe3 = respuesta["accion3"];
+                    var existe4 = respuesta["accion4"];
+                    var existe5 = respuesta["accion5"];
+
+                    var sgmt = $("#edsegmentado").val();
+                    $.ajax({
+                        type: "POST",
+                        url: "lib/comboAcciones5.php",
+                        data: "sgmt=" + sgmt + "&existe=" + existe + "&existe2=" + existe2 + "&existe3=" + existe3 + "&existe4=" + existe4 + "&existe5=" + existe5,
+                        success: function (html) {
+                            $("#eda6").html(html);
+                            $("#eda6").prop("disabled", false);
+
+                            $("#eda7").prop("disabled", false);
+                            $("#eda7")[0].selectedIndex = 0;
+                            $("#eda7_").val(0);
+                            $("#eda7_").html("Selecciona Accion realizada");
+
+                            $("#eda8").prop("disabled", false);
+                            $("#eda8")[0].selectedIndex = 0;
+                            $("#eda8_").val(0);
+                            $("#eda8_").html("Selecciona Accion realizada");
+                        },
+                    });
+                } else {
+                    $("#eda6_").val("0");
+                    $("#eda6_").html("Selecciona Accion realizada");
+                }
             }
             if (respuesta["accion7"] != 0) {
                 $("#eda7_").val(respuesta["accion7"]);
@@ -1964,8 +2310,33 @@ $(".tablaMantenimientos").on("click", ".btnEditarMant", function () {
                 $("#eda7").prop("disabled", false);
             }
             else {
-                $("#eda7_").val("0");
-                $("#eda7_").html("Selecciona Accion realizada");
+                if (respuesta["accion1"] != 0 && respuesta["accion2"] != 0 && respuesta["accion3"] != 0 && respuesta["accion4"] != 0 && respuesta["accion5"] != 0 && respuesta["accion6"] != 0) {
+                    var existe = respuesta["accion1"];
+                    var existe2 = respuesta["accion2"];
+                    var existe3 = respuesta["accion3"];
+                    var existe4 = respuesta["accion4"];
+                    var existe5 = respuesta["accion5"];
+                    var existe6 = respuesta["accion6"];
+
+                    var sgmt = $("#edsegmentado").val();
+                    $.ajax({
+                        type: "POST",
+                        url: "lib/comboAcciones6.php",
+                        data: "sgmt=" + sgmt + "&existe=" + existe + "&existe2=" + existe2 + "&existe3=" + existe3 + "&existe4=" + existe4 + "&existe5=" + existe5 + "&existe6=" + existe6,
+                        success: function (html) {
+                            $("#eda7").html(html);
+                            $("#eda7").prop("disabled", false);
+
+                            $("#eda8").prop("disabled", false);
+                            $("#eda8")[0].selectedIndex = 0;
+                            $("#eda8_").val(0);
+                            $("#eda8_").html("Selecciona Accion realizada");
+                        },
+                    });
+                } else {
+                    $("#eda7_").val("0");
+                    $("#eda7_").html("Selecciona Accion realizada");
+                }
             }
             if (respuesta["accion8"] != 0) {
                 $("#eda8_").val(respuesta["accion8"]);
@@ -1973,8 +2344,30 @@ $(".tablaMantenimientos").on("click", ".btnEditarMant", function () {
                 $("#eda8").prop("disabled", false);
             }
             else {
-                $("#eda8_").val("0");
-                $("#eda8_").html("Selecciona Accion realizada");
+
+                if (respuesta["accion1"] != 0 && respuesta["accion2"] != 0 && respuesta["accion3"] != 0 && respuesta["accion4"] != 0 && respuesta["accion5"] != 0 && respuesta["accion6"] != 0 && respuesta["accion7"] != 0) {
+                    var existe = respuesta["accion1"];
+                    var existe2 = respuesta["accion2"];
+                    var existe3 = respuesta["accion3"];
+                    var existe4 = respuesta["accion4"];
+                    var existe5 = respuesta["accion5"];
+                    var existe6 = respuesta["accion6"];
+                    var existe7 = respuesta["accion7"];
+
+                    var sgmt = $("#edsegmentado").val();
+                    $.ajax({
+                        type: "POST",
+                        url: "lib/comboAcciones7.php",
+                        data: "sgmt=" + sgmt + "&existe=" + existe + "&existe2=" + existe2 + "&existe3=" + existe3 + "&existe4=" + existe4 + "&existe5=" + existe5 + "&existe6=" + existe6 + "&existe7=" + existe7,
+                        success: function (html) {
+                            $("#eda8").html(html);
+                            $("#eda8").prop("disabled", false);
+                        },
+                    });
+                } else {
+                    $("#eda8_").val("0");
+                    $("#eda8_").html("Selecciona Accion realizada");
+                }
             }
             // Bloque de acciones realizadas
 
