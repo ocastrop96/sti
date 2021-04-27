@@ -49,11 +49,6 @@
     </div>
   </section>
 </div>
-<?php
-$anulMante = new ControladorMantenimientos();
-$anulMante->ctrAnularMantenimiento();
-?>
-
 <!-- Modal Registro de Mantenimiento -->
 <div id="modal-registro-mantenimiento" class="modal fade" role="dialog" aria-modal="true" style="padding-right: 17px;">
   <div class="modal-dialog modal-xl">
@@ -184,7 +179,7 @@ $anulMante->ctrAnularMantenimiento();
             <div class="col-12 col-md-5">
               <div class="form-group">
                 <label for="tecEvEQ">Técnico Evaluador &nbsp;</label>
-                <i class="fas fa-thermometer-half"></i> *
+                <i class="fas fa-user-edit"></i> *
                 <select class="form-control" style="width: 100%;" name="tecEvEQ" id="tecEvEQ">
                   <option value="0">Seleccione Técnico Evaluador</option>
                   <?php
@@ -204,7 +199,7 @@ $anulMante->ctrAnularMantenimiento();
               <div class="form-group">
                 <label for="descIniEQ">Descripción del Incidente inicial &nbsp;</label>
                 <i class="fas fa-chalkboard-teacher"></i> * (Indicar el problema, falla o inconveniente que presenta el equipo)
-                <input type="text" name="descIniEQ" id="descIniEQ" class="form-control" autocomplete="off" placeholder="Ingrese descripción del incidente">
+                <input type="text" name="descIniEQ" id="descIniEQ" class="form-control" autocomplete="off" placeholder="Ingrese descripción del incidente" maxlength="94">
               </div>
             </div>
           </div>
@@ -267,13 +262,13 @@ $anulMante->ctrAnularMantenimiento();
             <div class="col-12 col-md-12">
               <div class="form-group">
                 <label for="priEvaEQ">Primera Evaluación &nbsp;</label>
-                <i class="fas fa-camera-retro"></i> * (Impresión diagnóstica observada por el Tec. evaluador)
-                <input type="text" name="priEvaEQ" id="priEvaEQ" class="form-control" autocomplete="off" placeholder="Ingrese descripción primera evaluación">
+                <i class="fas fa-camera-retro"></i> * (Impresión diagnóstica observada por el Tec. Responsable del Servicio)
+                <input type="text" name="priEvaEQ" id="priEvaEQ" class="form-control" autocomplete="off" placeholder="Ingrese descripción primera evaluación" maxlength="94">
               </div>
             </div>
           </div>
           <div class="row">
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-2">
               <div class="form-group">
                 <label for="fInicio">Fecha Inicio &nbsp;</label>
                 <i class="fas fa-calendar-alt"></i> *
@@ -281,7 +276,7 @@ $anulMante->ctrAnularMantenimiento();
                 <input type="hidden" name="fIniEv" id="fIniEv">
               </div>
             </div>
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-2">
               <div class="form-group">
                 <label for="fFin">Fecha Fin &nbsp;</label>
                 <i class="fas fa-calendar-alt"></i> *
@@ -289,7 +284,7 @@ $anulMante->ctrAnularMantenimiento();
                 <input type="hidden" name="fFinEv" id="fFinEv">
               </div>
             </div>
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-3">
               <div class="form-group">
                 <label for="tipTrabEQ">Trabajo Realizado &nbsp;</label>
                 <i class="fas fa-code-branch"></i> *
@@ -301,6 +296,23 @@ $anulMante->ctrAnularMantenimiento();
                   $trabM = ControladorDiagnosticos::ctrListarTrabajosManto($itemTrabM, $valorTrabM);
                   foreach ($trabM as $key => $value) {
                     echo '<option value="' . $value["idTipoTrabajo"] . '">' . $value["tipoTrabajo"] . '</option>';
+                  }
+                  ?>
+                </select>
+              </div>
+            </div>
+            <div class="col-12 col-md-5">
+              <div class="form-group">
+                <label for="tecEvEQ">Técnico Responsable &nbsp;</label>
+                <i class="fas fa-user-cog"></i> *
+                <select class="form-control" style="width: 100%;" name="tecResEQ" id="tecResEQ">
+                  <option value="0">Seleccione Técnico Responsable</option>
+                  <?php
+                  $itemTecEva2 = null;
+                  $valorTecEva2  = null;
+                  $tecEva2 = ControladorUsuarios::ctrListarTecnicos($itemTecEva2, $valorTecEva2);
+                  foreach ($tecEva2 as $key => $value) {
+                    echo '<option value="' . $value["id_usuario"] . '">' . $value["nombres"] . ' ' . $value["apellido_paterno"] . ' ' . $value["apellido_materno"] . '</option>';
                   }
                   ?>
                 </select>
@@ -366,7 +378,9 @@ $anulMante->ctrAnularMantenimiento();
               <div class="form-group">
                 <label for="recoFEQ">Recomendaciones u Observaciones finales &nbsp;</label>
                 <i class="fas fa-comment-medical"></i> * (Recomendaciones después de finalizado el trabajo)
-                <input type="text" name="recoFEQ" id="recoFEQ" class="form-control" autocomplete="off" placeholder="Ingrese Recomendación u observacion final">
+                <!-- <input type="text" name="recoFEQ" id="recoFEQ" class="form-control" autocomplete="off" placeholder="Ingrese Recomendación u observacion final"> -->
+                <textarea class="form-control" name="recoFEQ" id="recoFEQ" cols="1" rows="3" autocomplete="off" placeholder="Ingrese Recomendación u observacion final" maxlength="272"></textarea>
+                <!-- <input type="text" name="recoFEQ" id="recoFEQ" class="form-control" autocomplete="off" placeholder="Ingrese Recomendación u observacion final"> -->
               </div>
             </div>
           </div>
@@ -442,7 +456,6 @@ $anulMante->ctrAnularMantenimiento();
             </div>
           </div>
         </div>
-
         <div class="modal-footer justify-content-center">
           <button type="submit" class="btn btn-secondary" id="btnRegMant"><i class="fas fa-save"></i> Registrar Ficha</button>
           <button type="reset" class="btn btn-danger"><i class="fas fa-eraser"></i> Limpiar</button>
@@ -586,7 +599,7 @@ $anulMante->ctrAnularMantenimiento();
             <div class="col-12 col-md-5">
               <div class="form-group">
                 <label for="edtecEvEQ">Técnico Evaluador &nbsp;</label>
-                <i class="fas fa-thermometer-half"></i> *
+                <i class="fas fa-user-edit"></i> *
                 <select class="form-control" style="width: 100%;" name="edtecEvEQ" id="edtecEvEQ">
                   <option value="0" id="edtecEvEQ1">Seleccione Técnico Evaluador</option>
                   <?php
@@ -606,7 +619,7 @@ $anulMante->ctrAnularMantenimiento();
               <div class="form-group">
                 <label for="eddescIniEQ">Descripción del Incidente inicial &nbsp;</label>
                 <i class="fas fa-chalkboard-teacher"></i> * (Indicar el problema, falla o inconveniente que presenta el equipo)
-                <input type="text" name="eddescIniEQ" id="eddescIniEQ" class="form-control" autocomplete="off" placeholder="Ingrese descripción del incidente">
+                <input type="text" name="eddescIniEQ" id="eddescIniEQ" class="form-control" autocomplete="off" placeholder="Ingrese descripción del incidente" maxlength="94">
               </div>
             </div>
           </div>
@@ -670,12 +683,12 @@ $anulMante->ctrAnularMantenimiento();
               <div class="form-group">
                 <label for="edpriEvaEQ">Primera Evaluación &nbsp;</label>
                 <i class="fas fa-camera-retro"></i> * (Impresión diagnóstica observada por el Tec. evaluador)
-                <input type="text" name="edpriEvaEQ" id="edpriEvaEQ" class="form-control" autocomplete="off" placeholder="Ingrese descripción primera evaluación">
+                <input type="text" name="edpriEvaEQ" id="edpriEvaEQ" class="form-control" autocomplete="off" placeholder="Ingrese descripción primera evaluación" maxlength="94">
               </div>
             </div>
           </div>
           <div class="row">
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-2">
               <div class="form-group">
                 <label for="edfInicio">Fecha Inicio &nbsp;</label>
                 <i class="fas fa-calendar-alt"></i> *
@@ -683,7 +696,7 @@ $anulMante->ctrAnularMantenimiento();
                 <input type="hidden" name="edfIniEv" id="edfIniEv">
               </div>
             </div>
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-2">
               <div class="form-group">
                 <label for="edfFin">Fecha Fin &nbsp;</label>
                 <i class="fas fa-calendar-alt"></i> *
@@ -691,7 +704,7 @@ $anulMante->ctrAnularMantenimiento();
                 <input type="hidden" name="edfFinEv" id="edfFinEv">
               </div>
             </div>
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-3">
               <div class="form-group">
                 <label for="edtipTrabEQ">Trabajo Realizado &nbsp;</label>
                 <i class="fas fa-code-branch"></i> *
@@ -703,6 +716,23 @@ $anulMante->ctrAnularMantenimiento();
                   $trabM = ControladorDiagnosticos::ctrListarTrabajosManto($itemTrabM, $valorTrabM);
                   foreach ($trabM as $key => $value) {
                     echo '<option value="' . $value["idTipoTrabajo"] . '">' . $value["tipoTrabajo"] . '</option>';
+                  }
+                  ?>
+                </select>
+              </div>
+            </div>
+            <div class="col-12 col-md-5">
+              <div class="form-group">
+                <label for="edtecResEQ">Técnico Responsable &nbsp;</label>
+                <i class="fas fa-user-cog"></i> *
+                <select class="form-control" style="width: 100%;" name="edtecResEQ" id="edtecResEQ">
+                  <option value="0" id="edtecResEQ1">Seleccione Técnico Responsable</option>
+                  <?php
+                  $itemTecEva = null;
+                  $valorTecEva  = null;
+                  $tecEva = ControladorUsuarios::ctrListarTecnicos($itemTecEva, $valorTecEva);
+                  foreach ($tecEva as $key => $value) {
+                    echo '<option value="' . $value["id_usuario"] . '">' . $value["nombres"] . ' ' . $value["apellido_paterno"] . ' ' . $value["apellido_materno"] . '</option>';
                   }
                   ?>
                 </select>
@@ -768,7 +798,8 @@ $anulMante->ctrAnularMantenimiento();
               <div class="form-group">
                 <label for="edrecoFEQ">Recomendaciones u Observaciones finales &nbsp;</label>
                 <i class="fas fa-comment-medical"></i> * (Recomendaciones después de finalizado el trabajo)
-                <input type="text" name="edrecoFEQ" id="edrecoFEQ" class="form-control" autocomplete="off" placeholder="Ingrese Recomendación u observacion final">
+
+                <textarea class="form-control" name="edrecoFEQ" id="edrecoFEQ" cols="1" rows="3" autocomplete="off" placeholder="Ingrese Recomendación u observacion final" maxlength="272"></textarea>
               </div>
             </div>
           </div>
@@ -859,3 +890,7 @@ $anulMante->ctrAnularMantenimiento();
   </div>
 </div>
 <!-- Modal Editar Mantenimiento -->
+<?php
+$anulMante = new ControladorMantenimientos();
+$anulMante->ctrAnularMantenimiento();
+?>

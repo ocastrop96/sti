@@ -41,7 +41,6 @@ $('#fFin').datepicker({
     'endDate': new Date(),
 });
 
-
 $("#edfEva").inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
 $('#edfEva').datepicker({
     'format': 'dd/mm/yyyy',
@@ -63,25 +62,6 @@ $('#edfFin').datepicker({
     'language': 'es',
     'endDate': new Date(),
 });
-
-// $('#modal-editar-mantenimiento')
-//     .on('hide', function () {
-//         console.log('hide');
-//     })
-//     .on('hidden', function () {
-//         console.log('hidden');
-//     })
-//     .on('show', function () {
-//         console.log('show');
-//     })
-//     .on('shown', function () {
-//         console.log('shown')
-//     });
-
-// $('#modal-registro-mantenimiento').on('hidden.bs.modal', function (e) {
-//     alert('exito');
-//     $('#formEdtMant')[0].reset();
-// });
 
 $("#modal-registro-reposicion").on('hidden.bs.modal', function (e) {
     // alert('exito');
@@ -1307,6 +1287,10 @@ $("#btnRegRepo").on("click", function () {
             priEvaEQ: {
                 required: true,
             },
+            tecResEQ: {
+                valueNotEquals: "0",
+                required: true,
+            },
             recoFEQ: {
                 required: true,
             },
@@ -1377,6 +1361,10 @@ $("#btnRegRepo").on("click", function () {
             },
             priEvaEQ: {
                 required: "Ingresa primera evaluación",
+            },
+            tecResEQ: {
+                valueNotEquals: "Selecciona Técnico Responsable",
+                required: "Selecciona Técnico Responsable",
             },
             recoFEQ: {
                 required: "Ingresa recomendaciones finales",
@@ -1499,6 +1487,10 @@ $("#btnEdtRepo").on("click", function () {
             edpriEvaEQ: {
                 required: true,
             },
+            edtecResEQ: {
+                valueNotEquals: "Selecciona Técnico Responsable",
+                required: "Selecciona Técnico Responsable",
+            },
             edrecoFEQ: {
                 required: true,
             },
@@ -1569,6 +1561,10 @@ $("#btnEdtRepo").on("click", function () {
             },
             edpriEvaEQ: {
                 required: "Ingresa primera evaluación",
+            },
+            edtecResEQ: {
+                valueNotEquals: "Selecciona Técnico Responsable",
+                required: "Selecciona Técnico Responsable",
             },
             edrecoFEQ: {
                 required: "Ingresa recomendaciones finales",
@@ -2008,6 +2004,9 @@ $(".tablaReposicion").on("click", ".btnEditarRepo", function () {
 
             $("#edtipTrabEQ1").val(respuesta["tipTrabajo"]);
             $("#edtipTrabEQ1").html(respuesta["tipoTrabajo"]);
+
+            $("#edtecResEQ1").val(respuesta["tecResp"]);
+            $("#edtecResEQ1").html(respuesta["tecresponsable"]);
 
             // Bloque de acciones realizadas
             $("#eda1_").val(respuesta["accion1"]);

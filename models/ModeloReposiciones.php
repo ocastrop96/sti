@@ -6,7 +6,7 @@ class ModeloReposiciones
     static public function mdlListarFichasRepo($item, $valor)
     {
         if ($item != null) {
-            $stmt = Conexion::conectar()->prepare("SELECT idReposicion,fEvalua,fInicio,fFin,descSegmento,correlativo_Repo,date_format(fRegistroRepo,'%d/%m/%Y') as fRegRepo,tipEquipo,categoria,idEquip,serie,oficEquip,area,areaEquip,subarea,uResponsable,concat(nombresResp,' ',apellidosResp) as responsable,logdeta,date_format(fEvalua,'%d/%m/%Y') as fEval,condInicial,fsitu.situacion as cinicial,tecEvalua,concat(nombres,' ',apellido_paterno,' ',apellido_materno) as tecnico,descInc,diagnostico1,fdiag1.diagnostico as d1,diagnostico2,fdiag2.diagnostico as d2,diagnostico3,fdiag3.diagnostico as d3,diagnostico4,fdiag4.diagnostico as d4,diagnostico5,fdiag5.diagnostico as d5,diagnostico6,fdiag6.diagnostico as d6,diagnostico7,fdiag7.diagnostico as d7,diagnostico8,fdiag8.diagnostico as d8,primera_eval,date_format(fInicio,'%d/%m/%Y') as fInic,date_format(fFin,'%d/%m/%Y') as fFinE,tipTrabajo,tipoTrabajo,accion1,facc1.accionrealizada as a1,accion2,facc2.accionrealizada as a2,accion3,facc3.accionrealizada as a3,accion4,facc4.accionrealizada as a4,accion5,facc5.accionrealizada as a5,accion6,facc6.accionrealizada as a6,accion7,facc7.accionrealizada as a7,accion8,facc8.accionrealizada as a8,recomendaciones,estAtencion,estAte,condFinal,fsitu2.situacion as cfinal,servTerce,otros,obsOtros,sgmtoManto,estAnulado,estadoDoc from ws_reposiciones as fmant
+            $stmt = Conexion::conectar()->prepare("SELECT idReposicion,fEvalua,fInicio,fFin,descSegmento,correlativo_Repo,date_format(fRegistroRepo,'%d/%m/%Y') as fRegRepotipEquipo,categoria,idEquip,serie,oficEquip,area,areaEquip,subarea,uResponsable,concat(nombresResp,' ',apellidosResp) as responsable,logdeta,date_format(fEvalua,'%d/%m/%Y') as fEval,condInicial,fsitu.situacion as cinicial,tecEvalua,concat(ftec.nombres,' ',ftec.apellido_paterno,' ',ftec.apellido_materno) as tecnico,tecResp,concat(ftec2.nombres,' ',ftec2.apellido_paterno,' ',ftec2.apellido_materno) as tecresponsable,descInc,diagnostico1,fdiag1.diagnostico as d1,diagnostico2,fdiag2.diagnostico as d2,diagnostico3,fdiag3.diagnostico as d3,diagnostico4,fdiag4.diagnostico as d4,diagnostico5,fdiag5.diagnostico as d5,diagnostico6,fdiag6.diagnostico as d6,diagnostico7,fdiag7.diagnostico as d7,diagnostico8,fdiag8.diagnostico as d8,primera_eval,date_format(fInicio,'%d/%m/%Y') as fInic,date_format(fFin,'%d/%m/%Y') as fFinE,tipTrabajo,tipoTrabajo,accion1,facc1.accionrealizada as a1,accion2,facc2.accionrealizada as a2,accion3,facc3.accionrealizada as a3,accion4,facc4.accionrealizada as a4,accion5,facc5.accionrealizada as a5,accion6,facc6.accionrealizada as a6,accion7,facc7.accionrealizada as a7,accion8,facc8.accionrealizada as a8,recomendaciones,estAtencion,estAte,condFinal,fsitu2.situacion as cfinal,servTerce,otros,obsOtros,sgmtoManto,estAnulado,estadoDoc from ws_reposiciones as fmant
             inner join ws_categorias as fcat on fmant.tipEquipo = fcat.idCategoria
             inner join ws_segmento as eseg on fmant.sgmtoManto = eseg.idSegmento
             inner join ws_situacion as fsitu on fmant.condInicial = fsitu.idSituacion
@@ -15,6 +15,7 @@ class ModeloReposiciones
             inner join ws_servicios as fserv on fmant.areaEquip = fserv.id_subarea
             inner join ws_responsables as fresp on fmant.respoEquip = fresp.idResponsable
             inner join ws_usuarios as ftec on fmant.tecEvalua = ftec.id_usuario
+            inner join ws_usuarios as ftec2 on fmant.tecResp = ftec2.id_usuario
             inner join ws_estadoatencion as festat on fmant.estAtencion = festat.idEstAte
             inner join ws_situacion as fsitu2 on fmant.condFinal = fsitu2.idSituacion
             inner join ws_estadosdoc as festdoc on fmant.estAnulado = festdoc.idEstaDoc
@@ -91,7 +92,7 @@ class ModeloReposiciones
 
     static public function mdlRegistrarReposicion($datos)
     {
-        $stmt = Conexion::conectar()->prepare("CALL REGISTRAR_REPOSICION(:fRegistroRepo,:tipEquipo,:condInicial,:idEquip,:oficEquip,:areaEquip,:respoEquip,:logdeta,:descInc,:diagnostico1,:diagnostico2,:diagnostico3,:diagnostico4,:diagnostico5,:diagnostico6,:diagnostico7,:diagnostico8,:tecEvalua,:fEvalua,:primera_eval,:fInicio,:fFin,:tipTrabajo,:accion1,:accion2,:accion3,:accion4,:accion5,:accion6,:accion7,:accion8,:recomendaciones,:estAtencion,:condFinal,:servTerce,:otros,:obsOtros,:usRegistra,:sgmtoManto)");
+        $stmt = Conexion::conectar()->prepare("CALL REGISTRAR_REPOSICION(:fRegistroRepo,:tipEquipo,:condInicial,:idEquip,:oficEquip,:areaEquip,:respoEquip,:logdeta,:descInc,:diagnostico1,:diagnostico2,:diagnostico3,:diagnostico4,:diagnostico5,:diagnostico6,:diagnostico7,:diagnostico8,:tecEvalua,:fEvalua,:primera_eval,:fInicio,:fFin,:tipTrabajo,:tecResp,:accion1,:accion2,:accion3,:accion4,:accion5,:accion6,:accion7,:accion8,:recomendaciones,:estAtencion,:condFinal,:servTerce,:otros,:obsOtros,:usRegistra,:sgmtoManto)");
 
         $stmt->bindParam(":tipEquipo", $datos["tipEquipo"], PDO::PARAM_INT);
         $stmt->bindParam(":condInicial", $datos["condInicial"], PDO::PARAM_INT);
@@ -109,6 +110,7 @@ class ModeloReposiciones
         $stmt->bindParam(":diagnostico7", $datos["diagnostico7"], PDO::PARAM_INT);
         $stmt->bindParam(":diagnostico8", $datos["diagnostico8"], PDO::PARAM_INT);
         $stmt->bindParam(":tipTrabajo", $datos["tipTrabajo"], PDO::PARAM_INT);
+        $stmt->bindParam(":tecResp", $datos["tecResp"], PDO::PARAM_INT);
         $stmt->bindParam(":accion1", $datos["accion1"], PDO::PARAM_INT);
         $stmt->bindParam(":accion2", $datos["accion2"], PDO::PARAM_INT);
         $stmt->bindParam(":accion3", $datos["accion3"], PDO::PARAM_INT);
@@ -142,7 +144,7 @@ class ModeloReposiciones
     }
     static public function mdlEditarReposicion($datos)
     {
-        $stmt = Conexion::conectar()->prepare("CALL EDITAR_REPOSICION(:idReposicion, :tipEquipo, :condInicial, :idEquip, :oficEquip, :areaEquip, :respoEquip, :logdeta, :descInc, :tecEvalua, :diagnostico1, :diagnostico2, :diagnostico3, :diagnostico4, :diagnostico5, :diagnostico6, :diagnostico7, :diagnostico8, :fEvalua, :primera_eval, :fInicio, :fFin, :tipTrabajo, :accion1, :accion2, :accion3, :accion4, :accion5, :accion6, :accion7, :accion8, :recomendaciones, :estAtencion, :condFinal, :servTerce, :otros, :obsOtros, :sgmtoManto)");
+        $stmt = Conexion::conectar()->prepare("CALL EDITAR_REPOSICION(:idReposicion, :tipEquipo, :condInicial, :idEquip, :oficEquip, :areaEquip, :respoEquip, :logdeta, :descInc, :tecEvalua, :diagnostico1, :diagnostico2, :diagnostico3, :diagnostico4, :diagnostico5, :diagnostico6, :diagnostico7, :diagnostico8, :fEvalua, :primera_eval, :fInicio, :fFin, :tipTrabajo, :tecResp, :accion1, :accion2, :accion3, :accion4, :accion5, :accion6, :accion7, :accion8, :recomendaciones, :estAtencion, :condFinal, :servTerce, :otros, :obsOtros, :sgmtoManto)");
 
         $stmt->bindParam(":idReposicion", $datos["idReposicion"], PDO::PARAM_INT);
         $stmt->bindParam(":tipEquipo", $datos["tipEquipo"], PDO::PARAM_INT);
@@ -160,6 +162,7 @@ class ModeloReposiciones
         $stmt->bindParam(":diagnostico6", $datos["diagnostico6"], PDO::PARAM_INT);
         $stmt->bindParam(":diagnostico7", $datos["diagnostico7"], PDO::PARAM_INT);
         $stmt->bindParam(":diagnostico8", $datos["diagnostico8"], PDO::PARAM_INT);
+        $stmt->bindParam(":tecResp", $datos["tecResp"], PDO::PARAM_INT);
         $stmt->bindParam(":tipTrabajo", $datos["tipTrabajo"], PDO::PARAM_INT);
         $stmt->bindParam(":accion1", $datos["accion1"], PDO::PARAM_INT);
         $stmt->bindParam(":accion2", $datos["accion2"], PDO::PARAM_INT);

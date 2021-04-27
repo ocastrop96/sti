@@ -176,6 +176,9 @@ class ImprimirFichaMantenimiento
                                 </table>
                                 <table cellpadding="2" cellspacing="1.5" style="text-align:left; padding:5px 10px;">
                                 <tr>
+                                <td style="text-align:center; width:667px;background-color:white;"></td>
+                                </tr>
+                                <tr>
                                         <td style="width:667.5px;background-color:white;background-color: white;"><p style="text-align: left;"><b>Datos del Equipo Afectado :.</b> <i>(Información del equipo afectado: tipo,modelo,marca,serie,cod.Patrimonio,N° ID, etc.)</i></p></td>
                                 </tr>
                                 <tr>
@@ -269,7 +272,7 @@ class ImprimirFichaMantenimiento
                                 <tr>
                                 <td style="text-align:center; width:667px;background-color:white;"></td>
                                 </tr>
-                                <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>2. EVALUACIÓN DE INCIDENTE, DIAGNOSTICOS Y ACCIONES REALIZADAS</b></p></td>
+                                <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>2. DETALLES DEL INCIDENTE Y DIAGNOSTICOS</b> <i>(Descripción del Incidente y diagnósticos realizados)</i></p></td>
                                 </tr>
                                 <tr>
                                 <td style="text-align:left; width:85px;background-color:white;
@@ -304,20 +307,19 @@ class ImprimirFichaMantenimiento
                                         border-right:  0.7px solid  #000000;
                                         "> $fichMantEq[tecnico]</td>
                                 </tr>
-
                                 <tr>
-                                <td style="text-align:left; width:670.5px;background-color:white;
+                                <td style="text-align:left; width:150px;background-color:white;
                                         border-bottom:0.7px solid #000000;
                                         border-left:  0.7px solid  #000000;
-                                        border-right:  0.7px solid  #000000;
-                                        background-color: #E6E6E6;"> <b>Descripción Inicial de Incidente:</b></td>
-                                </tr>
-                                <tr>
-                                <td style="text-align:left; width:670.5px;background-color:white;
+                                        background-color: #E6E6E6;"> <b>Desc. Inicial de Incidente:</b></td>
+                                <td style="text-align:left; width:519px;background-color:white;
                                         border-bottom:0.7px solid #000000;
                                         border-left:   0.7px solid  #000000;
                                         border-right:  0.7px solid  #000000;
                                         "> $fichMantEq[descInc]</td>
+                                </tr>
+                                <tr>
+                                <td style="text-align:center; width:667px;background-color:white;"></td>
                                 </tr>
                                 <tr>
                                         <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>Diágnosticos Realizados :.</b> <i>(Lista de Diagnosticos realizados)</i></p></td>
@@ -346,13 +348,19 @@ class ImprimirFichaMantenimiento
                                         <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
                                         background-color: #ffffff;"> $d8</td>
                                 </tr>
+                                <tr>
+                                <td style="text-align:center; width:667px;background-color:white;"></td>
+                                </tr>
                                 </table> 
                                 EOF;
                         $pdf->writeHTML($html, false, false, false, false, '');
                         $html2 = <<<EOF
                                 <table cellpadding="2" cellspacing="1.5" style="text-align:left;" border="">
                                 <tr>
-                                <td style="width:669px;background-color:white;background-color: white;"><p style="text-align: left;"><b>Tiempo de Ejecución del Servicio</b></p></td>
+                                <td style="width:669px;background-color:white;background-color: white;"><p style="text-align: left;"><b>3. DETALLES EVALUACIÓN DE EQUIPOS Y ACCIONES REALIZADAS</b> <i>(Descripción de trabajos realizados)</i></p></td>
+                                </tr>
+                                <tr>
+                                <td style="width:669px;background-color:white;background-color: white;"><p style="text-align: left;"><b>Tiempo de Ejecución</b> <i>(Tiempo de trabajos y acciones realizadas)</i></p></td>
                                 </tr>
                                 <tr>
                                 <td style="text-align:left; width:85px;background-color:white;
@@ -388,21 +396,21 @@ class ImprimirFichaMantenimiento
                                         "> $fichMantEq[tipoTrabajo]</td>
                                 </tr>
                                 <tr>
-                                <td style="text-align:left; width:670.5px;background-color:white;
+                                <td style="text-align:left; width:150px;background-color:white;
                                         border-bottom:0.7px solid #000000;
                                         border-left:  0.7px solid  #000000;
-                                        border-right:  0.7px solid  #000000;
-                                        background-color: #E6E6E6;"> <b>Descripción de Primera Evaluación:</b></td>
-                                </tr>
-                                <tr>
-                                <td style="text-align:left; width:670.5px;background-color:white;
+                                        background-color: #E6E6E6;"> <b>Desc. Primera Evaluación:</b></td>
+                                <td style="text-align:left; width:519px;background-color:white;
                                         border-bottom:0.7px solid #000000;
                                         border-left:   0.7px solid  #000000;
                                         border-right:  0.7px solid  #000000;
                                         "> $fichMantEq[primera_eval]</td>
                                 </tr>
                                 <tr>
-                                <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>Acciones Realizadas :.</b> <i>(Acciones o trabajos realizados)</i></p></td>
+                                <tr>
+                                <td style="text-align:center; width:667px;background-color:white;"></td>
+                                </tr>
+                                <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>Acciones Realizadas :.</b> <i>(Lista de acciones o trabajos realizados)</i></p></td>
                                 </tr>
                                 <tr>
                                         <td style="text-align:left; width:334px;background-color:white;
@@ -434,28 +442,15 @@ class ImprimirFichaMantenimiento
                         $html3 = <<<EOF
                                 <table cellpadding="2" cellspacing="1.5" style="text-align:left;" border="">
                                 <tr>
-                                <td style="text-align:left; width:150px;background-color:white;
+                                <td style="text-align:left; width:195px;background-color:white;
+                                        border-bottom:0.7px solid #000000;
                                         border-top:0.7px solid #000000;
                                         border-left:  0.7px solid  #000000;
-                                        background-color: #E6E6E6;"> <b>Técnico Responsable:</b></td>
-                                <td style="text-align:left; width:519px;background-color:white;
-                                        border-top:0.7px solid #000000;
-                                        border-left:   0.7px solid  #000000;
-                                        border-right:  0.7px solid  #000000;
-                                        "> $fichMantEq[tecresponsable]</td>
-                                </tr>
-                                <tr>
-                                <td style="text-align:left; width:670.5px;background-color:white;
-                                        border-bottom:0.7px solid #000000;
-                                        border-left:  0.7px solid  #000000;
-                                        border-right:  0.7px solid  #000000;
-                                        border-top:0.7px solid #000000;
-                                        background-color: #E6E6E6;"> <b>Recomendaciones u Observaciones Finales:</b></td>
-                                </tr>
-                                <tr>
-                                <td style="text-align:left; width:670.5px;background-color:white;
+                                        background-color: #E6E6E6;"> <b>Recomendaciones u Obs. Finales:</b></td>
+                                <td style="text-align:left; width:474px;background-color:white;
                                         border-bottom:0.7px solid #000000;
                                         border-left:   0.7px solid  #000000;
+                                        border-top:0.7px solid #000000;
                                         border-right:  0.7px solid  #000000;
                                         "> $fichMantEq[recomendaciones]</td>
                                 </tr>
@@ -463,7 +458,7 @@ class ImprimirFichaMantenimiento
                                 <td style="text-align:center; width:667px;background-color:white;"></td>
                                 </tr>
                                 <tr>
-                                <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>3. OBSERVACIONES Y ESTADO FINAL DEL EQUIPO</b> <i>(Información de situación final del equipo)</i></p></td>
+                                <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>4. OBSERVACIONES Y ESTADO FINAL DEL EQUIPO</b> <i>(Información de situación final del equipo)</i></p></td>
                                 </tr>
                                 <tr>
                                 <td style="text-align:left; width:120px;background-color:white;
@@ -522,7 +517,7 @@ class ImprimirFichaMantenimiento
                                 </tr>
                                 <tr>
                                 <tr>
-                                <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>4. SUSCRIPCION DEL ACTA</b> <i>(Firmas y sellos de usuario responsable,técnico evaluador y Oficina de Estadística e Informática)</i></p></td>
+                                <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>5. SUSCRIPCION DEL ACTA</b> <i>(Firmas y sellos de usuario responsable,técnico evaluador y Oficina de Estadística e Informática)</i></p></td>
                                 </tr>
                                 <br>
                                 <td style="text-align:center; width:222.5px;background-color:white;
@@ -534,7 +529,7 @@ class ImprimirFichaMantenimiento
                                 border-top: 0.7px solid #000000;
                                 border-bottom: 0.7px solid #000000;
                                 border-left:   0.7px solid  #000000;
-                                background-color: #E6E6E6;"> <b>Técnico Responsable</b></td>
+                                background-color: #E6E6E6;"> <b>Técnico Evaluador</b></td>
                                 <td style="text-align:center; width:222.5px;background-color:white;
                                 border-top: 0.7px solid #000000;
                                 border-bottom: 0.7px solid #000000;
@@ -625,7 +620,7 @@ class ImprimirFichaMantenimiento
                                 <td style="text-align:center;vertical-align: middle; width:222.5px;background-color:white;
                                 border-bottom: 0.7px solid #000000;
                                 border-left:   0.7px solid  #000000;
-                                background-color: #ffffff;"><b>$fichMantEq[tecresponsable]</b></td>
+                                background-color: #ffffff;"><b>FIRMA/SELLO</b></td>
                                 <td style="text-align:center; width:222.5px;background-color:white;
                                 border-bottom: 0.7px solid #000000;
                                 border-left:   0.7px solid  #000000;
@@ -799,6 +794,9 @@ class ImprimirFichaMantenimiento
                         </table>
                         <table cellpadding="2" cellspacing="1.5" style="text-align:left; padding:5px 10px;">
                         <tr>
+                        <td style="text-align:center; width:667px;background-color:white;"></td>
+                        </tr>
+                        <tr>
                                 <td style="width:667.5px;background-color:white;background-color: white;"><p style="text-align: left;"><b>Datos del Equipo Afectado :.</b> <i>(Información del equipo afectado: tipo,modelo,marca,serie,cod.Patrimonio,N° ID, etc.)</i></p></td>
                         </tr>
                         <tr>
@@ -865,7 +863,7 @@ class ImprimirFichaMantenimiento
                         <tr>
                         <td style="text-align:center; width:667px;background-color:white;"></td>
                         </tr>
-                        <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>2. EVALUACIÓN DE INCIDENTE, DIAGNOSTICOS Y ACCIONES REALIZADAS</b></p></td>
+                        <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>2. DETALLES DEL INCIDENTE Y DIAGNOSTICOS</b> <i>(Descripción del Incidente y diagnósticos realizados)</i></p></td>
                         </tr>
                         <tr>
                         <td style="text-align:left; width:85px;background-color:white;
@@ -900,56 +898,60 @@ class ImprimirFichaMantenimiento
                                 border-right:  0.7px solid  #000000;
                                 "> $fichMantEq[tecnico]</td>
                         </tr>
-
                         <tr>
-                                <td style="text-align:left; width:670.5px;background-color:white;
+                        <td style="text-align:left; width:150px;background-color:white;
                                 border-bottom:0.7px solid #000000;
                                 border-left:  0.7px solid  #000000;
-                                border-right:  0.7px solid  #000000;
-                                background-color: #E6E6E6;"> <b>Descripción Inicial de Incidente:</b></td>
-                        </tr>
-                        <tr>
-                                <td style="text-align:left; width:670.5px;background-color:white;
+                                background-color: #E6E6E6;"> <b>Desc. Inicial de Incidente:</b></td>
+                        <td style="text-align:left; width:519px;background-color:white;
                                 border-bottom:0.7px solid #000000;
                                 border-left:   0.7px solid  #000000;
                                 border-right:  0.7px solid  #000000;
                                 "> $fichMantEq[descInc]</td>
                         </tr>
                         <tr>
+                        <td style="text-align:center; width:667px;background-color:white;"></td>
+                        </tr>
+                        <tr>
                                 <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>Diágnosticos Realizados :.</b> <i>(Lista de Diagnosticos realizados)</i></p></td>
                         </tr>
                         <tr>
-                                        <td style="text-align:left; width:334px;background-color:white;
-                                        background-color: #ffffff;"> • $fichMantEq[d1]</td>
-                                        <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
-                                        background-color: #ffffff;"> $d5</td>
-                                </tr>
-                                <tr>
-                                        <td style="text-align:left; width:334px;background-color:white;
-                                        background-color: #ffffff;"> $d2</td>
-                                        <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
-                                        background-color: #ffffff;"> $d6</td>
-                                </tr>
-                                <tr>
-                                        <td style="text-align:left; width:334px;background-color:white;
-                                        background-color: #ffffff;"> $d3</td>
-                                        <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
-                                        background-color: #ffffff;"> $d7</td>
-                                </tr>
-                                <tr>
-                                        <td style="text-align:left; width:334px;background-color:white;
-                                        background-color: #ffffff;"> $d4</td>
-                                        <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
-                                        background-color: #ffffff;"> $d8</td>
-                                </tr>
+                        <td style="text-align:left; width:334px;background-color:white;
+                        background-color: #ffffff;"> • $fichMantEq[d1]</td>
+                        <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
+                        background-color: #ffffff;"> $d5</td>
+                        </tr>
+                        <tr>
+                                <td style="text-align:left; width:334px;background-color:white;
+                                background-color: #ffffff;"> $d2</td>
+                                <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
+                                background-color: #ffffff;"> $d6</td>
+                        </tr>
+                        <tr>
+                                <td style="text-align:left; width:334px;background-color:white;
+                                background-color: #ffffff;"> $d3</td>
+                                <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
+                                background-color: #ffffff;"> $d7</td>
+                        </tr>
+                        <tr>
+                                <td style="text-align:left; width:334px;background-color:white;
+                                background-color: #ffffff;"> $d4</td>
+                                <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
+                                background-color: #ffffff;"> $d8</td>
+                        </tr>
                         </table> 
                         EOF;
                         $pdf->writeHTML($html, false, false, false, false, '');
-
                         $html2 = <<<EOF
                         <table cellpadding="2" cellspacing="1.5" style="text-align:left;" border="">
                         <tr>
-                        <td style="width:669px;background-color:white;background-color: white;"><p style="text-align: left;"><b>Tiempo de Ejecución del Servicio</b></p></td>
+                        <td style="text-align:center; width:667px;background-color:white;"></td>
+                        </tr>
+                        <tr>
+                        <td style="width:669px;background-color:white;background-color: white;"><p style="text-align: left;"><b>3. DETALLES EVALUACIÓN DE EQUIPOS Y ACCIONES REALIZADAS</b> <i>(Descripción de trabajos realizados)</i></p></td>
+                        </tr>
+                        <tr>
+                        <td style="width:669px;background-color:white;background-color: white;"><p style="text-align: left;"><b>Tiempo de Ejecución</b> <i>(Tiempo de trabajos y acciones realizadas)</i></p></td>
                         </tr>
                         <tr>
                         <td style="text-align:left; width:85px;background-color:white;
@@ -985,82 +987,69 @@ class ImprimirFichaMantenimiento
                                 "> $fichMantEq[tipoTrabajo]</td>
                         </tr>
                         <tr>
-                                <td style="text-align:left; width:670.5px;background-color:white;
+                        <td style="text-align:left; width:150px;background-color:white;
                                 border-bottom:0.7px solid #000000;
                                 border-left:  0.7px solid  #000000;
-                                border-right:  0.7px solid  #000000;
-                                background-color: #E6E6E6;"> <b>Descripción de Primera Evaluación:</b></td>
-                        </tr>
-                        <tr>
-                                <td style="text-align:left; width:670.5px;background-color:white;
+                                background-color: #E6E6E6;"> <b>Desc. Primera Evaluación:</b></td>
+                        <td style="text-align:left; width:519px;background-color:white;
                                 border-bottom:0.7px solid #000000;
                                 border-left:   0.7px solid  #000000;
                                 border-right:  0.7px solid  #000000;
                                 "> $fichMantEq[primera_eval]</td>
                         </tr>
                         <tr>
+                        <tr>
+                        <td style="text-align:center; width:667px;background-color:white;"></td>
+                        </tr>
                         <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>Acciones Realizadas :.</b> <i>(Lista de acciones o trabajos realizados)</i></p></td>
                         </tr>
                         <tr>
-                                        <td style="text-align:left; width:334px;background-color:white;
-                                        background-color: #ffffff;"> • $fichMantEq[a1]</td>
-                                        <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
-                                        background-color: #ffffff;"> $a5</td>
-                                </tr>
-                                <tr>
-                                        <td style="text-align:left; width:334px;background-color:white;
-                                        background-color: #ffffff;"> $a2</td>
-                                        <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
-                                        background-color: #ffffff;"> $a6</td>
-                                </tr>
-                                <tr>
-                                        <td style="text-align:left; width:334px;background-color:white;
-                                        background-color: #ffffff;"> $a3</td>
-                                        <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
-                                        background-color: #ffffff;"> $a7</td>
-                                </tr>
-                                <tr>
-                                        <td style="text-align:left; width:334px;background-color:white;
-                                        background-color: #ffffff;"> $a4</td>
-                                        <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
-                                        background-color: #ffffff;"> $a8</td>
-                                </tr>
+                        <td style="text-align:left; width:334px;background-color:white;
+                        background-color: #ffffff;"> • $fichMantEq[a1]</td>
+                        <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
+                        background-color: #ffffff;"> $a5</td>
+                        </tr>
+                        <tr>
+                                <td style="text-align:left; width:334px;background-color:white;
+                                background-color: #ffffff;"> $a2</td>
+                                <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
+                                background-color: #ffffff;"> $a6</td>
+                        </tr>
+                        <tr>
+                                <td style="text-align:left; width:334px;background-color:white;
+                                background-color: #ffffff;"> $a3</td>
+                                <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
+                                background-color: #ffffff;"> $a7</td>
+                        </tr>
+                        <tr>
+                                <td style="text-align:left; width:334px;background-color:white;
+                                background-color: #ffffff;"> $a4</td>
+                                <td style="text-align:left;vertical-align: middle; width:334.75px;background-color:white;
+                                background-color: #ffffff;"> $a8</td>
+                        </tr>
                         </table> 
                         EOF;
                         $pdf->writeHTML($html2, false, false, false, false, '');
                         $html3 = <<<EOF
                         <table cellpadding="2" cellspacing="1.5" style="text-align:left;" border="">
                         <tr>
-                        <td style="text-align:left; width:150px;background-color:white;
+                        <td style="text-align:left; width:195px;background-color:white;
+                                border-bottom:0.7px solid #000000;
                                 border-top:0.7px solid #000000;
                                 border-left:  0.7px solid  #000000;
-                                background-color: #E6E6E6;"> <b>Técnico Responsable:</b></td>
-                        <td style="text-align:left; width:519px;background-color:white;
-                                border-top:0.7px solid #000000;
+                                background-color: #E6E6E6;"> <b>Recomendaciones u Obs. Finales:</b></td>
+                        <td style="text-align:left; width:474px;background-color:white;
+                                border-bottom:0.7px solid #000000;
                                 border-left:   0.7px solid  #000000;
+                                border-top:0.7px solid #000000;
                                 border-right:  0.7px solid  #000000;
-                                "> $fichMantEq[tecresponsable]</td>
-                        </tr>
-                        <tr>
-                        <td style="text-align:left; width:670.5px;background-color:white;
-                            border-bottom:0.7px solid #000000;
-                            border-left:  0.7px solid  #000000;
-                            border-right:  0.7px solid  #000000;
-                            border-top:0.7px solid #000000;
-                            background-color: #E6E6E6;"> <b>Recomendaciones u Observaciones Finales:</b></td>
-                        </tr>
-                        <tr>
-                        <td style="text-align:left; width:670.5px;background-color:white;
-                            border-bottom:0.7px solid #000000;
-                            border-left:   0.7px solid  #000000;
-                            border-right:  0.7px solid  #000000;
-                            "> $fichMantEq[recomendaciones]</td>
+                                "> $fichMantEq[recomendaciones]</td>
                         </tr>
                         <tr>
                         <tr>
                         <td style="text-align:center; width:667px;background-color:white;"></td>
                         </tr>
-                        <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>3. OBSERVACIONES Y ESTADO FINAL DEL EQUIPO</b> <i>(Información de situación final del equipo)</i></p></td>
+                        <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>4. OBSERVACIONES Y ESTADO FINAL DEL EQUIPO</b> <i>(Información de situación final del equipo)</i></p></td>
                         </tr>
                         <tr>
                         <td style="text-align:left; width:120px;background-color:white;
@@ -1117,7 +1106,7 @@ class ImprimirFichaMantenimiento
                         <br>
                         <tr>
                         <tr>
-                        <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>4. SUSCRIPCION DEL ACTA</b> <i>(Firmas y sellos de usuario responsable,técnico evaluador y Oficina de Estadística e Informática)</i></p></td>
+                        <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>5. SUSCRIPCION DEL ACTA</b> <i>(Firmas y sellos de usuario responsable,técnico evaluador y Oficina de Estadística e Informática)</i></p></td>
                         </tr>
                         <br>
                         <td style="text-align:center; width:222.5px;background-color:white;
@@ -1129,7 +1118,7 @@ class ImprimirFichaMantenimiento
                         border-top: 0.7px solid #000000;
                         border-bottom: 0.7px solid #000000;
                         border-left:   0.7px solid  #000000;
-                        background-color: #E6E6E6;"> <b>Técnico Responsable</b></td>
+                        background-color: #E6E6E6;"> <b>Técnico Evaluador</b></td>
                         <td style="text-align:center; width:222.5px;background-color:white;
                         border-top: 0.7px solid #000000;
                         border-bottom: 0.7px solid #000000;
@@ -1220,7 +1209,7 @@ class ImprimirFichaMantenimiento
                         <td style="text-align:center;vertical-align: middle; width:222.5px;background-color:white;
                         border-bottom: 0.7px solid #000000;
                         border-left:   0.7px solid  #000000;
-                        background-color: #ffffff;"><b>$fichMantEq[tecresponsable]</b></td>
+                        background-color: #ffffff;"><b>FIRMA/SELLO</b></td>
                         <td style="text-align:center; width:222.5px;background-color:white;
                         border-bottom: 0.7px solid #000000;
                         border-left:   0.7px solid  #000000;
@@ -1395,6 +1384,9 @@ class ImprimirFichaMantenimiento
                         </table>
                         <table cellpadding="2" cellspacing="1.5" style="text-align:left; padding:5px 10px;">
                         <tr>
+                        <td style="text-align:center; width:667px;background-color:white;"></td>
+                        </tr>
+                        <tr>
                                 <td style="width:667.5px;background-color:white;background-color: white;"><p style="text-align: left;"><b>Datos del Equipo Afectado :.</b> <i>(Información del equipo afectado: tipo,modelo,marca,serie,cod.Patrimonio,N° ID, etc.)</i></p></td>
                         </tr>
                         <tr>
@@ -1461,7 +1453,7 @@ class ImprimirFichaMantenimiento
                         <tr>
                         <td style="text-align:center; width:667px;background-color:white;"></td>
                         </tr>
-                        <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>2. EVALUACIÓN DE INCIDENTE, DIAGNOSTICOS Y ACCIONES REALIZADAS</b></p></td>
+                        <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>2. DETALLES DEL INCIDENTE Y DIAGNOSTICOS</b> <i>(Descripción del Incidente y diagnósticos realizados)</i></p></td>
                         </tr>
                         <tr>
                         <td style="text-align:left; width:85px;background-color:white;
@@ -1496,20 +1488,19 @@ class ImprimirFichaMantenimiento
                                 border-right:  0.7px solid  #000000;
                                 "> $fichMantEq[tecnico]</td>
                         </tr>
-
                         <tr>
-                                <td style="text-align:left; width:670.5px;background-color:white;
+                        <td style="text-align:left; width:150px;background-color:white;
                                 border-bottom:0.7px solid #000000;
                                 border-left:  0.7px solid  #000000;
-                                border-right:  0.7px solid  #000000;
-                                background-color: #E6E6E6;"> <b>Descripción Inicial de Incidente:</b></td>
-                        </tr>
-                        <tr>
-                                <td style="text-align:left; width:670.5px;background-color:white;
+                                background-color: #E6E6E6;"> <b>Desc. Inicial de Incidente:</b></td>
+                        <td style="text-align:left; width:519px;background-color:white;
                                 border-bottom:0.7px solid #000000;
                                 border-left:   0.7px solid  #000000;
                                 border-right:  0.7px solid  #000000;
                                 "> $fichMantEq[descInc]</td>
+                        </tr>
+                        <tr>
+                        <td style="text-align:center; width:667px;background-color:white;"></td>
                         </tr>
                         <tr>
                                 <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>Diágnosticos Realizados :.</b> <i>(Lista de Diagnosticos realizados)</i></p></td>
@@ -1545,7 +1536,13 @@ class ImprimirFichaMantenimiento
                         $html2 = <<<EOF
                         <table cellpadding="2" cellspacing="1.5" style="text-align:left;" border="">
                         <tr>
-                        <td style="width:669px;background-color:white;background-color: white;"><p style="text-align: left;"><b>Tiempo de Ejecución del Servicio</b></p></td>
+                        <td style="text-align:center; width:667px;background-color:white;"></td>
+                        </tr>
+                        <tr>
+                        <td style="width:669px;background-color:white;background-color: white;"><p style="text-align: left;"><b>3. DETALLES EVALUACIÓN DE EQUIPOS Y ACCIONES REALIZADAS</b> <i>(Descripción de trabajos realizados)</i></p></td>
+                        </tr>
+                        <tr>
+                        <td style="width:669px;background-color:white;background-color: white;"><p style="text-align: left;"><b>Tiempo de Ejecución</b> <i>(Tiempo de trabajos y acciones realizadas)</i></p></td>
                         </tr>
                         <tr>
                         <td style="text-align:left; width:85px;background-color:white;
@@ -1581,20 +1578,20 @@ class ImprimirFichaMantenimiento
                                 "> $fichMantEq[tipoTrabajo]</td>
                         </tr>
                         <tr>
-                                <td style="text-align:left; width:670.5px;background-color:white;
+                        <td style="text-align:left; width:150px;background-color:white;
                                 border-bottom:0.7px solid #000000;
                                 border-left:  0.7px solid  #000000;
-                                border-right:  0.7px solid  #000000;
-                                background-color: #E6E6E6;"> <b>Descripción de Primera Evaluación:</b></td>
-                        </tr>
-                        <tr>
-                                <td style="text-align:left; width:670.5px;background-color:white;
+                                background-color: #E6E6E6;"> <b>Desc. Primera Evaluación:</b></td>
+                        <td style="text-align:left; width:519px;background-color:white;
                                 border-bottom:0.7px solid #000000;
                                 border-left:   0.7px solid  #000000;
                                 border-right:  0.7px solid  #000000;
                                 "> $fichMantEq[primera_eval]</td>
                         </tr>
                         <tr>
+                        <tr>
+                        <td style="text-align:center; width:667px;background-color:white;"></td>
+                        </tr>
                         <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>Acciones Realizadas :.</b> <i>(Lista de acciones o trabajos realizados)</i></p></td>
                         </tr>
                         <tr>
@@ -1627,36 +1624,23 @@ class ImprimirFichaMantenimiento
                         $html3 = <<<EOF
                         <table cellpadding="2" cellspacing="1.5" style="text-align:left;" border="">
                         <tr>
-                        <td style="text-align:left; width:150px;background-color:white;
+                        <td style="text-align:left; width:195px;background-color:white;
+                                border-bottom:0.7px solid #000000;
                                 border-top:0.7px solid #000000;
                                 border-left:  0.7px solid  #000000;
-                                background-color: #E6E6E6;"> <b>Técnico Responsable:</b></td>
-                        <td style="text-align:left; width:519px;background-color:white;
-                                border-top:0.7px solid #000000;
+                                background-color: #E6E6E6;"> <b>Recomendaciones u Obs. Finales:</b></td>
+                        <td style="text-align:left; width:474px;background-color:white;
+                                border-bottom:0.7px solid #000000;
                                 border-left:   0.7px solid  #000000;
+                                border-top:0.7px solid #000000;
                                 border-right:  0.7px solid  #000000;
-                                "> $fichMantEq[tecresponsable]</td>
-                        </tr>
-                        <tr>
-                        <td style="text-align:left; width:670.5px;background-color:white;
-                            border-bottom:0.7px solid #000000;
-                            border-left:  0.7px solid  #000000;
-                            border-right:  0.7px solid  #000000;
-                            border-top:0.7px solid #000000;
-                            background-color: #E6E6E6;"> <b>Recomendaciones u Observaciones Finales:</b></td>
-                        </tr>
-                        <tr>
-                        <td style="text-align:left; width:670.5px;background-color:white;
-                            border-bottom:0.7px solid #000000;
-                            border-left:   0.7px solid  #000000;
-                            border-right:  0.7px solid  #000000;
-                            "> $fichMantEq[recomendaciones]</td>
+                                "> $fichMantEq[recomendaciones]</td>
                         </tr>
                         <tr>
                         <tr>
                         <td style="text-align:center; width:667px;background-color:white;"></td>
                         </tr>
-                        <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>3. OBSERVACIONES Y ESTADO FINAL DEL EQUIPO</b> <i>(Información de situación final del equipo)</i></p></td>
+                        <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>4. OBSERVACIONES Y ESTADO FINAL DEL EQUIPO</b> <i>(Información de situación final del equipo)</i></p></td>
                         </tr>
                         <tr>
                         <td style="text-align:left; width:120px;background-color:white;
@@ -1713,7 +1697,7 @@ class ImprimirFichaMantenimiento
                         <br>
                         <tr>
                         <tr>
-                        <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>4. SUSCRIPCION DEL ACTA</b> <i>(Firmas y sellos de usuario responsable,técnico evaluador y Oficina de Estadística e Informática)</i></p></td>
+                        <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>5. SUSCRIPCION DEL ACTA</b> <i>(Firmas y sellos de usuario responsable,técnico evaluador y Oficina de Estadística e Informática)</i></p></td>
                         </tr>
                         <br>
                         <td style="text-align:center; width:222.5px;background-color:white;
@@ -1725,7 +1709,7 @@ class ImprimirFichaMantenimiento
                         border-top: 0.7px solid #000000;
                         border-bottom: 0.7px solid #000000;
                         border-left:   0.7px solid  #000000;
-                        background-color: #E6E6E6;"> <b>Técnico Responsable</b></td>
+                        background-color: #E6E6E6;"> <b>Técnico Evaluador</b></td>
                         <td style="text-align:center; width:222.5px;background-color:white;
                         border-top: 0.7px solid #000000;
                         border-bottom: 0.7px solid #000000;
@@ -1816,7 +1800,7 @@ class ImprimirFichaMantenimiento
                         <td style="text-align:center;vertical-align: middle; width:222.5px;background-color:white;
                         border-bottom: 0.7px solid #000000;
                         border-left:   0.7px solid  #000000;
-                        background-color: #ffffff;"><b>$fichMantEq[tecresponsable]</b></td>
+                        background-color: #ffffff;"><b>FIRMA/SELLO</b></td>
                         <td style="text-align:center; width:222.5px;background-color:white;
                         border-bottom: 0.7px solid #000000;
                         border-left:   0.7px solid  #000000;
@@ -1991,6 +1975,9 @@ class ImprimirFichaMantenimiento
                         </table>
                         <table cellpadding="2" cellspacing="1.5" style="text-align:left; padding:5px 10px;">
                         <tr>
+                        <td style="text-align:center; width:667px;background-color:white;"></td>
+                        </tr>
+                        <tr>
                                 <td style="width:667.5px;background-color:white;background-color: white;"><p style="text-align: left;"><b>Datos del Equipo Afectado :.</b> <i>(Información del equipo afectado: tipo,modelo,marca,serie,cod.Patrimonio,N° ID, etc.)</i></p></td>
                         </tr>
                         <tr>
@@ -2047,7 +2034,7 @@ class ImprimirFichaMantenimiento
                         <tr>
                         <td style="text-align:center; width:667px;background-color:white;"></td>
                         </tr>
-                        <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>2. EVALUACIÓN DE INCIDENTE, DIAGNOSTICOS Y ACCIONES REALIZADAS</b></p></td>
+                        <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>2. DETALLES DEL INCIDENTE Y DIAGNOSTICOS</b> <i>(Descripción del Incidente y diagnósticos realizados)</i></p></td>
                         </tr>
                         <tr>
                         <td style="text-align:left; width:85px;background-color:white;
@@ -2082,20 +2069,19 @@ class ImprimirFichaMantenimiento
                                 border-right:  0.7px solid  #000000;
                                 "> $fichMantEq[tecnico]</td>
                         </tr>
-
                         <tr>
-                                <td style="text-align:left; width:670.5px;background-color:white;
+                        <td style="text-align:left; width:150px;background-color:white;
                                 border-bottom:0.7px solid #000000;
                                 border-left:  0.7px solid  #000000;
-                                border-right:  0.7px solid  #000000;
-                                background-color: #E6E6E6;"> <b>Descripción Inicial de Incidente:</b></td>
-                        </tr>
-                        <tr>
-                                <td style="text-align:left; width:670.5px;background-color:white;
+                                background-color: #E6E6E6;"> <b>Desc. Inicial de Incidente:</b></td>
+                        <td style="text-align:left; width:519px;background-color:white;
                                 border-bottom:0.7px solid #000000;
                                 border-left:   0.7px solid  #000000;
                                 border-right:  0.7px solid  #000000;
                                 "> $fichMantEq[descInc]</td>
+                        </tr>
+                        <tr>
+                        <td style="text-align:center; width:667px;background-color:white;"></td>
                         </tr>
                         <tr>
                                 <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>Diágnosticos Realizados :.</b> <i>(Lista de Diagnosticos realizados)</i></p></td>
@@ -2131,7 +2117,13 @@ class ImprimirFichaMantenimiento
                         $html2 = <<<EOF
                         <table cellpadding="2" cellspacing="1.5" style="text-align:left;" border="">
                         <tr>
-                        <td style="width:669px;background-color:white;background-color: white;"><p style="text-align: left;"><b>Tiempo de Ejecución del Servicio</b></p></td>
+                        <td style="text-align:center; width:667px;background-color:white;"></td>
+                        </tr>
+                        <tr>
+                        <td style="width:669px;background-color:white;background-color: white;"><p style="text-align: left;"><b>3. DETALLES EVALUACIÓN DE EQUIPOS Y ACCIONES REALIZADAS</b> <i>(Descripción de trabajos realizados)</i></p></td>
+                        </tr>
+                        <tr>
+                        <td style="width:669px;background-color:white;background-color: white;"><p style="text-align: left;"><b>Tiempo de Ejecución</b> <i>(Tiempo de trabajos y acciones realizadas)</i></p></td>
                         </tr>
                         <tr>
                         <td style="text-align:left; width:85px;background-color:white;
@@ -2167,20 +2159,20 @@ class ImprimirFichaMantenimiento
                                 "> $fichMantEq[tipoTrabajo]</td>
                         </tr>
                         <tr>
-                                <td style="text-align:left; width:670.5px;background-color:white;
+                        <td style="text-align:left; width:150px;background-color:white;
                                 border-bottom:0.7px solid #000000;
                                 border-left:  0.7px solid  #000000;
-                                border-right:  0.7px solid  #000000;
-                                background-color: #E6E6E6;"> <b>Descripción de Primera Evaluación:</b></td>
-                        </tr>
-                        <tr>
-                                <td style="text-align:left; width:670.5px;background-color:white;
+                                background-color: #E6E6E6;"> <b>Desc. Primera Evaluación:</b></td>
+                        <td style="text-align:left; width:519px;background-color:white;
                                 border-bottom:0.7px solid #000000;
                                 border-left:   0.7px solid  #000000;
                                 border-right:  0.7px solid  #000000;
                                 "> $fichMantEq[primera_eval]</td>
                         </tr>
                         <tr>
+                        <tr>
+                        <td style="text-align:center; width:667px;background-color:white;"></td>
+                        </tr>
                         <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>Acciones Realizadas :.</b> <i>(Lista de acciones o trabajos realizados)</i></p></td>
                         </tr>
                         <tr>
@@ -2213,28 +2205,15 @@ class ImprimirFichaMantenimiento
                         $html3 = <<<EOF
                         <table cellpadding="2" cellspacing="1.5" style="text-align:left;" border="">
                         <tr>
-                        <td style="text-align:left; width:150px;background-color:white;
+                        <td style="text-align:left; width:195px;background-color:white;
+                                border-bottom:0.7px solid #000000;
                                 border-top:0.7px solid #000000;
                                 border-left:  0.7px solid  #000000;
-                                background-color: #E6E6E6;"> <b>Técnico Responsable:</b></td>
-                        <td style="text-align:left; width:519px;background-color:white;
-                                border-top:0.7px solid #000000;
-                                border-left:   0.7px solid  #000000;
-                                border-right:  0.7px solid  #000000;
-                                "> $fichMantEq[tecresponsable]</td>
-                        </tr>
-                        <tr>
-                                <td style="text-align:left; width:670.5px;background-color:white;
-                                border-bottom:0.7px solid #000000;
-                                border-left:  0.7px solid  #000000;
-                                border-right:  0.7px solid  #000000;
-                                border-top:0.7px solid #000000;
-                                background-color: #E6E6E6;"> <b>Recomendaciones u Observaciones Finales:</b></td>
-                        </tr>
-                        <tr>
-                                <td style="text-align:left; width:670.5px;background-color:white;
+                                background-color: #E6E6E6;"> <b>Recomendaciones u Obs. Finales:</b></td>
+                        <td style="text-align:left; width:474px;background-color:white;
                                 border-bottom:0.7px solid #000000;
                                 border-left:   0.7px solid  #000000;
+                                border-top:0.7px solid #000000;
                                 border-right:  0.7px solid  #000000;
                                 "> $fichMantEq[recomendaciones]</td>
                         </tr>
@@ -2242,7 +2221,7 @@ class ImprimirFichaMantenimiento
                         <tr>
                         <td style="text-align:center; width:667px;background-color:white;"></td>
                         </tr>
-                        <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>3. OBSERVACIONES Y ESTADO FINAL DEL EQUIPO</b> <i>(Información de situación final del equipo)</i></p></td>
+                        <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>4. OBSERVACIONES Y ESTADO FINAL DEL EQUIPO</b> <i>(Información de situación final del equipo)</i></p></td>
                         </tr>
                         <tr>
                         <td style="text-align:left; width:120px;background-color:white;
@@ -2299,7 +2278,7 @@ class ImprimirFichaMantenimiento
                         <br>
                         <tr>
                         <tr>
-                        <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>4. SUSCRIPCION DEL ACTA</b> <i>(Firmas y sellos de usuario responsable,técnico evaluador y Oficina de Estadística e Informática)</i></p></td>
+                        <td style="width:667px;background-color:white;background-color: white;"><p style="text-align: left;"><b>5. SUSCRIPCION DEL ACTA</b> <i>(Firmas y sellos de usuario responsable,técnico evaluador y Oficina de Estadística e Informática)</i></p></td>
                         </tr>
                         <br>
                         <td style="text-align:center; width:222.5px;background-color:white;
@@ -2311,7 +2290,7 @@ class ImprimirFichaMantenimiento
                         border-top: 0.7px solid #000000;
                         border-bottom: 0.7px solid #000000;
                         border-left:   0.7px solid  #000000;
-                        background-color: #E6E6E6;"> <b>Técnico Responsable</b></td>
+                        background-color: #E6E6E6;"> <b>Técnico Evaluador</b></td>
                         <td style="text-align:center; width:222.5px;background-color:white;
                         border-top: 0.7px solid #000000;
                         border-bottom: 0.7px solid #000000;
@@ -2402,7 +2381,7 @@ class ImprimirFichaMantenimiento
                         <td style="text-align:center;vertical-align: middle; width:222.5px;background-color:white;
                         border-bottom: 0.7px solid #000000;
                         border-left:   0.7px solid  #000000;
-                        background-color: #ffffff;"><b>$fichMantEq[tecresponsable]</b></td>
+                        background-color: #ffffff;"><b>FIRMA/SELLO</b></td>
                         <td style="text-align:center; width:222.5px;background-color:white;
                         border-bottom: 0.7px solid #000000;
                         border-left:   0.7px solid  #000000;

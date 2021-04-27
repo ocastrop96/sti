@@ -64,25 +64,6 @@ $('#edfFin').datepicker({
     'endDate': new Date(),
 });
 
-// $('#modal-editar-mantenimiento')
-//     .on('hide', function () {
-//         console.log('hide');
-//     })
-//     .on('hidden', function () {
-//         console.log('hidden');
-//     })
-//     .on('show', function () {
-//         console.log('show');
-//     })
-//     .on('shown', function () {
-//         console.log('shown')
-//     });
-
-// $('#modal-registro-mantenimiento').on('hidden.bs.modal', function (e) {
-//     alert('exito');
-//     $('#formEdtMant')[0].reset();
-// });
-
 $("#modal-registro-mantenimiento").on('hidden.bs.modal', function (e) {
     // alert('exito');
     $('#formRegMant')[0].reset();
@@ -350,13 +331,6 @@ $("#serieEQ").on("change", function () {
                             success: function (html) {
                                 $("#d1").prop("disabled", false);
                                 $("#d1").html(html);
-                                // $("#d2").prop("disabled", false);
-                                // $("#d3").prop("disabled", false);
-                                // $("#d4").prop("disabled", false);
-                                // $("#d5").prop("disabled", false);
-                                // $("#d6").prop("disabled", false);
-                                // $("#d7").prop("disabled", false);
-                                // $("#d8").prop("disabled", false);
                                 $("#d2")[0].selectedIndex = 0;
                                 $("#d2").prop("disabled", true);
                                 $("#d3")[0].selectedIndex = 0;
@@ -383,13 +357,6 @@ $("#serieEQ").on("change", function () {
                             success: function (html) {
                                 $("#a1").prop("disabled", false);
                                 $("#a1").html(html);
-                                // $("#a2").prop("disabled", false);
-                                // $("#a3").prop("disabled", false);
-                                // $("#a4").prop("disabled", false);
-                                // $("#a5").prop("disabled", false);
-                                // $("#a6").prop("disabled", false);
-                                // $("#a7").prop("disabled", false);
-                                // $("#a8").prop("disabled", false);
                             },
                         });
                         // Llamar lista inicial de acciones
@@ -414,13 +381,6 @@ $("#serieEQ").on("change", function () {
                             success: function (html) {
                                 $("#d1").prop("disabled", false);
                                 $("#d1").html(html);
-                                // $("#d2").prop("disabled", false);
-                                // $("#d3").prop("disabled", false);
-                                // $("#d4").prop("disabled", false);
-                                // $("#d5").prop("disabled", false);
-                                // $("#d6").prop("disabled", false);
-                                // $("#d7").prop("disabled", false);
-                                // $("#d8").prop("disabled", false);
                                 $("#d2")[0].selectedIndex = 0;
                                 $("#d2").prop("disabled", true);
                                 $("#d3")[0].selectedIndex = 0;
@@ -445,13 +405,6 @@ $("#serieEQ").on("change", function () {
                             success: function (html) {
                                 $("#a1").prop("disabled", false);
                                 $("#a1").html(html);
-                                // $("#a2").prop("disabled", false);
-                                // $("#a3").prop("disabled", false);
-                                // $("#a4").prop("disabled", false);
-                                // $("#a5").prop("disabled", false);
-                                // $("#a6").prop("disabled", false);
-                                // $("#a7").prop("disabled", false);
-                                // $("#a8").prop("disabled", false);
                             },
                         });
                     }
@@ -475,13 +428,6 @@ $("#serieEQ").on("change", function () {
                             success: function (html) {
                                 $("#d1").prop("disabled", false);
                                 $("#d1").html(html);
-                                // $("#d2").prop("disabled", false);
-                                // $("#d3").prop("disabled", false);
-                                // $("#d4").prop("disabled", false);
-                                // $("#d5").prop("disabled", false);
-                                // $("#d6").prop("disabled", false);
-                                // $("#d7").prop("disabled", false);
-                                // $("#d8").prop("disabled", false);
                                 $("#d2")[0].selectedIndex = 0;
                                 $("#d2").prop("disabled", true);
                                 $("#d3")[0].selectedIndex = 0;
@@ -506,13 +452,6 @@ $("#serieEQ").on("change", function () {
                             success: function (html) {
                                 $("#a1").prop("disabled", false);
                                 $("#a1").html(html);
-                                // $("#a2").prop("disabled", false);
-                                // $("#a3").prop("disabled", false);
-                                // $("#a4").prop("disabled", false);
-                                // $("#a5").prop("disabled", false);
-                                // $("#a6").prop("disabled", false);
-                                // $("#a7").prop("disabled", false);
-                                // $("#a8").prop("disabled", false);
                             },
                         });
                     }
@@ -535,13 +474,6 @@ $("#serieEQ").on("change", function () {
                             success: function (html) {
                                 $("#d1").prop("disabled", false);
                                 $("#d1").html(html);
-                                // $("#d2").prop("disabled", false);
-                                // $("#d3").prop("disabled", false);
-                                // $("#d4").prop("disabled", false);
-                                // $("#d5").prop("disabled", false);
-                                // $("#d6").prop("disabled", false);
-                                // $("#d7").prop("disabled", false);
-                                // $("#d8").prop("disabled", false);
                                 $("#d2")[0].selectedIndex = 0;
                                 $("#d2").prop("disabled", true);
                                 $("#d3")[0].selectedIndex = 0;
@@ -566,13 +498,6 @@ $("#serieEQ").on("change", function () {
                             success: function (html) {
                                 $("#a1").prop("disabled", false);
                                 $("#a1").html(html);
-                                // $("#a2").prop("disabled", false);
-                                // $("#a3").prop("disabled", false);
-                                // $("#a4").prop("disabled", false);
-                                // $("#a5").prop("disabled", false);
-                                // $("#a6").prop("disabled", false);
-                                // $("#a7").prop("disabled", false);
-                                // $("#a8").prop("disabled", false);
                             },
                         });
                     }
@@ -1364,6 +1289,10 @@ $("#btnRegMant").on("click", function () {
             priEvaEQ: {
                 required: true,
             },
+            tecResEQ: {
+                valueNotEquals: "0",
+                required: true,
+            },
             recoFEQ: {
                 required: true,
             },
@@ -1434,6 +1363,10 @@ $("#btnRegMant").on("click", function () {
             },
             priEvaEQ: {
                 required: "Ingresa primera evaluación",
+            },
+            tecResEQ: {
+                valueNotEquals: "Selecciona Técnico Responsable",
+                required: "Selecciona Técnico Responsable",
             },
             recoFEQ: {
                 required: "Ingresa recomendaciones finales",
@@ -1556,6 +1489,10 @@ $("#btnEdtMant").on("click", function () {
             edpriEvaEQ: {
                 required: true,
             },
+            edtecResEQ: {
+                valueNotEquals: "Selecciona Técnico Responsable",
+                required: "Selecciona Técnico Responsable",
+            },
             edrecoFEQ: {
                 required: true,
             },
@@ -1626,6 +1563,10 @@ $("#btnEdtMant").on("click", function () {
             },
             edpriEvaEQ: {
                 required: "Ingresa primera evaluación",
+            },
+            edtecResEQ: {
+                valueNotEquals: "Selecciona Técnico Responsable",
+                required: "Selecciona Técnico Responsable",
             },
             edrecoFEQ: {
                 required: "Ingresa recomendaciones finales",
@@ -2067,6 +2008,9 @@ $(".tablaMantenimientos").on("click", ".btnEditarMant", function () {
 
             $("#edtipTrabEQ1").val(respuesta["tipTrabajo"]);
             $("#edtipTrabEQ1").html(respuesta["tipoTrabajo"]);
+
+            $("#edtecResEQ1").val(respuesta["tecResp"]);
+            $("#edtecResEQ1").html(respuesta["tecresponsable"]);
 
             // Bloque de acciones realizadas
             $("#eda1_").val(respuesta["accion1"]);
