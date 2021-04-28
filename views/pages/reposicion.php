@@ -489,7 +489,7 @@
               <div class="form-group">
                 <label for="fechita">N° de Ficha &nbsp; <i class="fas fa-file-invoice"></i> *</label>
                 <input type="text" class="form-control" readonly name="ncorrelativo" id="ncorrelativo">
-                <input type="hidden" name="idMantenimiento" id="idMantenimiento">
+                <input type="hidden" name="idReposicion" id="idReposicion">
                 <input type="hidden" name="uedtMant" id="uedtMant" value="<?php echo $_SESSION["id"]; ?>">
                 <input type="hidden" name="edsegmentado" id="edsegmentado">
               </div>

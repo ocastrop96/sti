@@ -17,19 +17,19 @@ class AjaxReposiciones
         }
         // Listar Datos Equipos de Red
         elseif ($tipo == 2 || $tipo == 6 || $tipo == 7 || $tipo == 8) {
-            $respuesta = ControladorReposiciones::ctrListarDatosEqRedesRepoctrListarDatosEqComputoRepo($dato);
+            $respuesta = ControladorReposiciones::ctrListarDatosEqRedesRepo($dato);
             echo json_encode($respuesta);
         }
         // Listar Datos Equipos de Red
         // Listar Datos Equipos de Impresoras y Perifericos
         elseif ($tipo == 3 || $tipo == 9 || $tipo == 14 || $tipo == 15 || $tipo == 16 || $tipo == 17) {
-            $respuesta = ControladorReposiciones::ctrListarDatosEqImpRepoctrListarDatosEqComputoRepo($dato);
+            $respuesta = ControladorReposiciones::ctrListarDatosEqImpRepo($dato);
             echo json_encode($respuesta);
         }
         // Listar Datos Equipos de Impresoras y Perifericos
         // Listar Datos Resto de Equipos
         else {
-            $respuesta = ControladorReposiciones::ctrListarDatosEqOtrosRepoctrListarDatosEqComputoRepo($dato);
+            $respuesta = ControladorReposiciones::ctrListarDatosEqOtrosRepo($dato);
             echo json_encode($respuesta);
         }
         // Listar Datos Resto de Equipos

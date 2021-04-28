@@ -1638,6 +1638,7 @@ $(".tablaReposicion").on("click", ".btnEditarRepo", function () {
         processData: false,
         dataType: "json",
         success: function (respuesta) {
+            console.log(respuesta);
             $("#idReposicion").val(respuesta["idReposicion"]);
             $("#ncorrelativo").val(respuesta["correlativo_Repo"]);
             $("#edsegmentado").val(respuesta["sgmtoManto"]);
