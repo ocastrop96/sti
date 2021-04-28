@@ -1,5 +1,7 @@
+var perfilOcultoResp = $("#pRespOculto").val();
+
 $(".tablaResponsables").DataTable({
-    ajax: "util/datatable-responsables.php",
+    ajax: "util/datatable-responsables.php?perfilOcultoResp="+perfilOcultoResp,
     deferRender: true,
     retrieve: true,
     processing: true,
@@ -16,14 +18,6 @@ $(".tablaResponsables").DataTable({
         url: "views/dist/js/dataTables.spanish.lang",
     },
 });
-// $.ajax({
-
-//     url: "util/datatable-responsables.php",
-//     success: function (respuesta) {
-//         console.log("respuesta", respuesta);
-//     }
-
-// })
 // Cargar combos
 $("#oficinaRes").on("change", function () {
     var idOficina = $(this).val();
@@ -193,12 +187,12 @@ $(".tablaResponsables tbody").on("click", ".btnEditarResponsable", function () {
 $(".tablaResponsables tbody").on("click", ".btnEliminarResponsable", function () {
     var idResponsable = $(this).attr("idResponsable");
     Swal.fire({
-        title: '¿Está seguro de eliminar el usuario seleccionada?',
+        title: '¿Está seguro de eliminar el usuario seleccionado?',
         text: "¡Si no lo está, puede cancelar la acción!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#343a40',
-        cancelButtonText: 'Cancelar',
+        cancelButtonText: 'No, cancelar',
         cancelButtonColor: '#d33',
         confirmButtonText: '¡Sí, eliminar usuario responsable!'
     }).then(function (result) {

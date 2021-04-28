@@ -19,7 +19,14 @@ class TablaResponsables
 
         for ($i = 0; $i < count($responsables); $i++) {
 
-            $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarResponsable' idResponsable='" . $responsables[$i]["idResponsable"] . "' data-toggle='modal' data-target='#modal-editar-responsable'><i class='fas fa-edit'></i></button><button class='btn btn-danger btnEliminarResponsable' idResponsable='" . $responsables[$i]["idResponsable"] . "'><i class='fas fa-trash-alt'></i></button></div>";
+            if (isset($_GET["perfilOcultoResp"]) && $_GET["perfilOcultoResp"] == 1) {
+                $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarResponsable' idResponsable='" . $responsables[$i]["idResponsable"] . "' data-toggle='modal' data-target='#modal-editar-responsable'><i class='fas fa-edit'></i></button><button class='btn btn-danger btnEliminarResponsable' idResponsable='" . $responsables[$i]["idResponsable"] . "'><i class='fas fa-trash-alt'></i></button></div>";
+            } else if (isset($_GET["perfilOcultoResp"]) && $_GET["perfilOcultoResp"] == 3) {
+                $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarResponsable' idResponsable='" . $responsables[$i]["idResponsable"] . "' data-toggle='modal' data-target='#modal-editar-responsable'><i class='fas fa-edit'></i></button></div>";
+            } else {
+                $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarResponsable' idResponsable='" . $responsables[$i]["idResponsable"] . "' data-toggle='modal' data-target='#modal-editar-responsable'><i class='fas fa-edit'></i></button></div>";
+            }
+
             $datos_json .= '[
                 "' . ($i + 1) . '",
                 "' . $responsables[$i]["dni"] . '",

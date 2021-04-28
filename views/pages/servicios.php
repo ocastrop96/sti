@@ -1,3 +1,11 @@
+<?php
+if ($_SESSION["perfil"] != 1 && $_SESSION["perfil"] != 2 && $_SESSION["perfil"] != 3) {
+    echo '<script>
+      window.location = "dashboard";
+    </script>';
+    return;
+}
+?>
 <div class="content-wrapper">
     <section class="content-header">
         <div class="container-fluid">
@@ -25,6 +33,7 @@
             <div class="card-body">
                 <button type="btn" class="btn btn-secondary" data-toggle="modal" data-target="#modal-registrar-subarea"><i class="fas fa-plus-circle"></i> Registrar Servicio
                 </button>
+                <input type="hidden" id="pServOculto" value="<?php echo $_SESSION["perfil"] ?>">
             </div>
             <div class="card-body">
                 <table id="tablaSubAreas" class="table table-bordered table-hover dt-responsive tablaSubAreas">
@@ -116,7 +125,7 @@
                             <div class="form-group">
                                 <label for="edtoficina1">Oficina y/o Departamento &nbsp;</label>
                                 <div class="input-group">
-                                <input type="hidden" name="hOfi" id="hOfi">
+                                    <input type="hidden" name="hOfi" id="hOfi">
                                     <select class="form-control" style="width: 100%;" name="edtoficina" id="edtoficina1" required>
                                         <option value="" id="edtoficina"></option>
                                         <?php

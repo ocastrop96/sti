@@ -1,3 +1,11 @@
+<?php
+if ($_SESSION["perfil"] != 1 && $_SESSION["perfil"] != 2 && $_SESSION["perfil"] != 3) {
+    echo '<script>
+      window.location = "dashboard";
+    </script>';
+    return;
+}
+?>
 <div class="content-wrapper">
     <section class="content-header">
         <div class="container-fluid">
@@ -24,6 +32,7 @@
             <div class="card-body">
                 <button type="btn" class="btn btn-secondary" data-toggle="modal" data-target="#modal-registrar-ubicacion"><i class="fas fa-plus-circle"></i> Registrar Oficina o Departamento
                 </button>
+                <input type="hidden" id="pOfiOculto" value="<?php echo $_SESSION["perfil"] ?>">
             </div>
             <div class="card-body">
                 <table id="tablaAreas" class="table table-bordered table-hover dt-responsive tablaAreas">
@@ -60,7 +69,7 @@
                                 <i class="fas fa-map"></i> *
                                 <div class="input-group">
                                     <input type="text" name="newArea" id="newArea" class="form-control" placeholder="Ingrese detalle de área" required autocomplete="off" autofocus="autofocus">
-                                    
+
                                 </div>
                             </div>
                         </div>

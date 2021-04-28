@@ -1,7 +1,8 @@
 // Llamamiento de Tablas de Subareas
 // Cargar tabla con ajax
+var perfilOcultoServ = $("#pServOculto").val();
 $(".tablaSubAreas").DataTable({
-    "ajax": "util/datatable-servicios.php",
+    "ajax": "util/datatable-servicios.php?perfilOcultoServ="+perfilOcultoServ,
     "deferRender": true,
     "retrieve": true,
     "processing": true,

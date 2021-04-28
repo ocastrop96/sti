@@ -36,8 +36,15 @@ class TablaUsuarios
             } else {
                 $actdesact = "<button type='button' class='btn btn-block btn-danger btnActivar' idUsuario='" . $usuarios[$i]["id_usuario"] . "' estadoUsuario='0'><i class='fas fa-user-minus'></i>Inactivo</button>";
             }
-
-            $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarUsuario' idUsuario='" . $usuarios[$i]["id_usuario"] . "' data-toggle='modal' data-target='#modal-editar-usuario'><i class='fas fa-edit'></i></button><button class='btn btn-info btnDesbloquearUsuario' data-toggle='tooltip' data-placement='left' title='Desbloquear Usuario' idUsuario='" . $usuarios[$i]["id_usuario"] . "'><i class='fas fa-unlock-alt'></i></button><button class='btn btn-danger btnEliminarUsuario' data-toggle='tooltip' data-placement='left' title='Eliminar Usuario' idUsuario='" . $usuarios[$i]["id_usuario"] . "'><i class='fas fa-trash-alt'></i></button></div>";
+            if (isset($_GET["pUsuOculto"]) && $_GET["pUsuOculto"] == 1) {
+                $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarUsuario' idUsuario='" . $usuarios[$i]["id_usuario"] . "' data-toggle='modal' data-target='#modal-editar-usuario'><i class='fas fa-edit'></i></button><button class='btn btn-info btnDesbloquearUsuario' data-toggle='tooltip' data-placement='left' title='Desbloquear Usuario' idUsuario='" . $usuarios[$i]["id_usuario"] . "'><i class='fas fa-unlock-alt'></i></button><button class='btn btn-danger btnEliminarUsuario' data-toggle='tooltip' data-placement='left' title='Eliminar Usuario' idUsuario='" . $usuarios[$i]["id_usuario"] . "'><i class='fas fa-trash-alt'></i></button></div>";
+            } else if (isset($_GET["pUsuOculto"]) && $_GET["pUsuOculto"] == 2) {
+                $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarUsuario' idUsuario='" . $usuarios[$i]["id_usuario"] . "' data-toggle='modal' data-target='#modal-editar-usuario'><i class='fas fa-edit'></i></button><button class='btn btn-info btnDesbloquearUsuario' data-toggle='tooltip' data-placement='left' title='Desbloquear Usuario' idUsuario='" . $usuarios[$i]["id_usuario"] . "'><i class='fas fa-unlock-alt'></i></button></div>";
+            } else if (isset($_GET["pUsuOculto"]) && $_GET["pUsuOculto"] == 3) {
+                $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarUsuario' idUsuario='" . $usuarios[$i]["id_usuario"] . "' data-toggle='modal' data-target='#modal-editar-usuario'><i class='fas fa-edit'></i></button><button class='btn btn-info btnDesbloquearUsuario' data-toggle='tooltip' data-placement='left' title='Desbloquear Usuario' idUsuario='" . $usuarios[$i]["id_usuario"] . "'><i class='fas fa-unlock-alt'></i></button></div>";
+            } else {
+                $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarUsuario' idUsuario='" . $usuarios[$i]["id_usuario"] . "' data-toggle='modal' data-target='#modal-editar-usuario'><i class='fas fa-edit'></i></button><button class='btn btn-info btnDesbloquearUsuario' data-toggle='tooltip' data-placement='left' title='Desbloquear Usuario' idUsuario='" . $usuarios[$i]["id_usuario"] . "'><i class='fas fa-unlock-alt'></i></button></div>";
+            }
             // Convert fecha
             $freg = date("d-m-Y", strtotime($usuarios[$i]["fecha_registro"]));
             $datos_json .= '[

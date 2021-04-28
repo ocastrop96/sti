@@ -22,52 +22,56 @@
         </div>
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column nav-legacy" data-widget="treeview" role="menu" data-accordion="false">
-                <li class="nav-header">ADMINISTRACION</li>
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link ">
-                        <i class="nav-icon fas fa-home"></i>
-                        <p>
-                            Home
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
+                <li class="nav-item">
+                    <a href="dashboard" class="nav-link">
+                        <i class="fas fa-tachometer-alt nav-icon"></i>
+                        <p>Dashboard</p>
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="dashboard" class="nav-link">
-                                <i class="fas fa-tachometer-alt nav-icon"></i>
-                                <p>Dashboard</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="usuarios" class="nav-link active">
-                                <i class="fas fa-users nav-icon"></i>
-                                <p>Usuarios</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="oficinas" class="nav-link">
-                                <i class="nav-icon fas fa-sitemap"></i>
-                                <p>
-                                    Departamentos / Oficinas
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="servicios" class="nav-link">
-                                <i class="nav-icon fas fa-building"></i>
-                                <p>
-                                    Servicios
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="responsables" class="nav-link">
-                                <i class="nav-icon fas fa-users nav-icon"></i>
-                                <p>Responsables</p>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
+                <?php
+                if ($_SESSION["perfil"] == 1 || $_SESSION["perfil"] == 2 || $_SESSION["perfil"] == 3) {
+                    echo '<li class="nav-header">ADMINISTRACION</li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link ">
+                                <i class="nav-icon fas fa-home"></i>
+                                <p>
+                                    Home
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="usuarios" class="nav-link active">
+                                        <i class="fas fa-users nav-icon"></i>
+                                        <p>Usuarios</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="oficinas" class="nav-link">
+                                        <i class="nav-icon fas fa-sitemap"></i>
+                                        <p>
+                                            Departamentos / Oficinas
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="servicios" class="nav-link">
+                                        <i class="nav-icon fas fa-building"></i>
+                                        <p>
+                                            Servicios
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="responsables" class="nav-link">
+                                        <i class="nav-icon fas fa-users nav-icon"></i>
+                                        <p>Responsables</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>';
+                }
+                ?>
                 <li class="nav-header">EQUIPOS INFORMÁTICOS</li>
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
@@ -180,13 +184,6 @@
                                 <p>Reposición</p>
                             </a>
                         </li>
-                        <!--
-                        <li class="nav-item">
-                            <a href="cableados" class="nav-link">
-                                <i class="nav-icon fas fa-ethernet"></i>
-                                <p>Cableados</p>
-                            </a>
-                        </li> -->
                     </ul>
                 </li>
                 <!-- <li class="nav-header">REPORTES</li> -->

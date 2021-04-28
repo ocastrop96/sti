@@ -1,3 +1,11 @@
+<?php
+if ($_SESSION["perfil"] != 1 && $_SESSION["perfil"] != 2 && $_SESSION["perfil"] != 3) {
+  echo '<script>
+    window.location = "dashboard";
+  </script>';
+  return;
+}
+?>
 <div class="content-wrapper">
   <section class="content-header">
     <div class="container-fluid">
@@ -22,6 +30,7 @@
       <div class="card-body">
         <button type="btn" class="btn btn-secondary" data-toggle="modal" data-target="#modal-registrar-responsable"><i class="fas fa-plus-circle"></i> Registrar Responsable
         </button>
+        <input type="hidden" id="pRespOculto" value="<?php echo $_SESSION["perfil"] ?>">
       </div>
       <div class="card-body">
         <table id="tablaResponsables" class="table table-bordered table-hover dt-responsive tablaResponsables">

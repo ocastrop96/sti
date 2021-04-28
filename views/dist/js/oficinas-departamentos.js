@@ -1,6 +1,7 @@
 // Cargar tabla con ajax
+var perfilOcultoOf = $("#pOfiOculto").val();
 $(".tablaAreas").DataTable({
-    "ajax": "util/datatable-oficinas.php",
+    "ajax": "util/datatable-oficinas.php?perfilOcultoOf="+perfilOcultoOf,
     "deferRender": true,
     "retrieve": true,
     "processing": true,
