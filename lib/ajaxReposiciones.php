@@ -44,6 +44,15 @@ class AjaxReposiciones
 
         echo json_encode($respuesta);
     }
+
+    public $idEquipo;
+    public function ajaxValidarEquipoConFicha()
+    {
+        $item = "idEquip";
+        $valor = $this->idEquipo;
+        $respuesta = ControladorReposiciones::ctrListarFichasRepo($item, $valor);
+        echo json_encode($respuesta);
+    }
 }
 
 if (isset($_POST["idReposicion"])) {
@@ -57,4 +66,9 @@ if (isset($_POST["idEq1"])) {
     $listInfo->idEq1 = $_POST["idEq1"];
     $listInfo->idTip1 = $_POST["idTip1"];
     $listInfo->ajaxListarEquiposRepo();
+}
+if (isset($_POST["idEquipo"])) {
+    $validaEq = new AjaxReposiciones();
+    $validaEq->idEquipo = $_POST["idEquipo"];
+    $validaEq->ajaxValidarEquipoConFicha();
 }
