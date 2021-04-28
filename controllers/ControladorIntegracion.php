@@ -76,7 +76,7 @@ class ControladorIntegracion
                 date_default_timezone_set('America/Lima');
                 // Bloque de filtro en caso no selecciona series
                 if ($_POST["tipEq"] == 1) {
-                    if ($_POST["seriePC"] > 0 && $_POST["serieMon"] > 0 && $_POST["serieTec"] > 0 && $_POST["serieAcuEne"] > 0) {
+                    if ($_POST["seriePC"] > 0 && $_POST["serieMon"] > 0 && $_POST["serieTec"] > 0) {
                         $fechaReg = date("Y-m-d");
                         $datos = array(
                             "nro_eq" => $_POST["nroEquipo"],
@@ -415,7 +415,7 @@ class ControladorIntegracion
             ) {
                 if ($_POST["edtTip"] == 1) {
 
-                    if ($_POST["edtSeriePC"] > 0 && $_POST["edtSerieMon"] > 0 && $_POST["edtSerieTec"] > 0 && $_POST["edtSerieAcu"] > 0) {
+                    if ($_POST["edtSeriePC"] > 0 && $_POST["edtSerieMon"] > 0 && $_POST["edtSerieTec"] > 0) {
                         $datos = array(
                             "nro_eq" => $_POST["edtNEquipo"],
                             "ip" => $_POST["idIp"],

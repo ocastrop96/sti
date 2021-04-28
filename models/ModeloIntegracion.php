@@ -28,7 +28,7 @@ class ModeloIntegracion
             inner join ws_situacion as siteq on integra.condicion = siteq.idSituacion
             inner join ws_equipos as mon on integra.serie_monitor = mon.idEquipo
             inner join ws_equipos as tecl on integra.serie_teclado = tecl.idEquipo
-            inner join ws_equipos as energia on integra.serie_EstAcu = energia.idEquipo
+            left join ws_equipos as energia on integra.serie_EstAcu = energia.idEquipo
             inner join ws_responsables as respon on integra.responsable = respon.idResponsable
             inner join ws_departamentos as dept on integra.oficina_in = dept.id_area
             inner join ws_servicios as serv on integra.servicio_in = serv.id_subarea
@@ -382,7 +382,7 @@ class ModeloIntegracion
 
     static public function mdlAnularIntegracion($datos)
     {
-        $stmt = Conexion::conectar()->prepare("CALL ANULAR_MANTENIMIENTO(:id)");
+        $stmt = Conexion::conectar()->prepare("CALL ANULAR_INTEGRACION(:id)");
         $stmt->bindParam(":id", $datos, PDO::PARAM_INT);
         if ($stmt->execute()) {
             return "ok";

@@ -147,10 +147,14 @@ $(".tablaIntegraEC tbody").on("click", ".btnEditarIntegraC", function () {
                 $("#edtSerieTec").val(respuesta["serie_teclado"]);
                 $("#edtSerieTec").html(respuesta["serietec"]);
 
-                $("#edtSerieAcu").val(respuesta["serie_EstAcu"]);
-                $("#edtSerieAcu").html(respuesta["serieAcu"]);
-
-
+                if (respuesta["serie_EstAcu"] == 0) {
+                    $("#edtSerieAcu").val(respuesta["serie_EstAcu"]);
+                    $("#edtSerieAcu").html("Selecciona Tip Fuente");
+                }
+                else {
+                    $("#edtSerieAcu").val(respuesta["serie_EstAcu"]);
+                    $("#edtSerieAcu").html(respuesta["serieAcu"]);
+                }
                 $("#idIntegracion").val(respuesta["idIntegracion"]);
                 $("#edtNEquipo").val(respuesta["nro_eq"]);
                 $("#idIp").val(respuesta["ip"]);
@@ -335,10 +339,6 @@ $("#btnRegIntC").on("click", function () {
                     valueNotEquals: "0",
                     required: true,
                 },
-                serieAcuEne: {
-                    valueNotEquals: "0",
-                    required: true,
-                },
             },
             messages: {
                 tipEq: {
@@ -361,10 +361,6 @@ $("#btnRegIntC").on("click", function () {
                 },
                 serieTec: {
                     valueNotEquals: "Selecciona Serie Teclado",
-                    required: true,
-                },
-                serieAcuEne: {
-                    valueNotEquals: "Selecciona Acumuludor o F. Energía",
                     required: true,
                 },
             },
@@ -513,10 +509,6 @@ $("#btnEdtIntC").on("click", function () {
                     valueNotEquals: "0",
                     required: true,
                 },
-                edtSerieAcu: {
-                    valueNotEquals: "0",
-                    required: true,
-                },
             },
             messages: {
                 edtTip: {
@@ -539,10 +531,6 @@ $("#btnEdtIntC").on("click", function () {
                 },
                 edtserieTec: {
                     valueNotEquals: "Selecciona Serie Teclado",
-                    required: true,
-                },
-                edtserieAcuEne: {
-                    valueNotEquals: "Selecciona Acumuludor o F. Energía",
                     required: true,
                 },
             },
