@@ -1,7 +1,6 @@
-var perfilOcultoResp = $("#pRespOculto").val();
-
+var perfilOcultoRespon = $("#pResponsableOculto").val();
 $(".tablaResponsables").DataTable({
-    ajax: "util/datatable-responsables.php?perfilOcultoResp="+perfilOcultoResp,
+    ajax: "util/datatable-responsables.php?perfilOcultoRespon="+perfilOcultoRespon,
     deferRender: true,
     retrieve: true,
     processing: true,

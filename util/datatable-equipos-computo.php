@@ -14,13 +14,16 @@ class TablaEquipos
             "data": [';
 
         for ($i = 0; $i < count($equipos); $i++) {
-            $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarEquipoC' idEquipo='" . $equipos[$i]["idEquipo"] . "' data-toggle='modal' data-target='#modal-editar-equipoC'><i class='fas fa-edit'></i></button><button class='btn btn-danger btnEliminarEquipoC' idEquipo='" . $equipos[$i]["idEquipo"] . "'><i class='fas fa-trash-alt'></i></button></div>";
-            // else if ($equipos[$i]["segmento"] == 2) {
-            //     $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarEquipoR' idEquipo='" . $equipos[$i]["idEquipo"] . "' data-toggle='modal' data-target='#modal-editar-equipoR'><i class='fas fa-edit'></i></button><button class='btn btn-danger btnEliminarEquipo' idEquipo='" . $equipos[$i]["idEquipo"] . "'><i class='fas fa-trash-alt'></i></button></div>";
-            // }
-            // else if($equipos[$i]["segmento"] == 3) {
-            //     $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarEquipoC' idEquipo='" . $equipos[$i]["idEquipo"] . "' data-toggle='modal' data-target='#modal-editar-equipoP'><i class='fas fa-edit'></i></button><button class='btn btn-danger btnEliminarEquipo' idEquipo='" . $equipos[$i]["idEquipo"] . "'><i class='fas fa-trash-alt'></i></button></div>";
-            // }
+            if (isset($_GET["perfilOcultoEqC"]) && $_GET["perfilOcultoEqC"] == 1) {
+                $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarEquipoC' idEquipo='" . $equipos[$i]["idEquipo"] . "' data-toggle='modal' data-target='#modal-editar-equipoC'><i class='fas fa-edit'></i></button><button class='btn btn-danger btnEliminarEquipoC' idEquipo='" . $equipos[$i]["idEquipo"] . "'><i class='fas fa-trash-alt'></i></button></div>";
+            } else if (isset($_GET["perfilOcultoEqC"]) && $_GET["perfilOcultoEqC"] == 4) {
+                $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarEquipoC' idEquipo='" . $equipos[$i]["idEquipo"] . "' data-toggle='modal' data-target='#modal-editar-equipoC'><i class='fas fa-edit'></i></button></div>";
+            } else {
+                $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarEquipoC' idEquipo='" . $equipos[$i]["idEquipo"] . "' data-toggle='modal' data-target='#modal-editar-equipoC'><i class='fas fa-edit'></i></button><button class='btn btn-danger btnEliminarEquipoC' idEquipo='" . $equipos[$i]["idEquipo"] . "'><i class='fas fa-trash-alt'></i></button></div>";
+            }
+
+
+
             $datos_json .= '[
                 "' . ($i + 1) . '",
                 "' . $equipos[$i]["categoria"] . '",

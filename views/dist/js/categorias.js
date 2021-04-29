@@ -1,5 +1,6 @@
+var perfilOcultoCatego = $("#pCategoriaOculto").val();
 $(".tablaCategorias").DataTable({
-    ajax: "util/datatable-categorias.php",
+    ajax: "util/datatable-categorias.php?perfilOcultoCatego="+perfilOcultoCatego,
     deferRender: true,
     retrieve: true,
     processing: true,

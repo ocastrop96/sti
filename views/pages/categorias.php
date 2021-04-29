@@ -1,3 +1,11 @@
+<?php
+if ($_SESSION["perfil"] != 1 && $_SESSION["perfil"] != 3) {
+  echo '<script>
+    window.location = "dashboard";
+  </script>';
+  return;
+}
+?>
 <div class="content-wrapper">
     <section class="content-header">
         <div class="container-fluid">
@@ -25,6 +33,7 @@
             <div class="card-body">
                 <button type="btn" class="btn btn-secondary mt-2" data-toggle="modal" data-target="#modal-registrar-categoria"><i class="fas fa-th"></i> Registrar Categoría
                 </button>
+                <input type="hidden" id="pCategoriaOculto" value="<?php echo $_SESSION["perfil"] ?>">
             </div>
             <div class="card-body">
                 <table id="tablaCategorias" class="table table-bordered table-hover dt-responsive tablaCategorias">

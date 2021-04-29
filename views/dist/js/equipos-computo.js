@@ -1,5 +1,7 @@
+var perfilOcultoEqC = $("#pEqCompOculto").val();
+
 $(".tablaEquiposComputo").DataTable({
-    ajax: "util/datatable-equipos-computo.php",
+    ajax: "util/datatable-equipos-computo.php?perfilOcultoEqC=" + perfilOcultoEqC,
     deferRender: true,
     retrieve: true,
     processing: true,

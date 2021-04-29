@@ -55,7 +55,7 @@ $("#logCuenta").change(function () {
 var perfilOcultoUs = $("#pUsuOculto").val();
 // Cargar tabla con ajax
 $(".tablaUsuarios").DataTable({
-  ajax: "util/datatable-usuarios.php?pUsuOculto="+perfilOcultoUs,
+  ajax: "util/datatable-usuarios.php?pUsuOculto=" + perfilOcultoUs,
   deferRender: true,
   retrieve: true,
   processing: true,

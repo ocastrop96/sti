@@ -33,7 +33,7 @@ if ($_SESSION["perfil"] != 1 && $_SESSION["perfil"] != 2 && $_SESSION["perfil"] 
             <div class="card-body">
                 <button type="btn" class="btn btn-secondary" data-toggle="modal" data-target="#modal-registrar-subarea"><i class="fas fa-plus-circle"></i> Registrar Servicio
                 </button>
-                <input type="hidden" id="pServOculto" value="<?php echo $_SESSION["perfil"] ?>">
+                <input type="hidden" id="pServiceOculto" value="<?php echo $_SESSION["perfil"] ?>">
             </div>
             <div class="card-body">
                 <table id="tablaSubAreas" class="table table-bordered table-hover dt-responsive tablaSubAreas">

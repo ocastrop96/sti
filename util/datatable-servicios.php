@@ -27,23 +27,13 @@ class TablaSubAreas
             $ar = "<i class='fas fa-sitemap'></i>&nbsp" . $areas["area"] . "";
             $freg22 = date("d-m-Y", strtotime($subareas[$i]["fecha_creacion"]));
 
-            if (isset($_GET["perfilOcultoOf"]) && $_GET["perfilOcultoOf"] == 1) {
+            if (isset($_GET["perfilOcultoService"]) && $_GET["perfilOcultoService"] == 1) {
                 $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarSubArea' idSubArea='" . $subareas[$i]["id_subarea"] . "' data-toggle='modal' data-target='#modal-editar-subarea'><i class='fas fa-edit'></i></button><button class='btn btn-danger btnEliminarSubArea' idSubArea='" . $subareas[$i]["id_subarea"] . "'><i class='fas fa-trash-alt'></i></button></div>";
-            } elseif (isset($_GET["perfilOcultoOf"]) && $_GET["perfilOcultoOf"] == 2) {
+            } else if (isset($_GET["perfilOcultoService"]) && $_GET["perfilOcultoService"] == 2) {
                 $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarSubArea' idSubArea='" . $subareas[$i]["id_subarea"] . "' data-toggle='modal' data-target='#modal-editar-subarea'><i class='fas fa-edit'></i></button><button class='btn btn-danger btnEliminarSubArea' idSubArea='" . $subareas[$i]["id_subarea"] . "'><i class='fas fa-trash-alt'></i></button></div>";
             } else {
                 $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarSubArea' idSubArea='" . $subareas[$i]["id_subarea"] . "' data-toggle='modal' data-target='#modal-editar-subarea'><i class='fas fa-edit'></i></button></div>";
             }
-
-            // if (isset($_GET["perfilOcultoServ"]) && $_GET["perfilOcultoServ"] == 1) {
-            //     $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarSubArea' idSubArea='" . $subareas[$i]["id_subarea"] . "' data-toggle='modal' data-target='#modal-editar-subarea'><i class='fas fa-edit'></i></button><button class='btn btn-danger btnEliminarSubArea' idSubArea='" . $subareas[$i]["id_subarea"] . "'><i class='fas fa-trash-alt'></i></button></div>";
-            // }
-            // elseif (isset($_GET["perfilOcultoServ"]) && $_GET["perfilOcultoServ"] == 2) {
-            //     $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarSubArea' idSubArea='" . $subareas[$i]["id_subarea"] . "' data-toggle='modal' data-target='#modal-editar-subarea'><i class='fas fa-edit'></i></button><button class='btn btn-danger btnEliminarSubArea' idSubArea='" . $subareas[$i]["id_subarea"] . "'><i class='fas fa-trash-alt'></i></button></div>";
-            // }
-            //  else {
-            //     $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarSubArea' idSubArea='" . $subareas[$i]["id_subarea"] . "' data-toggle='modal' data-target='#modal-editar-subarea'><i class='fas fa-edit'></i></button></div>";
-            // }
             $datos_json .= '[
                 "' . ($i + 1) . '",
                 "' . $ar . '",

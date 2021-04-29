@@ -1,23 +1,24 @@
 // Llamamiento de Tablas de Subareas
 // Cargar tabla con ajax
-var perfilOcultoServ = $("#pServOculto").val();
+var perfilOcultoService = $("#pServiceOculto").val();
+
 $(".tablaSubAreas").DataTable({
-    "ajax": "util/datatable-servicios.php?perfilOcultoServ="+perfilOcultoServ,
-    "deferRender": true,
-    "retrieve": true,
-    "processing": true,
-    "paging": true,
-    "lengthChange": true,
-    "searching": true,
-    "ordering": true,
-    "order": [
+    ajax: "util/datatable-servicios.php?perfilOcultoService="+perfilOcultoService,
+    deferRender: true,
+    retrieve: true,
+    processing: true,
+    paging: true,
+    lengthChange: true,
+    searching: true,
+    ordering: true,
+    order: [
         [1, "asc"]
     ],
-    "info": true,
-    "autoWidth": false,
-    "language": {
-        "url": "views/dist/js/dataTables.spanish.lang"
-    }
+    info: true,
+    autoWidth: false,
+    language: {
+        url: "views/dist/js/dataTables.spanish.lang",
+    },
 });
 // Editar Subareas
 $(".tablaSubAreas tbody").on("click", ".btnEditarSubArea", function () {

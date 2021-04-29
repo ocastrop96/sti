@@ -72,42 +72,50 @@
                         </li>';
                 }
                 ?>
-                <li class="nav-header">EQUIPOS INFORMÁTICOS</li>
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-clipboard-list"></i>
-                        <p>
-                            Control
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="categorias" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>Categorías</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="equipos-computo" class="nav-link">
-                                <i class="nav-icon fas fa-laptop"></i>
-                                <p>Equipos de Cómputo</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="equipos-otros" class="nav-link">
-                                <i class="nav-icon fas fa-keyboard"></i>
-                                <p>Périfericos y Otros</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="equipos-redes" class="nav-link">
-                                <i class="nav-icon fas fa-network-wired"></i>
-                                <p>Equipos de Redes y Tlc</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                <?php
+                if ($_SESSION["perfil"] == 1 || $_SESSION["perfil"] == 3 || $_SESSION["perfil"] == 4) {
+                    echo '<li class="nav-header">EQUIPOS INFORMÁTICOS</li>
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-clipboard-list"></i>
+                            <p>
+                                Control
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">';
+                    if ($_SESSION["perfil"] == 1 || $_SESSION["perfil"] == 3) {
+                        echo '
+                            <li class="nav-item">
+                                <a href="categorias" class="nav-link">
+                                    <i class="nav-icon fas fa-th"></i>
+                                    <p>Categorías</p>
+                                </a>
+                            </li>';
+                    }
+                    echo '
+                            <li class="nav-item">
+                                <a href="equipos-computo" class="nav-link">
+                                    <i class="nav-icon fas fa-laptop"></i>
+                                    <p>Equipos de Cómputo</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="equipos-otros" class="nav-link">
+                                    <i class="nav-icon fas fa-keyboard"></i>
+                                    <p>Périfericos y Otros</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="equipos-redes" class="nav-link">
+                                    <i class="nav-icon fas fa-network-wired"></i>
+                                    <p>Equipos de Redes y Tlc</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>';
+                }
+                ?>
                 <li class="nav-header">INTEGRACIÓN DE EQUIPOS</li>
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
