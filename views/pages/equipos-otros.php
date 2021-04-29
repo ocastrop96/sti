@@ -24,6 +24,7 @@
       </div>
       <div class="card-body">
         <button type="btn" class="btn btn-secondary mt-2" data-toggle="modal" data-target="#modal-registrar-otros"><i class="fas fa-keyboard"></i> Registrar Periféricos y otros</button>
+        <input type="hidden" id="pEqOtrosOculto" value="<?php echo $_SESSION["perfil"] ?>">
       </div>
       <div class="card-body">
         <table id="tablaEquiposOtros" class="table table-bordered table-hover dt-responsive tablaEquiposOtros">

@@ -1,5 +1,6 @@
+var perfilOcultoEqOtros = $("#pEqOtrosOculto").val();
 $(".tablaEquiposOtros").DataTable({
-    ajax: "util/datatable-equipos-otros.php",
+    ajax: "util/datatable-equipos-otros.php?perfilOcultoEqOtros=" + perfilOcultoEqOtros,
     deferRender: true,
     retrieve: true,
     processing: true,

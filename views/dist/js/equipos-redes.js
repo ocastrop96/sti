@@ -1,5 +1,6 @@
+var perfilOcultoEqRedes = $("#pEqRedesOculto").val();
 $(".tablaEquiposRedes").DataTable({
-    ajax: "util/datatable-equipos-redes.php",
+    ajax: "util/datatable-equipos-redes.php?perfilOcultoEqRedes=" + perfilOcultoEqRedes,
     deferRender: true,
     retrieve: true,
     processing: true,

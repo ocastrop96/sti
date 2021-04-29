@@ -24,6 +24,7 @@
       </div>
       <div class="card-body">
         <button type="btn" class="btn btn-secondary mt-2" data-toggle="modal" data-target="#modal-registrar-redes"><i class="fas fa-network-wired"></i> Registrar Eq. Redes</button>
+        <input type="hidden" id="pEqRedesOculto" value="<?php echo $_SESSION["perfil"] ?>">
       </div>
       <div class="card-body">
         <table id="tablaEquiposRedes" class="table table-bordered table-hover dt-responsive tablaEquiposRedes">
