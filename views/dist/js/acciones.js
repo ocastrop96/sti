@@ -1,5 +1,6 @@
+var perfilOcultoAcci = $("#pAccionOculto").val();
 $(".tablaAcciones").DataTable({
-    ajax: "util/datatable-acciones.php",
+    ajax: "util/datatable-acciones.php?perfilOcultoAcci="+perfilOcultoAcci,
     deferRender: true,
     retrieve: true,
     processing: true,

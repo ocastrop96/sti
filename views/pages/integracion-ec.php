@@ -1,3 +1,11 @@
+<?php
+if ($_SESSION["perfil"] != 1 && $_SESSION["perfil"] != 3 && $_SESSION["perfil"] != 4) {
+  echo '<script>
+    window.location = "dashboard";
+  </script>';
+  return;
+}
+?>
 <div class="content-wrapper">
   <section class="content-header">
     <div class="container-fluid">
@@ -24,6 +32,7 @@
       </div>
       <div class="card-body">
         <button type="btn" class="btn btn-secondary mt-2" data-toggle="modal" data-target="#modal-integra-ec"><i class="fas fa-desktop"></i> Registrar Integración</button>
+        <input type="hidden" id="pIntCOculto" value="<?php echo $_SESSION["perfil"] ?>">
       </div>
       <div class="card-body">
         <table id="tablaIntegraEC" class="table table-bordered table-hover dt-responsive tablaIntegraEC">

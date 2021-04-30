@@ -23,6 +23,7 @@ class ControladorUsuarios
                             $_SESSION["cuenta"] = $respuesta["cuenta"];
                             $_SESSION["nombres"] = $respuesta["nombres"];
                             $_SESSION["paterno"] = $respuesta["apellido_paterno"];
+                            $_SESSION["materno"] = $respuesta["apellido_materno"];
                             $_SESSION["perfil"] = $respuesta["id_perfil"];
                             echo '<script>
                             Swal.fire({

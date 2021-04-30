@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h4><strong>Home:. Dashboard</strong></h4>
+          <h4><strong>Dashboard</strong></h4>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -15,22 +15,18 @@
     </div>
   </section>
   <section class="content">
-    <div class="card">
-      <div class="card-header">
-        <h3 class="card-title">Title</h3>
-        <div class="card-tools">
-          <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
-            <i class="fas fa-minus"></i></button>
-          <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
-            <i class="fas fa-times"></i></button>
+    <div class="row">
+      <div class="col-12">
+        <div class="callout callout-info">
+          <h5 class="font-weight-bolder"><i class="far fa-comments"></i> Bienvenido (a):</h5>
+          Hola, <span class="font-weight-bolder"><?php echo $_SESSION["nombres"]; echo ' ';
+                echo $_SESSION["paterno"]; echo ' ';
+                echo $_SESSION["materno"] ?></span> te damos la bienvenida a Soporte Técnico Informático-Web.
         </div>
       </div>
-      <div class="card-body">
-        Start creating your amazing application!
-      </div>
-      <div class="card-footer">
-        Footer
-      </div>
+    </div>
+    <div class="row">
+    <?php  include "widgets/cajas-superiores.php"; ?>
     </div>
   </section>
 </div>

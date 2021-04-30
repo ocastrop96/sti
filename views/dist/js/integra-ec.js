@@ -1,5 +1,6 @@
+var perfilOcultoIntC = $("#pIntCOculto").val();
 $(".tablaIntegraEC").DataTable({
-    ajax: "util/datatable-integra-ec.php",
+    ajax: "util/datatable-integra-ec.php?perfilOcultoIntC=" + perfilOcultoIntC,
     deferRender: true,
     retrieve: true,
     processing: true,

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 29-04-2021 a las 20:04:09
+-- Tiempo de generación: 30-04-2021 a las 18:17:57
 -- Versión del servidor: 5.7.24
 -- Versión de PHP: 7.4.15
 
@@ -1260,7 +1260,8 @@ INSERT INTO `ws_integraciones` (`idIntegracion`, `correlativo_integracion`, `nro
 (65, 'FT-2021-00063', 'PYT_001', '', NULL, NULL, NULL, NULL, NULL, 88, '2021-03-26', 16, 13, 13, 16, 1, 1, 0, '2021-03-26 15:17:29'),
 (66, 'FT-2021-00064', 'MRK_0001', '', NULL, NULL, NULL, NULL, NULL, 89, '2021-03-26', 17, 13, 13, 16, 1, 1, 0, '2021-03-26 15:20:12'),
 (67, 'FT-2021-00065', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-26', 0, 0, 0, 0, 0, 0, 1, '2021-03-26 18:02:14'),
-(68, 'FT-2021-00066', 'PC_RONNER', '172.16.5.20', 92, 93, 82, 0, NULL, NULL, '2021-04-28', 1, 12, 10, 24, 1, 1, 0, '2021-04-28 17:12:07');
+(68, 'FT-2021-00066', 'PC_RONNER', '172.16.5.20', 92, 93, 82, 0, NULL, NULL, '2021-04-28', 1, 12, 10, 24, 1, 1, 0, '2021-04-28 17:12:07'),
+(69, 'FT-2021-00067', 'SERV_005', '172.16.0.4', 83, NULL, NULL, 0, NULL, NULL, '2021-04-30', 5, 13, 13, 16, 1, 1, 0, '2021-04-30 14:18:27');
 
 --
 -- Disparadores `ws_integraciones`
@@ -1345,7 +1346,7 @@ INSERT INTO `ws_mantenimientos` (`idMantenimiento`, `correlativo_Mant`, `fRegist
 (4, 'FM-2021-00004', '2021-04-26', 12, 2, 91, 13, 16, 13, 'Serie N°: ACUM1 || Cod.Patr: 151515 || Marca: ACUMU || Modelo: ACUMLA || Descripción: ACUMA', 'asas', 13, 30, 27, 17, 0, 0, 0, 0, 5, '2021-04-24', 'asas', '2021-04-24', '2021-04-25', 2, 4, 9, 21, 3, 24, 0, 0, 0, 0, 'asas', 1, 2, 'NO', 'SI', 'asasas', 1, 3, 1, '2021-04-26 05:09:22'),
 (5, 'FM-2021-00005', '2021-04-26', 8, 1, 84, 13, 18, 9, 'N° Equipo: ACP_0001 || Serie N°: ACP || Cod.Patr: 12232 || Marca: ACO || Modelo: ACP || Descripción: ACP || IP: ', 'asas', 21, 5, 26, 15, 0, 0, 0, 0, 5, '2021-04-25', 'asas', '2021-04-25', '2021-04-25', 1, 5, 27, 28, 29, 30, 0, 0, 0, 0, 'asas', 1, 2, 'NO', 'NO', '', 1, 2, 1, '2021-04-26 05:10:26'),
 (6, 'FM-2021-00006', '2021-04-26', 9, 1, 86, 13, 18, 9, 'N° Equipo: FTC_001 || Serie N°: FOCOTOCOPIOA || Cod.Patr: 136172 || Marca: FOTO || Modelo: FOTO || Descripción: FOTO || IP: ', 'aaa', 0, 0, 0, 0, 0, 0, 0, 0, 5, '2021-04-26', 'eee', '2021-04-26', '2021-04-26', 1, 6, 0, 0, 0, 0, 0, 0, 0, 0, 'eeee', 1, 1, 'NO', 'SI', 'aaaaa', 1, 3, 2, '2021-04-26 06:28:05'),
-(7, 'FM-2021-00007', '2021-04-26', 15, 1, 85, 13, 18, 9, 'N° Equipo: ESC_001 || Serie N°: ESCANOR || Cod.Patr: 1237 || Marca: ESCANER || Modelo: ESCANER || Descripción: ESNCAER || IP: ', 'ajam 1', 6, 27, 0, 0, 0, 0, 0, 0, 5, '2021-04-26', 'asas', '2021-04-26', '2021-04-26', 2, 4, 9, 3, 21, 0, 0, 0, 0, 0, 'asasas', 2, 2, 'NO', 'SI', 'asasas', 1, 3, 1, '2021-04-26 18:35:51'),
+(7, 'FM-2021-00007', '2021-04-26', 15, 1, 85, 13, 18, 9, 'N° Equipo: ESC_001 || Serie N°: ESCANOR || Cod.Patr: 1237 || Marca: ESCANER || Modelo: ESCANER || Descripción: ESNCAER || IP: ', 'ajam 1', 6, 27, 0, 0, 0, 0, 0, 0, 5, '2021-04-26', 'asas', '2021-04-26', '2021-04-26', 2, 4, 9, 3, 21, 0, 0, 0, 0, 0, 'asasas', 1, 2, 'NO', 'SI', 'asasas', 1, 3, 1, '2021-04-26 18:35:51'),
 (8, 'FM-2021-00008', '2021-04-27', 1, 1, 54, 13, 18, 9, 'N° Equipo: PC_OCP || Serie N°: MXL2500TDK || Cod.Patr: 740899500413 || Marca: HP || Modelo: ELITE 8300 || Descripción: PC DE ESCRITORIO || IP: 172.16.5.100 || Procesador: CORE I7-3.40 GHZ || RAM: 12GB || Disco Duro: 1TB', 'EQUIPO ENCIENDE LENTAMENTEEQUIPO ENCIENDE LENTAMENTEEQUIPO ENCIENDE EQUIPO ENCIENDE EQUIPOEEEEE', 24, 25, 14, 4, 7, 20, 23, 11, 4, '2021-04-27', 'SE VERIFICA SUCIEDAD EN EL EQUIPO', '2021-04-27', '2021-04-27', 2, 6, 1, 15, 12, 2, 17, 14, 13, 4, 'EQUIPO ENCIENDE LENTAMENTEEQUIPO ENCIENDE LENTAMENTEEQUIPO ENCIENDE EQUIPO ENCIENDE EQUIPOEEEEEQUIPO ENCIENDE LENTAMENTEEQUIPO ENCIENDE LENTAMENTEEQUIPO ENCIENDE EQUIPO ENCIENDE EQUIPOEEEEEQUIPO ENCIENDE LENTAMENTEEQUIPO ENCIENDE LENTAMENTEEQUIPO ENCIENDE EQUIPO ENCIENDEE', 1, 1, 'NO', 'NO', '', 1, 1, 1, '2021-04-27 14:38:34'),
 (9, 'FM-2021-00009', '2021-04-27', 4, 1, 76, 13, 18, 9, 'N° Equipo: LAP_0004 || Serie N°: LAPTO1 || Cod.Patr: 155 || Marca: ACER || Modelo: AC-151 || Descripción: LAPTOP DE TRABAJO || IP: 172.16.5.125 || Procesador: CORE I7-3.40 GHZ || RAM: 8GB || Disco Duro: 1TB', 'asasas', 24, 25, 0, 0, 0, 0, 0, 0, 4, '2021-04-26', 'asasas', '2021-04-27', '2021-04-27', 1, 5, 12, 1, 2, 0, 0, 0, 0, 0, 'EQUIPO ENCIENDE LENTAMENTEEQUIPO ENCIENDE ', 1, 1, 'NO', 'NO', '', 1, 1, 1, '2021-04-27 16:15:45'),
 (10, 'FM-2021-00010', '2021-04-28', 1, 1, 92, 10, 24, 12, 'N° Equipo: PC_RONNER || Serie N°: MKMXLAKSLAS || Cod.Patr: 21222323 || Marca: HP || Modelo: HP-800 || Descripción: ASDKASN || IP: 172.16.5.20 || Procesador: CORE I7-3.80GHZ || RAM: 8GB || Disco Duro: 1TB', 'asasas', 24, 4, 7, 0, 0, 0, 0, 0, 4, '2021-04-28', 'asas', '2021-04-28', '2021-04-28', 1, 5, 1, 12, 5, 8, 0, 0, 0, 0, 'asasasasasasas', 1, 1, 'NO', 'NO', '', 1, 1, 1, '2021-04-28 17:23:35');
@@ -1725,7 +1726,8 @@ INSERT INTO `ws_z_auditoria_mantenimientos` (`idAudMant`, `idDoc`, `usExec`, `ac
 (74, 8, 1, 'Modificación', '2021-04-27', '2021-04-27 16:10:51'),
 (75, 9, 1, 'Modificación', '2021-04-27', '2021-04-27 16:29:41'),
 (76, 9, 1, 'Modificación', '2021-04-27', '2021-04-27 16:33:37'),
-(77, 9, 1, 'Modificación', '2021-04-27', '2021-04-27 20:11:51');
+(77, 9, 1, 'Modificación', '2021-04-27', '2021-04-27 20:11:51'),
+(78, 7, 1, 'Modificación', '2021-04-30', '2021-04-30 17:52:38');
 
 -- --------------------------------------------------------
 
@@ -1938,7 +1940,7 @@ ALTER TABLE `ws_estadosdoc`
 -- AUTO_INCREMENT de la tabla `ws_integraciones`
 --
 ALTER TABLE `ws_integraciones`
-  MODIFY `idIntegracion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `idIntegracion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_mantenimientos`
@@ -1998,7 +2000,7 @@ ALTER TABLE `ws_usuarios`
 -- AUTO_INCREMENT de la tabla `ws_z_auditoria_mantenimientos`
 --
 ALTER TABLE `ws_z_auditoria_mantenimientos`
-  MODIFY `idAudMant` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `idAudMant` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_z_auditoria_reposiciones`

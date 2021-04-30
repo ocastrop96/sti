@@ -1,5 +1,6 @@
+var perfilOcultoIntP = $("#pIntPOculto").val();
 $(".tablaIntegraEP").DataTable({
-    ajax: "util/datatable-integra-ep.php",
+    ajax: "util/datatable-integra-ep.php?perfilOcultoIntP=" + perfilOcultoIntP,
     deferRender: true,
     retrieve: true,
     processing: true,

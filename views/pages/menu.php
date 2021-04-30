@@ -116,85 +116,95 @@
                     </li>';
                 }
                 ?>
-                <li class="nav-header">INTEGRACIÓN DE EQUIPOS</li>
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-drafting-compass"></i>
-                        <p>
-                            Consolidación
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="integracion-ec" class="nav-link">
-                                <i class="nav-icon fas fa-desktop"></i>
-                                <p>PC/Laptop/Servidor</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="integracion-ep" class="nav-link">
-                                <i class="nav-icon fas fa-print"></i>
-                                <p>Impresoras y Otros</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="integracion-er" class="nav-link">
-                                <i class="nav-icon fas fa-server"></i>
-                                <p>Redes</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-header">EXTRAS</li>
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-plus-square"></i>
-                        <p>
-                            Herramientas
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="diagnosticos" class="nav-link">
-                                <i class="nav-icon fas fa-laptop-medical"></i>
-                                <p>Diágnosticos</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="acciones" class="nav-link">
-                                <i class="nav-icon fas fa-tools"></i>
-                                <p>Acciones Realizadas</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-header">SOPORTE TÉCNICO</li>
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-hands-helping"></i>
-                        <p>
-                            HelpDesk
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="mantenimientos" class="nav-link">
-                                <i class="nav-icon fas fa-clipboard-list"></i>
-                                <p>Mantenimientos</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="reposicion" class="nav-link">
-                                <i class="nav-icon fas fa-sync-alt"></i>
-                                <p>Reposición</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <!-- <li class="nav-header">REPORTES</li> -->
+                <?php
+                if ($_SESSION["perfil"] == 1 || $_SESSION["perfil"] == 3 || $_SESSION["perfil"] == 4) {
+                    echo '
+                    <li class="nav-header">INTEGRACIÓN DE EQUIPOS</li>
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-drafting-compass"></i>
+                            <p>
+                                Consolidación
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="integracion-ec" class="nav-link">
+                                    <i class="nav-icon fas fa-desktop"></i>
+                                    <p>PC/Laptop/Servidor</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="integracion-ep" class="nav-link">
+                                    <i class="nav-icon fas fa-print"></i>
+                                    <p>Impresoras y Otros</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="integracion-er" class="nav-link">
+                                    <i class="nav-icon fas fa-server"></i>
+                                    <p>Redes</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-header">EXTRAS</li>
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-plus-square"></i>
+                            <p>
+                                Herramientas
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="diagnosticos" class="nav-link">
+                                    <i class="nav-icon fas fa-laptop-medical"></i>
+                                    <p>Diágnosticos</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="acciones" class="nav-link">
+                                    <i class="nav-icon fas fa-tools"></i>
+                                    <p>Acciones Realizadas</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>';
+                }
+                ?>
+                <?php
+                if ($_SESSION["perfil"] == 1 || $_SESSION["perfil"] == 2 || $_SESSION["perfil"] == 3 || $_SESSION["perfil"] == 4) {
+                    echo '
+                    <li class="nav-header">SOPORTE TÉCNICO</li>
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-hands-helping"></i>
+                            <p>
+                                HelpDesk
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="mantenimientos" class="nav-link">
+                                    <i class="nav-icon fas fa-clipboard-list"></i>
+                                    <p>Mantenimientos</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="reposicion" class="nav-link">
+                                    <i class="nav-icon fas fa-sync-alt"></i>
+                                    <p>Reposición</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>';
+                }
+                ?>
+                <li class="nav-header">REPORTES</li>
             </ul>
         </nav>
     </div>

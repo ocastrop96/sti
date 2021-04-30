@@ -17,7 +17,14 @@ class TablaAcciones
             "data": [';
 
         for ($i = 0; $i < count($tablaAcciones); $i++) {
-            $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarAccion' idAccion='" . $tablaAcciones[$i]["idAccion"] . "' data-toggle='modal' data-target='#modal-editar-accion'><i class='fas fa-edit'></i></button><button class='btn btn-danger btnEliminarAccion' idAccion='" . $tablaAcciones[$i]["idAccion"] . "'><i class='fas fa-trash-alt'></i></button></div>";
+            if (isset($_GET["perfilOcultoAcci"]) && $_GET["perfilOcultoAcci"] == 1) {
+                $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarAccion' idAccion='" . $tablaAcciones[$i]["idAccion"] . "' data-toggle='modal' data-target='#modal-editar-accion'><i class='fas fa-edit'></i></button><button class='btn btn-danger btnEliminarAccion' idAccion='" . $tablaAcciones[$i]["idAccion"] . "'><i class='fas fa-trash-alt'></i></button></div>";
+            } else if (isset($_GET["perfilOcultoAcci"]) && $_GET["perfilOcultoAcci"] == 4) {
+                $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarAccion' idAccion='" . $tablaAcciones[$i]["idAccion"] . "' data-toggle='modal' data-target='#modal-editar-accion'><i class='fas fa-edit'></i></button></div>";
+            } else {
+                $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarAccion' idAccion='" . $tablaAcciones[$i]["idAccion"] . "' data-toggle='modal' data-target='#modal-editar-accion'><i class='fas fa-edit'></i></button><button class='btn btn-danger btnEliminarAccion' idAccion='" . $tablaAcciones[$i]["idAccion"] . "'><i class='fas fa-trash-alt'></i></button></div>";
+            }
+
             $datos_json .= '[
                 "' . ($i + 1) . '",
                 "' . $tablaAcciones[$i]["accionrealizada"] . '",

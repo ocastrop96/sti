@@ -17,7 +17,13 @@ class TablaDiagnosticos
             "data": [';
 
         for ($i = 0; $i < count($diagnosticos); $i++) {
-            $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarDiagnostico' idDiagnostico='" . $diagnosticos[$i]["idDiagnostico"] . "' data-toggle='modal' data-target='#modal-editar-diagnostico'><i class='fas fa-edit'></i></button><button class='btn btn-danger btnEliminarDiagnostico' idDiagnostico='" . $diagnosticos[$i]["idDiagnostico"] . "'><i class='fas fa-trash-alt'></i></button></div>";
+            if (isset($_GET["perfilOcultoDiag"]) && $_GET["perfilOcultoDiag"] == 1) {
+                $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarDiagnostico' idDiagnostico='" . $diagnosticos[$i]["idDiagnostico"] . "' data-toggle='modal' data-target='#modal-editar-diagnostico'><i class='fas fa-edit'></i></button><button class='btn btn-danger btnEliminarDiagnostico' idDiagnostico='" . $diagnosticos[$i]["idDiagnostico"] . "'><i class='fas fa-trash-alt'></i></button></div>";
+            } else if (isset($_GET["perfilOcultoDiag"]) && $_GET["perfilOcultoDiag"] == 4) {
+                $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarDiagnostico' idDiagnostico='" . $diagnosticos[$i]["idDiagnostico"] . "' data-toggle='modal' data-target='#modal-editar-diagnostico'><i class='fas fa-edit'></i></button></div>";
+            } else {
+                $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarDiagnostico' idDiagnostico='" . $diagnosticos[$i]["idDiagnostico"] . "' data-toggle='modal' data-target='#modal-editar-diagnostico'><i class='fas fa-edit'></i></button><button class='btn btn-danger btnEliminarDiagnostico' idDiagnostico='" . $diagnosticos[$i]["idDiagnostico"] . "'><i class='fas fa-trash-alt'></i></button></div>";
+            }
             $datos_json .= '[
                 "' . ($i + 1) . '",
                 "' . $diagnosticos[$i]["diagnostico"] . '",

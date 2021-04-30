@@ -1,5 +1,6 @@
+var perfilOcultoDiag = $("#pDiagnosticoOculto").val();
 $(".tablaDiagnosticos").DataTable({
-    "ajax": "util/datatable-diagnosticos.php",
+    "ajax": "util/datatable-diagnosticos.php?perfilOcultoDiag=" + perfilOcultoDiag,
     "deferRender": true,
     "retrieve": true,
     "processing": true,

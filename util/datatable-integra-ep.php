@@ -14,7 +14,15 @@ class TablaIntegraEP
             "data": [';
 
         for ($i = 0; $i < count($integracion); $i++) {
-            $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarIntegraEP' idTipo='" . $integracion[$i]["tipo_equipo"] . "' idIntegracion='" . $integracion[$i]["idIntegracion"] . "' data-toggle='modal' data-target='#modal-editar-integraEP'><i class='fas fa-edit'></i></button><button class='btn btn-info btnImprimirFichaEP' idIntegracion='" . $integracion[$i]["idIntegracion"] . "'><i class='fas fa-print'></i></button><button class='btn btn-secondary btnAnularIntegraEP' idIntegracion='" . $integracion[$i]["idIntegracion"] . "'><i class='fas fa-window-close'></i></button></div>";
+
+            if (isset($_GET["perfilOcultoIntP"]) && $_GET["perfilOcultoIntP"] == 1) {
+                $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarIntegraEP' idTipo='" . $integracion[$i]["tipo_equipo"] . "' idIntegracion='" . $integracion[$i]["idIntegracion"] . "' data-toggle='modal' data-target='#modal-editar-integraEP'><i class='fas fa-edit'></i></button><button class='btn btn-info btnImprimirFichaEP' idIntegracion='" . $integracion[$i]["idIntegracion"] . "'><i class='fas fa-print'></i></button><button class='btn btn-secondary btnAnularIntegraEP' idIntegracion='" . $integracion[$i]["idIntegracion"] . "'><i class='fas fa-window-close'></i></button></div>";
+            } else if (isset($_GET["perfilOcultoIntP"]) && $_GET["perfilOcultoIntP"] == 4) {
+                $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarIntegraEP' idTipo='" . $integracion[$i]["tipo_equipo"] . "' idIntegracion='" . $integracion[$i]["idIntegracion"] . "' data-toggle='modal' data-target='#modal-editar-integraEP'><i class='fas fa-edit'></i></button><button class='btn btn-info btnImprimirFichaEP' idIntegracion='" . $integracion[$i]["idIntegracion"] . "'><i class='fas fa-print'></i></button></div>";
+            } else {
+                $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarIntegraEP' idTipo='" . $integracion[$i]["tipo_equipo"] . "' idIntegracion='" . $integracion[$i]["idIntegracion"] . "' data-toggle='modal' data-target='#modal-editar-integraEP'><i class='fas fa-edit'></i></button><button class='btn btn-info btnImprimirFichaEP' idIntegracion='" . $integracion[$i]["idIntegracion"] . "'><i class='fas fa-print'></i></button><button class='btn btn-secondary btnAnularIntegraEP' idIntegracion='" . $integracion[$i]["idIntegracion"] . "'><i class='fas fa-window-close'></i></button></div>";
+            }
+
             $datos_json .= '[
                 "' . ($i + 1) . '",
                 "' . $integracion[$i]["correlativo_integracion"] . '",
@@ -24,7 +32,7 @@ class TablaIntegraEP
                 "' . $integracion[$i]["marcaimp"] . '",
                 "' . $integracion[$i]["serieimp"] . '",
                 "' . $integracion[$i]["ip"] . '",
-                "' . $integracion[$i]["nombRes"] . ' '.$integracion[$i]["apellRes"].'",
+                "' . $integracion[$i]["nombRes"] . ' ' . $integracion[$i]["apellRes"] . '",
                 "' . $integracion[$i]["departamento"] . '",
                 "' . $botones . '"
             ],';
