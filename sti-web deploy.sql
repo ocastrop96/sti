@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 28-04-2021 a las 04:04:29
+-- Tiempo de generación: 03-05-2021 a las 20:05:14
 -- Versión del servidor: 5.7.24
--- Versión de PHP: 7.4.13
+-- Versión de PHP: 7.4.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -44,6 +44,8 @@ END$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ACTUALIZAR_EQUIPORED` (IN `_idEquipo` INT(11), IN `_idTipo` INT(11), IN `_uResponsable` INT(11), IN `_office` INT(11), IN `_service` INT(11), IN `_serie` TEXT, IN `_sbn` TEXT, IN `_marca` TEXT, IN `_modelo` TEXT, IN `_descripcion` TEXT, IN `_fechaCompra` DATE, IN `_ordenCompra` TEXT, IN `_garantia` TEXT, IN `_puertos` TEXT, IN `_capa` TEXT, IN `_condicion` INT(11), IN `_estadoEQ` INT(11))  BEGIN
 UPDATE ws_equipos SET idTipo = _idTipo, uResponsable = _uResponsable, office = _office, service = _service, serie = _serie,sbn = _sbn,marca = _marca, modelo = _modelo,descripcion = _descripcion, fechaCompra = _fechaCompra, ordenCompra = _ordenCompra,garantia = _garantia,puertos = _puertos, capa = _capa, condicion = _condicion, estadoEQ = _estadoEQ where idEquipo = _idEquipo;
 END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ACTUALIZAR_ESTADO_REPO` (IN `_idEquipo` INT(11), IN `_observaciones` TEXT, IN `_estadoEQ` INT(11))  UPDATE ws_equipos set observaciones= _observaciones,estadoEQ = _estadoEQ where idEquipo = _idEquipo$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ACTUALIZAR_RESPONSABLE` (IN `_dniResp` TEXT, IN `_nombresResp` TEXT, IN `_apellidosResp` TEXT, IN `_idOficina` INT(11), IN `_idServicio` INT(11), IN `_idResponsable` INT(11))  BEGIN
 UPDATE ws_responsables SET dni=_dniResp,nombresResp = _nombresResp,apellidosResp = _apellidosResp,idOficina = _idOficina, idServicio = _idServicio where idResponsable = _idResponsable;
@@ -869,41 +871,6 @@ CREATE TABLE `ws_acciones` (
   `accionrealizada` text COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
---
--- Volcado de datos para la tabla `ws_acciones`
---
-
-INSERT INTO `ws_acciones` (`idAccion`, `segment`, `accionrealizada`) VALUES
-(1, 1, 'Copia de Seguridad'),
-(2, 1, 'Formateo de disco duro'),
-(3, 3, 'Desmontaje de impresora'),
-(4, 1, 'Mantenimiento físico'),
-(5, 1, 'Mantenimiento lógico'),
-(6, 1, 'Instalación de sistema operativo'),
-(7, 3, 'Verificación de teclas y contactos'),
-(8, 1, 'Verificación de teclas y contactos'),
-(9, 3, 'Configuración de impresora'),
-(10, 1, 'Revisión de disco duro'),
-(11, 1, 'Revisión de tarjeta de vídeo'),
-(12, 1, 'Eliminación de temporales'),
-(13, 1, 'Instalación de programas'),
-(14, 1, 'Instalación de drivers o controladores'),
-(15, 1, 'Eliminación de virus'),
-(17, 1, 'Instalación de antivirus'),
-(18, 1, 'Mantenimiento general'),
-(19, 2, 'Mantenimiento general'),
-(20, 3, 'Mantenimiento general'),
-(21, 3, 'Desmontaje y limpieza'),
-(22, 1, 'Se recomienda baja por obsolescencia técnica'),
-(23, 2, 'Se recomienda baja por obsolescencia técnica'),
-(24, 3, 'Se recomienda baja por obsolescencia técnica'),
-(25, 2, 'Limpieza de puertos RJ45'),
-(26, 2, 'Limpieza de puertos RJ11'),
-(27, 2, 'accion 5'),
-(28, 2, 'Accion 6'),
-(29, 2, 'Accion 7'),
-(30, 2, 'Accion 8');
-
 -- --------------------------------------------------------
 
 --
@@ -937,7 +904,8 @@ INSERT INTO `ws_categorias` (`idCategoria`, `segmento`, `categoria`) VALUES
 (14, 3, 'Ticketera'),
 (15, 3, 'Escáner'),
 (16, 3, 'Proyector'),
-(17, 3, 'Marcador Electrónico');
+(17, 3, 'Marcador Electrónico'),
+(18, 3, 'Mouse');
 
 -- --------------------------------------------------------
 
@@ -951,44 +919,6 @@ CREATE TABLE `ws_departamentos` (
   `fecha_creacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
---
--- Volcado de datos para la tabla `ws_departamentos`
---
-
-INSERT INTO `ws_departamentos` (`id_area`, `area`, `fecha_creacion`) VALUES
-(1, 'Archivo Central', '2020-09-16 18:21:44'),
-(2, 'Asesoría Jurídica', '2020-09-16 18:23:54'),
-(3, 'Cirugía', '2020-09-16 18:24:01'),
-(4, 'Comunicaciones', '2020-09-16 18:24:09'),
-(5, 'Consultorios Externos', '2020-09-16 18:24:17'),
-(6, 'Órgano de Control Interno', '2020-09-16 18:24:26'),
-(7, 'Diagnóstico por Imágenes', '2020-09-16 18:24:48'),
-(8, 'Dirección General', '2020-09-16 18:24:57'),
-(9, 'Docencia', '2020-09-16 18:25:03'),
-(10, 'Economía', '2020-09-16 18:25:14'),
-(11, 'Emergencia', '2020-09-16 18:25:24'),
-(12, 'Epidemiología', '2020-09-16 18:25:40'),
-(13, 'Estadística e Informática', '2020-09-16 18:26:05'),
-(14, 'Farmacia', '2020-09-16 18:26:36'),
-(15, 'Gestión de la Calidad', '2020-09-16 18:26:46'),
-(16, 'Ginecología', '2020-09-16 18:27:04'),
-(17, 'Laboratorio y Patología Clínica', '2020-09-16 18:28:06'),
-(18, 'Logística', '2020-09-16 18:28:17'),
-(19, 'Medicina', '2020-09-16 18:28:24'),
-(20, 'Nutrición', '2020-09-16 18:28:33'),
-(21, 'Odontoestomatología', '2020-09-16 18:28:51'),
-(22, 'Pediatría', '2020-09-16 18:29:03'),
-(23, 'Personal', '2020-09-16 18:29:18'),
-(24, 'Planeamiento Estratégico', '2020-09-16 18:29:32'),
-(25, 'Psicología', '2020-09-16 18:29:39'),
-(26, 'Rehabilitación', '2020-09-16 18:29:48'),
-(27, 'Seguros', '2020-09-16 18:29:57'),
-(28, 'Servicio Social', '2020-09-16 18:30:14'),
-(30, 'Servicios Generales', '2020-09-17 20:04:23'),
-(31, 'Anestesiología y Centro Quirúrgico', '2020-09-22 00:39:17'),
-(32, 'Enfermería', '2021-03-12 15:42:20'),
-(33, 'Medicina Física', '2021-03-12 15:42:55');
-
 -- --------------------------------------------------------
 
 --
@@ -1000,40 +930,6 @@ CREATE TABLE `ws_diagnosticos` (
   `sgmto` int(11) NOT NULL,
   `diagnostico` text COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `ws_diagnosticos`
---
-
-INSERT INTO `ws_diagnosticos` (`idDiagnostico`, `sgmto`, `diagnostico`) VALUES
-(4, 1, 'Equipo Averiado'),
-(5, 2, 'Equipo Averiado'),
-(6, 3, 'Equipo Averiado'),
-(7, 1, 'Falla de disco duro'),
-(8, 1, 'Sistema Operativo dañado'),
-(9, 1, 'Memoria  RAM malograda'),
-(10, 1, 'Placa madre malograda'),
-(11, 1, 'Falta de mantenimiento'),
-(12, 2, 'Falta de mantenimiento'),
-(13, 3, 'Falta de mantenimiento'),
-(14, 1, 'Falla de Equipo'),
-(15, 2, 'Falla de Equipo'),
-(16, 3, 'Falla de Equipo'),
-(17, 3, 'Falla de Estabilizador'),
-(18, 3, 'Falla de Teclado'),
-(19, 3, 'Falla de UPS'),
-(20, 1, 'Falla de Fuente de Energía'),
-(21, 2, 'Falla de Fuente de Energía'),
-(22, 3, 'Falla de Fuente de Energía'),
-(23, 1, 'Falla de tarjeta de vídeo'),
-(24, 1, 'Detección de virus'),
-(25, 1, 'Equipo Obsoleto'),
-(26, 2, 'Equipo Obsoleto'),
-(27, 3, 'Equipo Obsoleto'),
-(28, 2, 'Puertos RJ45 averiados'),
-(29, 2, 'Puertos RJ11 averiados'),
-(30, 3, 'Falla de teflón de impresora'),
-(31, 3, 'Falla de impresora');
 
 -- --------------------------------------------------------
 
@@ -1071,34 +967,6 @@ CREATE TABLE `ws_equipos` (
   `registrador` int(11) NOT NULL,
   `registrof` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `ws_equipos`
---
-
-INSERT INTO `ws_equipos` (`idEquipo`, `tipSegmento`, `idTipo`, `uResponsable`, `office`, `service`, `serie`, `sbn`, `marca`, `modelo`, `descripcion`, `fechaCompra`, `ordenCompra`, `garantia`, `placa`, `procesador`, `vprocesador`, `ram`, `discoDuro`, `puertos`, `capa`, `observaciones`, `fichaBaja`, `fichaReposición`, `condicion`, `estadoEQ`, `registrador`, `registrof`) VALUES
-(54, 1, 1, 9, 13, 18, 'MXL2500TDK', '740899500413', 'HP', 'ELITE 8300', 'PC DE ESCRITORIO', '2018-08-31', '11-445456', '5 AÑOS', 'HP', 'CORE I7', '3.40 GHZ', '12GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-15 09:54:39'),
-(55, 3, 11, 9, 13, 18, 'BDMEP0C5Y7N1FM', '009038', 'HP', 'KB-1156', 'TECLADO PERFI', '2018-08-31', '11-121121', '5 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-15 09:58:07'),
-(56, 3, 10, 9, 13, 18, '6CM2480JSF', '740880370017', 'HP', 'LV2311', 'MONITOR 24 PLGDAS', '2018-08-31', '11-15151', '5 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-15 10:18:13'),
-(57, 3, 13, 9, 13, 18, 'ESTABLE1', '1515151515', 'APC', 'APC-125', 'ESTABILIZADOR DE ENERGIA', '2018-08-31', '11-151515', '5 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-15 10:19:03'),
-(58, 2, 2, 9, 13, 18, 'SWITCH123', '151518484546', 'HP', 'ARUBA', 'SWITCH ADMINISTRABLE', '2018-08-31', '11-151515', '5 AÑOS', NULL, NULL, NULL, NULL, NULL, '48', '3', 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-15 10:19:59'),
-(59, 3, 3, 9, 13, 18, 'BRBSXBT8XZ', '740841000067', 'HP', 'M426FDW', 'HP LASERJET LASERJET PRO', '2018-06-22', '11-11515', '5 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-15 10:24:19'),
-(69, 3, 9, 9, 13, 18, 'REFTC', '111515155', 'VACJ', 'VA', 'VA', '2021-03-08', 'AV', 'AS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-22 10:55:16'),
-(75, 2, 6, 12, 10, 24, 'SWAR137', '740854554565', 'HP', 'ARUBA-123', 'ASAS', '2021-03-17', '155-1551', '5 AÑOS', NULL, NULL, NULL, NULL, NULL, '48', '3', 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-22 12:19:40'),
-(76, 1, 4, 9, 13, 18, 'LAPTO1', '155', 'ACER', 'AC-151', 'LAPTOP DE TRABAJO', '2021-03-01', '11-111', '3 AÑOS', 'ASUS', 'CORE I7', '3.40 GHZ', '8GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-22 14:53:24'),
-(78, 3, 3, 11, 10, 24, 'IMPRE12', '112', 'IMP', 'UMO', 'UMo', '2021-03-02', '11-11', '5 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-23 12:06:47'),
-(80, 2, 7, 11, 10, 24, 'AAAAAAA', '1111111', 'AAAAAA', 'AAAAA', 'AAAAAA', '2021-03-03', 'AA11', 'AAAA', NULL, NULL, NULL, NULL, NULL, 'AA', 'AA', 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-23 12:46:58'),
-(81, 1, 4, 9, 13, 18, 'AKA', '13253', 'AKA', 'AKA', 'AKA', '2021-03-04', 'AKA', 'AKA', 'AKA', 'AKA', 'AK', 'AKA', 'AKA', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-25 10:23:10'),
-(82, 3, 11, 12, 10, 24, 'TECXLA', '1262', 'TECLADOA', 'ASJ', 'AJS', '2021-03-18', 'AJ', '5 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-25 14:27:01'),
-(83, 1, 5, 13, 13, 16, 'SERV1', '1177212', 'SAERV', 'SERV', 'SERV', '2021-03-11', 'SERV', '5 AÑOS', 'HP', 'XEON', '3.20 GHZ', '32GB', '4TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-25 14:45:32'),
-(84, 2, 8, 9, 13, 18, 'ACP', '12232', 'ACO', 'ACP', 'ACP', '2021-03-12', 'ACP', 'ACP', NULL, NULL, NULL, NULL, NULL, 'ACPO', 'ACP', 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-26 09:32:30'),
-(85, 3, 15, 9, 13, 18, 'ESCANOR', '1237', 'ESCANER', 'ESCANER', 'ESNCAER', '2021-03-05', 'ESCA', '5 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-26 09:59:06'),
-(86, 3, 9, 9, 13, 18, 'FOCOTOCOPIOA', '136172', 'FOTO', 'FOTO', 'FOTO', '2021-03-12', '231-11221', '5 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-26 09:59:49'),
-(87, 3, 14, 13, 13, 16, 'TICKET', '1712128', 'TICKET', 'TICKET', 'TICKET', '2021-03-05', '11-1515', '5 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-26 10:15:02'),
-(88, 3, 16, 13, 13, 16, 'PROYECTOR', '1151515', 'PYT', 'PYT', 'PYT', '2021-03-12', '11-1515', '5 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-26 10:16:59'),
-(89, 3, 17, 13, 13, 16, 'MARCADOR1', '11212', 'MARJ', 'MARK211', 'KK', '2021-03-05', '11-111', '5 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-26 10:19:32'),
-(90, 1, 4, 9, 13, 18, 'LENOVO12', '17171828', 'LENOVO', 'LEVONO', 'LENOVO', '2021-03-05', '11-1212', '5 AÑOS', 'AYERA', 'CORE I3', '3.20GHZ', '8GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-26 10:21:25'),
-(91, 3, 12, 13, 13, 16, 'ACUM1', '151515', 'ACUMU', 'ACUMLA', 'ACUMA', '2021-03-05', '11-122', '5 AÑOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-03-26 10:30:20');
 
 -- --------------------------------------------------------
 
@@ -1173,7 +1041,7 @@ CREATE TABLE `ws_integraciones` (
   `serie_pc` int(11) DEFAULT NULL,
   `serie_monitor` int(11) DEFAULT NULL,
   `serie_teclado` int(11) DEFAULT NULL,
-  `serie_EstAcu` int(11) DEFAULT NULL,
+  `serie_EstAcu` int(11) DEFAULT '0',
   `serie_eqred` int(11) DEFAULT NULL,
   `serie_imp` int(11) DEFAULT NULL,
   `fecha_registro` date NOT NULL,
@@ -1186,77 +1054,6 @@ CREATE TABLE `ws_integraciones` (
   `estadoAnu` int(11) NOT NULL DEFAULT '0',
   `registro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `ws_integraciones`
---
-
-INSERT INTO `ws_integraciones` (`idIntegracion`, `correlativo_integracion`, `nro_eq`, `ip`, `serie_pc`, `serie_monitor`, `serie_teclado`, `serie_EstAcu`, `serie_eqred`, `serie_imp`, `fecha_registro`, `tipo_equipo`, `responsable`, `oficina_in`, `servicio_in`, `estado`, `condicion`, `estadoAnu`, `registro`) VALUES
-(1, 'FT-2021-00001', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-02-25', 0, 0, 0, 0, 0, 0, 1, '2021-02-25 15:26:22'),
-(2, 'FT-2021-00002', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-02-25', 0, 0, 0, 0, 0, 0, 1, '2021-02-25 15:26:46'),
-(3, 'FT-2021-00003', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-02-25', 0, 0, 0, 0, 0, 0, 1, '2021-02-25 15:27:04'),
-(4, 'FT-2021-00004', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-02-25', 0, 0, 0, 0, 0, 0, 1, '2021-02-25 15:27:46'),
-(5, 'FT-2021-00005', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-02-25', 0, 0, 0, 0, 0, 0, 1, '2021-02-25 15:29:32'),
-(6, 'FT-2021-00006', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-02-25', 0, 0, 0, 0, 0, 0, 1, '2021-02-25 16:05:17'),
-(7, 'FT-2021-00007', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-02-25', 0, 0, 0, 0, 0, 0, 1, '2021-02-25 16:31:05'),
-(8, 'FT-2021-00008', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-02-25', 0, 0, 0, 0, 0, 0, 1, '2021-02-25 18:11:49'),
-(9, 'FT-2021-00009', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-02-25', 0, 0, 0, 0, 0, 0, 1, '2021-02-25 18:14:35'),
-(10, 'FT-2021-00010', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-02-25', 0, 0, 0, 0, 0, 0, 1, '2021-02-25 18:15:19'),
-(11, 'FT-2021-00011', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-02-25', 0, 0, 0, 0, 0, 0, 1, '2021-02-25 18:32:56'),
-(12, 'FT-2021-00012', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-02-25', 0, 0, 0, 0, 0, 0, 1, '2021-02-25 19:21:44'),
-(13, 'FT-2021-00013', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-02-25', 0, 0, 0, 0, 0, 0, 1, '2021-02-25 19:39:11'),
-(14, 'FT-2021-00014', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-02-25', 0, 0, 0, 0, 0, 0, 1, '2021-02-25 19:47:03'),
-(15, 'FT-2021-00015', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-02-26', 0, 0, 0, 0, 0, 0, 1, '2021-02-26 15:24:00'),
-(16, 'FT-2021-00016', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-02-26', 0, 0, 0, 0, 0, 0, 1, '2021-02-26 15:59:14'),
-(17, 'FT-2021-00017', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-02-26', 0, 0, 0, 0, 0, 0, 1, '2021-02-26 16:08:50'),
-(18, 'FT-2021-00018', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-02-26', 0, 0, 0, 0, 0, 0, 1, '2021-02-26 19:41:50'),
-(19, 'FT-2021-00019', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-02-26', 0, 0, 0, 0, 0, 0, 1, '2021-02-26 19:42:13'),
-(20, 'FT-2021-00020', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-02-26', 0, 0, 0, 0, 0, 0, 1, '2021-02-26 19:45:12'),
-(21, 'FT-2021-00021', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-04', 0, 0, 0, 0, 0, 0, 1, '2021-03-04 16:06:35'),
-(22, 'FT-2021-00022', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-04', 0, 0, 0, 0, 0, 0, 1, '2021-03-04 19:47:04'),
-(23, 'FT-2021-00023', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-04', 0, 0, 0, 0, 0, 0, 1, '2021-03-04 19:48:37'),
-(24, 'FT-2021-00024', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-04', 0, 0, 0, 0, 0, 0, 1, '2021-03-04 19:49:02'),
-(25, 'FT-2021-00025', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-04', 0, 0, 0, 0, 0, 0, 1, '2021-03-04 19:49:32'),
-(26, 'FT-2021-00026', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-04', 0, 0, 0, 0, 0, 0, 1, '2021-03-04 19:50:00'),
-(27, 'FT-2021-00027', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-04', 0, 0, 0, 0, 0, 0, 1, '2021-03-04 20:02:47'),
-(28, 'FT-2021-00028', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-08', 0, 0, 0, 0, 0, 0, 1, '2021-03-08 17:16:57'),
-(29, 'FT-2021-00029', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-08', 0, 0, 0, 0, 0, 0, 1, '2021-03-08 17:26:45'),
-(30, 'FT-2021-00030', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-08', 0, 0, 0, 0, 0, 0, 1, '2021-03-08 17:27:08'),
-(31, 'FT-2021-00031', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-08', 0, 0, 0, 0, 0, 0, 1, '2021-03-08 17:27:39'),
-(32, 'FT-2021-00032', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-08', 0, 0, 0, 0, 0, 0, 1, '2021-03-08 17:30:43'),
-(33, 'FT-2021-00033', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-08', 0, 0, 0, 0, 0, 0, 1, '2021-03-08 18:05:26'),
-(34, 'FT-2021-00034', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-08', 0, 0, 0, 0, 0, 0, 1, '2021-03-08 18:07:01'),
-(35, 'FT-2021-00035', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-09', 0, 0, 0, 0, 0, 0, 1, '2021-03-09 16:15:20'),
-(36, 'FT-2021-00036', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-09', 0, 0, 0, 0, 0, 0, 1, '2021-03-09 18:46:31'),
-(37, 'FT-2021-00037', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-10', 0, 0, 0, 0, 0, 0, 1, '2021-03-10 14:23:57'),
-(38, 'FT-2021-00038', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-15', 0, 0, 0, 0, 0, 0, 1, '2021-03-15 15:20:23'),
-(39, 'FT-2021-00039', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-15', 0, 0, 0, 0, 0, 0, 1, '2021-03-15 15:26:13'),
-(40, 'FT-2021-00040', 'SW_00001', '', NULL, NULL, NULL, NULL, 58, NULL, '2021-03-15', 2, 9, 13, 18, 1, 1, 0, '2021-03-15 15:26:46'),
-(41, 'FT-2021-00041', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-15', 0, 0, 0, 0, 0, 0, 1, '2021-03-15 15:35:39'),
-(42, 'FT-2021-00042', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-22', 0, 0, 0, 0, 0, 0, 1, '2021-03-22 15:22:50'),
-(43, 'FT-2021-00043', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-22', 0, 0, 0, 0, 0, 0, 1, '2021-03-22 17:20:09'),
-(44, 'FT-2021-00044', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-22', 0, 0, 0, 0, 0, 0, 1, '2021-03-22 19:53:44'),
-(45, 'FT-2021-00045', 'LAP_0004', '172.16.5.125', 76, NULL, NULL, NULL, NULL, NULL, '2021-03-22', 4, 9, 13, 18, 1, 1, 0, '2021-03-22 19:56:21'),
-(46, 'FT-2021-00046', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-22', 0, 0, 0, 0, 0, 0, 1, '2021-03-22 20:09:43'),
-(49, 'FT-2021-00047', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-23', 0, 0, 0, 0, 0, 0, 1, '2021-03-23 17:07:08'),
-(50, 'FT-2021-00048', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-23', 0, 0, 0, 0, 0, 0, 1, '2021-03-23 17:47:51'),
-(51, 'FT-2021-00049', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-25', 0, 0, 0, 0, 0, 0, 1, '2021-03-25 19:27:35'),
-(52, 'FT-2021-00050', 'LAP_054', '172.31.6.50', 81, NULL, NULL, NULL, NULL, NULL, '2021-03-25', 4, 9, 13, 18, 1, 1, 0, '2021-03-25 19:35:10'),
-(53, 'FT-2021-00051', 'PC_OCP', '172.16.5.100', 54, 56, 55, 57, NULL, NULL, '2021-03-25', 1, 9, 13, 18, 1, 1, 0, '2021-03-25 19:35:29'),
-(54, 'FT-2021-00052', 'SERV_0001', '172.16.0.4', 83, NULL, NULL, NULL, NULL, NULL, '2021-03-25', 5, 9, 13, 18, 1, 1, 0, '2021-03-25 19:45:50'),
-(55, 'FT-2021-00053', 'ACP_0001', '', NULL, NULL, NULL, NULL, 84, NULL, '2021-03-26', 8, 9, 13, 18, 1, 1, 0, '2021-03-26 14:32:48'),
-(56, 'FT-2021-00054', 'RT_0001', '', NULL, NULL, NULL, NULL, 75, NULL, '2021-03-26', 6, 12, 10, 24, 1, 1, 0, '2021-03-26 14:33:10'),
-(57, 'FT-2021-00055', 'FRW_0001', '', NULL, NULL, NULL, NULL, 80, NULL, '2021-03-26', 8, 11, 10, 24, 1, 1, 0, '2021-03-26 14:33:34'),
-(58, 'FT-2021-00056', 'ANULADO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-03-26', 0, 0, 0, 0, 0, 0, 1, '2021-03-26 14:35:40'),
-(59, 'FT-2021-00057', 'FTC_0001', '', NULL, NULL, NULL, NULL, NULL, 69, '2021-03-26', 9, 9, 13, 18, 1, 1, 0, '2021-03-26 15:03:30'),
-(60, 'FT-2021-00058', 'ESC_001', '', NULL, NULL, NULL, NULL, NULL, 85, '2021-03-26', 3, 9, 13, 18, 1, 1, 0, '2021-03-26 15:04:50'),
-(61, 'FT-2021-00059', 'IMP_0001', '172.16.5.210', NULL, NULL, NULL, NULL, NULL, 59, '2021-03-26', 3, 9, 13, 18, 1, 1, 0, '2021-03-26 15:09:11'),
-(62, 'FT-2021-00060', 'FTC_001', '', NULL, NULL, NULL, NULL, NULL, 86, '2021-03-26', 9, 9, 13, 18, 1, 1, 0, '2021-03-26 15:12:42'),
-(63, 'FT-2021-00061', 'IMP_0004', '', NULL, NULL, NULL, NULL, NULL, 78, '2021-03-26', 3, 11, 10, 24, 1, 1, 0, '2021-03-26 15:13:31'),
-(64, 'FT-2021-00062', 'TIC_0001', '', NULL, NULL, NULL, NULL, NULL, 87, '2021-03-26', 14, 13, 13, 16, 1, 1, 0, '2021-03-26 15:15:50'),
-(65, 'FT-2021-00063', 'PYT_001', '', NULL, NULL, NULL, NULL, NULL, 88, '2021-03-26', 16, 13, 13, 16, 1, 1, 0, '2021-03-26 15:17:29'),
-(66, 'FT-2021-00064', 'MRK_0001', '', NULL, NULL, NULL, NULL, NULL, 89, '2021-03-26', 17, 13, 13, 16, 1, 1, 0, '2021-03-26 15:20:12'),
-(67, 'FT-2021-00065', 'LAP_0555', '172.16.8.100', 90, NULL, NULL, NULL, NULL, NULL, '2021-03-26', 4, 9, 13, 18, 1, 1, 0, '2021-03-26 18:02:14');
 
 --
 -- Disparadores `ws_integraciones`
@@ -1329,21 +1126,6 @@ CREATE TABLE `ws_mantenimientos` (
   `estAnulado` int(11) NOT NULL DEFAULT '1',
   `fecha_creacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `ws_mantenimientos`
---
-
-INSERT INTO `ws_mantenimientos` (`idMantenimiento`, `correlativo_Mant`, `fRegistroMant`, `tipEquipo`, `condInicial`, `idEquip`, `oficEquip`, `areaEquip`, `respoEquip`, `logdeta`, `descInc`, `diagnostico1`, `diagnostico2`, `diagnostico3`, `diagnostico4`, `diagnostico5`, `diagnostico6`, `diagnostico7`, `diagnostico8`, `tecEvalua`, `fEvalua`, `primera_eval`, `fInicio`, `fFin`, `tipTrabajo`, `tecResp`, `accion1`, `accion2`, `accion3`, `accion4`, `accion5`, `accion6`, `accion7`, `accion8`, `recomendaciones`, `estAtencion`, `condFinal`, `servTerce`, `otros`, `obsOtros`, `usRegistra`, `sgmtoManto`, `estAnulado`, `fecha_creacion`) VALUES
-(1, 'FM-2021-00001', '2021-04-25', 1, 1, 54, 13, 18, 9, 'N° Equipo: PC_OCP || Serie N°: MXL2500TDK || Cod.Patr: 740899500413 || Marca: HP || Modelo: ELITE 8300 || Descripción: PC DE ESCRITORIO || IP: 172.16.5.100 || Procesador: CORE I7-3.40 GHZ || RAM: 12GB || Disco Duro: 1TB', 'ajam1', 24, 4, 25, 7, 14, 20, 23, 11, 4, '2021-04-21', 'ssss', '2021-04-22', '2021-04-23', 3, 4, 12, 1, 15, 2, 8, 11, 5, 13, 'asaa', 1, 1, 'NO', 'SI', 'aaaa', 1, 1, 1, '2021-04-26 03:38:29'),
-(2, 'FM-2021-00002', '2021-04-25', 4, 1, 76, 13, 18, 9, 'N° Equipo: LAP_0004 || Serie N°: LAPTO1 || Cod.Patr: 155 || Marca: ACER || Modelo: AC-151 || Descripción: LAPTOP DE TRABAJO || IP: 172.16.5.125 || Procesador: CORE I7-3.40 GHZ || RAM: 8GB || Disco Duro: 1TB', 'asa', 4, 10, 24, 25, 7, 14, 0, 0, 6, '2021-04-22', 'asa', '2021-04-23', '2021-04-24', 1, 5, 6, 1, 15, 12, 2, 13, 17, 0, 'asa', 2, 1, 'NO', 'SI', 'AASS', 1, 1, 1, '2021-04-26 03:43:23'),
-(3, 'FM-2021-00003', '2021-04-26', 3, 1, 78, 10, 24, 11, 'N° Equipo: IMP_0004 || Serie N°: IMPRE12 || Cod.Patr: 112 || Marca: IMP || Modelo: UMO || Descripción: UMo || IP: ', 'imp2', 6, 27, 16, 17, 22, 0, 0, 0, 6, '2021-04-25', 'asas', '2021-04-25', '2021-04-25', 2, 4, 9, 3, 21, 20, 24, 0, 0, 0, 'asas', 2, 1, 'NO', 'NO', '', 1, 3, 1, '2021-04-26 05:08:22'),
-(4, 'FM-2021-00004', '2021-04-26', 12, 2, 91, 13, 16, 13, 'Serie N°: ACUM1 || Cod.Patr: 151515 || Marca: ACUMU || Modelo: ACUMLA || Descripción: ACUMA', 'asas', 13, 30, 27, 17, 0, 0, 0, 0, 5, '2021-04-24', 'asas', '2021-04-24', '2021-04-25', 2, 4, 9, 21, 3, 24, 0, 0, 0, 0, 'asas', 1, 2, 'NO', 'SI', 'asasas', 1, 3, 1, '2021-04-26 05:09:22'),
-(5, 'FM-2021-00005', '2021-04-26', 8, 1, 84, 13, 18, 9, 'N° Equipo: ACP_0001 || Serie N°: ACP || Cod.Patr: 12232 || Marca: ACO || Modelo: ACP || Descripción: ACP || IP: ', 'asas', 21, 5, 26, 15, 0, 0, 0, 0, 5, '2021-04-25', 'asas', '2021-04-25', '2021-04-25', 1, 5, 27, 28, 29, 30, 0, 0, 0, 0, 'asas', 1, 2, 'NO', 'NO', '', 1, 2, 1, '2021-04-26 05:10:26'),
-(6, 'FM-2021-00006', '2021-04-26', 9, 1, 86, 13, 18, 9, 'N° Equipo: FTC_001 || Serie N°: FOCOTOCOPIOA || Cod.Patr: 136172 || Marca: FOTO || Modelo: FOTO || Descripción: FOTO || IP: ', 'aaa', 0, 0, 0, 0, 0, 0, 0, 0, 5, '2021-04-26', 'eee', '2021-04-26', '2021-04-26', 1, 6, 0, 0, 0, 0, 0, 0, 0, 0, 'eeee', 1, 1, 'NO', 'SI', 'aaaaa', 1, 3, 2, '2021-04-26 06:28:05'),
-(7, 'FM-2021-00007', '2021-04-26', 15, 1, 85, 13, 18, 9, 'N° Equipo: ESC_001 || Serie N°: ESCANOR || Cod.Patr: 1237 || Marca: ESCANER || Modelo: ESCANER || Descripción: ESNCAER || IP: ', 'ajam 1', 6, 27, 0, 0, 0, 0, 0, 0, 5, '2021-04-26', 'asas', '2021-04-26', '2021-04-26', 2, 4, 9, 3, 21, 0, 0, 0, 0, 0, 'asasas', 2, 2, 'NO', 'SI', 'asasas', 1, 3, 1, '2021-04-26 18:35:51'),
-(8, 'FM-2021-00008', '2021-04-27', 1, 1, 54, 13, 18, 9, 'N° Equipo: PC_OCP || Serie N°: MXL2500TDK || Cod.Patr: 740899500413 || Marca: HP || Modelo: ELITE 8300 || Descripción: PC DE ESCRITORIO || IP: 172.16.5.100 || Procesador: CORE I7-3.40 GHZ || RAM: 12GB || Disco Duro: 1TB', 'EQUIPO ENCIENDE LENTAMENTEEQUIPO ENCIENDE LENTAMENTEEQUIPO ENCIENDE EQUIPO ENCIENDE EQUIPOEEEEE', 24, 25, 14, 4, 7, 20, 23, 11, 4, '2021-04-27', 'SE VERIFICA SUCIEDAD EN EL EQUIPO', '2021-04-27', '2021-04-27', 2, 6, 1, 15, 12, 2, 17, 14, 13, 4, 'EQUIPO ENCIENDE LENTAMENTEEQUIPO ENCIENDE LENTAMENTEEQUIPO ENCIENDE EQUIPO ENCIENDE EQUIPOEEEEEQUIPO ENCIENDE LENTAMENTEEQUIPO ENCIENDE LENTAMENTEEQUIPO ENCIENDE EQUIPO ENCIENDE EQUIPOEEEEEQUIPO ENCIENDE LENTAMENTEEQUIPO ENCIENDE LENTAMENTEEQUIPO ENCIENDE EQUIPO ENCIENDEE', 1, 1, 'NO', 'NO', '', 1, 1, 1, '2021-04-27 14:38:34'),
-(9, 'FM-2021-00009', '2021-04-27', 4, 1, 76, 13, 18, 9, 'N° Equipo: LAP_0004 || Serie N°: LAPTO1 || Cod.Patr: 155 || Marca: ACER || Modelo: AC-151 || Descripción: LAPTOP DE TRABAJO || IP: 172.16.5.125 || Procesador: CORE I7-3.40 GHZ || RAM: 8GB || Disco Duro: 1TB', 'asasas', 24, 25, 0, 0, 0, 0, 0, 0, 4, '2021-04-26', 'asasas', '2021-04-27', '2021-04-27', 1, 5, 12, 1, 2, 0, 0, 0, 0, 0, 'EQUIPO ENCIENDE LENTAMENTEEQUIPO ENCIENDE ', 1, 1, 'NO', 'NO', '', 1, 1, 1, '2021-04-27 16:15:45');
 
 --
 -- Disparadores `ws_mantenimientos`
@@ -1439,24 +1221,6 @@ CREATE TABLE `ws_reposiciones` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `ws_reposiciones`
---
-
-INSERT INTO `ws_reposiciones` (`idReposicion`, `correlativo_Repo`, `fRegistroRepo`, `tipEquipo`, `condInicial`, `idEquip`, `oficEquip`, `areaEquip`, `respoEquip`, `logdeta`, `descInc`, `diagnostico1`, `diagnostico2`, `diagnostico3`, `diagnostico4`, `diagnostico5`, `diagnostico6`, `diagnostico7`, `diagnostico8`, `tecEvalua`, `fEvalua`, `primera_eval`, `fInicio`, `fFin`, `tipTrabajo`, `tecResp`, `accion1`, `accion2`, `accion3`, `accion4`, `accion5`, `accion6`, `accion7`, `accion8`, `recomendaciones`, `estAtencion`, `condFinal`, `servTerce`, `otros`, `obsOtros`, `usRegistra`, `sgmtoManto`, `estAnulado`, `fecha_creacion`) VALUES
-(1, 'FR-2021-00001', '2021-04-25', 1, 1, 54, 13, 18, 9, 'N° Equipo: PC_OCP || Serie N°: MXL2500TDK || Cod.Patr: 740899500413 || Marca: HP || Modelo: ELITE 8300 || Descripción: PC DE ESCRITORIO || IP: 172.16.5.100 || Procesador: CORE I7-3.40 GHZ || RAM: 12GB || Disco Duro: 1TB', 'SE VERIFICA EQUIPO CON FALLAS', 24, 4, 25, 7, 14, 20, 23, 11, 4, '2021-04-21', 'PARA REPOSICIÓN', '2021-04-22', '2021-04-23', 3, 4, 12, 1, 15, 2, 8, 11, 5, 13, 'SE RECOMIENDA SOLICITAR REPOSICIÓN O CAMBIO DE EQUIPO', 1, 1, 'NO', 'NO', '', 1, 1, 1, '2021-04-26 08:38:29'),
-(2, 'FR-2021-00002', '2021-04-25', 4, 1, 76, 13, 18, 9, 'N° Equipo: LAP_0004 || Serie N°: LAPTO1 || Cod.Patr: 155 || Marca: ACER || Modelo: AC-151 || Descripción: LAPTOP DE TRABAJO || IP: 172.16.5.125 || Procesador: CORE I7-3.40 GHZ || RAM: 8GB || Disco Duro: 1TB', 'asa', 0, 0, 0, 0, 0, 0, 0, 0, 5, '2021-04-22', 'asa', '2021-04-23', '2021-04-24', 1, 5, 0, 0, 0, 0, 0, 0, 0, 0, 'asa', 2, 1, 'NO', 'SI', 'AASS', 1, 1, 2, '2021-04-26 08:43:23'),
-(3, 'FR-2021-00003', '2021-04-26', 3, 1, 78, 10, 24, 11, 'N° Equipo: IMP_0004 || Serie N°: IMPRE12 || Cod.Patr: 112 || Marca: IMP || Modelo: UMO || Descripción: UMo || IP: ', 'imp2', 0, 0, 0, 0, 0, 0, 0, 0, 6, '2021-04-25', 'asas', '2021-04-25', '2021-04-25', 2, 6, 0, 0, 0, 0, 0, 0, 0, 0, 'asas', 2, 1, 'NO', 'NO', '', 1, 3, 2, '2021-04-26 10:08:22'),
-(4, 'FR-2021-00004', '2021-04-26', 12, 2, 91, 13, 16, 13, 'Serie N°: ACUM1 || Cod.Patr: 151515 || Marca: ACUMU || Modelo: ACUMLA || Descripción: ACUMA', 'asas', 0, 0, 0, 0, 0, 0, 0, 0, 5, '2021-04-24', 'asas', '2021-04-24', '2021-04-25', 2, 4, 0, 0, 0, 0, 0, 0, 0, 0, 'asas', 1, 2, 'NO', 'SI', 'asasas', 1, 3, 2, '2021-04-26 10:09:22'),
-(5, 'FR-2021-00005', '2021-04-26', 8, 1, 84, 13, 18, 9, 'N° Equipo: ACP_0001 || Serie N°: ACP || Cod.Patr: 12232 || Marca: ACO || Modelo: ACP || Descripción: ACP || IP: ', 'asas', 0, 0, 0, 0, 0, 0, 0, 0, 5, '2021-04-25', 'asas', '2021-04-25', '2021-04-25', 1, 5, 0, 0, 0, 0, 0, 0, 0, 0, 'asas', 1, 2, 'NO', 'NO', '', 1, 2, 2, '2021-04-26 10:10:26'),
-(6, 'FR-2021-00006', '2021-04-26', 9, 1, 86, 13, 18, 9, 'N° Equipo: FTC_001 || Serie N°: FOCOTOCOPIOA || Cod.Patr: 136172 || Marca: FOTO || Modelo: FOTO || Descripción: FOTO || IP: ', 'aaa', 0, 0, 0, 0, 0, 0, 0, 0, 5, '2021-04-26', 'eee', '2021-04-26', '2021-04-26', 1, 6, 0, 0, 0, 0, 0, 0, 0, 0, 'eeee', 1, 1, 'NO', 'SI', 'aaaaa', 1, 3, 2, '2021-04-26 11:28:05'),
-(7, 'FR-2021-00007', '2021-04-26', 4, 1, 81, 13, 18, 9, 'N° Equipo: LAP_054 || Serie N°: AKA || Cod.Patr: 13253 || Marca: AKA || Modelo: AKA || Descripción: AKA || IP: 172.31.6.50 || Procesador: AKA-AK || RAM: AKA || Disco Duro: AKA', 'ASAS', 24, 0, 0, 0, 0, 0, 0, 0, 5, '2021-04-26', 'ASA', '2021-04-26', '2021-04-26', 1, 4, 8, 22, 0, 0, 0, 0, 0, 0, 'ASAS', 1, 1, 'NO', 'SI', 'ASASASASAS', 1, 1, 1, '2021-04-26 19:10:08'),
-(8, 'FR-2021-00008', '2021-04-26', 17, 2, 89, 13, 16, 13, 'N° Equipo: MRK_0001 || Serie N°: MARCADOR1 || Cod.Patr: 11212 || Marca: MARJ || Modelo: MARK211 || Descripción: KK || IP: ', 'ASASasas', 6, 27, 17, 16, 22, 31, 18, 0, 4, '2021-04-26', 'ASASasas', '2021-04-26', '2021-04-26', 2, 5, 9, 3, 20, 21, 24, 7, 0, 0, 'ASASasas', 1, 2, 'NO', 'SI', 'asasas', 1, 3, 1, '2021-04-26 19:11:47'),
-(9, 'FR-2021-00009', '2021-04-27', 1, 1, 54, 13, 18, 9, 'N° Equipo: PC_OCP || Serie N°: MXL2500TDK || Cod.Patr: 740899500413 || Marca: HP || Modelo: ELITE 8300 || Descripción: PC DE ESCRITORIO || IP: 172.16.5.100 || Procesador: CORE I7-3.40 GHZ || RAM: 12GB || Disco Duro: 1TB', 'ASAS', 24, 11, 9, 0, 0, 0, 0, 0, 5, '2021-04-27', 'ASAS', '2021-04-27', '2021-04-27', 2, 4, 22, 11, 10, 0, 0, 0, 0, 0, 'ASSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS', 1, 1, 'NO', 'SI', 'ASASASAS', 1, 1, 1, '2021-04-27 17:44:54'),
-(10, 'FR-2021-00010', '2021-04-27', 9, 1, 86, 13, 18, 9, 'N° Equipo: FTC_001 || Serie N°: FOCOTOCOPIOA || Cod.Patr: 136172 || Marca: FOTO || Modelo: FOTO || Descripción: FOTO || IP: ', 'asasasasasas', 31, 6, 0, 0, 0, 0, 0, 0, 4, '2021-04-27', 'asasa', '2021-04-27', '2021-04-27', 1, 6, 21, 3, 0, 0, 0, 0, 0, 0, 'asasasas', 1, 1, 'NO', 'NO', '', 1, 3, 1, '2021-04-28 03:54:06'),
-(11, 'FR-2021-00011', '2021-04-27', 8, 1, 84, 13, 18, 9, 'N° Equipo: ACP_0001 || Serie N°: ACP || Cod.Patr: 12232 || Marca: ACO || Modelo: ACP || Descripción: ACP || IP: ', 'asas', 5, 21, 0, 0, 0, 0, 0, 0, 4, '2021-04-27', 'asas', '2021-04-27', '2021-04-27', 1, 5, 25, 26, 28, 0, 0, 0, 0, 0, 'asasas', 1, 1, 'NO', 'NO', '', 1, 2, 1, '2021-04-28 03:55:42'),
-(12, 'FR-2021-00012', '2021-04-27', 11, 1, 55, 13, 18, 9, 'Serie N°: BDMEP0C5Y7N1FM || Cod.Patr: 009038 || Marca: HP || Modelo: KB-1156 || Descripción: TECLADO PERFI', 'sjsjsjss', 22, 31, 30, 0, 0, 0, 0, 0, 5, '2021-04-27', 'asasas', '2021-04-27', '2021-04-27', 2, 4, 9, 3, 21, 0, 0, 0, 0, 0, 'asasas', 1, 1, 'NO', 'NO', '', 1, 3, 1, '2021-04-28 03:59:04');
-
---
 -- Disparadores `ws_reposiciones`
 --
 DELIMITER $$
@@ -1488,16 +1252,6 @@ CREATE TABLE `ws_responsables` (
   `idOficina` int(11) DEFAULT NULL,
   `idServicio` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `ws_responsables`
---
-
-INSERT INTO `ws_responsables` (`idResponsable`, `dni`, `nombresResp`, `apellidosResp`, `idOficina`, `idServicio`) VALUES
-(9, '77478995', 'Olger Ivan', 'Castro Palacios', 13, 18),
-(11, '45249201', 'Moises Ronald', 'Calderon Cotos', 10, 24),
-(12, '42095865', 'Roner', 'Mas Valle', 10, 24),
-(13, '42162499', 'William', 'Guerrero Sandoval', 13, 16);
 
 -- --------------------------------------------------------
 
@@ -1531,24 +1285,6 @@ CREATE TABLE `ws_servicios` (
   `subarea` text CHARACTER SET latin1 NOT NULL,
   `fecha_creacion` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `ws_servicios`
---
-
-INSERT INTO `ws_servicios` (`id_subarea`, `id_area`, `subarea`, `fecha_creacion`) VALUES
-(12, 31, 'Sala de Operaciones', '2020-09-22 00:38:42'),
-(13, 31, 'Jefatura', '2020-09-22 00:39:28'),
-(14, 4, 'Jefatura', '2020-09-22 00:39:50'),
-(15, 13, 'Digitación', '2020-09-22 19:14:30'),
-(16, 13, 'Soporte Técnico', '2021-02-04 23:52:58'),
-(17, 13, 'Jefatura', '2021-02-06 05:33:18'),
-(18, 13, 'Desarrollo', '2021-02-07 01:46:17'),
-(19, 3, 'Jefatura', '2021-03-10 15:33:55'),
-(20, 8, 'Adjunta', '2021-03-12 18:37:30'),
-(21, 8, 'Secretaría', '2021-03-12 18:38:02'),
-(23, 32, 'Jefatura', '2021-03-12 19:10:57'),
-(24, 10, 'Contabilidad', '2021-03-15 16:26:45');
 
 -- --------------------------------------------------------
 
@@ -1617,10 +1353,10 @@ CREATE TABLE `ws_usuarios` (
 --
 
 INSERT INTO `ws_usuarios` (`id_usuario`, `id_perfil`, `dni`, `nombres`, `apellido_paterno`, `apellido_materno`, `cuenta`, `clave`, `fecha_registro`, `estado`, `nintentos`) VALUES
-(1, 1, '77478995', 'Olger Ivan', 'Castro', 'Palacios', 'ocastrop', '$2a$07$usesomesillystringforeVF6hLwtgsUBAmUN4cGEd8tYF74gSHRW', '2020-03-02 16:22:25', 1, 1),
+(1, 1, '77478995', 'Olger Ivan', 'Castro', 'Palacios', 'ocastrop', '$2a$07$usesomesillystringforeVF6hLwtgsUBAmUN4cGEd8tYF74gSHRW', '2020-03-02 16:22:25', 1, 0),
 (2, 2, '40195996', 'Monica Nohemi', 'Rosas', 'Sanchez', 'rosasmn', '$2a$07$usesomesillystringforeoRNSqF5ebwOJ.HFIcVhNJ65bww3hpNi', '2021-03-11 15:46:33', 1, 0),
 (3, 2, '09966920', 'Javier Octavio', 'Sernaque', 'Quintana', 'jsernaqueq', '$2a$07$usesomesillystringforeAR0AYDLcMUwZJGc02Ta3T98Pn6LH7pi', '2021-03-11 15:48:50', 1, 0),
-(4, 3, '42162499', 'Edwin William', 'Guerrero', 'Sandoval', 'wguerreros', '$2a$07$usesomesillystringforeLTVm.b0q8aUqKwOyqhotBMNXub2QEkq', '2021-03-11 15:52:31', 1, 0),
+(4, 3, '42162499', 'Edwin William', 'Guerrero', 'Sandoval', 'wguerreros', '$2a$07$usesomesillystringforeLTVm.b0q8aUqKwOyqhotBMNXub2QEkq', '2021-03-11 15:52:31', 1, 1),
 (5, 4, '09401769', 'Segundo Andres', 'Cruzado', 'Cotrina', 'acruzadoc', '$2a$07$usesomesillystringfore9OBdlwIyha0dt84yf389aUSqD287miS', '2021-03-11 16:02:14', 1, 0),
 (6, 4, '09965283', 'Ivan Victor', 'Chuquicaña', 'Fernandez', 'vchuquicañaf', '$2a$07$usesomesillystringforetG4v5XsxFT5vjiUpPsTv0VEdAMT4jmW', '2021-03-11 16:02:59', 1, 0);
 
@@ -1639,89 +1375,6 @@ CREATE TABLE `ws_z_auditoria_mantenimientos` (
   `dateInstant` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `ws_z_auditoria_mantenimientos`
---
-
-INSERT INTO `ws_z_auditoria_mantenimientos` (`idAudMant`, `idDoc`, `usExec`, `accExec`, `fecha_audi`, `dateInstant`) VALUES
-(1, 1, 1, 'Modificación', '2021-04-04', '2021-04-26 19:21:25'),
-(2, 5, 1, 'Modificación', '2021-04-04', '2021-04-26 19:21:25'),
-(3, 5, 1, 'Modificación', '2021-04-04', '2021-04-26 19:21:25'),
-(4, 4, 1, 'Modificación', '2021-04-04', '2021-04-26 19:21:25'),
-(5, 5, 1, 'Modificación', '2021-04-05', '2021-04-26 19:21:25'),
-(6, 6, 1, 'Modificación', '2021-04-05', '2021-04-26 19:21:25'),
-(7, 5, 1, 'Modificación', '2021-04-05', '2021-04-26 19:21:25'),
-(8, 10, 1, 'Anulación', '2021-04-05', '2021-04-26 19:21:25'),
-(9, 10, 1, 'Anulación', '2021-04-05', '2021-04-26 19:21:25'),
-(10, 9, 1, 'Anulación', '2021-04-05', '2021-04-26 19:21:25'),
-(11, 11, 1, 'Modificación', '2021-04-05', '2021-04-26 19:21:25'),
-(12, 6, 1, 'Modificación', '2021-04-05', '2021-04-26 19:21:25'),
-(13, 6, 1, 'Modificación', '2021-04-05', '2021-04-26 19:21:25'),
-(14, 6, 1, 'Modificación', '2021-04-05', '2021-04-26 19:21:25'),
-(15, 8, 1, 'Modificación', '2021-04-06', '2021-04-26 19:21:25'),
-(16, 5, 1, 'Modificación', '2021-04-06', '2021-04-26 19:21:25'),
-(17, 7, 1, 'Modificación', '2021-04-06', '2021-04-26 19:21:25'),
-(18, 2, 1, 'Anulación', '2021-04-25', '2021-04-26 19:21:25'),
-(19, 5, 1, 'Modificación', '2021-04-25', '2021-04-26 19:21:25'),
-(20, 4, 1, 'Modificación', '2021-04-25', '2021-04-26 19:21:25'),
-(21, 3, 1, 'Modificación', '2021-04-25', '2021-04-26 19:21:25'),
-(22, 1, 1, 'Modificación', '2021-04-25', '2021-04-26 19:21:25'),
-(23, 1, 1, 'Modificación', '2021-04-25', '2021-04-26 19:21:25'),
-(24, 1, 1, 'Modificación', '2021-04-25', '2021-04-26 19:21:25'),
-(25, 2, 1, 'Modificación', '2021-04-25', '2021-04-26 19:21:25'),
-(26, 2, 1, 'Modificación', '2021-04-25', '2021-04-26 19:21:25'),
-(27, 2, 1, 'Modificación', '2021-04-25', '2021-04-26 19:21:25'),
-(28, 1, 1, 'Modificación', '2021-04-25', '2021-04-26 19:21:25'),
-(29, 2, 1, 'Modificación', '2021-04-25', '2021-04-26 19:21:25'),
-(30, 2, 1, 'Modificación', '2021-04-25', '2021-04-26 19:21:25'),
-(31, 2, 1, 'Modificación', '2021-04-25', '2021-04-26 19:21:25'),
-(32, 2, 1, 'Modificación', '2021-04-25', '2021-04-26 19:21:25'),
-(33, 2, 1, 'Modificación', '2021-04-25', '2021-04-26 19:21:25'),
-(34, 2, 1, 'Modificación', '2021-04-25', '2021-04-26 19:21:25'),
-(35, 2, 1, 'Modificación', '2021-04-25', '2021-04-26 19:21:25'),
-(36, 2, 1, 'Modificación', '2021-04-25', '2021-04-26 19:21:25'),
-(37, 2, 1, 'Modificación', '2021-04-25', '2021-04-26 19:21:25'),
-(38, 2, 1, 'Modificación', '2021-04-25', '2021-04-26 19:21:25'),
-(39, 1, 1, 'Modificación', '2021-04-25', '2021-04-26 19:21:25'),
-(40, 2, 1, 'Modificación', '2021-04-25', '2021-04-26 19:21:25'),
-(41, 3, 1, 'Modificación', '2021-04-26', '2021-04-26 19:21:25'),
-(42, 4, 1, 'Modificación', '2021-04-26', '2021-04-26 19:21:25'),
-(43, 4, 1, 'Modificación', '2021-04-26', '2021-04-26 19:21:25'),
-(44, 5, 1, 'Modificación', '2021-04-26', '2021-04-26 19:21:25'),
-(45, 1, 1, 'Modificación', '2021-04-26', '2021-04-26 19:21:25'),
-(46, 1, 1, 'Modificación', '2021-04-26', '2021-04-26 19:21:25'),
-(47, 1, 1, 'Modificación', '2021-04-26', '2021-04-26 19:21:25'),
-(48, 1, 1, 'Modificación', '2021-04-26', '2021-04-26 19:21:25'),
-(49, 3, 1, 'Modificación', '2021-04-26', '2021-04-26 19:21:25'),
-(50, 5, 1, 'Modificación', '2021-04-26', '2021-04-26 19:21:25'),
-(51, 5, 1, 'Modificación', '2021-04-26', '2021-04-26 19:21:25'),
-(52, 4, 1, 'Modificación', '2021-04-26', '2021-04-26 19:21:25'),
-(53, 4, 1, 'Modificación', '2021-04-26', '2021-04-26 19:21:25'),
-(54, 6, 1, 'Anulación', '2021-04-26', '2021-04-26 19:21:25'),
-(55, 7, 1, 'Modificación', '2021-04-26', '2021-04-26 19:21:40'),
-(56, 5, 1, 'Modificación', '2021-04-26', '2021-04-26 19:22:05'),
-(57, 4, 1, 'Modificación', '2021-04-27', '2021-04-27 15:04:26'),
-(58, 8, 1, 'Modificación', '2021-04-27', '2021-04-27 15:04:35'),
-(59, 8, 1, 'Modificación', '2021-04-27', '2021-04-27 15:04:47'),
-(60, 3, 1, 'Modificación', '2021-04-27', '2021-04-27 15:37:02'),
-(61, 8, 1, 'Modificación', '2021-04-27', '2021-04-27 16:02:32'),
-(62, 8, 1, 'Modificación', '2021-04-27', '2021-04-27 16:03:14'),
-(63, 8, 1, 'Modificación', '2021-04-27', '2021-04-27 16:04:51'),
-(64, 8, 1, 'Modificación', '2021-04-27', '2021-04-27 16:05:13'),
-(65, 8, 1, 'Modificación', '2021-04-27', '2021-04-27 16:05:27'),
-(66, 8, 1, 'Modificación', '2021-04-27', '2021-04-27 16:05:41'),
-(67, 8, 1, 'Modificación', '2021-04-27', '2021-04-27 16:05:53'),
-(68, 8, 1, 'Modificación', '2021-04-27', '2021-04-27 16:06:03'),
-(69, 8, 1, 'Modificación', '2021-04-27', '2021-04-27 16:06:44'),
-(70, 8, 1, 'Modificación', '2021-04-27', '2021-04-27 16:06:53'),
-(71, 8, 1, 'Modificación', '2021-04-27', '2021-04-27 16:09:46'),
-(72, 8, 1, 'Modificación', '2021-04-27', '2021-04-27 16:10:14'),
-(73, 8, 1, 'Modificación', '2021-04-27', '2021-04-27 16:10:35'),
-(74, 8, 1, 'Modificación', '2021-04-27', '2021-04-27 16:10:51'),
-(75, 9, 1, 'Modificación', '2021-04-27', '2021-04-27 16:29:41'),
-(76, 9, 1, 'Modificación', '2021-04-27', '2021-04-27 16:33:37'),
-(77, 9, 1, 'Modificación', '2021-04-27', '2021-04-27 20:11:51');
-
 -- --------------------------------------------------------
 
 --
@@ -1736,22 +1389,6 @@ CREATE TABLE `ws_z_auditoria_reposiciones` (
   `fecha_audi` date NOT NULL,
   `dateInstant` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `ws_z_auditoria_reposiciones`
---
-
-INSERT INTO `ws_z_auditoria_reposiciones` (`idAudRepo`, `idDoc`, `usExec`, `accExec`, `fecha_audi`, `dateInstant`) VALUES
-(1, 3, 1, 'Anulación', '2021-04-26', '2021-04-26 19:22:39'),
-(2, 4, 1, 'Anulación', '2021-04-26', '2021-04-26 19:22:39'),
-(3, 8, 1, 'Modificación', '2021-04-26', '2021-04-26 19:22:39'),
-(4, 8, 1, 'Modificación', '2021-04-26', '2021-04-26 19:22:39'),
-(5, 8, 1, 'Modificación', '2021-04-26', '2021-04-26 19:22:39'),
-(6, 2, 1, 'Modificación', '2021-04-26', '2021-04-26 19:23:01'),
-(7, 2, 1, 'Anulación', '2021-04-26', '2021-04-26 19:24:32'),
-(8, 1, 1, 'Modificación', '2021-04-26', '2021-04-26 19:30:05'),
-(9, 9, 1, 'Modificación', '2021-04-27', '2021-04-28 03:29:17'),
-(10, 8, 1, 'Modificación', '2021-04-27', '2021-04-28 03:35:36');
 
 --
 -- Índices para tablas volcadas
@@ -1885,31 +1522,31 @@ ALTER TABLE `ws_z_auditoria_reposiciones`
 -- AUTO_INCREMENT de la tabla `ws_acciones`
 --
 ALTER TABLE `ws_acciones`
-  MODIFY `idAccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `idAccion` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_categorias`
 --
 ALTER TABLE `ws_categorias`
-  MODIFY `idCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `idCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_departamentos`
 --
 ALTER TABLE `ws_departamentos`
-  MODIFY `id_area` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id_area` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_diagnosticos`
 --
 ALTER TABLE `ws_diagnosticos`
-  MODIFY `idDiagnostico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `idDiagnostico` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_equipos`
 --
 ALTER TABLE `ws_equipos`
-  MODIFY `idEquipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
+  MODIFY `idEquipo` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_estado`
@@ -1933,13 +1570,13 @@ ALTER TABLE `ws_estadosdoc`
 -- AUTO_INCREMENT de la tabla `ws_integraciones`
 --
 ALTER TABLE `ws_integraciones`
-  MODIFY `idIntegracion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `idIntegracion` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_mantenimientos`
 --
 ALTER TABLE `ws_mantenimientos`
-  MODIFY `idMantenimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `idMantenimiento` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_perfiles`
@@ -1951,13 +1588,13 @@ ALTER TABLE `ws_perfiles`
 -- AUTO_INCREMENT de la tabla `ws_reposiciones`
 --
 ALTER TABLE `ws_reposiciones`
-  MODIFY `idReposicion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `idReposicion` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_responsables`
 --
 ALTER TABLE `ws_responsables`
-  MODIFY `idResponsable` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `idResponsable` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_segmento`
@@ -1969,7 +1606,7 @@ ALTER TABLE `ws_segmento`
 -- AUTO_INCREMENT de la tabla `ws_servicios`
 --
 ALTER TABLE `ws_servicios`
-  MODIFY `id_subarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id_subarea` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_situacion`
@@ -1993,13 +1630,13 @@ ALTER TABLE `ws_usuarios`
 -- AUTO_INCREMENT de la tabla `ws_z_auditoria_mantenimientos`
 --
 ALTER TABLE `ws_z_auditoria_mantenimientos`
-  MODIFY `idAudMant` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `idAudMant` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_z_auditoria_reposiciones`
 --
 ALTER TABLE `ws_z_auditoria_reposiciones`
-  MODIFY `idAudRepo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idAudRepo` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
