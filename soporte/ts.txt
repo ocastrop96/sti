@@ -1,0 +1,46 @@
+DELIMITER $$
+CREATE PROCEDURE prueba()
+BEGIN
+END
+
+
+https_//smtp.office365.com/
+587
+olger60019castro@outlook.com
+olger1996
+
+
+in _fRegistroMant date,
+in _descInc text,
+in _tipEquipo int(11),
+in _condInicial int(11),
+in _idEquip int(11),
+in _oficEquip int(11),
+in _areaEquip int(11),
+in _respoEquip int(11),
+in _tecEvalua int(11),
+in _tipTrabajo int(11),
+in _fEvalua date,
+in _primera_eval text,
+in _fInicio date,
+in _fFin date,
+in _recomendaciones text,
+in _estAtencion int(11),
+in _condFinal int(11),
+in _servTerce text,
+in _otros text,
+in _obsOtros text,
+in _usRegistra int(11),
+in _sgmtoManto int(11),
+in _logdeta text,
+in _diagnosticos text,
+in _acciones text
+
+_fRegistroMant,_descInc,_tipEquipo,_condInicial,_idEquip,_oficEquip,_areaEquip,_respoEquip,_tecEvalua,_tipTrabajo,_fEvalua,_primera_eval,_fInicio,_fFin,_recomendaciones,_estAtencion,_condFinal,_servTerce,_otros,_obsOtros,_usRegistra,_sgmtoManto,_logdeta,_diagnosticos,_acciones
+
+
+
+correlativo_Mant = _correlativo_Mant,
+
+
+fRegistroMant = _fRegistroMant,descInc = _descInc,tipEquipo = _tipEquipo,condInicial = _condInicial,idEquip = _idEquip,oficEquip = _oficEquip,areaEquip = _areaEquip,respoEquip = _respoEquip,tecEvalua = _tecEvalua,tipTrabajo = _tipTrabajo,fEvalua = _fEvalua,primera_eval = _primera_eval,fInicio = _fInicio,fFin = _fFin,recomendaciones = _recomendaciones,estAtencion = _estAtencion,condFinal = _condFinal,servTerce = _servTerce,otros = _otros,obsOtros = _obsOtros,sgmtoManto = _sgmtoManto,logdeta = _logdeta,diagnosticos = _diagnosticos,acciones = _acciones
