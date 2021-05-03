@@ -91,6 +91,18 @@ class ControladorReposiciones
                 "usRegistra" => $_POST["uregMant"],
                 "sgmtoManto" => $_POST["segmentado"]
             );
+
+            $observaciones = "CON FICHA DE REPOSICION " . $fRegistroRepo;
+            $estado = 3;
+            $datosActualiza = array(
+                "idEquipo" => $_POST["serieEQ"],
+                "observaciones" => $observaciones,
+                "estadoEQ" => $estado
+            );
+
+            $rptActualiza = ModeloEquipos::mdlActualizarEstadoEQRepo($datosActualiza);
+
+
             $rptRegDManto = ModeloReposiciones::mdlRegistrarReposicion($datos);
             if ($rptRegDManto == "ok") {
                 echo '<script>
@@ -253,6 +265,16 @@ class ControladorReposiciones
                 "usExec" => $usuarioAnu
             );
             $regAudito = ModeloReposiciones::mdlRegistroAuditoriaRepo($datosAudi);
+
+            $observaciones = null;
+            $estado = 1;
+            $datosActualiza = array(
+                "idEquipo" => $traerFichaRepo2["idEquip"],
+                "observaciones" => $observaciones,
+                "estadoEQ" => $estado
+            );
+
+            $rptActualiza = ModeloEquipos::mdlActualizarEstadoEQRepo($datosActualiza);
             // Registro auditoría
             $respuesta = ModeloReposiciones::mdlAnularReposicion($datos);
 

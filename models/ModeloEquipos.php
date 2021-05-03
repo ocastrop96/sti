@@ -117,19 +117,6 @@ class ModeloEquipos
         $stmt->close();
         $stmt = null;
     }
-    // static public function mdlEliminarEquiposC($tabla, $datos)
-    // {
-    //     $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE idEquipo = :id");
-    //     $stmt->bindParam(":id", $datos, PDO::PARAM_INT);
-    //     if ($stmt->execute()) {
-    //         return "ok";
-    //     } else {
-    //         return "error";
-    //     }
-    //     $stmt->close();
-    //     $stmt = null;
-    // }
-
     static public function mdlEliminarEquiposC($datos)
     {
         $stmt = Conexion::conectar()->prepare("CALL ELIMINAR_PC_LAPTOP(:id, @val)");
@@ -290,6 +277,20 @@ class ModeloEquipos
         $value1 = $stmt->fetch();
         $val1 = $value1['nExistencia'];
         if ($val1 == 0) {
+            return "ok";
+        } else {
+            return "error";
+        }
+        $stmt->close();
+        $stmt = null;
+    }
+    static public function mdlActualizarEstadoEQRepo($datos)
+    {
+        $stmt = Conexion::conectar()->prepare("CALL ACTUALIZAR_ESTADO_REPO(:idEquipo,:observaciones,:estadoEQ)");
+        $stmt->bindParam(":idEquipo", $datos["idEquipo"], PDO::PARAM_INT);
+        $stmt->bindParam(":estadoEQ", $datos["estadoEQ"], PDO::PARAM_INT);
+        $stmt->bindParam(":observaciones", $datos["observaciones"], PDO::PARAM_STR);
+        if ($stmt->execute()) {
             return "ok";
         } else {
             return "error";

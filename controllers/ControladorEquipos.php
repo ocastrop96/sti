@@ -584,4 +584,9 @@ class ControladorEquipos
         }
     }
     // Equipos Redes
+    static public function ctrActualizaRepo($dato)
+    {
+        $repuesta = ModeloEquipos::mdlActualizarEstadoEQRepo($dato);
+        return $repuesta;
+    }
 }

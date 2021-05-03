@@ -89,7 +89,6 @@ class ModeloReposiciones
         $stmt = null;
         //Cerramos la conexion por seguridad
     }
-
     static public function mdlRegistrarReposicion($datos)
     {
         $stmt = Conexion::conectar()->prepare("CALL REGISTRAR_REPOSICION(:fRegistroRepo,:tipEquipo,:condInicial,:idEquip,:oficEquip,:areaEquip,:respoEquip,:logdeta,:descInc,:diagnostico1,:diagnostico2,:diagnostico3,:diagnostico4,:diagnostico5,:diagnostico6,:diagnostico7,:diagnostico8,:tecEvalua,:fEvalua,:primera_eval,:fInicio,:fFin,:tipTrabajo,:tecResp,:accion1,:accion2,:accion3,:accion4,:accion5,:accion6,:accion7,:accion8,:recomendaciones,:estAtencion,:condFinal,:servTerce,:otros,:obsOtros,:usRegistra,:sgmtoManto)");
