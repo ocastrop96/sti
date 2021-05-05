@@ -10,10 +10,7 @@ $(".tablaSubAreas").DataTable({
     paging: true,
     lengthChange: true,
     searching: true,
-    ordering: true,
-    order: [
-        [1, "asc"]
-    ],
+    ordering: false,
     info: true,
     autoWidth: false,
     language: {
@@ -57,6 +54,17 @@ $(".tablaSubAreas tbody").on("click", ".btnEditarSubArea", function () {
             $("#idSubArea").val(respuesta["id_subarea"]);
         }
     });
+});
+
+$("#newSubarea").keyup(function () {
+    var neq = $(this).val();
+    var mayusteq = neq.toUpperCase();
+    $("#newSubarea").val(mayusteq);
+});
+$("#edtSubarea").keyup(function () {
+    var neq = $(this).val();
+    var mayusteq = neq.toUpperCase();
+    $("#edtSubarea").val(mayusteq);
 });
 // Validar subarea existente
 $("#newSubarea").focusout(function () {

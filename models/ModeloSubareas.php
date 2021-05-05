@@ -7,12 +7,12 @@ class ModeloSubareas
 	static public function mdlListarSubareas($tabla, $item, $valor)
 	{
 		if ($item != null) {
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
+			$stmt = Conexion::conectar()->prepare("SELECT id_subarea,subarea,serv.id_area,area,date_format(serv.fecha_creacion,'%d-%m-%Y') as fecha_creacion FROM ws_servicios as serv INNER JOIN ws_departamentos as dept on dept.id_area = serv.id_area WHERE $item = :$item ORDER BY subarea ASC");
 			$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
 			$stmt->execute();
 			return $stmt->fetch();
 		} else {
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+			$stmt = Conexion::conectar()->prepare("CALL LISTAR_AREAS_SERV()");
 			$stmt->execute();
 			return $stmt->fetchAll();
 		}

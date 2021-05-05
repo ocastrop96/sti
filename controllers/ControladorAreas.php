@@ -23,12 +23,12 @@ class ControladorAreas
                                 icon: "success",
                                 title: "El área ha sido registrada con éxito",
                                 showConfirmButton: false,
-                                timer: 1500
+                                timer: 1000
                             });
                             function redirect() {
                                 window.location = "oficinas";
                             }
-                            setTimeout(redirect, 1500);
+                            setTimeout(redirect, 1000);
                       </script>';
                 }
             } else {
@@ -37,12 +37,12 @@ class ControladorAreas
                     icon: "error",
                     title: "Ingrese correctamente sus datos",
                     showConfirmButton: false,
-                    timer: 1500
+                    timer: 1000
                 });
                 function redirect() {
                     window.location = "oficinas";
                 }
-                setTimeout(redirect, 1500);
+                setTimeout(redirect, 1000);
             </script>';
             }
         }

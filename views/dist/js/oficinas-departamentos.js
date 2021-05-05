@@ -8,7 +8,7 @@ $(".tablaAreas").DataTable({
     "paging": true,
     "lengthChange": true,
     "searching": true,
-    "ordering": true,
+    "ordering": false,
     "info": true,
     "autoWidth": false,
     "language": {
@@ -38,7 +38,11 @@ $(".tablaAreas tbody").on("click", ".btnEditarArea", function () {
         }
     });
 });
-
+$("#newArea").keyup(function () {
+    var neq = $(this).val();
+    var mayusteq = neq.toUpperCase();
+    $("#newArea").val(mayusteq);
+});
 // Validar área existente tanto en nuevo y editar
 $("#newArea").focusout(function () {
     const Toast = Swal.mixin({

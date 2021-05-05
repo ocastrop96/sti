@@ -142,11 +142,24 @@ $(".tablaIntegraEC tbody").on("click", ".btnEditarIntegraC", function () {
                 $("#edtTip").html(respuesta["categoria"]);
                 $("#edtSeriePC").val(respuesta["idPc"]);
                 $("#edtSeriePC").html(respuesta["seriepc"]);
-                $("#edtSerieMon").val(respuesta["serie_monitor"]);
-                $("#edtSerieMon").html(respuesta["seriemon"]);
+                if (respuesta["serie_monitor"] == 0) {
+                    $("#edtSerieMon").val(respuesta["serie_monitor"]);
+                    $("#edtSerieMon").html("Selecciona Monitor");
+                }
+                else {
+                    $("#edtSerieMon").val(respuesta["serie_monitor"]);
+                    $("#edtSerieMon").html(respuesta["seriemon"]);
+                }
 
-                $("#edtSerieTec").val(respuesta["serie_teclado"]);
-                $("#edtSerieTec").html(respuesta["serietec"]);
+
+                if (respuesta["serie_teclado"] == 0) {
+                    $("#edtSerieTec").val(respuesta["serie_teclado"]);
+                    $("#edtSerieTec").html("Selecciona Monitor");
+                }
+                else {
+                    $("#edtSerieTec").val(respuesta["serie_teclado"]);
+                    $("#edtSerieTec").html(respuesta["serietec"]);
+                }
 
                 if (respuesta["serie_EstAcu"] == 0) {
                     $("#edtSerieAcu").val(respuesta["serie_EstAcu"]);
@@ -325,18 +338,7 @@ $("#btnRegIntC").on("click", function () {
                 nroEquipo: {
                     required: true,
                 },
-                ip_comp: {
-                    required: true,
-                },
                 seriePC: {
-                    valueNotEquals: "0",
-                    required: true,
-                },
-                serieMon: {
-                    valueNotEquals: "0",
-                    required: true,
-                },
-                serieTec: {
                     valueNotEquals: "0",
                     required: true,
                 },
@@ -349,19 +351,8 @@ $("#btnRegIntC").on("click", function () {
                 nroEquipo: {
                     required: "Ingrese dato requerido",
                 },
-                ip_comp: {
-                    required: "Ingrese dato requerido",
-                },
                 seriePC: {
                     valueNotEquals: "Selecciona Serie PC",
-                    required: true,
-                },
-                serieMon: {
-                    valueNotEquals: "Selecciona Serie Monitor",
-                    required: true,
-                },
-                serieTec: {
-                    valueNotEquals: "Selecciona Serie Teclado",
                     required: true,
                 },
             },
@@ -495,18 +486,7 @@ $("#btnEdtIntC").on("click", function () {
                 edtNEquipo: {
                     required: true,
                 },
-                idIp: {
-                    required: true,
-                },
                 edtSeriePC: {
-                    valueNotEquals: "0",
-                    required: true,
-                },
-                edtSerieMon: {
-                    valueNotEquals: "0",
-                    required: true,
-                },
-                edtSerieTec: {
                     valueNotEquals: "0",
                     required: true,
                 },
@@ -516,22 +496,11 @@ $("#btnEdtIntC").on("click", function () {
                     valueNotEquals: "Seleccione Categoría",
                     required: "Dato querido",
                 },
-                idIp: {
-                    required: "Ingrese dato requerido",
-                },
-                ip_comp: {
-                    required: "Ingrese dato requerido",
+                edtNEquipo: {
+                    required: "Ingresa N° PC",
                 },
                 edtSeriePC: {
                     valueNotEquals: "Selecciona Serie PC",
-                    required: true,
-                },
-                edtserieMon: {
-                    valueNotEquals: "Selecciona Serie Monitor",
-                    required: true,
-                },
-                edtserieTec: {
-                    valueNotEquals: "Selecciona Serie Teclado",
                     required: true,
                 },
             },

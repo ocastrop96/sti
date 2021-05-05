@@ -20,12 +20,12 @@ class TablaSubAreas
 
         for ($i = 0; $i < count($subareas); $i++) {
 
-            $item1 = "id_area";
-            $valor1 = $subareas[$i]["id_area"];
-            $areas = ControladorAreas::ctrListarAreas($item1, $valor1);
+            // $item1 = "id_area";
+            // $valor1 = $subareas[$i]["id_area"];
+            // $areas = ControladorAreas::ctrListarAreas($item1, $valor1);
 
-            $ar = "<i class='fas fa-sitemap'></i>&nbsp" . $areas["area"] . "";
-            $freg22 = date("d-m-Y", strtotime($subareas[$i]["fecha_creacion"]));
+            $ar = "<i class='fas fa-building'></i>&nbsp" . $subareas[$i]["area"] . "";
+            $sa = "<i class='fas fa-map-signs'></i>&nbsp" . $subareas[$i]["subarea"] . "";
 
             if (isset($_GET["perfilOcultoService"]) && $_GET["perfilOcultoService"] == 1) {
                 $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarSubArea' idSubArea='" . $subareas[$i]["id_subarea"] . "' data-toggle='modal' data-target='#modal-editar-subarea'><i class='fas fa-edit'></i></button><button class='btn btn-danger btnEliminarSubArea' idSubArea='" . $subareas[$i]["id_subarea"] . "'><i class='fas fa-trash-alt'></i></button></div>";
@@ -37,8 +37,8 @@ class TablaSubAreas
             $datos_json .= '[
                 "' . ($i + 1) . '",
                 "' . $ar . '",
-                "' . $subareas[$i]["subarea"] . '",
-                "' . $freg22 . '",
+                "' . $sa . '",
+                "' . $subareas[$i]["fecha_creacion"] . '",
                 "' . $botones . '"
             ],';
         }

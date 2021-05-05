@@ -199,7 +199,7 @@
               <div class="form-group">
                 <label for="descIniEQ">Descripción del Incidente inicial &nbsp;</label>
                 <i class="fas fa-chalkboard-teacher"></i> * (Indicar el problema, falla o inconveniente que presenta el equipo)
-                <input type="text" name="descIniEQ" id="descIniEQ" class="form-control" autocomplete="off" placeholder="Ingrese descripción del incidente" maxlength="94">
+                <input type="text" name="descIniEQ" id="descIniEQ" class="form-control text-capitalize" autocomplete="off" placeholder="Ingrese descripción del incidente" maxlength="94">
               </div>
             </div>
           </div>

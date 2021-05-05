@@ -1,7 +1,7 @@
 <?php
 require_once "../controllers/ControladorIntegracion.php";
 require_once "../models/ModeloIntegracion.php";
-error_reporting(0);
+// error_reporting(0);
 class ImprimirFichaIntegracionEC
 {
     public $idIntegracion;

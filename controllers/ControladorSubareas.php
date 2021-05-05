@@ -24,12 +24,12 @@ class ControladorSubareas
                                 icon: "success",
                                 title: "La subarea ha sido registrada con éxito",
                                 showConfirmButton: false,
-                                timer: 1500
+                                timer: 900
                             });
                             function redirect() {
                                 window.location = "servicios";
                             }
-                            setTimeout(redirect, 1500);
+                            setTimeout(redirect, 900);
                       </script>';
                 }
             } else {
@@ -38,12 +38,12 @@ class ControladorSubareas
                         icon: "error",
                         title: "Ingrese correctamente sus datos sin caracteres especiales ni tildes",
                         showConfirmButton: false,
-                        timer: 1500
+                        timer: 900
                         });
                         function redirect() {
                             window.location = "servicios";
                         }
-                        setTimeout(redirect, 1500);
+                        setTimeout(redirect, 900);
                     </script>';
             }
         }
@@ -69,12 +69,12 @@ class ControladorSubareas
                             icon: "success",
                             title: "El servicio ha sido editado con éxito",
                             showConfirmButton: false,
-                            timer: 1500
+                            timer: 900
                           });
                           function redirect() {
                             window.location = "servicios";
                         }
-                        setTimeout(redirect, 1500);
+                        setTimeout(redirect, 900);
                       </script>';
                 }
             } else {
@@ -83,12 +83,12 @@ class ControladorSubareas
                   icon: "error",
                   title: "No ingrese caracteres especiales, solo se admiten números y letras",
                   showConfirmButton: false,
-                  timer: 1500
+                  timer: 900
                 });
                 function redirect() {
                     window.location = "servicios";
                 }
-                setTimeout(redirect, 1500);
+                setTimeout(redirect, 900);
             </script>';
             }
         }

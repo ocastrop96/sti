@@ -112,7 +112,7 @@ if ($_SESSION["perfil"] != 1 && $_SESSION["perfil"] != 3 && $_SESSION["perfil"] 
                 <label for="ip_comp">IP &nbsp;</label>
                 <i class="fas fa-network-wired"></i> *
                 <div class="input-group">
-                  <input type="text" class="form-control" data-inputmask="'alias': 'ip'" data-mask required autocomplete="off" placeholder="Ingrese IP del Equipo" id="ip_comp" name="ip_comp">
+                  <input type="text" class="form-control" data-inputmask="'alias': 'ip'" data-mask autocomplete="off" placeholder="Ingrese IP del Equipo" id="ip_comp" name="ip_comp">
                 </div>
               </div>
             </div>
@@ -274,7 +274,7 @@ if ($_SESSION["perfil"] != 1 && $_SESSION["perfil"] != 3 && $_SESSION["perfil"] 
                 <label for="idIp">IP &nbsp;</label>
                 <i class="fas fa-network-wired"></i> *
                 <div class="input-group">
-                  <input type="text" class="form-control" data-inputmask="'alias': 'ip'" data-mask required autocomplete="off" id="idIp" name="idIp">
+                  <input type="text" class="form-control" data-inputmask="'alias': 'ip'" data-mask autocomplete="off" id="idIp" name="idIp">
                 </div>
               </div>
             </div>

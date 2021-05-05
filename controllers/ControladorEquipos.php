@@ -59,12 +59,12 @@ class ControladorEquipos
                             icon: "success",
                             title: "El Equipo de Cómputo ha sido registrado con éxito",
                             showConfirmButton: false,
-                            timer: 1400
+                            timer: 900
                         });
                         function redirect() {
                             window.location = "equipos-computo";
                         }
-                        setTimeout(redirect, 1400);
+                        setTimeout(redirect, 900);
                       </script>';
                 } else {
                     var_dump($rptRegEC);
@@ -73,12 +73,12 @@ class ControladorEquipos
                   type: "error",
                   title: "Ha ocurrido un error al registrar sus datos",
                   showConfirmButton: false,
-                  timer: 1400
+                  timer: 900
               });
               function redirect() {
                   window.location = "equipos-computo";
               }
-              setTimeout(redirect, 1400);
+              setTimeout(redirect, 900);
             </script>';
                 }
             } else {
@@ -87,12 +87,12 @@ class ControladorEquipos
               type: "error",
               title: "Ingrese sus datos correctamente",
               showConfirmButton: false,
-              timer: 1400
+              timer: 900
             });
             function redirect() {
                 window.location = "equipos-computo";
             }
-            setTimeout(redirect, 1400);
+            setTimeout(redirect, 900);
         </script>';
             }
         }
@@ -135,12 +135,12 @@ class ControladorEquipos
                             icon: "success",
                             title: "El Equipo de Cómputo ha sido editado con éxito",
                             showConfirmButton: false,
-                            timer: 1400
+                            timer: 900
                         });
                         function redirect() {
                             window.location = "equipos-computo";
                         }
-                        setTimeout(redirect, 1400);
+                        setTimeout(redirect, 900);
                       </script>';
                 } else {
                     echo '<script>
@@ -148,12 +148,12 @@ class ControladorEquipos
                   icon: "error",
                   title: "Ha ocurrido un error al editar sus datos",
                   showConfirmButton: false,
-                  timer: 1400
+                  timer: 900
               });
               function redirect() {
                   window.location = "equipos-computo";
               }
-              setTimeout(redirect, 1400);
+              setTimeout(redirect, 900);
             </script>';
                 }
             } else {
@@ -167,7 +167,7 @@ class ControladorEquipos
                 function redirect() {
                     window.location = "equipos-computo";
                 }
-                setTimeout(redirect, 1400);
+                setTimeout(redirect, 900);
         </script>';
             }
         }

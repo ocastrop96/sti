@@ -35,8 +35,19 @@ $("#ecRes").on("change", function () {
                 $("#ecServ1").prop("disabled", false);
                 $("#ecOfi").val(respuesta["idOficina"]);
                 $("#ecOfi").html(respuesta["area"]);
-                $("#ecServ").val(respuesta["idServicio"]);
-                $("#ecServ").html(respuesta["subarea"]);
+                // LISTAR SUBAREAS DE DEPARTAMENTO
+                var p_oficina = respuesta["idOficina"];
+                $.ajax({
+                    type: "POST",
+                    url: "lib/comboServicios.php",
+                    data: "idOficina=" + p_oficina,
+                    success: function (html) {
+                        // console.log(html);
+                        $("#ecServ1").prop("disabled", false);
+                        $("#ecServ1").html(html);
+                    },
+                });
+                // LISTAR SUBAREAS DE DEPARTAMENTO
             }
         });
     } else {
@@ -48,7 +59,24 @@ $("#ecRes").on("change", function () {
         $("#ecServ").html('Seleccione responsable primero');
     }
 });
-
+$("#ecOfi1").on("change", function () {
+    var idOficina = $(this).val();
+    if (idOficina > 0) {
+        $.ajax({
+            type: "POST",
+            url: "lib/comboServicios.php",
+            data: "idOficina=" + idOficina,
+            success: function (html) {
+                console.log(html);
+                $("#ecServ1").prop("disabled", false);
+                $("#ecServ1").html(html);
+            },
+        });
+    } else {
+        $("#ecServ1").html('<option value="">Seleccione área primero</option>');
+        $("#ecServ1").prop("disabled", true);
+    }
+});
 $("#ecSerie").keyup(function () {
     this.value = (this.value + "").replace(/[^a-zA-Z0-9]/g, "");
 });

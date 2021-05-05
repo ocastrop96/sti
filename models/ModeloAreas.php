@@ -10,7 +10,7 @@ class ModeloAreas
 			$stmt->execute();
 			return $stmt->fetch();
 		} else {
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla  ORDER BY area asc");
+			$stmt = Conexion::conectar()->prepare("CALL LISTAR_OFICINAS()");
 			$stmt->execute();
 			return $stmt->fetchAll();
 		}

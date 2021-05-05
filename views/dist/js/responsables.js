@@ -9,7 +9,7 @@ $(".tablaResponsables").DataTable({
     searching: true,
     ordering: true,
     order: [
-        [0, "asc"]
+        [4, "asc"]
     ],
     info: true,
     autoWidth: false,

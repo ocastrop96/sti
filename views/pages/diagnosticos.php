@@ -89,7 +89,7 @@ if ($_SESSION["perfil"] != 1 && $_SESSION["perfil"] != 3 && $_SESSION["perfil"] 
                 <label for="newDiagnostico">Diagnóstico &nbsp;</label>
                 <i class="fas fa-laptop-medical"></i> *
                 <div class="input-group">
-                  <input type="text" name="newDiagnostico" id="newDiagnostico" class="form-control" placeholder="Ingrese detalle de diagnóstico" required autocomplete="off" autofocus="autofocus">
+                  <input type="text" name="newDiagnostico" id="newDiagnostico" class="form-control text-capitalize" placeholder="Ingrese detalle de diagnóstico" required autocomplete="off" autofocus="autofocus">
                 </div>
               </div>
             </div>
@@ -147,7 +147,7 @@ if ($_SESSION["perfil"] != 1 && $_SESSION["perfil"] != 3 && $_SESSION["perfil"] 
                 <label for="edtDiagnostico">Diagnóstico &nbsp;</label>
                 <i class="fas fa-laptop-medical"></i> *
                 <div class="input-group">
-                  <input type="text" name="edtDiagnostico" id="edtDiagnostico" class="form-control" required autocomplete="off" autofocus="autofocus">
+                  <input type="text" name="edtDiagnostico" id="edtDiagnostico" class="form-control text-capitalize" required autocomplete="off" autofocus="autofocus">
                   <input type="hidden" name="idDiagnostico" id="idDiagnostico">
                   <input type="hidden" name="nSegmento" id="nSegmento">
                   <input type="hidden" name="diagAnt" id="diagAnt">

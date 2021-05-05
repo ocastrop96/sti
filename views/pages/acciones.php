@@ -89,7 +89,7 @@ if ($_SESSION["perfil"] != 1 && $_SESSION["perfil"] != 3 && $_SESSION["perfil"] 
                 <label for="newAccion">Acción realizada &nbsp;</label>
                 <i class="fas fa-tools"></i> *
                 <div class="input-group">
-                  <input type="text" name="newAccion" id="newAccion" class="form-control" placeholder="Ingrese nueva acción" required autocomplete="off" autofocus="autofocus">
+                  <input type="text" name="newAccion" id="newAccion" class="form-control text-capitalize" placeholder="Ingrese nueva acción" required autocomplete="off" autofocus="autofocus">
                 </div>
               </div>
             </div>
@@ -127,7 +127,7 @@ if ($_SESSION["perfil"] != 1 && $_SESSION["perfil"] != 3 && $_SESSION["perfil"] 
               <div class="form-group">
                 <label for="oficina">Segmento &nbsp;<i class="fas fa-border-style"></i>*</label>
                 <div class="input-group">
-                  <select class="form-control" style="width: 100%;" name="edtacDiag" id="edtacDiag2" required>
+                  <select class="form-control text-capitalize" style="width: 100%;" name="edtacDiag" id="edtacDiag2" required>
                     <option value="" id="edtacDiag"></option>
                     <?php
                     $itemCat3 = null;

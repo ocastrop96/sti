@@ -39,7 +39,7 @@ class ModeloUsuarios
 			$stmt->execute();
 			return $stmt->fetch();
 		} else {
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+			$stmt = Conexion::conectar()->prepare("CALL LISTADO_USUARIOS_SISTEMA()");
 			$stmt->execute();
 			return $stmt->fetchAll();
 		}

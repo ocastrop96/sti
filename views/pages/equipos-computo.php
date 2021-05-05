@@ -128,7 +128,15 @@ if ($_SESSION["perfil"] != 1 && $_SESSION["perfil"] != 3 && $_SESSION["perfil"] 
                 <i class="fas fa-sitemap"></i> *
                 <div class="input-group">
                   <select class="form-control" style="width: 100%;" name="ecOfi" id="ecOfi1">
-                    <option value="0" id="ecOfi">Seleccione responsable</option>
+                    <option value="0" id="ecOfi">Seleccione Departamento</option>
+                    <?php
+                    $item = null;
+                    $valor = null;
+                    $res2 = ControladorAreas::ctrListarAreas($item, $valor);
+                    foreach ($res2 as $key => $value) {
+                      echo '<option value="' . $value["id_area"] . '">' . $value["area"] . '</option>';
+                    }
+                    ?>
                   </select>
                 </div>
               </div>
@@ -139,7 +147,7 @@ if ($_SESSION["perfil"] != 1 && $_SESSION["perfil"] != 3 && $_SESSION["perfil"] 
                 <i class="fas fa-building"></i> *
                 <div class="input-group">
                   <select class="form-control" style="width: 100%;" name="ecServ" id="ecServ1">
-                    <option value="0" id="ecServ">Seleccione responsable</option>
+                    <option value="0" id="ecServ">Seleccione Servicio</option>
                   </select>
                 </div>
               </div>

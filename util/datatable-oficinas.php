@@ -28,7 +28,7 @@ class TablaAreas
             }
 
 
-            $logo = "<center><i class='fas fa-sitemap text-center'></i></center>";
+            $logo = "<center><i class='fas fa-hospital text-center'></i></center>";
             $datos_json .= '[
                 "' . ($i + 1) . '",
                 "' . $logo . '",

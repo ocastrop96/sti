@@ -115,37 +115,37 @@ $("#modal-editar-reposicion").on('hidden.bs.modal', function (e) {
 });
 
 // Setting parameters
-$("#descIniEQ").keyup(function () {
-    this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, "");
-});
-$("#descIniEQ").keyup(function () {
-    this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, "");
-});
-$("#priEvaEQ").keyup(function () {
-    this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, "");
-});
-$("#recoFEQ").keyup(function () {
-    this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, "");
-});
-$("#detalleOtros").keyup(function () {
-    this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, "");
-});
+// $("#descIniEQ").keyup(function () {
+//     this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, "");
+// });
+// $("#descIniEQ").keyup(function () {
+//     this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, "");
+// });
+// $("#priEvaEQ").keyup(function () {
+//     this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, "");
+// });
+// $("#recoFEQ").keyup(function () {
+//     this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, "");
+// });
+// $("#detalleOtros").keyup(function () {
+//     this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, "");
+// });
 
-$("#eddescIniEQ").keyup(function () {
-    this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, "");
-});
-$("#eddescIniEQ").keyup(function () {
-    this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, "");
-});
-$("#edpriEvaEQ").keyup(function () {
-    this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, "");
-});
-$("#edrecoFEQ").keyup(function () {
-    this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, "");
-});
-$("#eddetalleOtros").keyup(function () {
-    this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, "");
-});
+// $("#eddescIniEQ").keyup(function () {
+//     this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, "");
+// });
+// $("#eddescIniEQ").keyup(function () {
+//     this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, "");
+// });
+// $("#edpriEvaEQ").keyup(function () {
+//     this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, "");
+// });
+// $("#edrecoFEQ").keyup(function () {
+//     this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, "");
+// });
+// $("#eddetalleOtros").keyup(function () {
+//     this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, "");
+// });
 // Setting parameters
 // Cargar lista de series en base al tipo
 $("#tipEquipo").on("change", function () {

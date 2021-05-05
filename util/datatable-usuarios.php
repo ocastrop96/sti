@@ -20,15 +20,15 @@ class TablaUsuarios
 
             // Traemos los datos de Perfiles, Areas y SubAreas
             // Llamamiento de datos de perfiles
-            $item1 = "id_perfil";
-            $valor1 = $usuarios[$i]["id_perfil"];
-            $perfiles = ControladorUsuarios::ctrListarPerfiles($item1, $valor1);
+            // $item1 = "id_perfil";
+            // $valor1 = $usuarios[$i]["id_perfil"];
+            // $perfiles = ControladorUsuarios::ctrListarPerfiles($item1, $valor1);
 
             // Perfil con iconos
             if (($usuarios[$i]["id_perfil"] == 1)) {
-                $perfil = "<i class='fas fa-user-tie'></i>&nbsp" . $perfiles["perfil"] . "";
+                $perfil = "<i class='fas fa-user-tie'></i>&nbsp" . $usuarios[$i]["perfil"] . "";
             } else {
-                $perfil = "<i class='fas fa-user-cog'></i>&nbsp" . $perfiles["perfil"] . "";
+                $perfil = "<i class='fas fa-user-cog'></i>&nbsp" . $usuarios[$i]["perfil"] . "";
             }
             //Botones de activado o desactivo
             if (($usuarios[$i]["estado"] != 0)) {
@@ -46,8 +46,6 @@ class TablaUsuarios
             } else {
                 $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarUsuario' idUsuario='" . $usuarios[$i]["id_usuario"] . "' data-toggle='modal' data-target='#modal-editar-usuario'><i class='fas fa-edit'></i></button><button class='btn btn-info btnDesbloquearUsuario' data-toggle='tooltip' data-placement='left' title='Desbloquear Usuario' idUsuario='" . $usuarios[$i]["id_usuario"] . "'><i class='fas fa-unlock-alt'></i></button></div>";
             }
-            // Convert fecha
-            $freg = date("d-m-Y", strtotime($usuarios[$i]["fecha_registro"]));
             $datos_json .= '[
                 "' . ($i + 1) . '",
                 "' . $usuarios[$i]["dni"] . '",
@@ -56,7 +54,7 @@ class TablaUsuarios
                 "' . $usuarios[$i]["apellido_materno"] . '",
                 "' . $perfil . '",
                 "' . $usuarios[$i]["cuenta"] . '",
-                "' . $freg . '",
+                "' . $usuarios[$i]["fecha_registro"] . '",
                 "' . $actdesact . '",
                 "' . $botones . '"
             ],';

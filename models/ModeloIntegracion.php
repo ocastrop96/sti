@@ -26,8 +26,8 @@ class ModeloIntegracion
             inner join ws_equipos as pc on integra.serie_pc = pc.idEquipo
             inner join ws_estado as esteq on integra.estado = esteq.idEstado
             inner join ws_situacion as siteq on integra.condicion = siteq.idSituacion
-            inner join ws_equipos as mon on integra.serie_monitor = mon.idEquipo
-            inner join ws_equipos as tecl on integra.serie_teclado = tecl.idEquipo
+            left join ws_equipos as mon on integra.serie_monitor = mon.idEquipo
+            left join ws_equipos as tecl on integra.serie_teclado = tecl.idEquipo
             left join ws_equipos as energia on integra.serie_EstAcu = energia.idEquipo
             inner join ws_responsables as respon on integra.responsable = respon.idResponsable
             inner join ws_departamentos as dept on integra.oficina_in = dept.id_area
