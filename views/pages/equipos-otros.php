@@ -129,6 +129,14 @@ if ($_SESSION["perfil"] != 1 && $_SESSION["perfil"] != 3 && $_SESSION["perfil"] 
                 <div class="input-group">
                   <select class="form-control" style="width: 100%;" name="epoOfi" id="epoOfi1">
                     <option value="0" id="epoOfi">Seleccione responsable</option>
+                    <?php
+                    $item = null;
+                    $valor = null;
+                    $res2 = ControladorAreas::ctrListarAreas($item, $valor);
+                    foreach ($res2 as $key => $value) {
+                      echo '<option value="' . $value["id_area"] . '">' . $value["area"] . '</option>';
+                    }
+                    ?>
                   </select>
                 </div>
               </div>

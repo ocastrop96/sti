@@ -313,8 +313,8 @@ $("#btnEdtServicio").on("click", function () {
     });
 });
 $("#newSubarea").keyup(function () {
-    this.value = (this.value + "").replace(/[^a-zA-ZñÑáéíóúÁÉÍÓÚ ]/g, "");
+    this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]/g, "");
 });
 $("#edtSubarea").keyup(function () {
-    this.value = (this.value + "").replace(/[^a-zA-ZñÑáéíóúÁÉÍÓÚ ]/g, "");
+    this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]/g, "");
 });

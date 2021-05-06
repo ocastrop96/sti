@@ -97,8 +97,19 @@ $("#epoRes").on("change", function () {
                 $("#epoServ1").prop("disabled", false);
                 $("#epoOfi").val(respuesta["idOficina"]);
                 $("#epoOfi").html(respuesta["area"]);
-                $("#epoServ").val(respuesta["idServicio"]);
-                $("#epoServ").html(respuesta["subarea"]);
+                // LISTAR SUBAREAS DE DEPARTAMENTO
+                var p_oficina = respuesta["idOficina"];
+                $.ajax({
+                    type: "POST",
+                    url: "lib/comboServicios.php",
+                    data: "idOficina=" + p_oficina,
+                    success: function (html) {
+                        // console.log(html);
+                        $("#epoServ1").prop("disabled", false);
+                        $("#epoServ1").html(html);
+                    },
+                });
+                // LISTAR SUBAREAS DE DEPARTAMENTO
             }
         });
     } else {
@@ -108,6 +119,24 @@ $("#epoRes").on("change", function () {
         $("#epoOfi").html('Seleccione responsable primero');
         $("#epoServ").val("0");
         $("#epoServ").html('Seleccione responsable primero');
+    }
+});
+$("#epoOfi1").on("change", function () {
+    var idOficina = $(this).val();
+    if (idOficina > 0) {
+        $.ajax({
+            type: "POST",
+            url: "lib/comboServicios.php",
+            data: "idOficina=" + idOficina,
+            success: function (html) {
+                console.log(html);
+                $("#epoServ1").prop("disabled", false);
+                $("#epoServ1").html(html);
+            },
+        });
+    } else {
+        $("#epoServ1").html('<option value="">Seleccione área primero</option>');
+        $("#epoServ1").prop("disabled", true);
     }
 });
 // Bloque de Registro de Periferico y Otros
