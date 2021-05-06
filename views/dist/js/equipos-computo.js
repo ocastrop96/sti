@@ -91,7 +91,7 @@ $("#ecSBN").keyup(function () {
 });
 
 $("#ecMarca").keyup(function () {
-    this.value = (this.value + "").replace(/[^a-zA-Z]/g, "");
+    this.value = (this.value + "").replace(/[^a-zA-Z ]/g, "");
 });
 $("#ecMarca").keyup(function () {
     var st2 = $(this).val();
@@ -296,7 +296,7 @@ $("#edtecSBN").keyup(function () {
 });
 
 $("#edtecMarca").keyup(function () {
-    this.value = (this.value + "").replace(/[^a-zA-Z]/g, "");
+    this.value = (this.value + "").replace(/[^a-zA-Z ]/g, "");
 });
 $("#edtecMarca").keyup(function () {
     var st21 = $(this).val();

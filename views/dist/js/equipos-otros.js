@@ -29,7 +29,7 @@ $("#epoSBN").keyup(function () {
 });
 
 $("#epoMarca").keyup(function () {
-    this.value = (this.value + "").replace(/[^a-zA-Z]/g, "");
+    this.value = (this.value + "").replace(/[^a-zA-Z \-]/g, "");
 });
 $("#epoMarca").keyup(function () {
     var st22 = $(this).val();
@@ -238,7 +238,7 @@ $("#edtpoSBN").keyup(function () {
 });
 
 $("#edtpoMarca").keyup(function () {
-    this.value = (this.value + "").replace(/[^a-zA-Z]/g, "");
+    this.value = (this.value + "").replace(/[^a-zA-Z \-]/g, "");
 });
 $("#edtpoMarca").keyup(function () {
     var st222 = $(this).val();

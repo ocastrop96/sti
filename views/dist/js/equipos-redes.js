@@ -103,7 +103,7 @@ $("#erSBN").keyup(function () {
 });
 
 $("#erMarca").keyup(function () {
-    this.value = (this.value + "").replace(/[^a-zA-Z]/g, "");
+    this.value = (this.value + "").replace(/[^a-zA-Z ]/g, "");
 });
 $("#erMarca").keyup(function () {
     var st221 = $(this).val();
@@ -267,7 +267,7 @@ $("#edtrSBN").keyup(function () {
 });
 
 $("#edtrMarca").keyup(function () {
-    this.value = (this.value + "").replace(/[^a-zA-Z]/g, "");
+    this.value = (this.value + "").replace(/[^a-zA-Z ]/g, "");
 });
 $("#edtrMarca").keyup(function () {
     var st222 = $(this).val();
