@@ -9,6 +9,9 @@ $(".tablaEquiposComputo").DataTable({
     lengthChange: true,
     searching: true,
     ordering: true,
+    order: [
+        [1, "asc"]
+    ],
     info: true,
     autoWidth: false,
     language: {

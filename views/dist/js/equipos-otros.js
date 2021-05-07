@@ -8,6 +8,9 @@ $(".tablaEquiposOtros").DataTable({
     lengthChange: true,
     searching: true,
     ordering: true,
+    order: [
+        [1, "asc"]
+    ],
     info: true,
     autoWidth: false,
     language: {
@@ -568,7 +571,7 @@ $("#epoSerie").focusout(function () {
                 $("#epoSerie").val("");
                 $("#epoSerie").focus();
             } else {
-                $("#epoSBN").focus();
+                // $("#epoSBN").focus();
             }
         },
     });
@@ -617,29 +620,31 @@ $("#epoSBN").focusout(function () {
         timer: 1500,
     });
     var serie2 = $(this).val();
-    var datos2 = new FormData();
-    datos2.append("validarSBN", serie2);
-    $.ajax({
-        url: "lib/ajaxEquiposPO.php",
-        method: "POST",
-        data: datos2,
-        cache: false,
-        contentType: false,
-        processData: false,
-        dataType: "json",
-        success: function (respuesta) {
-            if (respuesta) {
-                Toast.fire({
-                    icon: "warning",
-                    title: "El número de SBN ingresado ya se encuentra registrado",
-                });
-                $("#epoSBN").val("");
-                $("#epoSBN").focus();
-            } else {
-                $("#epoMarca").focus();
-            }
-        },
-    });
+    if (serie2 != '0') {
+        var datos2 = new FormData();
+        datos2.append("validarSBN", serie2);
+        $.ajax({
+            url: "lib/ajaxEquiposPO.php",
+            method: "POST",
+            data: datos2,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: "json",
+            success: function (respuesta) {
+                if (respuesta) {
+                    Toast.fire({
+                        icon: "warning",
+                        title: "El número de SBN ingresado ya se encuentra registrado",
+                    });
+                    $("#epoSBN").val("");
+                    $("#epoSBN").focus();
+                } else {
+                    $("#epoMarca").focus();
+                }
+            },
+        });
+    }
 });
 $("#edtpoSBN").focusout(function () {
     const Toast = Swal.mixin({
