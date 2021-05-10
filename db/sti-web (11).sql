@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 03-05-2021 a las 22:58:32
+-- Tiempo de generación: 04-05-2021 a las 17:35:52
 -- Versión del servidor: 5.7.24
 -- Versión de PHP: 7.4.15
 
@@ -659,6 +659,8 @@ left join ws_acciones as facc8 on fmant.accion8 = facc8.idAccion
 where idReposicion = _idReposicion;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_OFICINAS` ()  SELECT * FROM ws_departamentos  ORDER BY area asc$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_RESPONSABLES` ()  BEGIN
 select idResponsable,dni,nombresResp,apellidosResp,idOficina,area,idServicio,subarea from (ws_responsables as res inner join ws_departamentos as dep on res.idOficina = dep.id_area) inner join ws_servicios as serv on res.idServicio = serv.id_subarea;
 END$$
@@ -871,6 +873,14 @@ CREATE TABLE `ws_acciones` (
   `accionrealizada` text COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `ws_acciones`
+--
+
+INSERT INTO `ws_acciones` (`idAccion`, `segment`, `accionrealizada`) VALUES
+(1, 1, 'Limpieza general'),
+(2, 1, 'Revisión técnica');
+
 -- --------------------------------------------------------
 
 --
@@ -924,7 +934,36 @@ CREATE TABLE `ws_departamentos` (
 --
 
 INSERT INTO `ws_departamentos` (`id_area`, `area`, `fecha_creacion`) VALUES
-(1, 'ESTADISTICA E INFORMATICA', '2021-05-03 20:09:11');
+(1, 'ESTADISTICA E INFORMATICA', '2021-05-03 20:09:11'),
+(2, 'DIRECCION GENERAL', '2021-05-04 14:34:15'),
+(3, 'CONTROL INTERNO', '2021-05-04 14:35:43'),
+(4, 'ECONOMIA', '2021-05-04 14:35:58'),
+(5, 'LOGISTICA', '2021-05-04 14:36:04'),
+(6, 'PERSONAL', '2021-05-04 14:36:13'),
+(7, 'PLANEAMIENTO ESTRATEGICO', '2021-05-04 14:36:26'),
+(8, 'SERVICIOS GENERALES', '2021-05-04 14:36:35'),
+(9, 'ASESORIA JURIDICA', '2021-05-04 14:37:09'),
+(10, 'EPIDEMIOLOGIA', '2021-05-04 14:37:18'),
+(11, 'GESTION DE CALIDAD', '2021-05-04 14:37:28'),
+(12, 'SEGUROS', '2021-05-04 14:37:43'),
+(13, 'COMUNICACIONES', '2021-05-04 14:37:51'),
+(14, 'DOCENCIA', '2021-05-04 14:39:04'),
+(15, 'MEDICINA', '2021-05-04 14:39:12'),
+(16, 'CIRUGIA', '2021-05-04 14:39:20'),
+(17, 'PEDIATRIA', '2021-05-04 14:39:26'),
+(18, 'PSICOLOGIA', '2021-05-04 14:39:34'),
+(19, 'FARMACIA', '2021-05-04 14:39:41'),
+(20, 'SERVICIO SOCIAL', '2021-05-04 14:39:46'),
+(21, 'ENFERMERIA', '2021-05-04 14:39:52'),
+(22, 'NUTRICION', '2021-05-04 14:40:04'),
+(23, 'DIAGNOSTICO POR IMAGENES', '2021-05-04 14:40:13'),
+(24, 'CONSULTA EXTERNA Y HOSPITALIZACION', '2021-05-04 14:40:25'),
+(25, 'PATOLOGIA CLINICA Y ANATOMIA PATOLOGICA', '2021-05-04 14:40:49'),
+(26, 'GINECO OBSTETRICIA', '2021-05-04 14:41:29'),
+(27, 'ODONTOESTOMATOLOGIA', '2021-05-04 14:41:44'),
+(28, 'ANESTESIOLOGIA Y CENTRO QUIRURGICO', '2021-05-04 14:41:58'),
+(29, 'EMERGENCIA Y CUIDADOS CRITICOS', '2021-05-04 14:42:14'),
+(30, 'MEDICINA FISICA Y REHABILITACION', '2021-05-04 14:42:49');
 
 -- --------------------------------------------------------
 
@@ -937,6 +976,13 @@ CREATE TABLE `ws_diagnosticos` (
   `sgmto` int(11) NOT NULL,
   `diagnostico` text COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `ws_diagnosticos`
+--
+
+INSERT INTO `ws_diagnosticos` (`idDiagnostico`, `sgmto`, `diagnostico`) VALUES
+(1, 1, 'Fuente malograda');
 
 -- --------------------------------------------------------
 
@@ -980,7 +1026,8 @@ CREATE TABLE `ws_equipos` (
 --
 
 INSERT INTO `ws_equipos` (`idEquipo`, `tipSegmento`, `idTipo`, `uResponsable`, `office`, `service`, `serie`, `sbn`, `marca`, `modelo`, `descripcion`, `fechaCompra`, `ordenCompra`, `garantia`, `placa`, `procesador`, `vprocesador`, `ram`, `discoDuro`, `puertos`, `capa`, `observaciones`, `fichaBaja`, `fichaReposición`, `condicion`, `estadoEQ`, `registrador`, `registrof`) VALUES
-(1, 1, 1, 1, 1, 1, 'MXL4420TS6', '740899500567', 'HP', 'ELIT DESK', 'ESTACION DE TRABAJO', '2014-01-01', '632-2014', '3 AÑOS', 'HP', 'CORE I7', '3.40 GZ', '8GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-03 15:17:21');
+(1, 1, 1, 1, 1, 1, 'MXL4420TS6', '740899500567', 'HP', 'ELITE DESK', 'ESTACION DE TRABAJO', '2014-01-01', '632-2014', '3 AÑOS', 'HP', 'CORE I7', '3.40 GHZ', '8GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-03 15:17:21'),
+(2, 1, 1, 2, 20, 3, 'MXL32438YX', '740899500492', 'HP', 'ELITE 8300', 'ESTACION DE TRABAJO', '2013-01-01', '789-2013', '3', 'HP', 'CORE I5', '3.20 GHZ', '4GB', '500GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-04 09:54:17');
 
 -- --------------------------------------------------------
 
@@ -1053,8 +1100,8 @@ CREATE TABLE `ws_integraciones` (
   `nro_eq` text COLLATE utf8_spanish_ci NOT NULL,
   `ip` text COLLATE utf8_spanish_ci,
   `serie_pc` int(11) DEFAULT NULL,
-  `serie_monitor` int(11) DEFAULT NULL,
-  `serie_teclado` int(11) DEFAULT NULL,
+  `serie_monitor` int(11) DEFAULT '0',
+  `serie_teclado` int(11) DEFAULT '0',
   `serie_EstAcu` int(11) DEFAULT '0',
   `serie_eqred` int(11) DEFAULT NULL,
   `serie_imp` int(11) DEFAULT NULL,
@@ -1068,6 +1115,14 @@ CREATE TABLE `ws_integraciones` (
   `estadoAnu` int(11) NOT NULL DEFAULT '0',
   `registro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `ws_integraciones`
+--
+
+INSERT INTO `ws_integraciones` (`idIntegracion`, `correlativo_integracion`, `nro_eq`, `ip`, `serie_pc`, `serie_monitor`, `serie_teclado`, `serie_EstAcu`, `serie_eqred`, `serie_imp`, `fecha_registro`, `tipo_equipo`, `responsable`, `oficina_in`, `servicio_in`, `estado`, `condicion`, `estadoAnu`, `registro`) VALUES
+(1, 'FT-2021-00001', 'PC_0744', '', 1, 0, 0, 0, NULL, NULL, '2021-05-04', 1, 1, 1, 1, 1, 1, 0, '2021-05-04 15:11:25'),
+(2, 'FT-2021-00002', 'PC_0602', '', 2, 0, 0, 0, NULL, NULL, '2021-05-04', 1, 2, 20, 3, 1, 1, 0, '2021-05-04 15:53:34');
 
 --
 -- Disparadores `ws_integraciones`
@@ -1140,6 +1195,13 @@ CREATE TABLE `ws_mantenimientos` (
   `estAnulado` int(11) NOT NULL DEFAULT '1',
   `fecha_creacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `ws_mantenimientos`
+--
+
+INSERT INTO `ws_mantenimientos` (`idMantenimiento`, `correlativo_Mant`, `fRegistroMant`, `tipEquipo`, `condInicial`, `idEquip`, `oficEquip`, `areaEquip`, `respoEquip`, `logdeta`, `descInc`, `diagnostico1`, `diagnostico2`, `diagnostico3`, `diagnostico4`, `diagnostico5`, `diagnostico6`, `diagnostico7`, `diagnostico8`, `tecEvalua`, `fEvalua`, `primera_eval`, `fInicio`, `fFin`, `tipTrabajo`, `tecResp`, `accion1`, `accion2`, `accion3`, `accion4`, `accion5`, `accion6`, `accion7`, `accion8`, `recomendaciones`, `estAtencion`, `condFinal`, `servTerce`, `otros`, `obsOtros`, `usRegistra`, `sgmtoManto`, `estAnulado`, `fecha_creacion`) VALUES
+(1, 'FM-2021-00001', '2021-05-04', 1, 2, 2, 20, 3, 2, 'N° Equipo: PC_0602 || Serie N°: MXL32438YX || Cod.Patr: 740899500492 || Marca: HP || Modelo: ELITE 8300 || Descripción: ESTACION DE TRABAJO || IP:  || Procesador: CORE I5-3.20 GHZ || RAM: 4GB || Disco Duro: 500GB', 'No enciende la pc', 1, 0, 0, 0, 0, 0, 0, 0, 4, '2021-04-30', 'Fuente malograda, se requiere cambio de fuente', '2021-05-03', '2021-05-04', 3, 4, 2, 1, 0, 0, 0, 0, 0, 0, 'Se requiere la adquisición de una nueva fuente para su buen funcionamiento.', 1, 2, 'NO', 'NO', '', 4, 1, 1, '2021-05-04 16:53:07');
 
 --
 -- Disparadores `ws_mantenimientos`
@@ -1272,7 +1334,8 @@ CREATE TABLE `ws_responsables` (
 --
 
 INSERT INTO `ws_responsables` (`idResponsable`, `dni`, `nombresResp`, `apellidosResp`, `idOficina`, `idServicio`) VALUES
-(1, '42162499', 'Edwin William', 'Guerrero Sandoval', 1, 1);
+(1, '42162499', 'Edwin William', 'Guerrero Sandoval', 1, 1),
+(2, '08633489', 'Violeta', 'Aguirre Arellano', 20, 3);
 
 -- --------------------------------------------------------
 
@@ -1313,7 +1376,8 @@ CREATE TABLE `ws_servicios` (
 
 INSERT INTO `ws_servicios` (`id_subarea`, `id_area`, `subarea`, `fecha_creacion`) VALUES
 (1, 1, 'SOPORTE TECNICO', '2021-05-03 20:09:46'),
-(2, 1, 'DIGITACION', '2021-05-03 20:11:34');
+(2, 1, 'DIGITACION', '2021-05-03 20:11:34'),
+(3, 20, 'JEFATURA', '2021-05-04 14:46:01');
 
 -- --------------------------------------------------------
 
@@ -1383,11 +1447,11 @@ CREATE TABLE `ws_usuarios` (
 
 INSERT INTO `ws_usuarios` (`id_usuario`, `id_perfil`, `dni`, `nombres`, `apellido_paterno`, `apellido_materno`, `cuenta`, `clave`, `fecha_registro`, `estado`, `nintentos`) VALUES
 (1, 1, '77478995', 'Olger Ivan', 'Castro', 'Palacios', 'ocastrop', '$2a$07$usesomesillystringforeVF6hLwtgsUBAmUN4cGEd8tYF74gSHRW', '2020-03-02 16:22:25', 1, 0),
-(2, 2, '40195996', 'Monica Nohemi', 'Rosas', 'Sanchez', 'rosasmn', '$2a$07$usesomesillystringforeoRNSqF5ebwOJ.HFIcVhNJ65bww3hpNi', '2021-03-11 15:46:33', 1, 0),
-(3, 2, '09966920', 'Javier Octavio', 'Sernaque', 'Quintana', 'jsernaqueq', '$2a$07$usesomesillystringforeAR0AYDLcMUwZJGc02Ta3T98Pn6LH7pi', '2021-03-11 15:48:50', 1, 0),
-(4, 3, '42162499', 'Edwin William', 'Guerrero', 'Sandoval', 'wguerreros', '$2a$07$usesomesillystringforeLTVm.b0q8aUqKwOyqhotBMNXub2QEkq', '2021-03-11 15:52:31', 1, 1),
-(5, 4, '09401769', 'Segundo Andres', 'Cruzado', 'Cotrina', 'acruzadoc', '$2a$07$usesomesillystringfore9OBdlwIyha0dt84yf389aUSqD287miS', '2021-03-11 16:02:14', 1, 0),
-(6, 4, '09965283', 'Ivan Victor', 'Chuquicaña', 'Fernandez', 'vchuquicañaf', '$2a$07$usesomesillystringforetG4v5XsxFT5vjiUpPsTv0VEdAMT4jmW', '2021-03-11 16:02:59', 1, 0);
+(2, 2, '40195996', 'Monica Nohemi', 'Rosas', 'Sanchez', 'rosasmn', '$2a$07$usesomesillystringforeoRNSqF5ebwOJ.HFIcVhNJ65bww3hpNi', '2021-03-11 15:46:33', 0, 0),
+(3, 2, '09966920', 'Javier Octavio', 'Sernaque', 'Quintana', 'jsernaqueq', '$2a$07$usesomesillystringforeAR0AYDLcMUwZJGc02Ta3T98Pn6LH7pi', '2021-03-11 15:48:50', 0, 0),
+(4, 3, '42162499', 'Edwin William', 'Guerrero', 'Sandoval', 'wguerreros', '$2a$07$usesomesillystringforeLTVm.b0q8aUqKwOyqhotBMNXub2QEkq', '2021-03-11 15:52:31', 0, 1),
+(5, 4, '09401769', 'Segundo Andres', 'Cruzado', 'Cotrina', 'acruzadoc', '$2a$07$usesomesillystringfore9OBdlwIyha0dt84yf389aUSqD287miS', '2021-03-11 16:02:14', 0, 0),
+(6, 4, '09965283', 'Ivan Victor', 'Chuquicaña', 'Fernandez', 'vchuquicañaf', '$2a$07$usesomesillystringforetG4v5XsxFT5vjiUpPsTv0VEdAMT4jmW', '2021-03-11 16:02:59', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -1551,7 +1615,7 @@ ALTER TABLE `ws_z_auditoria_reposiciones`
 -- AUTO_INCREMENT de la tabla `ws_acciones`
 --
 ALTER TABLE `ws_acciones`
-  MODIFY `idAccion` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idAccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_categorias`
@@ -1563,19 +1627,19 @@ ALTER TABLE `ws_categorias`
 -- AUTO_INCREMENT de la tabla `ws_departamentos`
 --
 ALTER TABLE `ws_departamentos`
-  MODIFY `id_area` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_area` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_diagnosticos`
 --
 ALTER TABLE `ws_diagnosticos`
-  MODIFY `idDiagnostico` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idDiagnostico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_equipos`
 --
 ALTER TABLE `ws_equipos`
-  MODIFY `idEquipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idEquipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_estado`
@@ -1599,13 +1663,13 @@ ALTER TABLE `ws_estadosdoc`
 -- AUTO_INCREMENT de la tabla `ws_integraciones`
 --
 ALTER TABLE `ws_integraciones`
-  MODIFY `idIntegracion` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idIntegracion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_mantenimientos`
 --
 ALTER TABLE `ws_mantenimientos`
-  MODIFY `idMantenimiento` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idMantenimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_perfiles`
@@ -1623,7 +1687,7 @@ ALTER TABLE `ws_reposiciones`
 -- AUTO_INCREMENT de la tabla `ws_responsables`
 --
 ALTER TABLE `ws_responsables`
-  MODIFY `idResponsable` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idResponsable` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_segmento`
@@ -1635,7 +1699,7 @@ ALTER TABLE `ws_segmento`
 -- AUTO_INCREMENT de la tabla `ws_servicios`
 --
 ALTER TABLE `ws_servicios`
-  MODIFY `id_subarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_subarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_situacion`
