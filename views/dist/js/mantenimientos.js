@@ -117,38 +117,46 @@ $("#modal-editar-mantenimiento").on('hidden.bs.modal', function (e) {
 });
 
 // Setting parameters
-// $("#descIniEQ").keyup(function () {
-//     this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, ",");
-// });
-// $("#edescIniEQ").keyup(function () {
-//     this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, "");
-// });
-// $("#priEvaEQ").keyup(function () {
-//     this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, "");
-// });
-// $("#recoFEQ").keyup(function () {
-//     this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, "");
-// });
-// $("#detalleOtros").keyup(function () {
-//     this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, "");
-// });
-
-// $("#eddescIniEQ").keyup(function () {
-//     this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, "");
-// });
-// $("#eddescIniEQ").keyup(function () {
-//     this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, "");
-// });
-// $("#edpriEvaEQ").keyup(function () {
-//     this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, "");
-// });
-// $("#edrecoFEQ").keyup(function () {
-//     this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, "");
-// });
-// $("#eddetalleOtros").keyup(function () {
-//     this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, "");
-// });
-// Setting parameters
+$("#descIniEQ").keydown(function () {
+    var diag = $(this).val();
+    var rechange1 = capitalizeFirstLetter(diag);
+    $("#descIniEQ").val(rechange1);
+});
+$("#edescIniEQ").keydown(function () {
+    var diag = $(this).val();
+    var rechange1 = capitalizeFirstLetter(diag);
+    $("#edescIniEQ").val(rechange1);
+});
+$("#priEvaEQ").keydown(function () {
+    var diag = $(this).val();
+    var rechange1 = capitalizeFirstLetter(diag);
+    $("#priEvaEQ").val(rechange1);
+});
+$("#edpriEvaEQ").keydown(function () {
+    var diag = $(this).val();
+    var rechange1 = capitalizeFirstLetter(diag);
+    $("#edpriEvaEQ").val(rechange1);
+});
+$("#recoFEQ").keydown(function () {
+    var diag = $(this).val();
+    var rechange1 = capitalizeFirstLetter(diag);
+    $("#recoFEQ").val(rechange1);
+});
+$("#edrecoFEQ").keydown(function () {
+    var diag = $(this).val();
+    var rechange1 = capitalizeFirstLetter(diag);
+    $("#edrecoFEQ").val(rechange1);
+});
+$("#detalleOtros").keydown(function () {
+    var diag = $(this).val();
+    var rechange1 = capitalizeFirstLetter(diag);
+    $("#detalleOtros").val(rechange1);
+});
+$("#eddetalleOtros").keydown(function () {
+    var diag = $(this).val();
+    var rechange1 = capitalizeFirstLetter(diag);
+    $("#eddetalleOtros").val(rechange1);
+});
 // Cargar lista de series en base al tipo
 $("#tipEquipo").on("change", function () {
     $("#ofiEq1").prop("disabled", false);
@@ -3934,5 +3942,97 @@ $("#eda7").on("change", function () {
         $("#eda8")[0].selectedIndex = 0;
         $("#eda8_").val(0);
         $("#eda8_").html("Selecciona Accion Realizada");
+    }
+});
+$("#respEq1").on("change", function () {
+    var idResponsable = $(this).val();
+    var datos = new FormData();
+    datos.append("idResponsable", idResponsable);
+    $.ajax({
+        url: "lib/ajaxResponsables.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function (respuesta) {
+            $("#ofiEq").val(respuesta["idOficina"]);
+            $("#ofiEq").html(respuesta["area"]);
+            // LISTAR SUBAREAS DE DEPARTAMENTO
+            var p_oficina = respuesta["idOficina"];
+            $.ajax({
+                type: "POST",
+                url: "lib/comboServicios.php",
+                data: "idOficina=" + p_oficina,
+                success: function (html) {
+                    $("#servEq1").prop("disabled", false);
+                    $("#servEq1").html(html);
+                },
+            });
+        }
+    });
+});
+$("#edrespEq1").on("change", function () {
+    var idResponsable = $(this).val();
+    var datos = new FormData();
+    datos.append("idResponsable", idResponsable);
+    $.ajax({
+        url: "lib/ajaxResponsables.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function (respuesta) {
+            $("#edofiEq").val(respuesta["idOficina"]);
+            $("#edofiEq").html(respuesta["area"]);
+            // LISTAR SUBAREAS DE DEPARTAMENTO
+            var p_oficina = respuesta["idOficina"];
+            $.ajax({
+                type: "POST",
+                url: "lib/comboServicios.php",
+                data: "idOficina=" + p_oficina,
+                success: function (html) {
+                    $("#edservEq1").prop("disabled", false);
+                    $("#edservEq1").html(html);
+                },
+            });
+        }
+    });
+});
+$("#ofiEq1").on("change", function () {
+    var idOficina = $(this).val();
+    if (idOficina > 0) {
+        $.ajax({
+            type: "POST",
+            url: "lib/comboServicios.php",
+            data: "idOficina=" + idOficina,
+            success: function (html) {
+                $("#servEq1").prop("disabled", false);
+                $("#servEq1").html(html);
+            },
+        });
+    } else {
+        $("#servEq1").html('<option value="">Seleccione área primero</option>');
+        $("#servEq1").prop("disabled", true);
+    }
+});
+$("#edofiEq1").on("change", function () {
+    var idOficina = $(this).val();
+    if (idOficina > 0) {
+        $.ajax({
+            type: "POST",
+            url: "lib/comboServicios.php",
+            data: "idOficina=" + idOficina,
+            success: function (html) {
+                $("#edservEq1").prop("disabled", false);
+                $("#edservEq1").html(html);
+            },
+        });
+    } else {
+        $("#edservEq1").html('<option value="">Seleccione área primero</option>');
+        $("#edservEq1").prop("disabled", true);
     }
 });

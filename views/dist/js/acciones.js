@@ -74,6 +74,12 @@ $("#newAccion").focusout(function () {
         }
     });
 });
+
+$("#newAccion").keydown(function () {
+    var diag = $(this).val();
+    var rechange1 = capitalizeFirstLetter(diag);
+    $("#newAccion").val(rechange1);
+});
 $("#edtAccion").focusout(function () {
     const Toast = Swal.mixin({
         toast: true,
@@ -160,6 +166,11 @@ $("#edtAccion").focusout(function () {
             });
         }
     }
+});
+$("#edtAccion").keydown(function () {
+    var diag = $(this).val();
+    var rechange1 = capitalizeFirstLetter(diag);
+    $("#edtAccion").val(rechange1);
 });
 // Validar accion
 // Editar Accion realizada

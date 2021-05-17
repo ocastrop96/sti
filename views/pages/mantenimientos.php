@@ -113,10 +113,35 @@
           <div class="row mt-2">
             <div class="col-12 col-md-4">
               <div class="form-group">
+                <label for="respEq1">Usuario Responsable &nbsp;</label>
+                <i class="fas fa-user"></i> *
+                <select class="form-control" style="width: 100%;" name="respEq" id="respEq1">
+                  <option value="0" id="respEq">Seleccione Serie EQ</option>
+                  <?php
+                  $item = null;
+                  $valor = null;
+                  $res1 = ControladorResponsables::ctrListarResponsables($item, $valor);
+                  foreach ($res1 as $key => $value) {
+                    echo '<option value="' . $value["idResponsable"] . '">' . $value["nombresResp"] . ' ' . $value["apellidosResp"] . '</option>';
+                  }
+                  ?>
+                </select>
+              </div>
+            </div>
+            <div class="col-12 col-md-4">
+              <div class="form-group">
                 <label for="ofiEq1">Oficina/Dep &nbsp;</label>
                 <i class="fas fa-sitemap"></i> *
                 <select class="form-control" style="width: 100%;" name="ofiEq" id="ofiEq1">
                   <option value="0" id="ofiEq">Seleccione Serie EQ</option>
+                  <?php
+                  $item = null;
+                  $valor = null;
+                  $res2 = ControladorAreas::ctrListarAreas($item, $valor);
+                  foreach ($res2 as $key => $value) {
+                    echo '<option value="' . $value["id_area"] . '">' . $value["area"] . '</option>';
+                  }
+                  ?>
                 </select>
               </div>
             </div>
@@ -127,15 +152,6 @@
                 <select class="form-control" style="width: 100%;" name="servEq" id="servEq1">
                   <option value="0" id="servEq">Seleccione Serie EQ</option>
 
-                </select>
-              </div>
-            </div>
-            <div class="col-12 col-md-4">
-              <div class="form-group">
-                <label for="respEq1">Usuario Responsable &nbsp;</label>
-                <i class="fas fa-user"></i> *
-                <select class="form-control" style="width: 100%;" name="respEq" id="respEq1">
-                  <option value="0" id="respEq">Seleccione Serie EQ</option>
                 </select>
               </div>
             </div>
@@ -199,7 +215,7 @@
               <div class="form-group">
                 <label for="descIniEQ">Descripción del Incidente inicial &nbsp;</label>
                 <i class="fas fa-chalkboard-teacher"></i> * (Indicar el problema, falla o inconveniente que presenta el equipo)
-                <input type="text" name="descIniEQ" id="descIniEQ" class="form-control text-capitalize" autocomplete="off" placeholder="Ingrese descripción del incidente" maxlength="94">
+                <input type="text" name="descIniEQ" id="descIniEQ" class="form-control" autocomplete="off" placeholder="Ingrese descripción del incidente" maxlength="94">
               </div>
             </div>
           </div>
@@ -533,10 +549,35 @@
           <div class="row mt-2">
             <div class="col-12 col-md-4">
               <div class="form-group">
+                <label for="edrespEq1">Usuario Responsable &nbsp;</label>
+                <i class="fas fa-user"></i> *
+                <select class="form-control" style="width: 100%;" name="edrespEq" id="edrespEq1">
+                  <option value="0" id="edrespEq">Seleccione Serie EQ</option>
+                  <?php
+                  $item = null;
+                  $valor = null;
+                  $res1 = ControladorResponsables::ctrListarResponsables($item, $valor);
+                  foreach ($res1 as $key => $value) {
+                    echo '<option value="' . $value["idResponsable"] . '">' . $value["nombresResp"] . ' ' . $value["apellidosResp"] . '</option>';
+                  }
+                  ?>
+                </select>
+              </div>
+            </div>
+            <div class="col-12 col-md-4">
+              <div class="form-group">
                 <label for="edofiEq1">Oficina/Dep &nbsp;</label>
                 <i class="fas fa-sitemap"></i> *
                 <select class="form-control" style="width: 100%;" name="edofiEq" id="edofiEq1">
                   <option value="0" id="edofiEq">Seleccione Serie EQ</option>
+                  <?php
+                  $item = null;
+                  $valor = null;
+                  $res2 = ControladorAreas::ctrListarAreas($item, $valor);
+                  foreach ($res2 as $key => $value) {
+                    echo '<option value="' . $value["id_area"] . '">' . $value["area"] . '</option>';
+                  }
+                  ?>
                 </select>
               </div>
             </div>
@@ -550,15 +591,7 @@
                 </select>
               </div>
             </div>
-            <div class="col-12 col-md-4">
-              <div class="form-group">
-                <label for="edrespEq1">Usuario Responsable &nbsp;</label>
-                <i class="fas fa-user"></i> *
-                <select class="form-control" style="width: 100%;" name="edrespEq" id="edrespEq1">
-                  <option value="0" id="edrespEq">Seleccione Serie EQ</option>
-                </select>
-              </div>
-            </div>
+
           </div>
           <div class="row mt-2">
             <div class="col-12 col-md-12">

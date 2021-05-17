@@ -115,6 +115,48 @@ $("#modal-editar-reposicion").on('hidden.bs.modal', function (e) {
 });
 
 // Setting parameters
+$("#descIniEQ").keydown(function () {
+    var diag = $(this).val();
+    var rechange1 = capitalizeFirstLetter(diag);
+    $("#descIniEQ").val(rechange1);
+});
+$("#edescIniEQ").keydown(function () {
+    var diag = $(this).val();
+    var rechange1 = capitalizeFirstLetter(diag);
+    $("#edescIniEQ").val(rechange1);
+});
+$("#priEvaEQ").keydown(function () {
+    var diag = $(this).val();
+    var rechange1 = capitalizeFirstLetter(diag);
+    $("#priEvaEQ").val(rechange1);
+});
+$("#edpriEvaEQ").keydown(function () {
+    var diag = $(this).val();
+    var rechange1 = capitalizeFirstLetter(diag);
+    $("#edpriEvaEQ").val(rechange1);
+});
+$("#recoFEQ").keydown(function () {
+    var diag = $(this).val();
+    var rechange1 = capitalizeFirstLetter(diag);
+    $("#recoFEQ").val(rechange1);
+});
+$("#edrecoFEQ").keydown(function () {
+    var diag = $(this).val();
+    var rechange1 = capitalizeFirstLetter(diag);
+    $("#edrecoFEQ").val(rechange1);
+});
+$("#detalleOtros").keydown(function () {
+    var diag = $(this).val();
+    var rechange1 = capitalizeFirstLetter(diag);
+    $("#detalleOtros").val(rechange1);
+});
+$("#eddetalleOtros").keydown(function () {
+    var diag = $(this).val();
+    var rechange1 = capitalizeFirstLetter(diag);
+    $("#eddetalleOtros").val(rechange1);
+});
+
+// Setting parameters
 // $("#descIniEQ").keyup(function () {
 //     this.value = (this.value + "").replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚÜü\-°_. ]/g, "");
 // });
@@ -2592,7 +2634,7 @@ $("#edtipEquipo").on("change", function () {
     }
 });
 
-$(".validaExisteEdt").on("change", function () { 
+$(".validaExisteEdt").on("change", function () {
     var idEq1 = $(this).val();
     var idTip1 = $("#edtipEquipo").val();
     var datosidEQ = new FormData();
@@ -2614,55 +2656,55 @@ $(".validaExisteEdt").on("change", function () {
                     $("#edd2")[0].selectedIndex = 0;
                     $("#edd2_").val(0);
                     $("#edd2_").html("Selecciona Diagnostico");
-            
+
                     $("#edd3")[0].selectedIndex = 0;
                     $("#edd3_").val(0);
                     $("#edd3_").html("Selecciona Diagnostico");
-            
+
                     $("#edd4")[0].selectedIndex = 0;
                     $("#edd4_").val(0);
                     $("#edd4_").html("Selecciona Diagnostico");
-            
+
                     $("#edd5")[0].selectedIndex = 0;
                     $("#edd5_").val(0);
                     $("#edd5_").html("Selecciona Diagnostico");
-            
+
                     $("#edd6")[0].selectedIndex = 0;
                     $("#edd6_").val(0);
                     $("#edd6_").html("Selecciona Diagnostico");
-            
+
                     $("#edd7")[0].selectedIndex = 0;
                     $("#edd7_").val(0);
                     $("#edd7_").html("Selecciona Diagnostico");
-            
+
                     $("#edd8")[0].selectedIndex = 0;
                     $("#edd8_").val(0);
                     $("#edd8_").html("Selecciona Diagnostico");
-            
+
                     $("#eda2")[0].selectedIndex = 0;
                     $("#eda2_").val(0);
                     $("#eda2_").html("Selecciona Accion Realizada");
-            
+
                     $("#eda3")[0].selectedIndex = 0;
                     $("#eda3_").val(0);
                     $("#eda3_").html("Selecciona Accion Realizada");
-            
+
                     $("#eda4")[0].selectedIndex = 0;
                     $("#eda4_").val(0);
                     $("#eda4_").html("Selecciona Accion Realizada");
-            
+
                     $("#eda5")[0].selectedIndex = 0;
                     $("#eda5_").val(0);
                     $("#eda5_").html("Selecciona Accion Realizada");
-            
+
                     $("#eda6")[0].selectedIndex = 0;
                     $("#eda6_").val(0);
                     $("#eda6_").html("Selecciona Accion Realizada");
-            
+
                     $("#eda7")[0].selectedIndex = 0;
                     $("#eda7_").val(0);
                     $("#eda7_").html("Selecciona Accion Realizada");
-            
+
                     $("#eda8")[0].selectedIndex = 0;
                     $("#eda8_").val(0);
                     $("#eda8_").html("Selecciona Accion Realizada");
@@ -2700,27 +2742,27 @@ $(".validaExisteEdt").on("change", function () {
                                             $("#edd2")[0].selectedIndex = 0;
                                             $("#edd2_").val(0);
                                             $("#edd2_").html("Selecciona Diagnostico");
-            
+
                                             $("#edd3")[0].selectedIndex = 0;
                                             $("#edd3_").val(0);
                                             $("#edd3_").html("Selecciona Diagnostico");
-            
+
                                             $("#edd4")[0].selectedIndex = 0;
                                             $("#edd4_").val(0);
                                             $("#edd4_").html("Selecciona Diagnostico");
-            
+
                                             $("#edd5")[0].selectedIndex = 0;
                                             $("#edd5_").val(0);
                                             $("#edd5_").html("Selecciona Diagnostico");
-            
+
                                             $("#edd6")[0].selectedIndex = 0;
                                             $("#edd6_").val(0);
                                             $("#edd6_").html("Selecciona Diagnostico");
-            
+
                                             $("#edd7")[0].selectedIndex = 0;
                                             $("#edd7_").val(0);
                                             $("#edd7_").html("Selecciona Diagnostico");
-            
+
                                             $("#edd8")[0].selectedIndex = 0;
                                             $("#edd8_").val(0);
                                             $("#edd8_").html("Selecciona Diagnostico");
@@ -2739,27 +2781,27 @@ $(".validaExisteEdt").on("change", function () {
                                             $("#eda2")[0].selectedIndex = 0;
                                             $("#eda2_").val(0);
                                             $("#eda2_").html("Selecciona Accion Realizada");
-            
+
                                             $("#eda3")[0].selectedIndex = 0;
                                             $("#eda3_").val(0);
                                             $("#eda3_").html("Selecciona Accion Realizada");
-            
+
                                             $("#eda4")[0].selectedIndex = 0;
                                             $("#eda4_").val(0);
                                             $("#eda4_").html("Selecciona Accion Realizada");
-            
+
                                             $("#eda5")[0].selectedIndex = 0;
                                             $("#eda5_").val(0);
                                             $("#eda5_").html("Selecciona Accion Realizada");
-            
+
                                             $("#eda6")[0].selectedIndex = 0;
                                             $("#eda6_").val(0);
                                             $("#eda6_").html("Selecciona Accion Realizada");
-            
+
                                             $("#eda7")[0].selectedIndex = 0;
                                             $("#eda7_").val(0);
                                             $("#eda7_").html("Selecciona Accion Realizada");
-            
+
                                             $("#eda8")[0].selectedIndex = 0;
                                             $("#eda8_").val(0);
                                             $("#eda8_").html("Selecciona Accion Realizada");
@@ -2790,27 +2832,27 @@ $(".validaExisteEdt").on("change", function () {
                                             $("#edd2")[0].selectedIndex = 0;
                                             $("#edd2_").val(0);
                                             $("#edd2_").html("Selecciona Diagnostico");
-            
+
                                             $("#edd3")[0].selectedIndex = 0;
                                             $("#edd3_").val(0);
                                             $("#edd3_").html("Selecciona Diagnostico");
-            
+
                                             $("#edd4")[0].selectedIndex = 0;
                                             $("#edd4_").val(0);
                                             $("#edd4_").html("Selecciona Diagnostico");
-            
+
                                             $("#edd5")[0].selectedIndex = 0;
                                             $("#edd5_").val(0);
                                             $("#edd5_").html("Selecciona Diagnostico");
-            
+
                                             $("#edd6")[0].selectedIndex = 0;
                                             $("#edd6_").val(0);
                                             $("#edd6_").html("Selecciona Diagnostico");
-            
+
                                             $("#edd7")[0].selectedIndex = 0;
                                             $("#edd7_").val(0);
                                             $("#edd7_").html("Selecciona Diagnostico");
-            
+
                                             $("#edd8")[0].selectedIndex = 0;
                                             $("#edd8_").val(0);
                                             $("#edd8_").html("Selecciona Diagnostico");
@@ -2827,27 +2869,27 @@ $(".validaExisteEdt").on("change", function () {
                                             $("#eda2")[0].selectedIndex = 0;
                                             $("#eda2_").val(0);
                                             $("#eda2_").html("Selecciona Accion Realizada");
-            
+
                                             $("#eda3")[0].selectedIndex = 0;
                                             $("#eda3_").val(0);
                                             $("#eda3_").html("Selecciona Accion Realizada");
-            
+
                                             $("#eda4")[0].selectedIndex = 0;
                                             $("#eda4_").val(0);
                                             $("#eda4_").html("Selecciona Accion Realizada");
-            
+
                                             $("#eda5")[0].selectedIndex = 0;
                                             $("#eda5_").val(0);
                                             $("#eda5_").html("Selecciona Accion Realizada");
-            
+
                                             $("#eda6")[0].selectedIndex = 0;
                                             $("#eda6_").val(0);
                                             $("#eda6_").html("Selecciona Accion Realizada");
-            
+
                                             $("#eda7")[0].selectedIndex = 0;
                                             $("#eda7_").val(0);
                                             $("#eda7_").html("Selecciona Accion Realizada");
-            
+
                                             $("#eda8")[0].selectedIndex = 0;
                                             $("#eda8_").val(0);
                                             $("#eda8_").html("Selecciona Accion Realizada");
@@ -2877,27 +2919,27 @@ $(".validaExisteEdt").on("change", function () {
                                             $("#edd2")[0].selectedIndex = 0;
                                             $("#edd2_").val(0);
                                             $("#edd2_").html("Selecciona Diagnostico");
-            
+
                                             $("#edd3")[0].selectedIndex = 0;
                                             $("#edd3_").val(0);
                                             $("#edd3_").html("Selecciona Diagnostico");
-            
+
                                             $("#edd4")[0].selectedIndex = 0;
                                             $("#edd4_").val(0);
                                             $("#edd4_").html("Selecciona Diagnostico");
-            
+
                                             $("#edd5")[0].selectedIndex = 0;
                                             $("#edd5_").val(0);
                                             $("#edd5_").html("Selecciona Diagnostico");
-            
+
                                             $("#edd6")[0].selectedIndex = 0;
                                             $("#edd6_").val(0);
                                             $("#edd6_").html("Selecciona Diagnostico");
-            
+
                                             $("#edd7")[0].selectedIndex = 0;
                                             $("#edd7_").val(0);
                                             $("#edd7_").html("Selecciona Diagnostico");
-            
+
                                             $("#edd8")[0].selectedIndex = 0;
                                             $("#edd8_").val(0);
                                             $("#edd8_").html("Selecciona Diagnostico");
@@ -2914,27 +2956,27 @@ $(".validaExisteEdt").on("change", function () {
                                             $("#eda2")[0].selectedIndex = 0;
                                             $("#eda2_").val(0);
                                             $("#eda2_").html("Selecciona Accion Realizada");
-            
+
                                             $("#eda3")[0].selectedIndex = 0;
                                             $("#eda3_").val(0);
                                             $("#eda3_").html("Selecciona Accion Realizada");
-            
+
                                             $("#eda4")[0].selectedIndex = 0;
                                             $("#eda4_").val(0);
                                             $("#eda4_").html("Selecciona Accion Realizada");
-            
+
                                             $("#eda5")[0].selectedIndex = 0;
                                             $("#eda5_").val(0);
                                             $("#eda5_").html("Selecciona Accion Realizada");
-            
+
                                             $("#eda6")[0].selectedIndex = 0;
                                             $("#eda6_").val(0);
                                             $("#eda6_").html("Selecciona Accion Realizada");
-            
+
                                             $("#eda7")[0].selectedIndex = 0;
                                             $("#eda7_").val(0);
                                             $("#eda7_").html("Selecciona Accion Realizada");
-            
+
                                             $("#eda8")[0].selectedIndex = 0;
                                             $("#eda8_").val(0);
                                             $("#eda8_").html("Selecciona Accion Realizada");
@@ -2963,27 +3005,27 @@ $(".validaExisteEdt").on("change", function () {
                                             $("#edd2")[0].selectedIndex = 0;
                                             $("#edd2_").val(0);
                                             $("#edd2_").html("Selecciona Diagnostico");
-            
+
                                             $("#edd3")[0].selectedIndex = 0;
                                             $("#edd3_").val(0);
                                             $("#edd3_").html("Selecciona Diagnostico");
-            
+
                                             $("#edd4")[0].selectedIndex = 0;
                                             $("#edd4_").val(0);
                                             $("#edd4_").html("Selecciona Diagnostico");
-            
+
                                             $("#edd5")[0].selectedIndex = 0;
                                             $("#edd5_").val(0);
                                             $("#edd5_").html("Selecciona Diagnostico");
-            
+
                                             $("#edd6")[0].selectedIndex = 0;
                                             $("#edd6_").val(0);
                                             $("#edd6_").html("Selecciona Diagnostico");
-            
+
                                             $("#edd7")[0].selectedIndex = 0;
                                             $("#edd7_").val(0);
                                             $("#edd7_").html("Selecciona Diagnostico");
-            
+
                                             $("#edd8")[0].selectedIndex = 0;
                                             $("#edd8_").val(0);
                                             $("#edd8_").html("Selecciona Diagnostico");
@@ -3000,27 +3042,27 @@ $(".validaExisteEdt").on("change", function () {
                                             $("#eda2")[0].selectedIndex = 0;
                                             $("#eda2_").val(0);
                                             $("#eda2_").html("Selecciona Accion Realizada");
-            
+
                                             $("#eda3")[0].selectedIndex = 0;
                                             $("#eda3_").val(0);
                                             $("#eda3_").html("Selecciona Accion Realizada");
-            
+
                                             $("#eda4")[0].selectedIndex = 0;
                                             $("#eda4_").val(0);
                                             $("#eda4_").html("Selecciona Accion Realizada");
-            
+
                                             $("#eda5")[0].selectedIndex = 0;
                                             $("#eda5_").val(0);
                                             $("#eda5_").html("Selecciona Accion Realizada");
-            
+
                                             $("#eda6")[0].selectedIndex = 0;
                                             $("#eda6_").val(0);
                                             $("#eda6_").html("Selecciona Accion Realizada");
-            
+
                                             $("#eda7")[0].selectedIndex = 0;
                                             $("#eda7_").val(0);
                                             $("#eda7_").html("Selecciona Accion Realizada");
-            
+
                                             $("#eda8")[0].selectedIndex = 0;
                                             $("#eda8_").val(0);
                                             $("#eda8_").html("Selecciona Accion Realizada");
@@ -3045,59 +3087,59 @@ $(".validaExisteEdt").on("change", function () {
                     $("#edsegmentado").val("0");
                     $("#edtsegmento").val("0");
                     $("#edtsegmento").html('Seleccione Serie EQ primero');
-            
+
                     $("#edd2")[0].selectedIndex = 0;
                     $("#edd2_").val(0);
                     $("#edd2_").html("Selecciona Diagnostico");
-            
+
                     $("#edd3")[0].selectedIndex = 0;
                     $("#edd3_").val(0);
                     $("#edd3_").html("Selecciona Diagnostico");
-            
+
                     $("#edd4")[0].selectedIndex = 0;
                     $("#edd4_").val(0);
                     $("#edd4_").html("Selecciona Diagnostico");
-            
+
                     $("#edd5")[0].selectedIndex = 0;
                     $("#edd5_").val(0);
                     $("#edd5_").html("Selecciona Diagnostico");
-            
+
                     $("#edd6")[0].selectedIndex = 0;
                     $("#edd6_").val(0);
                     $("#edd6_").html("Selecciona Diagnostico");
-            
+
                     $("#edd7")[0].selectedIndex = 0;
                     $("#edd7_").val(0);
                     $("#edd7_").html("Selecciona Diagnostico");
-            
+
                     $("#edd8")[0].selectedIndex = 0;
                     $("#edd8_").val(0);
                     $("#edd8_").html("Selecciona Diagnostico");
-            
+
                     $("#eda2")[0].selectedIndex = 0;
                     $("#eda2_").val(0);
                     $("#eda2_").html("Selecciona Accion Realizada");
-            
+
                     $("#eda3")[0].selectedIndex = 0;
                     $("#eda3_").val(0);
                     $("#eda3_").html("Selecciona Accion Realizada");
-            
+
                     $("#eda4")[0].selectedIndex = 0;
                     $("#eda4_").val(0);
                     $("#eda4_").html("Selecciona Accion Realizada");
-            
+
                     $("#eda5")[0].selectedIndex = 0;
                     $("#eda5_").val(0);
                     $("#eda5_").html("Selecciona Accion Realizada");
-            
+
                     $("#eda6")[0].selectedIndex = 0;
                     $("#eda6_").val(0);
                     $("#eda6_").html("Selecciona Accion Realizada");
-            
+
                     $("#eda7")[0].selectedIndex = 0;
                     $("#eda7_").val(0);
                     $("#eda7_").html("Selecciona Accion Realizada");
-            
+
                     $("#eda8")[0].selectedIndex = 0;
                     $("#eda8_").val(0);
                     $("#eda8_").html("Selecciona Accion Realizada");
@@ -3982,5 +4024,97 @@ $("#eda7").on("change", function () {
         $("#eda8")[0].selectedIndex = 0;
         $("#eda8_").val(0);
         $("#eda8_").html("Selecciona Accion Realizada");
+    }
+});
+$("#respEq1").on("change", function () {
+    var idResponsable = $(this).val();
+    var datos = new FormData();
+    datos.append("idResponsable", idResponsable);
+    $.ajax({
+        url: "lib/ajaxResponsables.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function (respuesta) {
+            $("#ofiEq").val(respuesta["idOficina"]);
+            $("#ofiEq").html(respuesta["area"]);
+            // LISTAR SUBAREAS DE DEPARTAMENTO
+            var p_oficina = respuesta["idOficina"];
+            $.ajax({
+                type: "POST",
+                url: "lib/comboServicios.php",
+                data: "idOficina=" + p_oficina,
+                success: function (html) {
+                    $("#servEq1").prop("disabled", false);
+                    $("#servEq1").html(html);
+                },
+            });
+        }
+    });
+});
+$("#edrespEq1").on("change", function () {
+    var idResponsable = $(this).val();
+    var datos = new FormData();
+    datos.append("idResponsable", idResponsable);
+    $.ajax({
+        url: "lib/ajaxResponsables.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function (respuesta) {
+            $("#edofiEq").val(respuesta["idOficina"]);
+            $("#edofiEq").html(respuesta["area"]);
+            // LISTAR SUBAREAS DE DEPARTAMENTO
+            var p_oficina = respuesta["idOficina"];
+            $.ajax({
+                type: "POST",
+                url: "lib/comboServicios.php",
+                data: "idOficina=" + p_oficina,
+                success: function (html) {
+                    $("#edservEq1").prop("disabled", false);
+                    $("#edservEq1").html(html);
+                },
+            });
+        }
+    });
+});
+$("#ofiEq1").on("change", function () {
+    var idOficina = $(this).val();
+    if (idOficina > 0) {
+        $.ajax({
+            type: "POST",
+            url: "lib/comboServicios.php",
+            data: "idOficina=" + idOficina,
+            success: function (html) {
+                $("#servEq1").prop("disabled", false);
+                $("#servEq1").html(html);
+            },
+        });
+    } else {
+        $("#servEq1").html('<option value="">Seleccione área primero</option>');
+        $("#servEq1").prop("disabled", true);
+    }
+});
+$("#edofiEq1").on("change", function () {
+    var idOficina = $(this).val();
+    if (idOficina > 0) {
+        $.ajax({
+            type: "POST",
+            url: "lib/comboServicios.php",
+            data: "idOficina=" + idOficina,
+            success: function (html) {
+                $("#edservEq1").prop("disabled", false);
+                $("#edservEq1").html(html);
+            },
+        });
+    } else {
+        $("#edservEq1").html('<option value="">Seleccione área primero</option>');
+        $("#edservEq1").prop("disabled", true);
     }
 });

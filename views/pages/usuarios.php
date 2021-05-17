@@ -46,7 +46,7 @@ if ($_SESSION["perfil"] != 1 && $_SESSION["perfil"] != 2 && $_SESSION["perfil"] 
                             <th>A. Materno</th>
                             <th>Perfil</th>
                             <th>Cuenta</th>
-                            <th>Registro</th>
+                            <th>Fecha de Alta</th>
                             <th>Estado</th>
                             <th>Acciones</th>
                         </tr>

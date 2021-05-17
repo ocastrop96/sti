@@ -77,7 +77,14 @@ $("#newDiagnostico").change(function () {
         }
     });
 });
-
+function capitalizeFirstLetter(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+}
+$("#newDiagnostico").keydown(function () {
+    var diag = $(this).val();
+    var rechange1 = capitalizeFirstLetter(diag);
+    $("#newDiagnostico").val(rechange1);
+});
 
 $("#edtDiagnostico").focusout(function () {
     const Toast = Swal.mixin({
@@ -167,6 +174,11 @@ $("#edtDiagnostico").focusout(function () {
             });
         }
     }
+});
+$("#edtDiagnostico").keydown(function () {
+    var diag = $(this).val();
+    var rechange1 = capitalizeFirstLetter(diag);
+    $("#edtDiagnostico").val(rechange1);
 });
 // Validar diagnostico repetido
 
