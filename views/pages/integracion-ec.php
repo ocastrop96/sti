@@ -123,7 +123,7 @@ if ($_SESSION["perfil"] != 1 && $_SESSION["perfil"] != 3 && $_SESSION["perfil"] 
                 <label for="seriePC">PC &nbsp;</label>
                 <i class="fas fa-laptop-code"></i> *
                 <div class="input-group">
-                  <select class="form-control" style="width: 100%;" id="seriePC" name="seriePC">
+                  <select class="form-control select2" style="width: 100%;" id="seriePC" name="seriePC">
                     <option value="0">Seleccione PC</option>
                     <?php
                     $sPC = ControladorIntegracion::ctrListarSeriesPC();

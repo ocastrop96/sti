@@ -1,3 +1,5 @@
+$(".select2").select2();
+// $("#p2").select2();
 var perfilOcultoIntC = $("#pIntCOculto").val();
 $(".tablaIntegraEC").DataTable({
     ajax: "util/datatable-integra-ec.php?perfilOcultoIntC=" + perfilOcultoIntC,

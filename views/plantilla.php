@@ -14,8 +14,10 @@ session_start();
   PLUGINS DE CSS
   ===============================================-->
   <link rel="stylesheet" href="views/plugins/fontawesome-free/css/all.min.css">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="views/plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="views/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <link rel="stylesheet" href="views/dist/css/adminlte.css">
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <link rel="stylesheet" href="views/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
   <link rel="stylesheet" href="views/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
@@ -27,16 +29,18 @@ session_start();
   <link rel="stylesheet" href="views/plugins/bootstrap-datepicker/bootstrap-datepicker.css">
   <link rel="stylesheet" href="views/plugins/bootstrap-datepicker/bootstrap-datepicker.min.css.map">
   <link rel="stylesheet" href="views/plugins/toastr/toastr.min.css">
-  <!-- Select2 -->
-  <link rel="stylesheet" href="views/plugins/select2/css/select2.min.css">
-  <link rel="stylesheet" href="views/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+  <link rel="stylesheet" href="views/dist/css/adminlte.css">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="views/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+
   <!--==============================================
   PLUGINS DE JS
   ===============================================-->
   <script src="views/plugins/jquery/jquery.min.js"></script>
   <script src="views/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Select2 -->
+  <script src="views/plugins/select2/js/select2.full.min.js"></script>
   <script src="views/plugins/datatables/jquery.dataTables.js"></script>
   <script src="views/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
   <script src="views/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
@@ -47,7 +51,6 @@ session_start();
 
   <script src="views/plugins/toastr/toastr.min.js"></script>
   <script src="views/dist/js/adminlte.min.js"></script>
-  <script src="views/plugins/select2/js/select2.full.min.js"></script>
   <!-- overlayScrollbars -->
   <script src="views/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
   <!-- jquery-validation -->
@@ -56,9 +59,6 @@ session_start();
   <!-- InputMask -->
   <script src="views/plugins/moment/moment.min.js"></script>
   <script src="views/plugins/inputmask/jquery.inputmask.min.js"></script>
-
-
-
 </head>
 <!-- hold-transition sidebar-mini layout-fixed  fijo-->
 <!-- sidebar-mini layout-fixed sidebar-collapse colapsado-->
@@ -112,6 +112,7 @@ session_start();
   }
 
   ?>
+
   <!-- Scripts JS Propios -->
   <script type="text/javascript" src="views/dist/js/main.js"></script>
   <script type="text/javascript" src="views/dist/js/oficinas-departamentos.js"></script>
