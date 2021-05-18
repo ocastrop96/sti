@@ -1,3 +1,4 @@
+$(".select2").select2();
 // Tabla general
 $(".tablaMantenimientos").DataTable({
     "ajax": "util/datatable-mantenimientos.php",
@@ -325,6 +326,8 @@ $("#serieEQ").on("change", function () {
                         $("#servEq").html(respuesta["subarea"]);
                         $("#respEq").val(respuesta["uResponsable"]);
                         $("#respEq").html(respuesta["nombresResp"] + " " + respuesta["apellidosResp"]);
+
+                        
                         $("#detaEQ").val("N° Equipo: " + respuesta["nro_eq"] +
                             " || Serie N°: " + respuesta["serie"] + " || Cod.Patr: " + respuesta["sbn"] + " || Marca: " + respuesta["marca"] + " || Modelo: " + respuesta["modelo"] + " || Descripción: " + respuesta["descripcion"] + " || IP: " + respuesta["ip"] + " || Procesador: " + respuesta["procesador"] + "-" + respuesta["vprocesador"] + " || RAM: " + respuesta["ram"] + " || Disco Duro: " + respuesta["discoDuro"]);
                         $("#segmentado").val(respuesta["tipSegmento"]);

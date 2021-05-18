@@ -1,4 +1,5 @@
 // Llamamiento de Tablas de Subareas
+$(".select2").select2();
 // Cargar tabla con ajax
 var perfilOcultoService = $("#pServiceOculto").val();
 

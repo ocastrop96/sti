@@ -1,3 +1,4 @@
+$(".select2").select2();
 // Cargar tabla con ajax
 var perfilOcultoOf = $("#pOfiOculto").val();
 $(".tablaAreas").DataTable({

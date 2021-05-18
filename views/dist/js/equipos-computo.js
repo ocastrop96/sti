@@ -1,3 +1,4 @@
+$(".select2").select2();
 var perfilOcultoEqC = $("#pEqCompOculto").val();
 
 $(".tablaEquiposComputo").DataTable({
@@ -88,11 +89,9 @@ $("#ecSerie").keyup(function () {
     var mayust1 = st1.toUpperCase();
     $("#ecSerie").val(mayust1);
 });
-
 $("#ecSBN").keyup(function () {
     this.value = (this.value + "").replace(/[^0-9]/g, "");
 });
-
 $("#ecMarca").keyup(function () {
     this.value = (this.value + "").replace(/[^a-zA-Z ]/g, "");
 });
@@ -125,7 +124,6 @@ $("#ecOrden").keyup(function () {
     var mayust5 = st5.toUpperCase();
     $("#ecOrden").val(mayust5);
 });
-
 $("#ecFCompra").keyup(function () {
     this.value = (this.value + "").replace(/[^0-9\-]/g, "");
 });
@@ -776,41 +774,7 @@ $("#ecSBN").focusout(function () {
         timer: 1500,
     });
     var serie2 = $(this).val();
-    var datos2 = new FormData();
-    datos2.append("validarSBN", serie2);
-    $.ajax({
-        url: "lib/ajaxEquiposC.php",
-        method: "POST",
-        data: datos2,
-        cache: false,
-        contentType: false,
-        processData: false,
-        dataType: "json",
-        success: function (respuesta) {
-            if (respuesta) {
-                Toast.fire({
-                    icon: "warning",
-                    title: "El número de SBN ingresado ya se encuentra registrado",
-                });
-                $("#ecSBN").val("");
-                $("#ecSBN").focus();
-            } else {
-                $("#ecMarca").focus();
-            }
-        },
-    });
-});
-$("#edtecSBN").focusout(function () {
-    const Toast = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 1500,
-    });
-    var serie2 = $(this).val();
-    var b = $("#antSBN").val();
-
-    if (serie2 != b) {
+    if (serie2 != '0') {
         var datos2 = new FormData();
         datos2.append("validarSBN", serie2);
         $.ajax({
@@ -822,18 +786,55 @@ $("#edtecSBN").focusout(function () {
             processData: false,
             dataType: "json",
             success: function (respuesta) {
-                console.log(respuesta);
                 if (respuesta) {
                     Toast.fire({
                         icon: "warning",
                         title: "El número de SBN ingresado ya se encuentra registrado",
                     });
-                    $("#edtecSBN").val("");
-                    $("#edtecSBN").focus();
+                    $("#ecSBN").val("");
+                    $("#ecSBN").focus();
                 } else {
-                    $("#edtecMarca").focus();
+                    $("#ecMarca").focus();
                 }
             },
         });
+    }
+});
+$("#edtecSBN").focusout(function () {
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 1500,
+    });
+    var serie2 = $(this).val();
+    if (serie2 != '0') {
+        var b = $("#antSBN").val();
+        if (serie2 != b) {
+            var datos2 = new FormData();
+            datos2.append("validarSBN", serie2);
+            $.ajax({
+                url: "lib/ajaxEquiposC.php",
+                method: "POST",
+                data: datos2,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: "json",
+                success: function (respuesta) {
+                    console.log(respuesta);
+                    if (respuesta) {
+                        Toast.fire({
+                            icon: "warning",
+                            title: "El número de SBN ingresado ya se encuentra registrado",
+                        });
+                        $("#edtecSBN").val("");
+                        $("#edtecSBN").focus();
+                    } else {
+                        $("#edtecMarca").focus();
+                    }
+                },
+            });
+        }
     }
 });

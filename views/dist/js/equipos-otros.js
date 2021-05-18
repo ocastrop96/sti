@@ -654,31 +654,32 @@ $("#edtpoSBN").focusout(function () {
         timer: 1500,
     });
     var serie2 = $(this).val();
-    var b = $("#antSBN2").val();
-
-    if (serie2 != b) {
-        var datos2 = new FormData();
-        datos2.append("validarSBN", serie2);
-        $.ajax({
-            url: "lib/ajaxEquiposPO.php",
-            method: "POST",
-            data: datos2,
-            cache: false,
-            contentType: false,
-            processData: false,
-            dataType: "json",
-            success: function (respuesta) {
-                if (respuesta) {
-                    Toast.fire({
-                        icon: "warning",
-                        title: "El número de SBN ingresado ya se encuentra registrado",
-                    });
-                    $("#edtpoSBN").val("");
-                    $("#edtpoSBN").focus();
-                } else {
-                    $("#edtpoMarca").focus();
-                }
-            },
-        });
+    if (serie2 != '0') {
+        var b = $("#antSBN2").val();
+        if (serie2 != b) {
+            var datos2 = new FormData();
+            datos2.append("validarSBN", serie2);
+            $.ajax({
+                url: "lib/ajaxEquiposPO.php",
+                method: "POST",
+                data: datos2,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: "json",
+                success: function (respuesta) {
+                    if (respuesta) {
+                        Toast.fire({
+                            icon: "warning",
+                            title: "El número de SBN ingresado ya se encuentra registrado",
+                        });
+                        $("#edtpoSBN").val("");
+                        $("#edtpoSBN").focus();
+                    } else {
+                        $("#edtpoMarca").focus();
+                    }
+                },
+            });
+        }
     }
 });

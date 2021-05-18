@@ -680,41 +680,7 @@ $("#erSBN").focusout(function () {
         timer: 1500,
     });
     var serie2 = $(this).val();
-    var datos2 = new FormData();
-    datos2.append("validarSBN", serie2);
-    $.ajax({
-        url: "lib/ajaxEquiposR.php",
-        method: "POST",
-        data: datos2,
-        cache: false,
-        contentType: false,
-        processData: false,
-        dataType: "json",
-        success: function (respuesta) {
-            if (respuesta) {
-                Toast.fire({
-                    icon: "warning",
-                    title: "El número de SBN ingresado ya se encuentra registrado",
-                });
-                $("#erSBN").val("");
-                $("#erSBN").focus();
-            } else {
-                $("#erMarca").focus();
-            }
-        },
-    });
-});
-$("#edtrSBN").focusout(function () {
-    const Toast = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 1500,
-    });
-    var serie2 = $(this).val();
-    var b = $("#antSBN3").val();
-
-    if (serie2 != b) {
+    if (serie2 != '0') {
         var datos2 = new FormData();
         datos2.append("validarSBN", serie2);
         $.ajax({
@@ -731,12 +697,50 @@ $("#edtrSBN").focusout(function () {
                         icon: "warning",
                         title: "El número de SBN ingresado ya se encuentra registrado",
                     });
-                    $("#edtrSBN").val("");
-                    $("#edtrSBN").focus();
+                    $("#erSBN").val("");
+                    $("#erSBN").focus();
                 } else {
-                    $("#edtrMarca").focus();
+                    $("#erMarca").focus();
                 }
             },
         });
+    }
+});
+$("#edtrSBN").focusout(function () {
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 1500,
+    });
+    var serie2 = $(this).val();
+
+    if (serie2 != '0') {
+        var b = $("#antSBN3").val();
+        if (serie2 != b) {
+            var datos2 = new FormData();
+            datos2.append("validarSBN", serie2);
+            $.ajax({
+                url: "lib/ajaxEquiposR.php",
+                method: "POST",
+                data: datos2,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: "json",
+                success: function (respuesta) {
+                    if (respuesta) {
+                        Toast.fire({
+                            icon: "warning",
+                            title: "El número de SBN ingresado ya se encuentra registrado",
+                        });
+                        $("#edtrSBN").val("");
+                        $("#edtrSBN").focus();
+                    } else {
+                        $("#edtrMarca").focus();
+                    }
+                },
+            });
+        }
     }
 });

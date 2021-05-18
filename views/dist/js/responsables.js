@@ -1,3 +1,4 @@
+$(".select2").select2();
 var perfilOcultoRespon = $("#pResponsableOculto").val();
 $(".tablaResponsables").DataTable({
     ajax: "util/datatable-responsables.php?perfilOcultoRespon="+perfilOcultoRespon,
@@ -26,7 +27,7 @@ $("#oficinaRes").on("change", function () {
             url: "lib/comboServicios.php",
             data: "idOficina=" + idOficina,
             success: function (html) {
-                console.log(html);
+                // console.log(html);
                 $("#servicioRes").prop("disabled", false);
                 $("#servicioRes").html(html);
             },

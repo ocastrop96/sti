@@ -68,7 +68,7 @@ if ($_SESSION["perfil"] != 1 && $_SESSION["perfil"] != 2 && $_SESSION["perfil"] 
                             <div class="form-group">
                                 <label for="oficina">Oficina y/o Departamento &nbsp;</label>
                                 <div class="input-group">
-                                    <select class="form-control" style="width: 100%;" id="oficina" name="oficina" required>
+                                    <select class="form-control select2" style="width: 100%;" id="oficina" name="oficina" required>
                                         <option value="0">Seleccione Oficina o Dpto principal</option>
                                         <?php
                                         $itemOficina = null;

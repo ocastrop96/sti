@@ -108,7 +108,7 @@ if ($_SESSION["perfil"] != 1 && $_SESSION["perfil"] != 2 && $_SESSION["perfil"] 
                 <label for="oficinaRes">Oficina / Departamento pertenencia &nbsp;</label>
                 <i class="fas fa-sitemap"></i> *
                 <div class="input-group">
-                  <select class="form-control" style="width: 100%;" id="oficinaRes" name="oficinaRes">
+                  <select class="form-control select2" style="width: 100%;" id="oficinaRes" name="oficinaRes">
                     <option value="0">Seleccione Oficina o Dpto pertenencia</option>
                     <?php
                     $itemOficina1 = null;
@@ -129,7 +129,7 @@ if ($_SESSION["perfil"] != 1 && $_SESSION["perfil"] != 2 && $_SESSION["perfil"] 
                 <label for="servicioRes">Servicio de pertenencia &nbsp;</label>
                 <i class="fas fa-building"></i> *
                 <div class="input-group">
-                  <select class="form-control" style="width: 100%;" name="servicioRes" id="servicioRes">
+                  <select class="form-control select2" style="width: 100%;" name="servicioRes" id="servicioRes">
                     <option value="0">Seleccione servicio pertenencia</option>
                   </select>
                 </div>

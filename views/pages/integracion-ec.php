@@ -140,7 +140,7 @@ if ($_SESSION["perfil"] != 1 && $_SESSION["perfil"] != 3 && $_SESSION["perfil"] 
                 <label for="serieMon">Monitor &nbsp;</label>
                 <i class="fas fa-desktop"></i> *
                 <div class="input-group">
-                  <select class="form-control" style="width: 100%;" id="serieMon" name="serieMon">
+                  <select class="form-control select2" style="width: 100%;" id="serieMon" name="serieMon">
                     <option value="0">Seleccione Monitor</option>
                     <?php
                     $sMon = ControladorIntegracion::ctrListarSeriesMon();
@@ -157,7 +157,7 @@ if ($_SESSION["perfil"] != 1 && $_SESSION["perfil"] != 3 && $_SESSION["perfil"] 
                 <label for="serieTec">Teclado &nbsp;</label>
                 <i class="fas fa-keyboard"></i> *
                 <div class="input-group">
-                  <select class="form-control" style="width: 100%;" id="serieTec" name="serieTec">
+                  <select class="form-control select2" style="width: 100%;" id="serieTec" name="serieTec">
                     <option value="0">Seleccione Teclado</option>
                     <?php
                     $sTec = ControladorIntegracion::ctrListarSeriesTec();
@@ -174,7 +174,7 @@ if ($_SESSION["perfil"] != 1 && $_SESSION["perfil"] != 3 && $_SESSION["perfil"] 
                 <label for="serieAcuEne">Energía&nbsp;</label>
                 <i class="fas fa-charging-station"></i> *
                 <div class="input-group">
-                  <select class="form-control" style="width: 100%;" id="serieAcuEne" name="serieAcuEne">
+                  <select class="form-control select2" style="width: 100%;" id="serieAcuEne" name="serieAcuEne">
                     <option value="0">Seleccione F. Energía</option>
                     <?php
                     $sFuen = ControladorIntegracion::ctrListarSeriesEnergia();
@@ -198,7 +198,7 @@ if ($_SESSION["perfil"] != 1 && $_SESSION["perfil"] != 3 && $_SESSION["perfil"] 
                 <label for="serieLaptop">LAPTOP O SERVIDOR &nbsp;</label>
                 <i class="fas fa-laptop-code"></i> *
                 <div class="input-group">
-                  <select class="form-control" style="width: 100%;" id="serieLaptop" name="serieLaptop">
+                  <select class="form-control select2" style="width: 100%;" id="serieLaptop" name="serieLaptop">
                     <option value="0">Selecciona Servidor o Laptop</option>
                     <?php
                     $sLap = ControladorIntegracion::ctrListarSeriesLapServ();
