@@ -24,6 +24,7 @@
       </div>
       <div class="card-body">
         <button type="btn" class="btn btn-secondary mt-2" data-toggle="modal" data-target="#modal-registro-mantenimiento"><i class="fas fa-clipboard-list"></i> Registrar Mantenimiento</button>
+        <input type="hidden" id="pMantOculto" value="<?php echo $_SESSION["perfil"] ?>">
       </div>
       <div class="card-body">
         <table id="tablaMantenimientos" class="table table-bordered table-hover dt-responsive tablaMantenimientos">

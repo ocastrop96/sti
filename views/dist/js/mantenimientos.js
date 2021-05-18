@@ -1,7 +1,8 @@
 $(".select2").select2();
 // Tabla general
+var perfilOcultoMant = $("#pMantOculto").val();
 $(".tablaMantenimientos").DataTable({
-    "ajax": "util/datatable-mantenimientos.php",
+    "ajax": "util/datatable-mantenimientos.php?perfilOcultoMant=" + perfilOcultoMant,
     "deferRender": true,
     "retrieve": true,
     "processing": true,
@@ -20,7 +21,7 @@ $(".tablaMantenimientos").DataTable({
 });
 // Tabla general
 $(".select2").select2();
-$("#fEva").inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+$("#fEva").inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' });
 $('#fEva').datepicker({
     'format': 'dd/mm/yyyy',
     'autoclose': true,
@@ -327,7 +328,7 @@ $("#serieEQ").on("change", function () {
                         $("#respEq").val(respuesta["uResponsable"]);
                         $("#respEq").html(respuesta["nombresResp"] + " " + respuesta["apellidosResp"]);
 
-                        
+
                         $("#detaEQ").val("N° Equipo: " + respuesta["nro_eq"] +
                             " || Serie N°: " + respuesta["serie"] + " || Cod.Patr: " + respuesta["sbn"] + " || Marca: " + respuesta["marca"] + " || Modelo: " + respuesta["modelo"] + " || Descripción: " + respuesta["descripcion"] + " || IP: " + respuesta["ip"] + " || Procesador: " + respuesta["procesador"] + "-" + respuesta["vprocesador"] + " || RAM: " + respuesta["ram"] + " || Disco Duro: " + respuesta["discoDuro"]);
                         $("#segmentado").val(respuesta["tipSegmento"]);

@@ -217,7 +217,7 @@ if ($_SESSION["perfil"] != 1 && $_SESSION["perfil"] != 3 && $_SESSION["perfil"] 
                 <label for="epoFCompra">Fecha de Compra</label>
                 <i class="fas fa-calendar-alt"></i> *
                 <div class="input-group">
-                  <input type="text" class="form-control" name="epoFCompra" id="epoFCompra" placeholder="dd-mm-aaaa" autocomplete="off">
+                  <input type="text" class="form-control" name="epoFCompra" id="epoFCompra" data-inputmask-alias="datetime" data-inputmask-inputformat="dd-mm-yyyy" data-mask autocomplete="off" placeholder="dd-mm-yyyy">
                 </div>
               </div>
             </div>
@@ -428,7 +428,7 @@ if ($_SESSION["perfil"] != 1 && $_SESSION["perfil"] != 3 && $_SESSION["perfil"] 
                 <label for="edtpoFCompra">Fecha de Compra</label>
                 <i class="fas fa-calendar-alt"></i> *
                 <div class="input-group">
-                  <input type="text" class="form-control" id="edtpoFCompra" name="edtpoFCompra" autocomplete="off">
+                  <input type="text" class="form-control" id="edtpoFCompra" name="edtpoFCompra" autocomplete="off" data-inputmask-alias="datetime" data-inputmask-inputformat="dd-mm-yyyy" data-mask autocomplete="off" placeholder="dd-mm-yyyy">
                 </div>
               </div>
             </div>

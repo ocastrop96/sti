@@ -217,7 +217,7 @@ if ($_SESSION["perfil"] != 1 && $_SESSION["perfil"] != 3 && $_SESSION["perfil"] 
               <div class="form-group">
                 <label for="erFCompra">Fecha de Compra</label>*
                 <div class="input-group">
-                  <input type="text" class="form-control" placeholder="dd-mm-aaaa" id="erFCompra" name="erFCompra" required autocomplete="off">
+                  <input type="text" class="form-control" id="erFCompra" name="erFCompra" required data-inputmask-alias="datetime" data-inputmask-inputformat="dd-mm-yyyy" data-mask autocomplete="off" placeholder="dd-mm-yyyy">
                 </div>
               </div>
             </div>
@@ -446,7 +446,7 @@ if ($_SESSION["perfil"] != 1 && $_SESSION["perfil"] != 3 && $_SESSION["perfil"] 
               <div class="form-group">
                 <label for="edtrFCompra">Fecha de Compra</label>*
                 <div class="input-group">
-                  <input type="text" class="form-control" id="edtrFCompra" name="edtrFCompra" autocomplete="off">
+                  <input type="text" class="form-control" id="edtrFCompra" name="edtrFCompra" data-inputmask-alias="datetime" data-inputmask-inputformat="dd-mm-yyyy" data-mask autocomplete="off" placeholder="dd-mm-yyyy">
                 </div>
               </div>
             </div>

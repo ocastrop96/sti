@@ -133,6 +133,9 @@ $('#ecFCompra').datepicker({
     'language': 'es',
     'endDate': new Date(),
 });
+
+$("#ecFCompra").inputmask('dd-mm-yyyy', { 'placeholder': 'dd-mm-yyyy' });
+
 $("#ecGarantia").keyup(function () {
     this.value = (this.value + "").replace(/[^a-zA-Z0-9\u00f1\u00d1 ]/g, "");
 });
