@@ -216,7 +216,7 @@ if ($_SESSION["perfil"] != 1 && $_SESSION["perfil"] != 3 && $_SESSION["perfil"] 
               <div class="form-group">
                 <label for="ecFCompra">Fecha de Compra</label>*
                 <div class="input-group">
-                  <input type="text" class="form-control" id="ecFCompra" name="ecFCompra" data-inputmask-alias="datetime" data-inputmask-inputformat="dd-mm-yyyy" data-mask autocomplete="off" placeholder="dd-mm-yyyy">
+                  <input type="text" class="form-control" id="ecFCompra" name="ecFCompra" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask autocomplete="off" placeholder="dd/mm/yyyy">
                 </div>
               </div>
             </div>
