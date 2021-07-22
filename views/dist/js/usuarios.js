@@ -21,7 +21,7 @@ $("#logCuenta").focus();
 $("#logCuenta").change(function () {
   const Toast = Swal.mixin({
     toast: true,
-    position: "top-end",
+    position: "top-center",
     showConfirmButton: false,
     timer: 1500,
   });

@@ -96,7 +96,7 @@
               <div class="form-group">
                 <label for="serieEQ">N° de Serie &nbsp;</label>
                 <i class="fas fa-desktop"></i> *
-                <select class="form-control validaExiste" style="width: 100%;" name="serieEQ" id="serieEQ">
+                <select class="form-control validaExiste select2" style="width: 100%;" name="serieEQ" id="serieEQ">
                   <option value="0">Seleccione tip EQ</option>
                 </select>
               </div>

@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 18-05-2021 a las 17:15:20
+-- Tiempo de generación: 22-07-2021 a las 15:07:15
 -- Versión del servidor: 5.7.24
 -- Versión de PHP: 7.4.15
 
@@ -395,7 +395,7 @@ WHERE segmento = 2 and estadoAnu = 0 order by correlativo_integracion desc;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_MANTO_COMPUS` (IN `_idMantenimiento` INT(11))  BEGIN
-select idMantenimiento,correlativo_Mant,date_format(fRegistroMant,'%d/%m/%Y') as fRegManto,tipEquipo,categoria,idEquip,serie,nro_eq,ip,sbn,marca,modelo,placa,procesador,vprocesador,ram,discoDuro,oficEquip,area,oficEquip,subarea,uResponsable,concat(nombresResp," ",apellidosResp) as responsable,logdeta,date_format(fEvalua,'%d/%m/%Y') as fEval,condInicial,fsitu.situacion as cinicial,tecEvalua,concat(ftec.nombres,' ',ftec.apellido_paterno,' ',ftec.apellido_materno) as tecnico,tecResp,concat(ftec2.nombres,' ',ftec2.apellido_paterno,' ',ftec2.apellido_materno) as tecresponsable,descInc,diagnostico1,fdiag1.diagnostico as d1,diagnostico2,fdiag2.diagnostico as d2,diagnostico3,fdiag3.diagnostico as d3,diagnostico4,fdiag4.diagnostico as d4,diagnostico5,fdiag5.diagnostico as d5,diagnostico6,fdiag6.diagnostico as d6,diagnostico7,fdiag7.diagnostico as d7,diagnostico8,fdiag8.diagnostico as d8,primera_eval,date_format(fInicio,'%d/%m/%Y') as finic,date_format(fFin,'%d/%m/%Y') as ffin,tipTrabajo,tipoTrabajo,accion1,facc1.accionrealizada as a1,accion2,facc2.accionrealizada as a2,accion3,facc3.accionrealizada as a3,accion4,facc4.accionrealizada as a4,accion5,facc5.accionrealizada as a5,accion6,facc6.accionrealizada as a6,accion7,facc7.accionrealizada as a7,accion8,facc8.accionrealizada as a8,recomendaciones,estAtencion,estAte,condFinal,fsitu2.situacion as cfinal,servTerce,otros,obsOtros,sgmtoManto,estAnulado,estadoDoc from ws_mantenimientos as fmant
+select idMantenimiento,correlativo_Mant,date_format(fRegistroMant,'%d/%m/%Y') as fRegManto,tipEquipo,categoria,idEquip,serie,nro_eq,ip,sbn,marca,modelo,placa,procesador,vprocesador,ram,discoDuro,oficEquip,area,oficEquip,subarea,uResponsable,UPPER(concat(nombresResp," ",apellidosResp)) as responsable,logdeta,date_format(fEvalua,'%d/%m/%Y') as fEval,condInicial,fsitu.situacion as cinicial,tecEvalua,concat(ftec.nombres,' ',ftec.apellido_paterno,' ',ftec.apellido_materno) as tecnico,tecResp,concat(ftec2.nombres,' ',ftec2.apellido_paterno,' ',ftec2.apellido_materno) as tecresponsable,descInc,diagnostico1,fdiag1.diagnostico as d1,diagnostico2,fdiag2.diagnostico as d2,diagnostico3,fdiag3.diagnostico as d3,diagnostico4,fdiag4.diagnostico as d4,diagnostico5,fdiag5.diagnostico as d5,diagnostico6,fdiag6.diagnostico as d6,diagnostico7,fdiag7.diagnostico as d7,diagnostico8,fdiag8.diagnostico as d8,primera_eval,date_format(fInicio,'%d/%m/%Y') as finic,date_format(fFin,'%d/%m/%Y') as ffin,tipTrabajo,tipoTrabajo,accion1,facc1.accionrealizada as a1,accion2,facc2.accionrealizada as a2,accion3,facc3.accionrealizada as a3,accion4,facc4.accionrealizada as a4,accion5,facc5.accionrealizada as a5,accion6,facc6.accionrealizada as a6,accion7,facc7.accionrealizada as a7,accion8,facc8.accionrealizada as a8,recomendaciones,estAtencion,estAte,condFinal,fsitu2.situacion as cfinal,servTerce,otros,obsOtros,sgmtoManto,estAnulado,estadoDoc from ws_mantenimientos as fmant
 inner join ws_categorias as fcat on fmant.tipEquipo = fcat.idCategoria
 inner join ws_situacion as fsitu on fmant.condInicial = fsitu.idSituacion
 inner join ws_equipos as fequip on fmant.idEquip = fequip.idEquipo
@@ -463,7 +463,7 @@ where idReposicion = _idReposicion;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_MANTO_IMPRE_PERI` (IN `_idMantenimiento` INT(11))  BEGIN
-select idMantenimiento,correlativo_Mant,date_format(fRegistroMant,'%d/%m/%Y') as fRegManto,tipEquipo,categoria,idEquip,serie,nro_eq,ip,sbn,marca,modelo,oficEquip,area,oficEquip,subarea,uResponsable,concat(nombresResp," ",apellidosResp) as responsable,logdeta,date_format(fEvalua,'%d/%m/%Y') as fEval,condInicial,fsitu.situacion as cinicial,tecEvalua,concat(ftec.nombres,' ',ftec.apellido_paterno,' ',ftec.apellido_materno) as tecnico,tecResp,concat(ftec2.nombres,' ',ftec2.apellido_paterno,' ',ftec2.apellido_materno) as tecresponsable,descInc,diagnostico1,fdiag1.diagnostico as d1,diagnostico2,fdiag2.diagnostico as d2,diagnostico3,fdiag3.diagnostico as d3,diagnostico4,fdiag4.diagnostico as d4,diagnostico5,fdiag5.diagnostico as d5,diagnostico6,fdiag6.diagnostico as d6,diagnostico7,fdiag7.diagnostico as d7,diagnostico8,fdiag8.diagnostico as d8,primera_eval,date_format(fInicio,'%d/%m/%Y') as finic,date_format(fFin,'%d/%m/%Y') as ffin,tipoTrabajo,accion1,facc1.accionrealizada as a1,accion2,facc2.accionrealizada as a2,accion3,facc3.accionrealizada as a3,accion4,facc4.accionrealizada as a4,accion5,facc5.accionrealizada as a5,accion6,facc6.accionrealizada as a6,accion7,facc7.accionrealizada as a7,accion8,facc8.accionrealizada as a8,recomendaciones,estAtencion,estAte,condFinal,fsitu2.situacion as cfinal,servTerce,otros,obsOtros,sgmtoManto,estAnulado,estadoDoc from ws_mantenimientos as fmant
+select idMantenimiento,correlativo_Mant,date_format(fRegistroMant,'%d/%m/%Y') as fRegManto,tipEquipo,categoria,idEquip,serie,nro_eq,ip,sbn,marca,modelo,oficEquip,area,oficEquip,subarea,uResponsable,UPPER(concat(nombresResp," ",apellidosResp)) as responsable,logdeta,date_format(fEvalua,'%d/%m/%Y') as fEval,condInicial,fsitu.situacion as cinicial,tecEvalua,concat(ftec.nombres,' ',ftec.apellido_paterno,' ',ftec.apellido_materno) as tecnico,tecResp,concat(ftec2.nombres,' ',ftec2.apellido_paterno,' ',ftec2.apellido_materno) as tecresponsable,descInc,diagnostico1,fdiag1.diagnostico as d1,diagnostico2,fdiag2.diagnostico as d2,diagnostico3,fdiag3.diagnostico as d3,diagnostico4,fdiag4.diagnostico as d4,diagnostico5,fdiag5.diagnostico as d5,diagnostico6,fdiag6.diagnostico as d6,diagnostico7,fdiag7.diagnostico as d7,diagnostico8,fdiag8.diagnostico as d8,primera_eval,date_format(fInicio,'%d/%m/%Y') as finic,date_format(fFin,'%d/%m/%Y') as ffin,tipoTrabajo,accion1,facc1.accionrealizada as a1,accion2,facc2.accionrealizada as a2,accion3,facc3.accionrealizada as a3,accion4,facc4.accionrealizada as a4,accion5,facc5.accionrealizada as a5,accion6,facc6.accionrealizada as a6,accion7,facc7.accionrealizada as a7,accion8,facc8.accionrealizada as a8,recomendaciones,estAtencion,estAte,condFinal,fsitu2.situacion as cfinal,servTerce,otros,obsOtros,sgmtoManto,estAnulado,estadoDoc from ws_mantenimientos as fmant
 inner join ws_categorias as fcat on fmant.tipEquipo = fcat.idCategoria
 inner join ws_situacion as fsitu on fmant.condInicial = fsitu.idSituacion
 inner join ws_equipos as fequip on fmant.idEquip = fequip.idEquipo
@@ -531,7 +531,7 @@ where idReposicion = _idReposicion;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_MANTO_OTROS` (IN `_idMantenimiento` INT(11))  BEGIN
-select idMantenimiento,correlativo_Mant,date_format(fRegistroMant,'%d/%m/%Y') as fRegManto,tipEquipo,categoria,idEquip,serie,sbn,marca,modelo,oficEquip,area,oficEquip,subarea,uResponsable,concat(nombresResp," ",apellidosResp) as responsable,logdeta,date_format(fEvalua,'%d/%m/%Y') as fEval,condInicial,fsitu.situacion as cinicial,tecEvalua,concat(ftec.nombres,' ',ftec.apellido_paterno,' ',ftec.apellido_materno) as tecnico,tecResp,concat(ftec2.nombres,' ',ftec2.apellido_paterno,' ',ftec2.apellido_materno) as tecresponsable,descInc,diagnostico1,fdiag1.diagnostico as d1,diagnostico2,fdiag2.diagnostico as d2,diagnostico3,fdiag3.diagnostico as d3,diagnostico4,fdiag4.diagnostico as d4,diagnostico5,fdiag5.diagnostico as d5,diagnostico6,fdiag6.diagnostico as d6,diagnostico7,fdiag7.diagnostico as d7,diagnostico8,fdiag8.diagnostico as d8,primera_eval,date_format(fInicio,'%d/%m/%Y') as finic,date_format(fFin,'%d/%m/%Y') as ffin,tipTrabajo,tipoTrabajo,accion1,facc1.accionrealizada as a1,accion2,facc2.accionrealizada as a2,accion3,facc3.accionrealizada as a3,accion4,facc4.accionrealizada as a4,accion5,facc5.accionrealizada as a5,accion6,facc6.accionrealizada as a6,accion7,facc7.accionrealizada as a7,accion8,facc8.accionrealizada as a8,recomendaciones,estAtencion,estAte,condFinal,fsitu2.situacion as cfinal,servTerce,otros,obsOtros,sgmtoManto,estAnulado,estadoDoc from ws_mantenimientos as fmant
+select idMantenimiento,correlativo_Mant,date_format(fRegistroMant,'%d/%m/%Y') as fRegManto,tipEquipo,categoria,idEquip,serie,sbn,marca,modelo,oficEquip,area,oficEquip,subarea,uResponsable,UPPER(concat(nombresResp," ",apellidosResp)) as responsable,logdeta,date_format(fEvalua,'%d/%m/%Y') as fEval,condInicial,fsitu.situacion as cinicial,tecEvalua,concat(ftec.nombres,' ',ftec.apellido_paterno,' ',ftec.apellido_materno) as tecnico,tecResp,concat(ftec2.nombres,' ',ftec2.apellido_paterno,' ',ftec2.apellido_materno) as tecresponsable,descInc,diagnostico1,fdiag1.diagnostico as d1,diagnostico2,fdiag2.diagnostico as d2,diagnostico3,fdiag3.diagnostico as d3,diagnostico4,fdiag4.diagnostico as d4,diagnostico5,fdiag5.diagnostico as d5,diagnostico6,fdiag6.diagnostico as d6,diagnostico7,fdiag7.diagnostico as d7,diagnostico8,fdiag8.diagnostico as d8,primera_eval,date_format(fInicio,'%d/%m/%Y') as finic,date_format(fFin,'%d/%m/%Y') as ffin,tipTrabajo,tipoTrabajo,accion1,facc1.accionrealizada as a1,accion2,facc2.accionrealizada as a2,accion3,facc3.accionrealizada as a3,accion4,facc4.accionrealizada as a4,accion5,facc5.accionrealizada as a5,accion6,facc6.accionrealizada as a6,accion7,facc7.accionrealizada as a7,accion8,facc8.accionrealizada as a8,recomendaciones,estAtencion,estAte,condFinal,fsitu2.situacion as cfinal,servTerce,otros,obsOtros,sgmtoManto,estAnulado,estadoDoc from ws_mantenimientos as fmant
 inner join ws_categorias as fcat on fmant.tipEquipo = fcat.idCategoria
 inner join ws_situacion as fsitu on fmant.condInicial = fsitu.idSituacion
 inner join ws_equipos as fequip on fmant.idEquip = fequip.idEquipo
@@ -886,7 +886,52 @@ INSERT INTO `ws_acciones` (`idAccion`, `segment`, `accionrealizada`) VALUES
 (1, 1, 'Limpieza general'),
 (2, 1, 'Revisión técnica general'),
 (4, 1, 'Fuente malograda'),
-(5, 1, 'Placa malograda');
+(5, 1, 'Placa malograda'),
+(6, 3, 'Revisión técnica'),
+(7, 3, 'Condensadores quemados'),
+(8, 1, 'Virus detectado'),
+(9, 1, 'Falla del disco duro'),
+(10, 1, 'Sistema operativo dañado'),
+(11, 1, 'Falla de microprocesador'),
+(12, 1, 'Memoria malograda'),
+(13, 1, 'Copia de seguridad'),
+(14, 1, 'Instalacion del sistema operativo'),
+(15, 1, 'Instalacion de programas'),
+(16, 1, 'Instalacion de antivirus'),
+(17, 1, 'Instalacion de galenos'),
+(18, 1, 'Falla de la fuente de alimentación'),
+(19, 1, 'Instalacion de tarjeta de red'),
+(20, 1, 'Falla de la tarjeta de video'),
+(21, 1, 'Revision de la lectora'),
+(22, 1, 'Instalacion de equipo de computo'),
+(23, 1, 'Equipo obsoleto'),
+(24, 1, 'Mantenimiento lógico'),
+(25, 1, 'Cpu violentado'),
+(26, 1, 'Instalacion de memoria'),
+(27, 1, 'Incremento de memoria'),
+(28, 1, 'Cambio de fuente de energía'),
+(29, 1, 'Cambio de placa madre'),
+(30, 1, 'Obsolescencia técnica'),
+(31, 2, 'Falla de tarjeta de red'),
+(32, 2, 'Falla del switch'),
+(33, 2, 'Instalacion de punto de red'),
+(34, 2, 'Obsolescencia tecnica'),
+(35, 3, 'Falla de monitor'),
+(36, 3, 'Falla del estabilizador'),
+(37, 3, 'Falla del mouse'),
+(38, 3, 'Falla de teclado'),
+(39, 3, 'Cargador de batería malogrado ups '),
+(40, 3, 'Teclado malogrado'),
+(41, 3, 'Impresora malograda'),
+(42, 3, 'Monitor malogrado'),
+(43, 3, 'Entrega de teclado'),
+(44, 3, 'Falla de supresor de picos'),
+(45, 3, 'Reemplazar la unidad de tambor'),
+(46, 3, 'Sustituir la unidad de revelado'),
+(47, 3, 'Obsolescencia tecnica'),
+(48, 3, 'Requiere cambio de cartuchos de tinta'),
+(49, 3, 'Adf inoperativo'),
+(50, 1, 'Re ensamblado de equipo ');
 
 -- --------------------------------------------------------
 
@@ -1133,7 +1178,7 @@ INSERT INTO `ws_equipos` (`idEquipo`, `tipSegmento`, `idTipo`, `uResponsable`, `
 (94, 3, 3, 23, 21, 8, 'BRFSDDBKTM', '740841000068', 'HP ', 'HP LASERJET PRO 400 M401dn', 'LASER', '2012-01-01', '1853-2012', '1 AÑO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-06 14:28:24'),
 (95, 3, 3, 23, 21, 8, 'CNC9120233', '0', 'HP ', 'HP LASER JET P2055dn', 'LASER', '2012-01-01', 'SO', '1 AÑO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-06 14:28:24'),
 (96, 3, 3, 23, 21, 8, 'BRBSD81QG2', '740841000062', 'HP ', 'HP LASERJET PRO 400 M401dn', 'LASER', '2012-01-01', '1282-2012', '1 AÑO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-06 14:28:24'),
-(97, 3, 3, 23, 21, 8, 'CNF8G5SJ2P', '740841000120', 'HP ', 'HP LASERJET PRO 400 M425dn', 'LASER', '2014-01-01', '252-2014', '1 AÑO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-06 14:28:24'),
+(97, 3, 3, 23, 21, 8, 'CNF8G5SJ2P', '740841000120', 'HP ', 'HP LASERJET PRO 400 M425dn', 'LASER', '2014-01-01', '252-2014', '1 AÑO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'CON FICHA DE REPOSICION 2021-07-15', NULL, NULL, 1, 3, 4, '2021-05-06 14:28:24'),
 (98, 3, 3, 21, 10, 14, 'BRBSKBT8XL', '0', 'HP ', 'LASERJET PRO M426FDW', 'LASER', '2017-01-01', '925-2017', '1 AÑO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-06 14:28:24'),
 (99, 3, 3, 32, 1, 4, 'NZCY024836', '740845500211', 'EPSON', 'FX-890', 'MATRICIAL', '2013-01-01', '790-2013', '1 AÑO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-06 14:28:24'),
 (100, 3, 3, 32, 1, 4, 'CNCKB06060', '0', 'HP ', 'HP LASER JET P2055dn', 'LASER', '2013-01-01', 'SO', '1 AÑO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-06 14:28:24'),
@@ -1193,7 +1238,7 @@ INSERT INTO `ws_equipos` (`idEquipo`, `tipSegmento`, `idTipo`, `uResponsable`, `
 (155, 3, 3, 6, 5, 22, 'NZCY035427', '740845500383', 'EPSON', 'FX-890', 'MATRICIAL', '2014-01-01', '290-2014', '1 AÑO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-06 14:28:24'),
 (156, 3, 3, 6, 5, 22, 'BRFSF6FSTT', '0', 'HP ', 'HP LASERJET PRO 400 M401dn', 'LASER', '2013-01-01', '791-2013', '1 AÑO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'EQUIPO EN BAJA', NULL, NULL, 1, 2, 4, '2021-05-06 14:28:24'),
 (157, 3, 3, 6, 5, 22, 'CND8F3H5F8', '742223580015', 'HP ', 'HP LASERJET PRO 400 M425dn', 'LASER', '2013-01-01', '657-2013', '1 AÑO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-06 14:28:24'),
-(158, 3, 9, 6, 5, 22, 'A789041006578', '0', 'KONICA MINOLTA', 'BIZHUB 367', 'FOTOCOPIADORA', '2017-01-01', '1136-2017', '1 AÑO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-06 14:28:24'),
+(158, 3, 9, 6, 5, 22, 'A789041006578', '742223580070', 'KONICA MINOLTA', 'BIZHUB 367', 'FOTOCOPIADORA', '2017-01-01', '1136-2017', '1 AÑO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-06 14:28:24'),
 (159, 3, 3, 6, 5, 22, 'BRBSKBT8X7', '0', 'HP ', 'LASERJET PRO M426FDW', 'LASER', '2017-01-01', '925-2017', '1 AÑO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-06 14:28:24'),
 (160, 3, 3, 6, 5, 22, 'BRBSKBT8XF', '0', 'HP ', 'LASERJET PRO M426FDW', 'LASER', '2017-01-01', '925-2017', '1 AÑO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-06 14:28:24'),
 (161, 3, 3, 6, 5, 22, 'NZCY027141', '740845500357', 'EPSON', 'FX-890', 'MATRICIAL', '2013-01-01', '790-2013', '1 AÑO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-06 14:28:24'),
@@ -1214,7 +1259,7 @@ INSERT INTO `ws_equipos` (`idEquipo`, `tipSegmento`, `idTipo`, `uResponsable`, `
 (176, 3, 3, 24, 22, 25, '740845500382', '0', 'EPSON', 'FX-890', 'MATRICIAL', '2013-01-01', 'SO', '1 AÑO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-06 14:28:24'),
 (177, 3, 3, 24, 22, 25, 'NZCY035425', '740845500382', 'EPSON', 'FX-890', 'MATRICIAL', '2014-01-01', '290-2014', '1 AÑO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-06 14:28:24'),
 (178, 3, 3, 24, 22, 25, 'BRBSKBT8WN', '0', 'HP ', 'LASERJET PRO M426FDW', 'LASER', '2017-01-01', '925-2017', '1 AÑO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-06 14:28:24'),
-(179, 3, 9, 15, 13, 15, 'A1UE041105678', '0', 'KONICA MINOLTA', 'MINOLTA BIZ HUB 363', 'FOTOCOPIADORA', '2014-01-01', '352-2014', '1 AÑO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-06 14:28:24'),
+(179, 3, 9, 15, 3, 15, 'A1UE041105678', '740832000038', 'KONICA MINOLTA', 'MINOLTA BIZ HUB 363', 'FOTOCOPIADORA', '2014-01-01', '352-2014', '1 AÑO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-06 14:28:24'),
 (180, 3, 3, 28, 27, 26, 'BRFSDDCK9V', '740841000071', 'HP ', 'HP LASERJET PRO 400 M401dn', 'LASER', '2012-01-01', '1853-2012', '1 AÑO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-06 14:28:24'),
 (181, 3, 3, 20, 17, 28, 'BRF5DDCK95', '0', 'HP ', 'HP LASERJET PRO 400 M401dn', 'LASER', '2014-01-01', '0', '1 AÑO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-06 14:28:24'),
 (182, 3, 3, 20, 17, 28, 'CNF8G5SJ2G', '740841000121', 'HP ', 'HP LASERJET PRO 400 M425dn', 'LASER', '2014-01-01', '252-2014', '1 AÑO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-06 14:28:24'),
@@ -1337,7 +1382,7 @@ INSERT INTO `ws_equipos` (`idEquipo`, `tipSegmento`, `idTipo`, `uResponsable`, `
 (298, 3, 3, 31, 25, 27, 'NZCY035424', '740845500381', 'EPSON', 'FX-890', 'MATRICIAL', '2014-01-01', '290-2014', '1 AÑO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-07 11:16:59'),
 (299, 3, 3, 31, 25, 27, 'NZCY024856', '0', 'EPSON', 'FX-890', 'MATRICIAL', '2013-01-01', '790-2013', '1 AÑO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'EQUIPO EN BAJA', NULL, NULL, 1, 2, 4, '2021-05-07 11:16:59'),
 (300, 3, 3, 31, 25, 27, 'CNF8G5SJI7', '740841000119', 'HP ', 'HP LASERJET PRO 400 M425dn', 'LASER', '2014-01-01', '252-2014', '1 AÑO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-07 11:16:59'),
-(301, 3, 3, 31, 25, 27, 'BRFSG7L2P2', '740841000135', 'HP ', 'HP LASERJET PRO 400 M401dn', 'LASER', '2014-01-01', '286-2014', '1 AÑO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-07 11:16:59'),
+(301, 3, 3, 31, 25, 27, 'BRFSG7L2P2', '740841000135', 'HP ', 'HP LASERJET PRO 400 M401dn', 'LASER', '2014-01-01', '286-2014', '1 AÑO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'CON FICHA DE REPOSICION 2021-07-12', NULL, NULL, 1, 3, 4, '2021-05-07 11:16:59'),
 (302, 3, 3, 31, 25, 27, 'NZCY035257', '740845500365', 'EPSON', 'FX-890', 'MATRICIAL', '2014-01-01', '290-2014', '1 AÑO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'EQUIPO EN BAJA', NULL, NULL, 1, 2, 4, '2021-05-07 11:16:59'),
 (303, 3, 3, 31, 25, 27, 'CND8F3H8YZ', '742223580022', 'HP ', 'HP LASERJET PRO 400 M425dn', 'LASER', '2013-01-01', '791-2013', '1 AÑO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-07 11:16:59'),
 (304, 3, 3, 31, 25, 27, 'BRBSD5WM8J', '0', 'HP ', 'HP LASER JET P1102W', 'LASER', '2013-01-01', 'SO', '1 AÑO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-07 11:16:59'),
@@ -1915,7 +1960,7 @@ INSERT INTO `ws_equipos` (`idEquipo`, `tipSegmento`, `idTipo`, `uResponsable`, `
 (980, 1, 1, 32, 1, 4, 'MXL32434YF', '740899500536', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I5', '3.40 GHZ', '4GB', '500GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
 (981, 1, 1, 32, 1, 4, 'MXL32434Z9', '740899500537', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I5', '3.40 GHZ', '4GB', '500GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
 (982, 1, 1, 32, 1, 4, 'MXL4420TS5          ', '740899500566', 'HP', 'HP ELITE DESK 800 G1 SFF (80)', 'ESTACION DE TRABAJO', '2014-01-01', '632', '3 AÑOS', 'HP', 'CORE I7', '3.40 GHZ', '8GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
-(983, 1, 1, 32, 1, 4, 'MXL32434Z6', '740899500455', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I5', '3.40 GHZ', '4GB', '500GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
+(983, 1, 1, 14, 12, 32, 'MXL32434Z6', '740899500455', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-07-30', '789', '3 AÑOS', 'HP', 'CORE I5', '3.40 GHZ', '4GB', '500GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
 (984, 1, 1, 32, 1, 4, 'MXL32434Z8', '740899500538', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I5', '3.40 GHZ', '4GB', '500GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
 (985, 1, 1, 32, 1, 4, 'MXL5512QTK', '740899500751', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-11', '407', '3 AÑOS', 'HP', 'CORE I7', '3.40 GHZ', '8GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
 (986, 1, 1, 32, 1, 4, 'MXL5521JLP', '740899500748', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-11', '407', '3 AÑOS', 'HP', 'CORE I7', '3.40 GHZ', '8GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
@@ -1957,7 +2002,7 @@ INSERT INTO `ws_equipos` (`idEquipo`, `tipSegmento`, `idTipo`, `uResponsable`, `
 (1022, 1, 1, 27, 24, 12, 'MXL3243C3H', '740899500516', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I5', '3.40 GHZ', '4GB', '500GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
 (1023, 1, 1, 27, 24, 12, 'MXL5521P9D', '740899500683', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-11', '407', '3 AÑOS', 'HP', 'CORE I7', '3.40 GHZ', '8GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
 (1024, 1, 1, 27, 24, 12, 'MXL32438ZF', '740899500518', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I5', '3.40 GHZ', '4GB', '500GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
-(1025, 1, 1, 27, 24, 12, 'MXL4461BY3', '740899500638', 'HP', 'HP ELITE DESK 800 G1 SFF (20)', 'ESTACION DE TRABAJO', '2014-01-01', '786', '3 AÑOS', 'HP', 'CORE I7', '3.40 GHZ', '4GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
+(1025, 1, 1, 27, 24, 140, 'MXL4461BY3', '740899500638', 'HP', 'HP ELITE DESK 800 G1 SFF (20)', 'ESTACION DE TRABAJO', '2014-12-17', '786', '3 AÑOS', 'HP', 'CORE I7', '3.40 GHZ', '4GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
 (1026, 1, 1, 27, 24, 12, 'MXL44131WN', '740899500548', 'HP', 'HP ELITE DESK 800 G1 SFF (80)', 'ESTACION DE TRABAJO', '2014-01-01', '632', '3 AÑOS', 'HP', 'CORE I7', '3.40 GHZ', '8GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
 (1027, 1, 1, 27, 24, 12, 'MXL4413238', '740899500549', 'HP', 'HP ELITE DESK 800 G1 SFF (80)', 'ESTACION DE TRABAJO', '2014-01-01', '632', '3 AÑOS', 'HP', 'CORE I7', '3.40 GHZ', '8GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
 (1028, 1, 1, 27, 24, 12, 'MXL4461BMR', '740899500636', 'HP', 'HP ELITE DESK 800 G1 SFF (20)', 'ESTACION DE TRABAJO', '2014-01-01', '786', '3 AÑOS', 'HP', 'CORE I7', '3.40 GHZ', '8GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
@@ -1968,33 +2013,32 @@ INSERT INTO `ws_equipos` (`idEquipo`, `tipSegmento`, `idTipo`, `uResponsable`, `
 (1033, 1, 1, 27, 24, 12, 'MXL4461BMM', '740899500634', 'HP', 'HP ELITE DESK 800 G1 SFF (20)', 'ESTACION DE TRABAJO', '2014-01-01', '786', '3 AÑOS', 'HP', 'CORE I7', '3.40 GHZ', '8GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
 (1034, 1, 1, 27, 24, 12, 'MXL4461BML', '740899500633', 'HP', 'HP ELITE DESK 800 G1 SFF (20)', 'ESTACION DE TRABAJO', '2014-01-01', '786', '3 AÑOS', 'HP', 'CORE I7', '3.40 GHZ', '8GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
 (1035, 1, 1, 27, 24, 12, 'MXL3243503', '740899500521', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I5', '3.40 GHZ', '4GB', '500GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
-(1036, 1, 1, 27, 24, 12, 'MXL3243C25', '740899500522', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I5', '3.40 GHZ', '4GB', '500GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
+(1036, 1, 1, 27, 24, 138, 'MXL3243C25', '740899500522', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I5', '3.40 GHZ', '4GB', '500GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
 (1037, 1, 1, 27, 24, 12, 'MXL32434ZM', '740899500523', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I5', '3.40 GHZ', '4GB', '500GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
 (1038, 1, 1, 27, 24, 12, 'MXL3243C3T', '740899500524', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I5', '3.40 GHZ', '4GB', '500GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
 (1039, 1, 1, 27, 24, 12, 'THERMALTAKE', '740899500390', 'HP', 'THERMALTAKE', 'ESTACION DE TRABAJO', '2012-01-02', '1875', '3 AÑOS', 'HP', 'CORE I5', '3.40 GHZ', '4GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
-(1040, 1, 1, 27, 24, 12, 'MXL3243C3Y', '740899500526', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I5', '3.40 GHZ', '4GB', '500GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
-(1041, 1, 1, 27, 24, 12, 'MXL4461BMS', '740899500637', 'HP', 'HP ELITE DESK 800 G1 SFF (20)', 'ESTACION DE TRABAJO', '2014-01-01', '786', '3 AÑOS', 'HP', 'CORE I7', '3.40 GHZ', '8GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
+(1040, 1, 1, 27, 24, 141, 'MXL3243C3Y', '740899500526', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-08-08', '789', '3 AÑOS', 'HP', 'CORE I5', '3.40 GHZ', '4GB', '500GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
+(1041, 1, 1, 27, 24, 136, 'MXL4461BMS', '740899500637', 'HP', 'HP ELITE DESK 800 G1 SFF (20)', 'ESTACION DE TRABAJO', '2014-01-01', '786', '3 AÑOS', 'HP', 'CORE I7', '3.40 GHZ', '8GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
 (1042, 1, 1, 27, 24, 12, 'MXL4461BYS', '740899500640', 'HP', 'HP ELITE DESK 800 G1 SFF (20)', 'ESTACION DE TRABAJO', '2014-01-01', '786', '3 AÑOS', 'HP', 'CORE I7', '3.40 GHZ', '8GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
 (1043, 1, 1, 27, 24, 12, 'MXL5521F9P', '740899500642', 'HP', 'ELITEDESK 800G1 SFF (2)', 'ESTACION DE TRABAJO', '2016-01-11', 'NEA 038', '3 AÑOS', 'HP', 'CORE I7', '3.40 GHZ', '8GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
 (1044, 1, 1, 27, 24, 12, 'MXL3243C29', '740899500527', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I5', '3.40 GHZ', '4GB', '500GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
 (1045, 1, 1, 27, 24, 12, 'MXL5521JVG', '740899500681', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-11', '407', '3 AÑOS', 'HP', 'CORE I7', '3.40 GHZ', '8GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
 (1046, 1, 1, 27, 24, 12, 'MXL3243C36', '740899500528', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I5', '3.40 GHZ', '4GB', '500GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
-(1047, 1, 1, 27, 24, 12, 'MXL3243C2S', '740899500529', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I5', '3.40 GHZ', '4GB', '500GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
+(1047, 1, 1, 27, 24, 133, 'MXL3243C2S', '740899500529', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-07-30', '789', '3 AÑOS', 'HP', 'CORE I5', '3.40 GHZ', '4GB', '500GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
 (1048, 1, 1, 27, 24, 12, 'MXL4450T3V', '740899500593', 'HP', 'HP ELITE DESK 800 G1 SFF (80)', 'ESTACION DE TRABAJO', '2014-01-01', '632', '3 AÑOS', 'HP', 'CORE I7', '3.40 GHZ', '8GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
 (1049, 1, 1, 27, 24, 12, 'MXL4461BYQ', '740899500639', 'HP', 'HP ELITE DESK 800 G1 SFF (20)', 'ESTACION DE TRABAJO', '2014-01-01', '786', '3 AÑOS', 'HP', 'CORE I7', '3.40 GHZ', '8GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
 (1050, 1, 1, 27, 24, 12, 'MXL2502DSS', '740899500441', 'HP', 'HP ELITE 8300 SFF (50)', 'ESTACION DE TRABAJO', '2013-01-01', '426', '3 AÑOS', 'HP', 'CORE I7', '3.40 GHZ', '4GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
-(1051, 1, 1, 27, 24, 12, 'MXL5512DVJ', '740899500682', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-11', '407', '3 AÑOS', 'HP', 'CORE I7', '3.40 GHZ', '8GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
+(1051, 1, 1, 27, 24, 137, 'MXL5512DVJ', '740899500682', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-04-12', '407', '3 AÑOS', 'HP', 'CORE I7', '3.40 GHZ', '8GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
 (1052, 1, 1, 27, 24, 12, 'MXL3243C3C        ', '0', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I5', '3.40 GHZ', '4GB', '500GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
 (1053, 1, 1, 27, 24, 12, 'MXL3243C3F      ', '740899500458', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I5', '3.40 GHZ', '4GB', '500GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
 (1054, 1, 1, 27, 24, 12, 'MXL32434YY', '0', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I5', '3.40 GHZ', '4GB', '500GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
 (1055, 1, 1, 27, 24, 12, 'MXL5521JTK', '740899500643', 'HP', 'ELITEDESK 800G1 SFF (2)', 'ESTACION DE TRABAJO', '2016-01-11', 'NEA 038', '3 AÑOS', 'HP', 'CORE I7', '3.40 GHZ', '8GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
 (1056, 1, 1, 27, 24, 12, 'MXL5521GH1', '740899500645', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-11', '407', '3 AÑOS', 'HP', 'CORE I7', '3.40 GHZ', '8GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
 (1057, 1, 1, 27, 24, 12, 'MXL2501NBT', '740899500425', 'HP', 'HP ELITE 8300 SFF (50)', 'ESTACION DE TRABAJO', '2013-01-01', '426', '3 AÑOS', 'HP', 'CORE I7', '3.40 GHZ', '4GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
-(1058, 1, 1, 27, 24, 12, 'MXL32434Y6', '0', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I5', '3.40 GHZ', '4GB', '500GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
-(1059, 1, 1, 27, 24, 12, 'MXL32434Y7', '740899500530', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I5', '3.40 GHZ', '4GB', '500GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
+(1058, 1, 1, 27, 24, 142, 'MXL32434Y6', '0', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I5', '3.40 GHZ', '4GB', '500GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
 (1060, 1, 1, 27, 24, 12, 'MXL32434YM', '740899500531', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I5', '3.40 GHZ', '4GB', '500GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
 (1061, 1, 1, 27, 24, 12, 'MXL32434Z1', '740899500532', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I5', '3.40 GHZ', '4GB', '500GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
-(1062, 1, 1, 27, 24, 12, 'MXL32438YT', '740899500533', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I5', '3.40 GHZ', '4GB', '500GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
+(1062, 1, 1, 27, 24, 140, 'MXL32438YT', '740899500533', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-07-30', '789', '3 AÑOS', 'HP', 'CORE I5', '3.40 GHZ', '4GB', '500GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
 (1063, 1, 1, 15, 3, 15, 'MXL5521GNG', '740899500754', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-11', '407', '3 AÑOS', 'HP', 'CORE I7', '3.40 GHZ', '8GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
 (1064, 1, 1, 15, 3, 15, 'MXL2500TDR', '740899500418', 'HP', 'HP ELITE 8300 SFF (50)', 'ESTACION DE TRABAJO', '2013-01-01', '426', '3 AÑOS', 'HP', 'CORE I7', '3.40 GHZ', '4GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
 (1065, 1, 1, 15, 3, 15, 'MXL2500TJ5', '740899500419', 'HP', 'HP ELITE 8300 SFF (50)', 'ESTACION DE TRABAJO', '2013-01-01', '426', '3 AÑOS', 'HP', 'CORE I7', '3.40 GHZ', '4GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-11 10:02:38'),
@@ -2090,9 +2134,9 @@ INSERT INTO `ws_equipos` (`idEquipo`, `tipSegmento`, `idTipo`, `uResponsable`, `
 (1356, 1, 1, 21, 10, 14, 'MXL5521GFQ', '740899500695', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-01', '407', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-17 12:16:16'),
 (1357, 1, 1, 21, 10, 14, 'MXL5521P7H', '740899500693', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-01', '407', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-17 12:16:16'),
 (1387, 1, 1, 25, 19, 19, 'MXL32434ZW', '740899500470', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I5', '3.2 GHZ', '4 GB', '500 GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-17 12:16:16'),
-(1388, 1, 1, 25, 19, 19, 'MXL4420TS9', '740899500570', 'HP', 'HP ELITE DESK 800 G1 SFF (80)', 'ESTACION DE TRABAJO', '2014-01-01', '632', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-17 12:16:16');
+(1388, 1, 1, 25, 19, 19, 'MXL4420TS9', '740899500570', 'HP', 'HP ELITE DESK 800 G1 SFF (80)', 'ESTACION DE TRABAJO', '2014-01-01', '632', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-17 12:16:16'),
+(1389, 1, 1, 25, 19, 19, 'MXL32434ZB', '740899500483', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I5', '3.2 GHZ', '4 GB', '500 GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-17 12:16:16');
 INSERT INTO `ws_equipos` (`idEquipo`, `tipSegmento`, `idTipo`, `uResponsable`, `office`, `service`, `serie`, `sbn`, `marca`, `modelo`, `descripcion`, `fechaCompra`, `ordenCompra`, `garantia`, `placa`, `procesador`, `vprocesador`, `ram`, `discoDuro`, `puertos`, `capa`, `observaciones`, `fichaBaja`, `fichaReposición`, `condicion`, `estadoEQ`, `registrador`, `registrof`) VALUES
-(1389, 1, 1, 25, 19, 19, 'MXL32434ZB', '740899500483', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I5', '3.2 GHZ', '4 GB', '500 GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-17 12:16:16'),
 (1390, 1, 1, 25, 19, 19, 'MXL5521GLF', '740899500674', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-11', '407', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-17 12:16:16'),
 (1391, 1, 1, 25, 19, 19, 'MXL4420TSB', '740899500571', 'HP', 'HP ELITE DESK 800 G1 SFF (80)', 'ESTACION DE TRABAJO', '2014-01-01', '632', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-17 12:16:16'),
 (1392, 1, 1, 25, 19, 19, 'MXL4420TSC  ', '740899500572', 'HP', 'HP ELITE DESK 800 G1 SFF (80)', 'ESTACION DE TRABAJO', '2014-01-01', '632', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-17 12:16:16'),
@@ -2174,7 +2218,135 @@ INSERT INTO `ws_equipos` (`idEquipo`, `tipSegmento`, `idTipo`, `uResponsable`, `
 (1468, 1, 1, 6, 5, 22, 'MXL4450T18', '740899500583', 'HP', 'HP ELITE DESK 800 G1 SFF (80)', 'ESTACION DE TRABAJO', '2014-01-01', '632', '3 AÑOS', 'HP', 'CORE I7', '3.3 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-17 12:16:16'),
 (1469, 1, 1, 6, 5, 22, 'MXL5521P8M', '740899500723', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-01', '407', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-17 12:16:16'),
 (1470, 1, 1, 6, 5, 22, 'MXL308046S', '740899500406', 'HP', 'HP ELITE 8300 SFF (50)', 'ESTACION DE TRABAJO', '2013-01-01', '426', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '4 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-17 12:16:16'),
-(1471, 1, 1, 5, 6, 104, 'MXL3232488', '740899500506', 'HP', 'HP ELITE 8300 SFF 20', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I7', '3.4GHZ', '4GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-17 14:43:08');
+(1471, 1, 1, 5, 6, 104, 'MXL3232488', '740899500506', 'HP', 'HP ELITE 8300 SFF 20', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I7', '3.4GHZ', '4GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 2, 1, 4, '2021-05-17 14:43:08'),
+(1472, 1, 1, 18, 15, 23, 'MXL4461BYZ', '740899500641', 'HP', 'HP ELITE DESK 800 G1 SFF (20)', 'ESTACION DE TRABAJO', '2014-01-01', '786', '3 AÑOS', 'HP', 'CORE I7', '3.2 GHZ', '4 GB', '500 GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1473, 1, 1, 18, 15, 23, 'MXL2500TDZ', '740899500439', 'HP', 'HP ELITE 8300 SFF (50)', 'ESTACION DE TRABAJO', '2013-01-01', '426', '3 AÑOS', 'HP', 'CORE I7', '3.2 GHZ', '4 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1474, 1, 1, 18, 15, 23, 'MXL32434YZ', '0', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I5', '3.2 GHZ', '4 GB', '500 GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1475, 1, 1, 18, 15, 23, 'MXL4450T34', '740899500588', 'HP', 'HP ELITE DESK 800 G1 SFF (80)', 'ESTACION DE TRABAJO', '2014-01-01', '632', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1476, 1, 1, 18, 15, 23, 'MXL324350N', '740899500482', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I5', '3.2 GHZ', '4 GB', '500 GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1477, 1, 1, 18, 15, 23, 'MXL4450T3K          ', '740899500590', 'HP', 'HP ELITE DESK 800 G1 SFF (80)', 'ESTACION DE TRABAJO', '2014-01-01', '632', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1478, 1, 1, 18, 15, 23, 'MXL5521GRY', '740899500712', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-01', '407', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1479, 1, 1, 18, 15, 23, 'THERMALTAKE', '740899500388', 'THERMALTAKE', 'THERMALTAKE', 'ESTACION DE TRABAJO', '2012-01-01', '1875', '3 AÑOS', 'THERMALTAKE', 'CORE I5', '3.2 GHZ', '4 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1480, 1, 1, 18, 15, 23, 'MXL3243C2T     ', '740899500476', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I5', '3.2 GHZ', '4 GB', '500 GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1481, 1, 1, 18, 15, 23, 'MXL5521GKK', '740899500711', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-01', '407', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1482, 1, 1, 18, 15, 23, 'MXL4450T3J', '740899500589', 'HP', 'HP ELITE DESK 800 G1 SFF (80)', 'ESTACION DE TRABAJO', '2014-01-01', '632', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1483, 1, 1, 18, 15, 23, 'THERMALTAKE', '740899500391', 'THERMALTAKE', 'THERMALTAKE', 'ESTACION DE TRABAJO', '2012-01-01', '1875', '3 AÑOS', 'THERMALTAKE', 'CORE I5', '3.2 GHZ', '4 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1484, 1, 1, 24, 22, 25, 'MXL4450T3M', '740899500591', 'HP', 'HP ELITE DESK 800 G1 SFF (80)', 'ESTACION DE TRABAJO', '2014-01-01', '632', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1485, 1, 1, 24, 22, 25, 'MXL32438ZJ', '740899500480', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I5', '3.4 GHZ', '4 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1486, 1, 1, 24, 22, 25, 'MXL5512QT9', '740899500708', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-01', '407', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1487, 1, 1, 28, 27, 26, 'MXL4450T3T          ', '740899500592', 'HP', 'HP ELITE DESK 800 G1 SFF (80)', 'ESTACION DE TRABAJO', '2014-01-01', '632', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '4GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1488, 1, 1, 20, 17, 28, 'MXL4450T40', '740899500594', 'HP', 'HP ELITE DESK 800 G1 SFF (80)', 'ESTACION DE TRABAJO', '2014-01-01', '632', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1489, 1, 1, 20, 17, 28, 'MXL32434YX', '740899500505', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I5', '3.2 GHZ', '4 GB', '1TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1490, 1, 1, 20, 17, 28, 'MXL4450T5C', '740899500595', 'HP', 'HP ELITE DESK 800 G1 SFF (80)', 'ESTACION DE TRABAJO', '2014-01-01', '632', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1491, 1, 1, 20, 17, 28, 'MXL5512QQW', '740899500353', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-01', '407', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1492, 1, 1, 20, 17, 28, 'MXL5512QT1', '740899500696', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-01', '407', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1493, 1, 1, 5, 6, 29, 'MXL32427LD      ', '740899500446', 'HP', 'HP ELITE 8300 SFF (20)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '4 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1494, 1, 1, 5, 6, 29, 'MXL32427L5', '740899500507', 'HP', 'HP ELITE 8300 SFF (20)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '4 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1495, 1, 1, 5, 6, 29, 'MXL5521GR2', '740899500742', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-01', '407', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1496, 1, 1, 5, 6, 29, 'MXL5521P8T', '740899500743', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-01', '407', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1497, 1, 1, 5, 6, 29, 'MXL4450T5K          ', '740899500599', 'HP', 'HP ELITE DESK 800 G1 SFF (80)', 'ESTACION DE TRABAJO', '2014-01-01', '632', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1498, 1, 1, 5, 6, 29, 'MXL5521GMB', '740899500745', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-01', '407', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1499, 1, 1, 5, 6, 29, 'MXL32427L4 ', '740899500444', 'HP', 'HP ELITE 8300 SFF (20)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '4 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1500, 1, 1, 5, 6, 29, 'MXL32427LP ', '0', 'HP', 'HP ELITE 8300 SFF (20)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '4 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1502, 1, 1, 5, 6, 29, 'MXL4450T5G          ', '740899500596', 'HP', 'HP ELITE DESK 800 G1 SFF (80)', 'ESTACION DE TRABAJO', '2014-01-01', '632', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1503, 1, 1, 5, 6, 29, 'MXL5521P59', '740899500740', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-01', '407', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1504, 1, 1, 5, 6, 29, 'MXL4450T5H          ', '740899500597', 'HP', 'HP ELITE DESK 800 G1 SFF (80)', 'ESTACION DE TRABAJO', '2014-01-01', '632', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1505, 1, 1, 5, 6, 29, 'MXL32427L3    ', '740899500447', 'HP', 'HP ELITE 8300 SFF (20)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '4 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1506, 1, 1, 5, 6, 29, 'MXL4450T5L', '740899500600', 'HP', 'HP ELITE DESK 800 G1 SFF (80)', 'ESTACION DE TRABAJO', '2014-01-01', '632', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1507, 1, 1, 5, 6, 29, 'MXL5521JKK', '740899500744', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-01', '407', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1508, 1, 1, 5, 6, 29, 'MXL25015YC', '740899500417', 'HP', 'HP ELITE 8300 SFF (50)', 'ESTACION DE TRABAJO', '2013-01-01', '426', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '4 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1509, 1, 1, 5, 6, 29, 'MXL2500THF', '740899500415', 'HP', 'HP ELITE 8300 SFF (50)', 'ESTACION DE TRABAJO', '2013-01-01', '426', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '4 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1510, 1, 1, 5, 6, 29, 'MXL3080460      ', '740899500416', 'HP', 'HP ELITE 8300 SFF (50)', 'ESTACION DE TRABAJO', '2013-01-01', '426', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '4 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1511, 1, 1, 5, 6, 29, 'MXL4450T5J', '740899500598', 'HP', 'HP ELITE DESK 800 G1 SFF (80)', 'ESTACION DE TRABAJO', '2014-01-01', '632', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1512, 1, 1, 5, 6, 29, 'MXL4461BM5    ', '740899500627', 'HP', 'HP ELITE DESK 800 G1 SFF (20)', 'ESTACION DE TRABAJO', '2014-01-01', '786', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1513, 1, 1, 5, 6, 29, 'MXL5512QT5', '740899500741', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-01', '407', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1514, 1, 1, 5, 6, 29, 'MXL32427LW', '740899500443', 'HP', 'HP ELITE 8300 SFF (20)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '4 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1515, 1, 1, 5, 6, 29, 'MXL5521P4D', '740899500746', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-01', '407', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1516, 1, 1, 5, 6, 29, 'MXL32427KT', '740899500448', 'HP', 'HP ELITE 8300 SFF (20)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '4 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1517, 1, 1, 8, 4, 30, 'MXL2502DST', '740899500423', 'HP', 'HP ELITE 8300 SFF (50)', 'ESTACION DE TRABAJO', '2013-01-01', '426', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '4 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1518, 1, 1, 8, 4, 30, 'MXL2500TJ9', '740899500420', 'HP', 'HP ELITE 8300 SFF (50)', 'ESTACION DE TRABAJO', '2013-01-01', '426', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '4 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1519, 1, 1, 8, 4, 30, 'MXL250160P', '740899500424', 'HP', 'HP ELITE 8300 SFF (50)', 'ESTACION DE TRABAJO', '2013-01-01', '426', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '4 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1520, 1, 1, 8, 4, 30, 'MXL2501610', '740899500421', 'HP', 'HP ELITE 8300 SFF (50)', 'ESTACION DE TRABAJO', '2013-01-01', '426', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '4 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1521, 1, 1, 8, 4, 30, 'MXL5521GHO', '740899500727', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-01', '407', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1522, 1, 1, 8, 4, 30, 'MXL2502DSH ', '740899500422', 'HP', 'HP ELITE 8300 SFF (50)', 'ESTACION DE TRABAJO', '2013-01-01', '426', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '4 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1523, 1, 1, 8, 4, 30, 'MXL4450T5P', '740899500603', 'HP', 'HP ELITE DESK 800 G1 SFF (80)', 'ESTACION DE TRABAJO', '2014-01-01', '632', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1524, 1, 1, 8, 4, 30, 'MXL4450T5N', '740899500602', 'HP', 'HP ELITE DESK 800 G1 SFF (80)', 'ESTACION DE TRABAJO', '2014-01-01', '632', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1525, 1, 1, 8, 4, 30, 'MXL4450T5Q', '740899500604', 'HP', 'HP ELITE DESK 800 G1 SFF (80)', 'ESTACION DE TRABAJO', '2014-01-01', '632', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1526, 1, 1, 8, 4, 30, 'MXL4450T5M', '740899500601', 'HP', 'HP ELITE DESK 800 G1 SFF (80)', 'ESTACION DE TRABAJO', '2014-01-01', '632', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1527, 1, 1, 8, 4, 30, 'MXL5521GGG', '740899500726', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-01', '407', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1528, 1, 1, 8, 4, 30, 'MXL5521P92', '740899500724', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-01', '407', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1529, 1, 1, 26, 18, 31, 'MXL5521JWX', '740899500705', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-02', '407', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1530, 1, 1, 26, 18, 31, 'MXL32434ZQ', '740899500471', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I5', '3.2 GHZ', '4 GB', '500 GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1531, 1, 1, 26, 18, 31, 'MXL3243C2P    ', '740899500472', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I5', '3.2 GHZ', '4 GB', '500 GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1532, 1, 1, 26, 18, 31, 'MXL4450T5R', '740899500605', 'HP', 'HP ELITE DESK 800 G1 SFF (80)', 'ESTACION DE TRABAJO', '2016-01-01', '632', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1533, 1, 1, 26, 18, 31, 'MXL5521P4Y', '740899500706', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-01', '407', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1534, 1, 1, 26, 18, 31, 'MXL3243C1T          ', '740899500473', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I5', '3.2 GHZ', '4 GB', '500 GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1535, 1, 1, 26, 18, 31, 'MXL4450T5T', '740899500606', 'HP', 'HP ELITE DESK 800 G1 SFF (80)', 'ESTACION DE TRABAJO', '2014-01-01', '632', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1536, 1, 1, 26, 18, 31, '558780', '740899500783', 'HP', 'KB-62', 'ESTACION DE TRABAJO', '2016-01-01', '1519', '3 AÑOS', 'VASTEC', 'CORE i7 ', '3.2 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1537, 1, 1, 29, 30, 24, 'MXL32434ZC', '740899500540', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I5', '3.2 GHZ', '4 GB', '500 GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1538, 1, 1, 29, 30, 24, 'MXL5512QVW', '740899500707', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-01', '407', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1539, 1, 1, 14, 12, 32, 'MXL32434YC', '740899500456', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I5', '3.2 GHZ', '4 GB', '500 GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1540, 1, 1, 14, 12, 32, 'MXL2501NBM', '740899500408', 'HP', 'HP ELITE 8300 SFF (50)', 'ESTACION DE TRABAJO', '2013-01-01', '426', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '4 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1541, 1, 1, 14, 12, 32, 'MXL5521GP5', '740899500723', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-01', '407', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1542, 1, 1, 14, 12, 32, 'MXL3243CAJ ', '740899500453', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I5', '3.2 GHZ', '4 GB', '500 GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1543, 1, 1, 14, 12, 32, 'MXL5521GGL', '740899500653', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-01', '407', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1544, 1, 1, 14, 12, 32, 'MXL5521JZN', '740899500657', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-01', '407', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1545, 1, 1, 14, 12, 32, 'MXL4461BLT', '740899500624', 'HP', 'HP ELITE DESK 800 G1 SFF (20)', 'ESTACION DE TRABAJO', '2016-01-01', '786', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1546, 1, 1, 14, 12, 32, 'MXL5521JNL', '740899500651', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-01', '407', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1547, 1, 1, 14, 12, 32, 'MXL4450T6B', '740899500615', 'HP', 'HP ELITE DESK 800 G1 SFF (80)', 'ESTACION DE TRABAJO', '2016-01-01', '632', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1548, 1, 1, 14, 12, 32, 'MXL3243C4F', '740899500457', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I5', '3.2 GHZ', '2 GB', '500 GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1549, 1, 1, 14, 12, 32, 'MXL4461BMC', '740899500631', 'HP', 'HP ELITE DESK 800 G1 SFF (20)', 'ESTACION DE TRABAJO', '2016-01-01', '786', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '4 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1550, 1, 1, 14, 12, 32, 'MXL4450T65', '740899500611', 'HP', 'HP ELITE DESK 800 G1 SFF (80)', 'ESTACION DE TRABAJO', '2016-01-01', '632', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1551, 1, 1, 14, 12, 32, 'MXL5521JWN', '740899500654', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-01', '407', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1552, 1, 1, 14, 12, 32, 'MXL3243C3Q', '740899500541', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I5', '3.2 GHZ', '4 GB', '500 GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1553, 1, 1, 14, 12, 32, 'MXL4450T6C', '740899500616', 'HP', 'HP ELITE DESK 800 G1 SFF (80)', 'ESTACION DE TRABAJO', '2016-01-01', '632', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1554, 1, 1, 14, 12, 32, 'MXL5521GLP', '740899500644', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-01', '407', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1555, 1, 1, 14, 12, 32, 'MXL5512DV5', '740899500647', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-01', '407', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1556, 1, 1, 14, 12, 32, 'MXL4450T69', '740899500614', 'HP', 'HP ELITE DESK 800 G1 SFF (80)', 'ESTACION DE TRABAJO', '2016-01-01', '632', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1557, 1, 1, 14, 12, 32, 'MXL4450T68', '740899500613', 'HP', 'HP ELITE DESK 800 G1 SFF (80)', 'ESTACION DE TRABAJO', '2016-01-01', '632', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1558, 1, 1, 14, 12, 32, 'MXL5521JRT', '740899500650', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-01', '407', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1559, 1, 1, 14, 12, 32, 'MXL5521GH6', '740899500655', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-01', '407', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1560, 1, 1, 14, 12, 32, 'MXL4450T66', '740899500612', 'HP', 'HP ELITE DESK 800 G1 SFF (80)', 'ESTACION DE TRABAJO', '2016-01-01', '632', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1561, 1, 1, 14, 12, 32, 'MXL5521JZQ', '740899500652', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-01', '407', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1562, 1, 1, 14, 12, 32, 'MXL5512GL9', '740899500649', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-01', '407', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1563, 1, 1, 14, 12, 32, 'MXL5512QTV', '740899500646', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-01', '407', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1564, 1, 1, 14, 12, 32, 'MXL5521P5Y', '740899500648', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-01', '407', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1565, 1, 1, 14, 12, 32, 'MXL5512DV4', '740899500656', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-01', '407', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1566, 1, 1, 14, 12, 32, 'MXL5512QT4', '740899500658', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-01', '407', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1567, 1, 1, 14, 12, 32, '558788', '740899500776', 'VASTEC', 'KB-62', 'ESTACION DE TRABAJO', '2018-01-01', '1519', '3 AÑOS', 'VASTEC', 'CORE i7 ', '3.2 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1568, 1, 1, 14, 12, 32, '558779', '740899500775', 'VASTEC', 'KB-62', 'ESTACION DE TRABAJO', '2018-01-01', '1519', '3 AÑOS', 'VASTEC', 'CORE i7 ', '3.2 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1569, 1, 1, 14, 12, 32, '558784', '740899500779', 'VASTEC', 'KB-62', 'ESTACION DE TRABAJO', '2018-01-01', '1519', '3 AÑOS', 'VASTEC', 'CORE i7 ', '3.2 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1570, 1, 1, 14, 12, 32, '558787', '740899500777', 'VASTEC', 'KB-62', 'ESTACION DE TRABAJO', '2018-01-01', '1519', '3 AÑOS', 'VASTEC', 'CORE i7 ', '3.2 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1571, 1, 1, 14, 12, 32, '558776', '740899500778', 'VASTEC', 'KB-62', 'ESTACION DE TRABAJO', '2018-01-01', '1519', '3 AÑOS', 'VASTEC', 'CORE i7 ', '3.2 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1572, 1, 1, 14, 12, 32, '1158-2019-FB-01', '740899500798', 'ANTRYX', 'ANTRYX', 'ESTACION DE TRABAJO', '2020-01-01', 'NEA 379', '3 AÑOS', 'ANTRYX', 'CORE i3', '3.6 GHZ', '4 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1573, 1, 1, 14, 12, 32, '1158-2019-FB-02', '740899500799', 'ANTRYX', 'ANTRYX', 'ESTACION DE TRABAJO', '2020-01-01', 'NEA 379', '3 AÑOS', 'ANTRYX', 'CORE i3', '3.6 GHZ', '4 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1574, 1, 1, 14, 12, 32, '276778', '740899500793', 'VASTEC', 'KB-62', 'ESTACION DE TRABAJO', '2018-01-01', 'NEA 211', '3 AÑOS', 'VASTEC', 'CORE I7', '3.6 GHZ', '16 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1575, 1, 1, 2, 20, 3, 'MXL3243C37          ', '740899500534', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I5', '3.2 GHZ', '2 GB', '500 GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1576, 1, 1, 2, 20, 3, 'MXL32438YX ', '740899500492', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I5', '3.2 GHZ', '4 GB', '500 GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1577, 1, 1, 2, 20, 3, 'MXL32434Y3', '740899500493', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I5', '3.2 GHZ', '4 GB', '500 GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1578, 1, 1, 2, 20, 3, 'MXL4461BMH', '740899500632', 'HP', 'HP ELITE DESK 800 G1 SFF (20)', 'ESTACION DE TRABAJO', '2014-01-01', '786', '3 AÑOS', 'HP', 'CORE I7', '3.2 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1579, 1, 1, 2, 20, 3, 'MXL5512QTC', '740899500704', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-01', '407', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1580, 1, 1, 2, 20, 3, 'MXL5521P8H', '740899500702', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-01', '407', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26');
+INSERT INTO `ws_equipos` (`idEquipo`, `tipSegmento`, `idTipo`, `uResponsable`, `office`, `service`, `serie`, `sbn`, `marca`, `modelo`, `descripcion`, `fechaCompra`, `ordenCompra`, `garantia`, `placa`, `procesador`, `vprocesador`, `ram`, `discoDuro`, `puertos`, `capa`, `observaciones`, `fichaBaja`, `fichaReposición`, `condicion`, `estadoEQ`, `registrador`, `registrof`) VALUES
+(1581, 1, 1, 2, 20, 3, 'MXL5521DWD', '740899500703', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-01', '407', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1582, 1, 1, 2, 20, 3, 'MXL4450T6D', '740899500617', 'HP', 'HP ELITE DESK 800 G1 SFF (80)', 'ESTACION DE TRABAJO', '2014-01-01', '632', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1583, 1, 1, 2, 20, 3, 'MXL4450T6F', '740899500618', 'HP', 'HP ELITE DESK 800 G1 SFF (80)', 'ESTACION DE TRABAJO', '2014-01-01', '632', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1584, 1, 1, 11, 8, 33, 'MXL32434YL', '740899500481', 'HP', 'HP ELITE 8300 SFF(80)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I5', '3.2 GHZ', '4 GB', '500 GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1585, 1, 1, 11, 8, 33, 'MXL4450T6G', '740899500619', 'HP', 'HP ELITE DESK 800 G1 SFF (80)', 'ESTACION DE TRABAJO', '2014-01-01', '632', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1586, 1, 1, 11, 8, 33, 'MXL4450T6M', '740899500621', 'HP', 'HP ELITE DESK 800 G1 SFF (80)', 'ESTACION DE TRABAJO', '2014-01-01', '632', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1587, 1, 1, 11, 8, 33, 'MXL5512QS2', '740899500758', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-01', '407', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1588, 1, 1, 11, 8, 33, 'MXL5521JKJ', '740899500757', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-01', '407', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1589, 1, 1, 11, 8, 33, 'MXL5521JLJ', '740899500759', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-01', '407', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1590, 1, 1, 11, 8, 33, 'MXL5521JZP', '740899500755', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-01', '407', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1591, 1, 1, 11, 8, 33, 'MXL5521BGP', '740899500760', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-01', '407', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1592, 1, 1, 11, 8, 33, 'MXL32427L6 ', '740899500494', 'HP', 'HP ELITE 8300 SFF (20)', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '4 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1593, 1, 1, 11, 8, 33, 'MXL4450T6K', '740899500620', 'HP', 'HP ELITE DESK 800 G1 SFF (80)', 'ESTACION DE TRABAJO', '2014-01-01', '632', '3 AÑOS', 'HP', 'CORE I7', '3.4 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1594, 1, 1, 11, 8, 33, 'MXL5521JWS', '740899500756', 'HP', 'ELITE DESK 800 G1 SFF (117)', 'ESTACION DE TRABAJO', '2016-01-01', '407', '3 AÑOS', 'HP', 'CORE I7', '3.6 GHZ', '8 GB', '1 TB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 4, '2021-05-19 10:13:26'),
+(1595, 3, 13, 31, 25, 86, 'SN', '462252150044', 'ENERGIT', 'SYSTEM SOLID', 'ESTABILIZADOR ', '2002-12-31', '9999', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'CON FICHA DE REPOSICION 2021-05-24', NULL, NULL, 2, 3, 4, '2021-05-24 13:09:37'),
+(1596, 1, 1, 27, 24, 131, 'MXL32434Y7', '740899500530', 'HP', 'HP ELITE 8300 SFF 80', 'ESTACION DE TRABAJO', '2013-01-01', '789', '3 AÑOS', 'HP', 'CORE I5', '3.40 GHZ', '4GB', '500GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 1, '2021-05-27 09:32:41'),
+(1597, 3, 13, 24, 22, 25, '14206110935', '0', 'FORZA', 'FVR 1221B', 'ESTABILIZADOR', '2021-06-09', 'SO', '1 AÑO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'CON FICHA DE REPOSICION 2021-06-09', NULL, NULL, 2, 3, 5, '2021-06-09 09:57:26'),
+(1598, 1, 1, 18, 15, 23, '12191752334', '0', 'DELL', 'OPTIPLEZ 3040', 'ESTACION DE RABAJO', '1969-12-31', '0', '3 AÑOS', 'DELL', 'CORE I5', '3.20GHZ', '4GB', '500GB', NULL, NULL, 'CON FICHA DE REPOSICION 2021-06-23', NULL, NULL, 2, 3, 6, '2021-06-23 12:06:37'),
+(1599, 1, 1, 26, 18, 31, 'REENSAMBLADO0001', '0', 'DATAONE', 'CASE TORRE', 'ESTACION DE TRABAJO', '2021-12-07', '0', '1 AÑO', 'MOTHERBOARD', 'CORE I5', '3.40GHZ', '4GB', '500GB', NULL, NULL, 'REGISTRO NUEVO', NULL, NULL, 1, 1, 5, '2021-07-16 10:18:19');
 
 -- --------------------------------------------------------
 
@@ -2274,7 +2446,24 @@ INSERT INTO `ws_integraciones` (`idIntegracion`, `correlativo_integracion`, `nro
 (4, 'FT-2021-00004', 'SW_0001', '', NULL, 0, 0, 0, 858, NULL, '2021-05-10', 2, 18, 15, 23, 1, 1, 0, '2021-05-10 20:09:57'),
 (5, 'FT-2021-00005', 'PC_0650', '', 979, 0, 0, 0, NULL, NULL, '2021-05-17', 1, 32, 1, 4, 1, 1, 0, '2021-05-17 17:18:20'),
 (6, 'FT-2021-00006', 'PC_0582', '', 1425, 0, 0, 0, NULL, NULL, '2021-05-17', 1, 31, 25, 27, 1, 1, 0, '2021-05-17 19:31:45'),
-(7, 'FT-2021-00007', 'PC_0567', '', 1471, 0, 0, 0, NULL, NULL, '2021-05-17', 1, 5, 6, 104, 1, 1, 0, '2021-05-17 19:44:09');
+(7, 'FT-2021-00007', 'PC_0567', '', 1471, 0, 0, 0, NULL, NULL, '2021-05-17', 1, 5, 6, 104, 1, 1, 0, '2021-05-17 19:44:09'),
+(8, 'FT-2021-00008', 'PC_0632', '172.16.16.61', 1596, 0, 0, 0, NULL, NULL, '2021-05-27', 1, 27, 24, 131, 1, 1, 0, '2021-05-27 14:34:03'),
+(9, 'FT-2021-00009', 'PC_0590', '172.16.16.60', 983, 0, 0, 0, NULL, NULL, '2021-05-27', 1, 14, 12, 32, 1, 1, 0, '2021-05-27 14:46:14'),
+(10, 'FT-2021-00010', 'PC_0817', '172.16.16.62', 1041, 0, 0, 0, NULL, NULL, '2021-05-27', 1, 27, 24, 136, 1, 1, 0, '2021-05-27 18:26:06'),
+(11, 'FT-2021-00011', 'PC_0626', '172.16.16.64', 1047, 0, 0, 0, NULL, NULL, '2021-05-28', 1, 27, 24, 133, 1, 1, 0, '2021-05-28 16:31:41'),
+(12, 'FT-2021-00012', 'PC_958_16CE', '172.16.16.65', 1051, 0, 0, 0, NULL, NULL, '2021-05-28', 1, 27, 24, 137, 1, 1, 0, '2021-05-28 16:34:15'),
+(13, 'FT-2021-00013', 'PC_0615', '172.16.16.63', 1036, 0, 0, 0, NULL, NULL, '2021-05-28', 1, 27, 24, 138, 1, 1, 0, '2021-05-28 17:56:07'),
+(14, 'FT-2021-00014', 'PC_0627', '172.16.16.66', 1040, 0, 0, 0, NULL, NULL, '2021-05-31', 1, 27, 24, 141, 1, 1, 0, '2021-05-31 17:40:25'),
+(15, 'FT-2021-00015', 'PC_0821', '172.16.16.67', 1025, 0, 0, 0, NULL, NULL, '2021-05-31', 1, 27, 24, 140, 1, 1, 0, '2021-05-31 17:40:59'),
+(16, 'FT-2021-00016', 'PC_0612', '172.16.16.68', 1062, 0, 0, 0, NULL, NULL, '2021-05-31', 1, 27, 24, 140, 1, 1, 0, '2021-05-31 17:41:32'),
+(17, 'FT-2021-00017', 'PC_0629', '172.16.16.69', 1058, 0, 0, 0, NULL, NULL, '2021-06-02', 1, 27, 24, 142, 1, 1, 0, '2021-06-02 14:11:06'),
+(18, 'FT-2021-00018', 'PC_0569', '', 1480, 0, 0, 0, NULL, NULL, '2021-06-16', 1, 18, 15, 23, 1, 1, 0, '2021-06-16 15:20:01'),
+(19, 'FT-2021-00019', 'MED_001', '', 1598, 0, 0, 0, NULL, NULL, '2021-06-23', 1, 18, 15, 23, 2, 1, 0, '2021-06-23 17:07:15'),
+(20, 'FT-2021-00020', 'PC_0544', '', 1599, 0, 0, 0, NULL, NULL, '2021-06-25', 1, 26, 18, 31, 1, 1, 0, '2021-06-25 14:34:53'),
+(21, 'FT-2021-00021', 'PC_0724', '', 1009, 0, 0, 0, NULL, NULL, '2021-07-09', 1, 9, 13, 9, 1, 1, 0, '2021-07-09 16:08:31'),
+(22, 'FT-2021-00022', 'PC_1004_16CM', '', 1011, 0, 0, 0, NULL, NULL, '2021-07-09', 1, 9, 13, 9, 1, 1, 0, '2021-07-09 16:26:26'),
+(23, 'FT-2021-00023', 'PC_0545', '', 1534, 0, 0, 0, NULL, NULL, '2021-07-16', 1, 26, 18, 31, 1, 1, 0, '2021-07-16 14:54:12'),
+(24, 'FT-2021-00024', 'PC_932_16GN', '', 1411, 0, 0, 0, NULL, NULL, '2021-07-19', 1, 19, 26, 21, 1, 1, 0, '2021-07-19 20:20:16');
 
 --
 -- Disparadores `ws_integraciones`
@@ -2355,7 +2544,26 @@ CREATE TABLE `ws_mantenimientos` (
 INSERT INTO `ws_mantenimientos` (`idMantenimiento`, `correlativo_Mant`, `fRegistroMant`, `tipEquipo`, `condInicial`, `idEquip`, `oficEquip`, `areaEquip`, `respoEquip`, `logdeta`, `descInc`, `diagnostico1`, `diagnostico2`, `diagnostico3`, `diagnostico4`, `diagnostico5`, `diagnostico6`, `diagnostico7`, `diagnostico8`, `tecEvalua`, `fEvalua`, `primera_eval`, `fInicio`, `fFin`, `tipTrabajo`, `tecResp`, `accion1`, `accion2`, `accion3`, `accion4`, `accion5`, `accion6`, `accion7`, `accion8`, `recomendaciones`, `estAtencion`, `condFinal`, `servTerce`, `otros`, `obsOtros`, `usRegistra`, `sgmtoManto`, `estAnulado`, `fecha_creacion`) VALUES
 (1, 'FM-2021-00001', '2021-05-04', 1, 2, 2, 20, 3, 2, 'N° Equipo: PC_0602 || Serie N°: MXL32438YX || Cod.Patr: 740899500492 || Marca: HP || Modelo: ELITE 8300 || Descripción: ESTACION DE TRABAJO || IP:  || Procesador: CORE I5-3.20 GHZ || RAM: 4GB || Disco Duro: 500GB', 'No enciende la pc', 9, 0, 0, 0, 0, 0, 0, 0, 4, '2021-04-30', 'Fuente malograda, se requiere cambio de fuente', '2021-05-03', '2021-05-04', 3, 4, 2, 1, 0, 0, 0, 0, 0, 0, 'Se requiere la adquisición de una nueva fuente para su buen funcionamiento.', 1, 2, 'NO', 'NO', '', 4, 1, 1, '2021-05-04 16:53:07'),
 (2, 'FM-2021-00002', '2021-05-17', 1, 2, 1425, 25, 27, 31, 'N° Equipo: PC_0582 || Serie N°: MXL32434YV || Cod.Patr: 740899500464 || Marca: HP || Modelo: HP ELITE 8300 SFF(80) || Descripción: ESTACION DE TRABAJO || IP:  || Procesador: CORE I5-3.2 GHZ || RAM: 4 GB || Disco Duro: 500 GB', 'No enciende pc', 9, 0, 0, 0, 0, 0, 0, 0, 4, '2021-05-17', '-', '2021-05-17', '2021-05-17', 3, 4, 1, 2, 4, 0, 0, 0, 0, 0, 'Se recomienda la adquisición de una nueva fuente para su buen funcionamiento.', 2, 2, 'NO', 'NO', '', 4, 1, 1, '2021-05-17 19:34:53'),
-(3, 'FM-2021-00003', '2021-05-17', 1, 2, 1471, 6, 104, 5, 'N° Equipo: PC_0567 || Serie N°: MXL3232488 || Cod.Patr: 740899500506 || Marca: HP || Modelo: HP ELITE 8300 SFF 20 || Descripción: ESTACION DE TRABAJO || IP:  || Procesador: CORE I7-3.4GHZ || RAM: 4GB || Disco Duro: 1TB', 'No enciende pc ', 9, 0, 0, 0, 0, 0, 0, 0, 4, '2021-05-14', '-', '2021-05-17', '2021-05-17', 3, 4, 1, 2, 5, 0, 0, 0, 0, 0, 'Se recomienda la adquisición de una nueva placa para su buen funcionamiento. ', 2, 2, 'NO', 'NO', '', 4, 1, 1, '2021-05-17 19:46:59');
+(3, 'FM-2021-00003', '2021-05-17', 1, 2, 1471, 6, 104, 5, 'N° Equipo: PC_0567 || Serie N°: MXL3232488 || Cod.Patr: 740899500506 || Marca: HP || Modelo: HP ELITE 8300 SFF 20 || Descripción: ESTACION DE TRABAJO || IP:  || Procesador: CORE I7-3.4GHZ || RAM: 4GB || Disco Duro: 1TB', 'No enciende pc ', 9, 0, 0, 0, 0, 0, 0, 0, 4, '2021-05-14', '-', '2021-05-17', '2021-05-17', 3, 4, 1, 2, 5, 0, 0, 0, 0, 0, 'Se recomienda la adquisición de una nueva placa para su buen funcionamiento. ', 2, 2, 'NO', 'NO', '', 4, 1, 1, '2021-05-17 19:46:59'),
+(4, 'FM-2021-00004', '2021-05-27', 1, 1, 1596, 24, 131, 27, 'N° Equipo: PC_0632 || Serie N°: MXL32434Y7 || Cod.Patr: 740899500530 || Marca: HP || Modelo: HP ELITE 8300 SFF 80 || Descripción: ESTACION DE TRABAJO || IP:  || Procesador: CORE I5-3.40 GHZ || RAM: 4GB || Disco Duro: 500GB', 'Sistema operativo lento', 9, 0, 0, 0, 0, 0, 0, 0, 4, '2021-05-27', 'Mantenimiento correctivo', '2021-05-27', '2021-05-27', 2, 4, 2, 1, 14, 15, 17, 16, 0, 0, 'Se recomienda solicitar periódicamente su mantenimiento. ', 1, 1, 'NO', 'NO', '', 4, 1, 1, '2021-05-27 16:33:27'),
+(5, 'FM-2021-00005', '2021-05-27', 1, 1, 983, 24, 132, 27, 'N° Equipo: PC_0590 || Serie N°: MXL32434Z6 || Cod.Patr: 740899500455 || Marca: HP || Modelo: HP ELITE 8300 SFF(80) || Descripción: ESTACION DE TRABAJO || IP: 172.16.16.60 || Procesador: CORE I5-3.40 GHZ || RAM: 4GB || Disco Duro: 500GB', 'Sistema operativo lento', 9, 0, 0, 0, 0, 0, 0, 0, 4, '2021-05-27', 'Mantenimiento correctivo', '2021-05-27', '2021-05-27', 2, 4, 2, 1, 14, 15, 17, 16, 0, 0, 'Se recomienda solicitar periódicamente su mantenimiento. ', 1, 1, 'NO', 'NO', '', 4, 1, 1, '2021-05-27 16:38:06'),
+(6, 'FM-2021-00006', '2021-05-27', 1, 1, 1041, 24, 136, 27, 'N° Equipo: PC_0817 || Serie N°: MXL4461BMS || Cod.Patr: 740899500637 || Marca: HP || Modelo: HP ELITE DESK 800 G1 SFF (20) || Descripción: ESTACION DE TRABAJO || IP: 172.16.16.62 || Procesador: CORE I7-3.40 GHZ || RAM: 8GB || Disco Duro: 1TB', 'Sistema operativo lento', 9, 0, 0, 0, 0, 0, 0, 0, 4, '2021-05-27', 'Mantenimiento correctivo', '2021-05-27', '2021-05-27', 2, 4, 2, 1, 14, 15, 17, 16, 0, 0, 'Se recomienda solicitar periódicamente su mantenimiento.', 1, 1, 'NO', 'NO', '', 4, 1, 1, '2021-05-27 19:43:46'),
+(7, 'FM-2021-00007', '2021-05-31', 1, 1, 1047, 24, 133, 27, 'N° Equipo: PC_0626 || Serie N°: MXL3243C2S || Cod.Patr: 740899500529 || Marca: HP || Modelo: HP ELITE 8300 SFF(80) || Descripción: ESTACION DE TRABAJO || IP: 172.16.16.64 || Procesador: CORE I5-3.40 GHZ || RAM: 4GB || Disco Duro: 500GB', 'Sistema operativo lento', 9, 0, 0, 0, 0, 0, 0, 0, 4, '2021-05-28', 'Mantenimiento correctivo', '2021-05-28', '2021-05-31', 2, 4, 2, 1, 14, 15, 17, 16, 0, 0, 'Se recomienda solicitar periódicamente su mantenimiento.  ', 1, 1, 'NO', 'NO', '', 4, 1, 1, '2021-05-31 15:01:04'),
+(8, 'FM-2021-00008', '2021-05-31', 1, 1, 1051, 24, 137, 27, 'N° Equipo: PC_958_16CE || Serie N°: MXL5512DVJ || Cod.Patr: 740899500682 || Marca: HP || Modelo: ELITE DESK 800 G1 SFF (117) || Descripción: ESTACION DE TRABAJO || IP: 172.16.16.65 || Procesador: CORE I7-3.40 GHZ || RAM: 8GB || Disco Duro: 1TB', 'Sistema operativo lento', 9, 0, 0, 0, 0, 0, 0, 0, 4, '2021-05-28', 'Mantenimiento correctivo', '2021-05-28', '2021-05-31', 2, 4, 2, 1, 14, 15, 17, 16, 0, 0, 'Se recomienda solicitar periódicamente su mantenimiento', 1, 1, 'NO', 'NO', '', 4, 1, 1, '2021-05-31 15:03:40'),
+(9, 'FM-2021-00009', '2021-05-31', 1, 1, 1036, 24, 138, 27, 'N° Equipo: PC_0615 || Serie N°: MXL3243C25 || Cod.Patr: 740899500522 || Marca: HP || Modelo: HP ELITE 8300 SFF(80) || Descripción: ESTACION DE TRABAJO || IP: 172.16.16.63 || Procesador: CORE I5-3.40 GHZ || RAM: 4GB || Disco Duro: 500GB', 'Sistema operativo lento', 9, 0, 0, 0, 0, 0, 0, 0, 4, '2021-05-28', 'Mantenimiento correctivo ', '2021-05-28', '2021-05-31', 2, 4, 2, 1, 14, 15, 17, 16, 0, 0, 'Se recomienda solicitar periódicamente su mantenimiento.', 1, 1, 'NO', 'NO', '', 4, 1, 1, '2021-05-31 15:14:08'),
+(10, 'FM-2021-00010', '2021-05-31', 1, 1, 1025, 24, 140, 27, 'N° Equipo: PC_0821 || Serie N°: MXL4461BY3 || Cod.Patr: 740899500638 || Marca: HP || Modelo: HP ELITE DESK 800 G1 SFF (20) || Descripción: ESTACION DE TRABAJO || IP: 172.16.16.67 || Procesador: CORE I7-3.40 GHZ || RAM: 4GB || Disco Duro: 1TB', 'Sistema operativo lento', 9, 0, 0, 0, 0, 0, 0, 0, 4, '2021-05-31', 'Mantenimiento correctivo', '2021-05-31', '2021-05-31', 2, 4, 2, 1, 14, 15, 17, 16, 0, 0, 'Se recomienda solicitar periódicamente su mantenimiento.', 1, 1, 'NO', 'NO', '', 4, 1, 1, '2021-05-31 19:39:02'),
+(11, 'FM-2021-00011', '2021-05-31', 1, 1, 1062, 24, 140, 27, 'N° Equipo: PC_0612 || Serie N°: MXL32438YT || Cod.Patr: 740899500533 || Marca: HP || Modelo: HP ELITE 8300 SFF(80) || Descripción: ESTACION DE TRABAJO || IP: 172.16.16.68 || Procesador: CORE I5-3.40 GHZ || RAM: 4GB || Disco Duro: 500GB', 'Sistema operativo lento', 9, 0, 0, 0, 0, 0, 0, 0, 4, '2021-05-31', 'Mantenimiento correctivo', '2021-05-31', '2021-05-31', 2, 4, 2, 1, 14, 15, 17, 16, 0, 0, 'Se recomienda solicitar periódicamente su mantenimiento. ', 1, 1, 'NO', 'NO', '', 4, 1, 1, '2021-05-31 19:41:02'),
+(12, 'FM-2021-00012', '2021-05-31', 1, 1, 1040, 24, 141, 27, 'N° Equipo: PC_0627 || Serie N°: MXL3243C3Y || Cod.Patr: 740899500526 || Marca: HP || Modelo: HP ELITE 8300 SFF(80) || Descripción: ESTACION DE TRABAJO || IP: 172.16.16.66 || Procesador: CORE I5-3.40 GHZ || RAM: 4GB || Disco Duro: 500GB', 'Sistema operativo lento', 9, 0, 0, 0, 0, 0, 0, 0, 4, '2021-05-31', 'Mantenimiento correctivo', '2021-05-31', '2021-05-31', 2, 4, 2, 1, 14, 15, 17, 16, 0, 0, 'Se recomienda solicitar periódicamente su mantenimiento.', 1, 1, 'NO', 'NO', '', 4, 1, 1, '2021-05-31 19:43:34'),
+(13, 'FM-2021-00013', '2021-06-02', 1, 1, 1058, 24, 142, 27, 'N° Equipo: PC_0629 || Serie N°: MXL32434Y6 || Cod.Patr: 0 || Marca: HP || Modelo: HP ELITE 8300 SFF(80) || Descripción: ESTACION DE TRABAJO || IP: 172.16.16.69 || Procesador: CORE I5-3.40 GHZ || RAM: 4GB || Disco Duro: 500GB', 'Sistema operativo lento', 9, 0, 0, 0, 0, 0, 0, 0, 4, '2021-06-01', 'Mantenimiento correctivo', '2021-06-01', '2021-06-02', 2, 4, 2, 1, 14, 15, 17, 16, 0, 0, 'Se recomienda solicitar periódicamente su mantenimiento.', 1, 1, 'NO', 'NO', '', 4, 1, 1, '2021-06-02 14:52:12'),
+(14, 'FM-2021-00014', '2021-06-16', 1, 2, 1480, 15, 23, 18, 'N° Equipo: PC_0569 || Serie N°: MXL3243C2T      || Cod.Patr: 740899500476 || Marca: HP || Modelo: HP ELITE 8300 SFF(80) || Descripción: ESTACION DE TRABAJO || IP:  || Procesador: CORE I5-3.2 GHZ || RAM: 4 GB || Disco Duro: 500 GB', 'Equipo no enciende en su totalidad', 9, 0, 0, 0, 0, 0, 0, 0, 6, '2021-06-16', 'Revision de componentes', '2021-06-16', '2021-06-16', 3, 6, 2, 5, 0, 0, 0, 0, 0, 0, 'Cpu presenta placa madre malograda, se recomienda la adquisición de nueva placa madre de modelo hp elite 8300, para su buen funcionamiento', 2, 2, 'NO', 'SI', 'Se hace entrega del cpu inoperativo completo en componentes a la jefatura de medicina.', 6, 1, 1, '2021-06-16 15:27:14'),
+(15, 'FM-2021-00015', '2021-06-25', 1, 2, 1531, 18, 31, 26, 'N° Equipo: PC_0544 || Serie N°: MXL3243C2P     || Cod.Patr: 740899500472 || Marca: HP || Modelo: HP ELITE 8300 SFF(80) || Descripción: ESTACION DE TRABAJO || IP:  || Procesador: CORE I5-3.2 GHZ || RAM: 4 GB || Disco Duro: 500 GB', 'El equipo suena alarmado, led rojo parpadea, huele a quemado, y no arranca el  encendido', 9, 0, 0, 0, 0, 0, 0, 0, 5, '2021-06-25', 'Después de la limpieza se verifica que la palca esta averiada (circuito quemado)', '2021-06-25', '2021-06-25', 3, 5, 1, 5, 0, 0, 0, 0, 0, 0, 'Se recomienda comprar: placa madre que soporta micro i5 3ra generación, case con fuente certificado de 700w, disipador de procesador i5', 2, 2, 'NO', 'SI', 'La solución es, ensamblar un nuevo CPU, utilizando los componentes buenos y adquiridos en la compra.', 5, 1, 1, '2021-06-25 14:46:27'),
+(16, 'FM-2021-00016', '2021-07-09', 1, 2, 1009, 13, 9, 9, 'N° Equipo: PC_0724 || Serie N°: MXL44131WL || Cod.Patr: 740899500547 || Marca: HP || Modelo: HP ELITE DESK 800 G1 SFF (80) || Descripción: ESTACION DE TRABAJO || IP:  || Procesador: CORE I7-3.40 GHZ || RAM: 8GB || Disco Duro: 1TB', 'Sistema operativo dañado', 9, 0, 0, 0, 0, 0, 0, 0, 6, '2021-06-22', 'Sistema operativo dañado', '2021-06-22', '2021-06-22', 2, 6, 10, 1, 0, 0, 0, 0, 0, 0, 'Cpu operativo, realizar mantenimiento periodicamente', 1, 1, 'NO', 'NO', '', 6, 1, 1, '2021-07-09 16:22:12'),
+(17, 'FM-2021-00017', '2021-07-09', 1, 2, 1011, 13, 9, 9, 'N° Equipo: PC_1004_16CM || Serie N°: MXL5521GMN || Cod.Patr: 740899500732 || Marca: HP || Modelo: ELITE DESK 800 G1 SFF (117) || Descripción: ESTACION DE TRABAJO || IP:  || Procesador: CORE I7-3.40 GHZ || RAM: 8GB || Disco Duro: 1TB', 'Sistema operativo dañado', 9, 0, 0, 0, 0, 0, 0, 0, 6, '2021-06-22', 'Sistema operativo dañado', '2021-06-22', '2021-06-22', 2, 6, 10, 1, 0, 0, 0, 0, 0, 0, 'Cpu operativo, solicitar mantenimiento periódicamente.', 1, 1, 'NO', 'NO', '', 6, 1, 1, '2021-07-09 16:30:31'),
+(18, 'FM-2021-00018', '2021-07-12', 9, 2, 179, 3, 15, 15, 'N° Equipo: null || Serie N°: A1UE041105678 || Cod.Patr: 740832000038 || Marca: KONICA MINOLTA || Modelo: MINOLTA BIZ HUB 363 || Descripción: FOTOCOPIADORA || IP: null', 'Fotocopiadora konica minolta presenta  atasco de hoja constantemente  en la parte superior adf', 11, 0, 0, 0, 0, 0, 0, 0, 6, '2021-07-12', 'Equipo presenta atasco de hoja constantemente en adf', '2021-07-12', '2021-07-12', 3, 6, 49, 0, 0, 0, 0, 0, 0, 0, 'Equipo presenta atasco de hoja en adf, se recomienda revisión y reparación  por servicio especializado de teceros para su buen funcionamiento.', 2, 2, 'SI', 'SI', 'Reparación por servicio especializado de terceros.', 6, 3, 1, '2021-07-12 19:23:34'),
+(19, 'FM-2021-00019', '2021-07-16', 1, 2, 1534, 18, 31, 26, 'N° Equipo: PC_0545 || Serie N°: MXL3243C1T           || Cod.Patr: 740899500473 || Marca: HP || Modelo: HP ELITE 8300 SFF(80) || Descripción: ESTACION DE TRABAJO || IP:  || Procesador: CORE I5-3.2 GHZ || RAM: 4 GB || Disco Duro: 500 GB', 'Se apaga intempestivamente, genera ruido extraño y se acelera el cooler de fuente de poder,etc', 9, 0, 0, 0, 0, 0, 0, 0, 4, '2021-07-13', 'Pruebas de funcionamiento en el taller   de soporte por tres días y sigue fallando el equipo', '2021-07-13', '2021-07-16', 3, 5, 1, 5, 0, 0, 0, 0, 0, 0, 'SE RECOMIENDA COMPRAR: PLACA MADRE QUE SOPORTA MICROPROCESADOR I3 DE 3RA GENERACION, DISIPADOR DE PROCESADOR SOCKET I3, CASE CON FUENTE CERTIFICADA 600 W Y TECLADO CON CONEXIONES USB.', 2, 2, 'NO', 'NO', '', 5, 1, 1, '2021-07-16 15:05:31'),
+(20, 'FM-2021-00020', '2021-07-19', 1, 1, 1599, 18, 31, 26, 'N° Equipo: PC_0544 || Serie N°: REENSAMBLADO0001 || Cod.Patr: 0 || Marca: DATAONE || Modelo: CASE TORRE || Descripción: ESTACION DE TRABAJO || IP:  || Procesador: CORE I5-3.40GHZ || RAM: 4GB || Disco Duro: 500GB', 'Se realiza reemsamblado de equipo cpu', 9, 0, 0, 0, 0, 0, 0, 0, 5, '2021-07-19', '-', '2021-07-19', '2021-07-19', 2, 5, 50, 14, 15, 0, 0, 0, 0, 0, 'SE REENSAMBLA UN NUEVO CPU UTILIZANDO COMPONENTES COMPRADOS (PLACA MADRE, DISIPADOR DE COOLER, CASE DE TORRE) Y REUTILIZANDO COMPONENTES TRANSFERIDOS DE CPU AVERIADO_PC_0544 (DISCO DURO, LECTORA DVD,MICROPROCESADOR, MEMORIA RAMM); OBTENIENDO UN EQUIPO OPERATIVO, DE MAYOR RENDIMIENTO Y ES PUESTO EN FUNCIONAMIENTO.', 1, 1, 'NO', 'SI', 'ESPECIFICACIONES TECNICAS DE LOS DIPOSITIVOS DEL NUEVO CPU PC_0544: CASE DATAONE SN°REENSAMBLADO_0001, PC_0544 PLACA MADRE MW-H61S SN°2011A/11081127, MICROPROCESADOR I5 3.4 GHZ, MEMORIA RAM 4 GB SN°HMT451U6AFR8A, DISCO DURO 500 MB SN°Z3TK4EK0, LECTORA MULTI DVD SN°316CC00026.', 5, 1, 1, '2021-07-19 19:22:32'),
+(21, 'FM-2021-00021', '2021-07-19', 1, 1, 1411, 26, 21, 19, 'N° Equipo: PC_932_16GN || Serie N°: MXL5521P7J || Cod.Patr: 740899500686 || Marca: HP || Modelo: ELITE DESK 800 G1 SFF (117) || Descripción: ESTACION DE TRABAJO || IP:  || Procesador: CORE I7-3.6 GHZ || RAM: 8 GB || Disco Duro: 1 TB', 'Ups malogrado, sistema operativo con fallas', 9, 0, 0, 0, 0, 0, 0, 0, 5, '2021-07-19', 'Requiere dar formato al disco duro, instalar programas y sistemas, etc.', '2021-07-19', '2021-07-19', 2, 5, 1, 15, 17, 16, 0, 0, 0, 0, 'x', 1, 1, 'NO', 'SI', 'Requiere dar protección eléctrica al equipo, con ups y/o estabilizador de voltaje solido de 1kw', 5, 1, 1, '2021-07-19 20:28:56'),
+(22, 'FM-2021-00022', '2021-07-21', 9, 2, 158, 5, 22, 6, 'N° Equipo: null || Serie N°: A789041006578 || Cod.Patr: 742223580070 || Marca: KONICA MINOLTA || Modelo: BIZHUB 367 || Descripción: FOTOCOPIADORA || IP: null', 'Atasco de hojas, pantalla display indica errores', 11, 0, 0, 0, 0, 0, 0, 0, 5, '2021-07-21', '-', '2021-07-21', '2021-07-21', 3, 5, 6, 0, 0, 0, 0, 0, 0, 0, 'Se recomienda servicio especializado de terceros para la reparación del equipo', 2, 2, 'SI', 'SI', 'Fallas observadas: atasco de papel, panel display alarmado por errores, ruido extraño y fuerte, etc', 5, 3, 1, '2021-07-21 15:53:19');
 
 --
 -- Disparadores `ws_mantenimientos`
@@ -2449,6 +2657,17 @@ CREATE TABLE `ws_reposiciones` (
   `estAnulado` int(11) NOT NULL DEFAULT '1',
   `fecha_creacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `ws_reposiciones`
+--
+
+INSERT INTO `ws_reposiciones` (`idReposicion`, `correlativo_Repo`, `fRegistroRepo`, `tipEquipo`, `condInicial`, `idEquip`, `oficEquip`, `areaEquip`, `respoEquip`, `logdeta`, `descInc`, `diagnostico1`, `diagnostico2`, `diagnostico3`, `diagnostico4`, `diagnostico5`, `diagnostico6`, `diagnostico7`, `diagnostico8`, `tecEvalua`, `fEvalua`, `primera_eval`, `fInicio`, `fFin`, `tipTrabajo`, `tecResp`, `accion1`, `accion2`, `accion3`, `accion4`, `accion5`, `accion6`, `accion7`, `accion8`, `recomendaciones`, `estAtencion`, `condFinal`, `servTerce`, `otros`, `obsOtros`, `usRegistra`, `sgmtoManto`, `estAnulado`, `fecha_creacion`) VALUES
+(1, 'FR-2021-00001', '2021-05-24', 13, 2, 1595, 25, 86, 31, 'Serie N°: SN || Cod.Patr: 462252150044 || Marca: ENERGIT || Modelo: SYSTEM SOLID || Descripción: ESTABILIZADOR ', 'No enciende el estabilizador', 11, 0, 0, 0, 0, 0, 0, 0, 4, '2021-05-24', '-', '2021-05-24', '2021-05-24', 3, 4, 6, 7, 0, 0, 0, 0, 0, 0, 'Se recomienda la adquisición de un nuevo estabilizador para su buen funcionamiento de la pc.', 2, 2, 'NO', 'NO', '', 4, 3, 1, '2021-05-24 19:09:18'),
+(2, 'FR-2021-00002', '2021-06-09', 13, 2, 1597, 22, 25, 24, 'Serie N°: 14206110935 || Cod.Patr: 0 || Marca: FORZA || Modelo: FVR 1221B || Descripción: ESTABILIZADOR', 'Equipo malogrado en su circuitería interna', 11, 0, 0, 0, 0, 0, 0, 0, 5, '2021-06-09', 'El estabilizador no enciende', '2021-06-09', '2021-06-09', 3, 5, 36, 6, 0, 0, 0, 0, 0, 0, 'Se recomienda comprar un estabilizador de voltaje 1200v a 800w con 04 puertos ', 2, 2, 'NO', 'SI', 'Código del inventario 2020 N°03725', 5, 3, 1, '2021-06-09 15:04:31'),
+(3, 'FR-2021-00003', '2021-06-23', 1, 2, 1598, 15, 23, 18, 'N° Equipo: MED_001 || Serie N°: 12191752334 || Cod.Patr: 0 || Marca: DELL || Modelo: OPTIPLEZ 3040 || Descripción: ESTACION DE RABAJO || IP:  || Procesador: CORE I5-3.20GHZ || RAM: 4GB || Disco Duro: 500GB', 'Pc no enciende, inoperativo', 9, 0, 0, 0, 0, 0, 0, 0, 6, '2021-06-23', 'Equipo de pc no enciende', '2021-06-23', '2021-06-23', 3, 6, 2, 5, 0, 0, 0, 0, 0, 0, 'Se recomienda la adquisición de nueva placa madre para procesador 6ta generación, disipador de microprocesador y case con fuente de poder real,  para ensamble de cpu.', 2, 2, 'NO', 'SI', 'Se hace entrega de equipo de cpu completo con sus componentes respectivos', 6, 1, 1, '2021-06-23 17:13:05'),
+(4, 'FR-2021-00004', '2021-07-12', 3, 2, 301, 25, 27, 31, 'N° Equipo: null || Serie N°: BRFSG7L2P2 || Cod.Patr: 740841000135 || Marca: HP  || Modelo: HP LASERJET PRO 400 M401dn || Descripción: LASER || IP: null', 'Se encuentra almacenado y sin usarse, sin tóner', 11, 0, 0, 0, 0, 0, 0, 0, 5, '2021-07-12', 'Revisión general', '2021-07-12', '2021-07-12', 3, 5, 47, 0, 0, 0, 0, 0, 0, 0, 'Entregar el equipo malogrado al área de patrimonio, para tramitar su baja respectiva', 1, 2, 'NO', 'NO', '', 5, 3, 1, '2021-07-12 20:21:07'),
+(5, 'FR-2021-00005', '2021-07-15', 3, 2, 97, 21, 8, 23, 'N° Equipo: null || Serie N°: CNF8G5SJ2P || Cod.Patr: 740841000120 || Marca: HP  || Modelo: HP LASERJET PRO 400 M425dn || Descripción: LASER || IP: null', 'Wquipo requiere reparacion generaL', 11, 0, 0, 0, 0, 0, 0, 0, 6, '2021-07-15', 'Revision visuaL', '2021-07-15', '2021-07-15', 3, 6, 49, 6, 0, 0, 0, 0, 0, 0, 'Equipo presenta obsolescencia técnica. \r\nse recomienda reposición de nuevo equipo de impresora', 1, 2, 'NO', 'NO', '', 6, 3, 1, '2021-07-15 19:10:59');
 
 --
 -- Disparadores `ws_reposiciones`
@@ -2690,7 +2909,19 @@ INSERT INTO `ws_servicios` (`id_subarea`, `id_area`, `subarea`, `fecha_creacion`
 (127, 8, 'VIGILANCIA', '2021-05-05 19:43:10'),
 (128, 28, 'CENTRAL DE ESTERILIZACION', '2021-05-05 19:48:22'),
 (129, 31, 'JEFATURA', '2021-05-07 16:01:21'),
-(130, 32, 'SIN UBICACION', '2021-05-07 16:22:53');
+(130, 32, 'SIN UBICACION', '2021-05-07 16:22:53'),
+(131, 24, 'CONSULTORIO DE CIRUGÍA', '2021-05-27 14:25:34'),
+(132, 24, 'CONSULTORIO DE TRAUMATOLOGIA', '2021-05-27 14:25:47'),
+(133, 24, 'CONSULTORIO DE MEDICINA', '2021-05-27 14:25:55'),
+(134, 24, 'CONSULTORIO DE GASTROENTEROLOGIA', '2021-05-27 14:26:09'),
+(135, 24, 'CONSULTORIO DE NEUMOLOGIA', '2021-05-27 14:26:20'),
+(136, 24, 'CONSULTORIO DE PEDIATRIA', '2021-05-27 18:21:55'),
+(137, 24, 'CONSULTORIO DE PSIQUIATRIA', '2021-05-28 16:32:17'),
+(138, 24, 'CONSULTORIO DE NEUROLOGIA', '2021-05-28 17:54:50'),
+(139, 24, 'CONSULTORIO DE GINECOLOGIA', '2021-05-31 17:31:56'),
+(140, 24, 'CONSULTORIO DE GERIATRIA', '2021-05-31 17:32:23'),
+(141, 24, 'CONSULTORIO DE ONCOLOGIA QUIRURGICA', '2021-05-31 17:32:45'),
+(142, 24, 'CONSULTORIO DE UROLOGIA', '2021-06-02 14:08:47');
 
 -- --------------------------------------------------------
 
@@ -2760,10 +2991,10 @@ CREATE TABLE `ws_usuarios` (
 
 INSERT INTO `ws_usuarios` (`id_usuario`, `id_perfil`, `dni`, `nombres`, `apellido_paterno`, `apellido_materno`, `cuenta`, `clave`, `fecha_registro`, `estado`, `nintentos`) VALUES
 (1, 1, '77478995', 'Olger Ivan', 'Castro', 'Palacios', 'ocastrop', '$2a$07$usesomesillystringforeVF6hLwtgsUBAmUN4cGEd8tYF74gSHRW', '2020-03-02 16:22:25', 1, 0),
-(2, 2, '40195996', 'Monica Nohemi', 'Rosas', 'Sanchez', 'rosasmn', '$2a$07$usesomesillystringforeoRNSqF5ebwOJ.HFIcVhNJ65bww3hpNi', '2021-03-11 15:46:33', 0, 0),
-(3, 2, '09966920', 'Javier Octavio', 'Sernaque', 'Quintana', 'jsernaqueq', '$2a$07$usesomesillystringforeAR0AYDLcMUwZJGc02Ta3T98Pn6LH7pi', '2021-03-11 15:48:50', 0, 0),
-(4, 3, '42162499', 'Edwin William', 'Guerrero', 'Sandoval', 'wguerreros', '$2a$07$usesomesillystringforeLTVm.b0q8aUqKwOyqhotBMNXub2QEkq', '2021-03-11 15:52:31', 1, 1),
-(5, 4, '09401769', 'Segundo Andres', 'Cruzado', 'Cotrina', 'acruzadoc', '$2a$07$usesomesillystringfore9OBdlwIyha0dt84yf389aUSqD287miS', '2021-03-11 16:02:14', 1, 0),
+(2, 2, '40195996', 'Monica Nohemi', 'Rosas', 'Sanchez', 'rosasmn', '$2a$07$usesomesillystringforeoRNSqF5ebwOJ.HFIcVhNJ65bww3hpNi', '2021-03-11 15:46:33', 1, 0),
+(3, 2, '09966920', 'Javier Octavio', 'Sernaque', 'Quintana', 'jsernaqueq', '$2a$07$usesomesillystringforeAR0AYDLcMUwZJGc02Ta3T98Pn6LH7pi', '2021-03-11 15:48:50', 1, 0),
+(4, 3, '42162499', 'Edwin William', 'Guerrero', 'Sandoval', 'wguerreros', '$2a$07$usesomesillystringforeLTVm.b0q8aUqKwOyqhotBMNXub2QEkq', '2021-03-11 15:52:31', 1, 0),
+(5, 4, '09401769', 'Segundo Andres', 'Cruzado', 'Cotrina', 'acruzadoc', '$2a$07$usesomesillystringfore9OBdlwIyha0dt84yf389aUSqD287miS', '2021-03-11 16:02:14', 1, 1),
 (6, 4, '09965283', 'Ivan Victor', 'Chuquicaña', 'Fernandez', 'vchuquicañaf', '$2a$07$usesomesillystringforetG4v5XsxFT5vjiUpPsTv0VEdAMT4jmW', '2021-03-11 16:02:59', 1, 0);
 
 -- --------------------------------------------------------
@@ -2781,6 +3012,13 @@ CREATE TABLE `ws_z_auditoria_mantenimientos` (
   `dateInstant` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+--
+-- Volcado de datos para la tabla `ws_z_auditoria_mantenimientos`
+--
+
+INSERT INTO `ws_z_auditoria_mantenimientos` (`idAudMant`, `idDoc`, `usExec`, `accExec`, `fecha_audi`, `dateInstant`) VALUES
+(1, 14, 1, 'Modificación', '2021-06-16', '2021-06-16 16:48:37');
+
 -- --------------------------------------------------------
 
 --
@@ -2795,6 +3033,14 @@ CREATE TABLE `ws_z_auditoria_reposiciones` (
   `fecha_audi` date NOT NULL,
   `dateInstant` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `ws_z_auditoria_reposiciones`
+--
+
+INSERT INTO `ws_z_auditoria_reposiciones` (`idAudRepo`, `idDoc`, `usExec`, `accExec`, `fecha_audi`, `dateInstant`) VALUES
+(1, 3, 6, 'Modificación', '2021-06-23', '2021-06-23 17:58:20'),
+(2, 3, 6, 'Modificación', '2021-06-23', '2021-06-23 17:59:51');
 
 --
 -- Índices para tablas volcadas
@@ -2928,7 +3174,7 @@ ALTER TABLE `ws_z_auditoria_reposiciones`
 -- AUTO_INCREMENT de la tabla `ws_acciones`
 --
 ALTER TABLE `ws_acciones`
-  MODIFY `idAccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idAccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_categorias`
@@ -2952,7 +3198,7 @@ ALTER TABLE `ws_diagnosticos`
 -- AUTO_INCREMENT de la tabla `ws_equipos`
 --
 ALTER TABLE `ws_equipos`
-  MODIFY `idEquipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1472;
+  MODIFY `idEquipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1600;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_estado`
@@ -2976,13 +3222,13 @@ ALTER TABLE `ws_estadosdoc`
 -- AUTO_INCREMENT de la tabla `ws_integraciones`
 --
 ALTER TABLE `ws_integraciones`
-  MODIFY `idIntegracion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idIntegracion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_mantenimientos`
 --
 ALTER TABLE `ws_mantenimientos`
-  MODIFY `idMantenimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idMantenimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_perfiles`
@@ -2994,7 +3240,7 @@ ALTER TABLE `ws_perfiles`
 -- AUTO_INCREMENT de la tabla `ws_reposiciones`
 --
 ALTER TABLE `ws_reposiciones`
-  MODIFY `idReposicion` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idReposicion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_responsables`
@@ -3012,7 +3258,7 @@ ALTER TABLE `ws_segmento`
 -- AUTO_INCREMENT de la tabla `ws_servicios`
 --
 ALTER TABLE `ws_servicios`
-  MODIFY `id_subarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
+  MODIFY `id_subarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=143;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_situacion`
@@ -3036,13 +3282,13 @@ ALTER TABLE `ws_usuarios`
 -- AUTO_INCREMENT de la tabla `ws_z_auditoria_mantenimientos`
 --
 ALTER TABLE `ws_z_auditoria_mantenimientos`
-  MODIFY `idAudMant` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idAudMant` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `ws_z_auditoria_reposiciones`
 --
 ALTER TABLE `ws_z_auditoria_reposiciones`
-  MODIFY `idAudRepo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idAudRepo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

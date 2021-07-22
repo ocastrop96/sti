@@ -51,7 +51,6 @@ class ControladorUsuarios
                             setTimeout(redirect,1200);
                              </script>';
                         }
-                        // Datos a usar en sesiones
 
                     } else {
                         echo '<script>
@@ -67,7 +66,7 @@ class ControladorUsuarios
                         setTimeout(redirect,1200);
                             </script>';
                     }
-                } else if ($respuesta["cuenta"] == $_POST["logCuenta"]) {
+                } else if ($encriptacion != $respuesta["clave"]) {
                     $id_usuario = $respuesta["id_usuario"];
                     $registroIntentos = ModeloUsuarios::mdlRegistroIntentos($id_usuario);
 
@@ -106,6 +105,20 @@ class ControladorUsuarios
                     setTimeout(redirect,1200);
                 </script>';
                 }
+            }
+            else{
+                echo '<script>
+                            Swal.fire({
+                                icon: "error",
+                                title: "¡Ingrese correctamente sus credenciales!",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            function redirect(){
+                                window.location = "logi";
+                            }
+                            setTimeout(redirect,1200);
+                      </script>';
             }
         }
     }

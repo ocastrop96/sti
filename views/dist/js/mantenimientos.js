@@ -11,7 +11,7 @@ $(".tablaMantenimientos").DataTable({
     "searching": true,
     "ordering": true,
     "order": [
-        [0, "asc"]
+        [1, "desc"]
     ],
     "info": true,
     "autoWidth": false,

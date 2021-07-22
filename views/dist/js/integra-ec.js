@@ -9,7 +9,10 @@ $(".tablaIntegraEC").DataTable({
     paging: true,
     lengthChange: true,
     searching: true,
-    ordering: false,
+    ordering: true,
+    order: [
+        [1, "desc"]
+    ],
     info: true,
     autoWidth: false,
     language: {
