@@ -1,0 +1,5 @@
+#Habilitamos la opcion para ocultar las carpetas del directorio
+Options All -Indexes
+#Habilitamos para utilizar URL's amigables
+RewriteEngine On
+RewriteRule ^([-a-zA-Z0-9]+)$ index.php?ruta=$1
